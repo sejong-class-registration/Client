@@ -2,7 +2,7 @@ function App() {
   return (
     <div>
       <button>Hello World!</button>
-      <div>나는야 감자</div>
+      <div>나는야 고구마</div>
     </div>
   );
 }
