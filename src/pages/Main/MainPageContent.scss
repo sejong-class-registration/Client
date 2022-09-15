@@ -1,0 +1,62 @@
+.calendar {
+  /* 시간표 */
+
+  width: 50%;
+  height: 90%;
+  margin: 2rem;
+  padding: 2rem;
+  background: #ffffff;
+  border: 0.5px solid #626060;
+  border-radius: 15px;
+
+  &-label {
+    margin: 3rem;
+  }
+  &-table {
+    text-align: center;
+    border-spacing: 0px;
+    margin: auto;
+  }
+
+  &-day {
+    text-align: center;
+    width: 7rem;
+    height: 1.5rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 0px;
+
+    &.right_up_corner {
+      border-radius: 0px 15px 0px 0px;
+    }
+  }
+  &-class {
+    width: 7rem;
+    height: 3rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 0px;
+
+    &.right_down_corner {
+      border-radius: 0px 0px 15px 0px;
+    }
+  }
+  &-number {
+    text-align: center;
+    width: 2rem;
+    height: 3rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 0px;
+    &.left_up_corner {
+      height: 1.5rem;
+      border-radius: 15px 0px 0px 0px;
+    }
+    &.left_down_corner {
+      border-radius: 0px 0px 0px 15px;
+    }
+  }
+
+  &-info {
+    display: flex;
+    justify-content: space-between;
+    
+  }
+}

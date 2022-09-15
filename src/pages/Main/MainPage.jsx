@@ -1,11 +1,13 @@
 import React from "react";
 import MainNavigation from "./MainNavigation";
+import MainPageContent from "./MainPageContent";
 
 function MainPage() {
   return (
-    <div>
+    <>
       <MainNavigation></MainNavigation>
-    </div>
+      <MainPageContent></MainPageContent>
+    </>
   );
 }
 
