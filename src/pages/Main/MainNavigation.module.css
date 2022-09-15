@@ -10,6 +10,7 @@
 }
 
 .logo {
+  text-justify: auto;
   font-size: 1.6rem;
   color: white;
 }

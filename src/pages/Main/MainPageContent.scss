@@ -1,8 +1,7 @@
 .calendar {
   /* 시간표 */
 
-  width: 50%;
-  height: 90%;
+  
   margin: 2rem;
   padding: 2rem;
   background: #ffffff;
@@ -57,6 +56,15 @@
   &-info {
     display: flex;
     justify-content: space-between;
-    
   }
+}
+
+.body {
+  width: 100%;
+  height: max-content;
+  display: flex;
+}
+
+.content1 {
+
 }
