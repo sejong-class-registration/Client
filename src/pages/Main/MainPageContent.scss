@@ -1,8 +1,22 @@
-.calendar {
-  /* 시간표 */
+.body {
+  width: max-content;
+  height: 100vh;
+  display: flex;
+}
 
-  
-  margin: 2rem;
+.frame_1 {
+  margin-top: 1rem;
+  width: 55vw;
+  height: 100%;
+}
+.frame_2 {
+  margin-top: 1rem;
+  width: 45vw;
+  height: 100%;
+}
+
+.calendar {
+  margin: 0 2rem;
   padding: 2rem;
   background: #ffffff;
   border: 0.5px solid #626060;
@@ -12,6 +26,7 @@
     margin: 3rem;
   }
   &-table {
+    width: 100%;
     text-align: center;
     border-spacing: 0px;
     margin: auto;
@@ -20,7 +35,7 @@
   &-day {
     text-align: center;
     width: 7rem;
-    height: 1.5rem;
+    height: 3rem;
     border: 1px solid #e0e0e0;
     border-radius: 0px;
 
@@ -30,7 +45,7 @@
   }
   &-class {
     width: 7rem;
-    height: 3rem;
+    height: 4rem;
     border: 1px solid #e0e0e0;
     border-radius: 0px;
 
@@ -59,12 +74,49 @@
   }
 }
 
-.body {
-  width: 100%;
-  height: max-content;
-  display: flex;
+.filter {
+  margin: 0 4rem 1rem 2rem;
+  text-align: end;
 }
 
-.content1 {
+.sort_selecter {
+  margin: 1rem 2rem;
+  text-align: end;
+}
 
+.lecture {
+  display: flex;
+  border: 1px solid #626060;
+  border-radius: 10px;
+  margin: 0.5rem 2rem;
+  font-size: 16px;
+  font-weight: 700;
+  justify-content: space-evenly;
+
+  &_title {
+    font-size: larger;
+    font-weight: bold;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+  }
+  &_type {
+    font-size: smaller;
+    margin-right: 0.5rem;
+  }
+  &_score {
+    font-size: smaller;
+    margin-right: 1rem;
+  }
+  &_time {
+    margin-right: 1rem;
+  }
+  &_prof {
+    margin-right: 2rem;
+  }
+}
+
+.content2 {
+  margin: 0 2rem;
+  border: 0.5px solid #626060;
+  border-radius: 15px;
 }

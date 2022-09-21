@@ -1,9 +1,16 @@
 import "./MainPageContent.scss";
 
 const MainPageContent = () => {
+  const lecture = {
+    title: "알고리즘및실습",
+    type: "전필",
+    score: 3,
+    time: "화 10:30 - 12:30",
+    prof: "노재춘",
+  };
   return (
     <div className="body">
-      <div>
+      <div className="frame_1">
         <label className="calendar-label">2022-2학기</label>
         <div className="calendar">
           <table className="calendar-table">
@@ -103,8 +110,61 @@ const MainPageContent = () => {
           </div>
         </div>
       </div>
+      <div className="frame_2">
+        <div className="filter">
+          <button>필터</button>
+        </div>
+        <div className="content2">
+          <div className="sort_selecter">
+            <button>정렬기준</button>
+          </div>
+          <div className="lecture_list">
+            <div className="lecture">
+              <div className="lecture_title">{lecture.title}</div>
+              <div className="lecture_type">{lecture.type}</div>
+              <div className="lecture_score">{lecture.score + "학점"}</div>
+              <div className="lecture_time">{lecture.time}</div>
+              <div className="lecture_prof">{lecture.prof}</div>
+            </div>
+            <div className="lecture">
+              <div className="lecture_title">{lecture.title}</div>
+              <div className="lecture_type">{lecture.type}</div>
+              <div className="lecture_score">{lecture.score + "학점"}</div>
+              <div className="lecture_time">{lecture.time}</div>
+              <div className="lecture_prof">{lecture.prof}</div>
+            </div>
+            <div className="lecture">
+              <div className="lecture_title">{lecture.title}</div>
+              <div className="lecture_type">{lecture.type}</div>
+              <div className="lecture_score">{lecture.score + "학점"}</div>
+              <div className="lecture_time">{lecture.time}</div>
+              <div className="lecture_prof">{lecture.prof}</div>
+            </div>
+            <div className="lecture">
+              <div className="lecture_title">{lecture.title}</div>
+              <div className="lecture_type">{lecture.type}</div>
+              <div className="lecture_score">{lecture.score + "학점"}</div>
+              <div className="lecture_time">{lecture.time}</div>
+              <div className="lecture_prof">{lecture.prof}</div>
+            </div>
+            <div className="lecture">
+              <div className="lecture_title">{lecture.title}</div>
+              <div className="lecture_type">{lecture.type}</div>
+              <div className="lecture_score">{lecture.score + "학점"}</div>
+              <div className="lecture_time">{lecture.time}</div>
+              <div className="lecture_prof">{lecture.prof}</div>
+            </div>
+            <div className="lecture">
+              <div className="lecture_title">{lecture.title}</div>
+              <div className="lecture_type">{lecture.type}</div>
+              <div className="lecture_score">{lecture.score + "학점"}</div>
+              <div className="lecture_time">{lecture.time}</div>
+              <div className="lecture_prof">{lecture.prof}</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
-
 export default MainPageContent;
