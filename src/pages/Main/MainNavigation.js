@@ -1,12 +1,12 @@
 import { NavLink } from "react-router-dom";
-
+import img from "../../common/icons/logo.png";
 import "./MainNavigation.scss";
 
 const MainNavigation = () => {
   return (
     <header className="header">
       <div className="title">
-        <img className="title-img" src="/common/icons/logo_10.png" alt="" />
+        <img className="title-img" src={img} alt="" />
         <div className="logo">
           <div className="logo-first">세종대학교</div>
           <div>수강신청도우미</div>
