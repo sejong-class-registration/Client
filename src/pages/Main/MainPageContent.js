@@ -254,7 +254,6 @@ const MainPageContent = () => {
               <div className="lecture_time">{lecture.time}</div>
               <div className="lecture_prof">{lecture.prof}</div>
             </div>
-            
           </div>
         </div>
       </div>

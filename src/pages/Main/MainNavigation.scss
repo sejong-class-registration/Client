@@ -7,7 +7,14 @@
   // align-items: center;
   background-color: #a31432;
 }
-
+.title {
+  display: flex;
+  align-items: center;
+  &-img{
+    width: 2rem;
+    height: 2rem;
+  }
+}
 .logo {
   font-size: 1.2rem;
   font-weight: 700;
@@ -38,7 +45,6 @@
       border-radius: 15px;
       background-color: transparent;
       color: #ffffff;
-      
     }
   }
   &-buttons {

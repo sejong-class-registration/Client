@@ -2,6 +2,7 @@ import React from "react";
 import MainNavigation from "./MainNavigation";
 import MainPageContent from "./MainPageContent";
 
+
 function MainPage() {
   return (
     <>

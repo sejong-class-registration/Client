@@ -1,13 +1,16 @@
 import { NavLink } from "react-router-dom";
 
-import classes from "./MainNavigation.scss";
+import "./MainNavigation.scss";
 
 const MainNavigation = () => {
   return (
     <header className="header">
-      <div className="logo">
-        <div className="logo-first">세종대학교</div>
-        <div>수강신청도우미</div>
+      <div className="title">
+        <img className="title-img" src="/common/icons/logo_10.png" alt="" />
+        <div className="logo">
+          <div className="logo-first">세종대학교</div>
+          <div>수강신청도우미</div>
+        </div>
       </div>
       <nav className="nav">
         <div className="nav-userInfo">
