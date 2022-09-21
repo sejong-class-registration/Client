@@ -1,15 +1,15 @@
 import { NavLink } from 'react-router-dom';
 
-import classes from './MainNavigation.module.css';
+import classes from './MainNavigation.scss';
 
 const MainNavigation = () => {
   return (
-    <header className={classes.header}>
-      <div className={classes.logo}>
-        <div>세종대학교</div>
+    <header className="header">
+      <div className="logo">
+        <div className='logo-first'>세종대학교</div>
         <div>수강신청도우미</div>
       </div>
-      <nav className={classes.nav}>
+      <nav className="nav">
         <div>
           <>xxx님 안녕하세요</>
           <button>로그아웃</button>

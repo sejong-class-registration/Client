@@ -10,9 +10,15 @@
 }
 
 .logo {
-  text-justify: auto;
-  font-size: 1.6rem;
+  font-size: 1.2rem;
+  font-weight: 700;
   color: white;
+  display: flex;
+  flex-direction: column;
+  &-first{
+    letter-spacing: 0.5em;
+  }
+
 }
 
 .nav ul {
