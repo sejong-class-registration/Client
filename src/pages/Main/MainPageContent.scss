@@ -21,10 +21,16 @@
   background: #ffffff;
   border: 0.5px solid #626060;
   border-radius: 15px;
+  font-weight: bold;
 
+  
   &-label {
-    margin: 3rem;
+    margin: 0 0 1rem 2rem;
+    font-weight: 600;
+    font-size: 20px;
+    color: #c62917;
   }
+
   &-table {
     width: 100%;
     text-align: center;
@@ -43,6 +49,7 @@
       border-radius: 0px 15px 0px 0px;
     }
   }
+
   &-class {
     width: 7rem;
     height: 4rem;
@@ -53,6 +60,7 @@
       border-radius: 0px 0px 15px 0px;
     }
   }
+
   &-number {
     text-align: center;
     width: 2rem;
@@ -71,6 +79,18 @@
   &-info {
     display: flex;
     justify-content: space-between;
+    padding: 1rem 1rem 0 3rem;
+    &-calculator {
+      border: 0.5px solid #E0E0E0;
+      border-radius: 15px;
+      font-weight: 400;
+      color: #626060;
+      font-size: 14px;
+      padding: 0.3rem 1rem;
+    }
+    &-button {
+      
+    }
   }
 }
 
@@ -86,7 +106,7 @@
 
 .lecture {
   display: flex;
-  border: 1px solid #626060;
+  border: 0.5px solid #626060;
   border-radius: 10px;
   margin: 0.5rem 2rem;
   font-size: 16px;

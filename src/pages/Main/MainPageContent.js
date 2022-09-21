@@ -11,7 +11,9 @@ const MainPageContent = () => {
   return (
     <div className="body">
       <div className="frame_1">
-        <label className="calendar-label">2022-2학기</label>
+        <div className="calendar-label">
+          <label>2022-2학기</label>
+        </div>
         <div className="calendar">
           <table className="calendar-table">
             <tr>
@@ -96,7 +98,7 @@ const MainPageContent = () => {
             </tr>
           </table>
           <div className="calendar-info">
-            <div>
+            <div className="calendar-info-calculator">
               <div>졸업까지 남은 학점: 20</div>
               <div>이번학기 남은 학점: 6</div>
             </div>
