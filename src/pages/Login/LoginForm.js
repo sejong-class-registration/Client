@@ -1,34 +1,47 @@
 import { useState } from "react";
-import { useRef } from "react";
 import { Link } from "react-router-dom";
 import "./LoginForm.scss";
 
 const LoginForm = () => {
-  const EnteredId = useRef();
-  const EnteredPw = useRef();
-  const [EnteredIdisValid, setEnteredIdisValid] = useState(true);
-  const [EnteredPwisValid, setEnteredPwisValid] = useState(true);
-  const [pwInputisTouched, setpwInputisTouched] = useState(false);
-  const [IdInputisTouched, setIdInputisTouched] = useState(false);
+  const [EnteredInput, setEnteredInput] = useState({id: '', pw: ''});
+  const [EnteredInputIsValid, setEnteredInputIsValid] = useState({id: true, pw: true});
+  const [inputIsTouched, setInputIsTouched] = useState({id: false, pw: false});
 
+  const inputChangeHandler = (event) => {
+    setEnteredInput((prev)=>{
+      return (
+        {...prev, [event.target.id] : event.target.value}
+      )
+    })
+  }
   const idInputHandler = () => {
-    setIdInputisTouched(true);
-    const id = EnteredId.current.value;
+    setInputIsTouched((prev)=>{
+      return {...prev, id: true};
+    })
 
-    if (id.trim() === "" || isNaN(id)) {
-      setEnteredIdisValid(false);
+    if (EnteredInput.id.trim() === "" || isNaN(EnteredInput.id)) {
+      setEnteredInputIsValid((prev)=>{
+        return {...prev, id : false}
+      });
     } else {
-      setEnteredIdisValid(true);
+      setEnteredInputIsValid((prev)=>{
+        return {...prev, id : true}
+      });
     }
   };
   const pwInputHandler = () => {
-    setpwInputisTouched(true);
-    const pw = EnteredPw.current.value;
+    setInputIsTouched((prev)=>{
+      return {...prev, pw: true};
+    })
 
-    if (pw.trim() === "") {
-      setEnteredPwisValid(false);
+    if (EnteredInput.pw.trim() === "") {
+      setEnteredInputIsValid((prev)=>{
+        return {...prev, pw : false}
+      });
     } else {
-      setEnteredPwisValid(true);
+      setEnteredInputIsValid((prev)=>{
+        return {...prev, pw : true}
+      });
     }
   };
 
@@ -36,32 +49,31 @@ const LoginForm = () => {
     event.preventDefault();
 
     if (
-      (!EnteredIdisValid &&
-        IdInputisTouched &&
-        !EnteredPwisValid &&
-        pwInputisTouched) ||
-      !IdInputisTouched || !pwInputisTouched
+      (!EnteredInputIsValid.id &&
+        inputIsTouched.id &&
+        !EnteredInputIsValid.pw &&
+        inputIsTouched.pw) ||
+      !inputIsTouched.id || !inputIsTouched.pw
     ) {
-      setEnteredIdisValid(false);
-      setEnteredPwisValid(false);
+      setEnteredInputIsValid({id: false, pw: false});
       return;
-    } else if ((!EnteredIdisValid && IdInputisTouched) || !IdInputisTouched) {
-      setEnteredIdisValid(false);
+    } else if ((!EnteredInputIsValid.id && inputIsTouched.id) || !inputIsTouched.id) {
+      setEnteredInputIsValid((prev)=>{
+        return {...prev, id : false}
+      });
       return;
-    } else if ((!EnteredPwisValid && pwInputisTouched) || !pwInputisTouched) {
-      setEnteredPwisValid(false);
+    } else if ((!EnteredInputIsValid.pw && inputIsTouched.pw) || !inputIsTouched.pw) {
+      setEnteredInputIsValid((prev)=>{
+        return {...prev, pw : false}
+      });
       return;
     }
 
-    const EnteredUserInfo = {
-      id: EnteredId.current.value,
-      pw: EnteredPw.current.value,
-    };
-    console.log(EnteredUserInfo);
+    console.log(EnteredInput);
   };
 
-  const idInputClassName = EnteredIdisValid ? "" : "login-invalid-input";
-  const pwInputClassName = EnteredPwisValid ? "" : "login-invalid-input";
+  const idInputClassName = EnteredInputIsValid.id ? "" : "login-invalid-input";
+  const pwInputClassName = EnteredInputIsValid.pw ? "" : "login-invalid-input";
 
   return (
     <form onSubmit={LoginSubmitHandler} className = 'login-formbox'>
@@ -71,9 +83,10 @@ const LoginForm = () => {
         type="text"
         id="id"
         onBlur={idInputHandler}
-        ref={EnteredId}
+        onChange = {inputChangeHandler}
+        value = {EnteredInput.id}
       />
-      {!EnteredIdisValid && (
+      {!EnteredInputIsValid.id && (
         <p className="login-invalid">아이디(학번)를 입력해주세요</p>
       )}
       <p>비밀번호</p>
@@ -82,9 +95,10 @@ const LoginForm = () => {
         type="password"
         id="pw"
         onBlur={pwInputHandler}
-        ref={EnteredPw}
+        onChange = {inputChangeHandler}
+        value = {EnteredInput.pw}
       />
-      {!EnteredPwisValid && (
+      {!EnteredInputIsValid.pw && (
         <p className="login-invalid">비밀번호를 입력해주세요</p>
       )}
       <div className="login-formbox-help">
