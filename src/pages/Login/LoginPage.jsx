@@ -17,7 +17,13 @@ function LoginPage() {
           <span>로그아웃</span>을 해주시기 바랍니다.
         </p>
       </div>
-      <LoginForm />
+      <div className= "loginForm">
+        <LoginForm/>
+      </div>
+      <div className="login-copyright">
+        <p>copyright ⓒ 2022 열일곱스물하나</p>
+        <p>이기성 김찬규 최가빈 김윤희</p>
+      </div>
     </div>
   );
 }

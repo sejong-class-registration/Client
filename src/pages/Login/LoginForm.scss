@@ -1,13 +1,6 @@
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
-}
-
 .login {
   &-formbox {
     position: relative;
-    top: 15%;
     width: 460px;
     height: 345px;
     background-color: white;

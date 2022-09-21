@@ -64,7 +64,7 @@ const LoginForm = () => {
   const pwInputClassName = EnteredPwisValid ? "" : "login-invalid-input";
 
   return (
-    <form className="login-formbox" onSubmit={LoginSubmitHandler}>
+    <form onSubmit={LoginSubmitHandler} className = 'login-formbox'>
       <p>학번/아이디</p>
       <input
         className={idInputClassName}
