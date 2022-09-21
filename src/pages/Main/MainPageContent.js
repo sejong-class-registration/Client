@@ -163,6 +163,98 @@ const MainPageContent = () => {
               <div className="lecture_time">{lecture.time}</div>
               <div className="lecture_prof">{lecture.prof}</div>
             </div>
+            <div className="lecture">
+              <div className="lecture_title">{lecture.title}</div>
+              <div className="lecture_type">{lecture.type}</div>
+              <div className="lecture_score">{lecture.score + "학점"}</div>
+              <div className="lecture_time">{lecture.time}</div>
+              <div className="lecture_prof">{lecture.prof}</div>
+            </div>
+            <div className="lecture">
+              <div className="lecture_title">{lecture.title}</div>
+              <div className="lecture_type">{lecture.type}</div>
+              <div className="lecture_score">{lecture.score + "학점"}</div>
+              <div className="lecture_time">{lecture.time}</div>
+              <div className="lecture_prof">{lecture.prof}</div>
+            </div>
+            <div className="lecture">
+              <div className="lecture_title">{lecture.title}</div>
+              <div className="lecture_type">{lecture.type}</div>
+              <div className="lecture_score">{lecture.score + "학점"}</div>
+              <div className="lecture_time">{lecture.time}</div>
+              <div className="lecture_prof">{lecture.prof}</div>
+            </div>
+            <div className="lecture">
+              <div className="lecture_title">{lecture.title}</div>
+              <div className="lecture_type">{lecture.type}</div>
+              <div className="lecture_score">{lecture.score + "학점"}</div>
+              <div className="lecture_time">{lecture.time}</div>
+              <div className="lecture_prof">{lecture.prof}</div>
+            </div>
+            <div className="lecture">
+              <div className="lecture_title">{lecture.title}</div>
+              <div className="lecture_type">{lecture.type}</div>
+              <div className="lecture_score">{lecture.score + "학점"}</div>
+              <div className="lecture_time">{lecture.time}</div>
+              <div className="lecture_prof">{lecture.prof}</div>
+            </div>
+            <div className="lecture">
+              <div className="lecture_title">{lecture.title}</div>
+              <div className="lecture_type">{lecture.type}</div>
+              <div className="lecture_score">{lecture.score + "학점"}</div>
+              <div className="lecture_time">{lecture.time}</div>
+              <div className="lecture_prof">{lecture.prof}</div>
+            </div>
+            <div className="lecture">
+              <div className="lecture_title">{lecture.title}</div>
+              <div className="lecture_type">{lecture.type}</div>
+              <div className="lecture_score">{lecture.score + "학점"}</div>
+              <div className="lecture_time">{lecture.time}</div>
+              <div className="lecture_prof">{lecture.prof}</div>
+            </div>
+            <div className="lecture">
+              <div className="lecture_title">{lecture.title}</div>
+              <div className="lecture_type">{lecture.type}</div>
+              <div className="lecture_score">{lecture.score + "학점"}</div>
+              <div className="lecture_time">{lecture.time}</div>
+              <div className="lecture_prof">{lecture.prof}</div>
+            </div>
+            <div className="lecture">
+              <div className="lecture_title">{lecture.title}</div>
+              <div className="lecture_type">{lecture.type}</div>
+              <div className="lecture_score">{lecture.score + "학점"}</div>
+              <div className="lecture_time">{lecture.time}</div>
+              <div className="lecture_prof">{lecture.prof}</div>
+            </div>
+            <div className="lecture">
+              <div className="lecture_title">{lecture.title}</div>
+              <div className="lecture_type">{lecture.type}</div>
+              <div className="lecture_score">{lecture.score + "학점"}</div>
+              <div className="lecture_time">{lecture.time}</div>
+              <div className="lecture_prof">{lecture.prof}</div>
+            </div>
+            <div className="lecture">
+              <div className="lecture_title">{lecture.title}</div>
+              <div className="lecture_type">{lecture.type}</div>
+              <div className="lecture_score">{lecture.score + "학점"}</div>
+              <div className="lecture_time">{lecture.time}</div>
+              <div className="lecture_prof">{lecture.prof}</div>
+            </div>
+            <div className="lecture">
+              <div className="lecture_title">{lecture.title}</div>
+              <div className="lecture_type">{lecture.type}</div>
+              <div className="lecture_score">{lecture.score + "학점"}</div>
+              <div className="lecture_time">{lecture.time}</div>
+              <div className="lecture_prof">{lecture.prof}</div>
+            </div>
+            <div className="lecture">
+              <div className="lecture_title">{lecture.title}</div>
+              <div className="lecture_type">{lecture.type}</div>
+              <div className="lecture_score">{lecture.score + "학점"}</div>
+              <div className="lecture_time">{lecture.time}</div>
+              <div className="lecture_prof">{lecture.prof}</div>
+            </div>
+            
           </div>
         </div>
       </div>
