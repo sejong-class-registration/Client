@@ -103,10 +103,10 @@ const MainPageContent = () => {
               <div>이번학기 남은 학점: 6</div>
             </div>
             <div>
-              <ul>
-                <button>A</button>
-                <button>B</button>
-                <button>C</button>
+              <ul className="calendar-info-ul">
+                <button className="calendar-info-button">A</button>
+                <button className="calendar-info-button">B</button>
+                <button className="calendar-info-button">C</button>
               </ul>
             </div>
           </div>
