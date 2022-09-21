@@ -1,36 +1,35 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
-import classes from './MainNavigation.scss';
+import classes from "./MainNavigation.scss";
 
 const MainNavigation = () => {
   return (
     <header className="header">
       <div className="logo">
-        <div className='logo-first'>세종대학교</div>
+        <div className="logo-first">세종대학교</div>
         <div>수강신청도우미</div>
       </div>
       <nav className="nav">
-        <div>
-          <>xxx님 안녕하세요</>
-          <button>로그아웃</button>
+        <div className="nav-userInfo">
+          <div>이기성님 안녕하세요</div>
+          <button className="nav-userInfo-logout">로그아웃</button>
         </div>
-
-        <ul>
-          <li>
-            <NavLink to='/quotes' activeClassName={classes.active}>
+        <ul className="nav-buttons">
+          <button className="nav-buttons-button">
+            <NavLink to="/quotes" className="nav-buttons-button-a">
               시간표 짜기
             </NavLink>
-          </li>
-          <li>
-            <NavLink to='/new-quote' activeClassName={classes.active}>
+          </button>
+          <button className="nav-buttons-button_false">
+            <NavLink to="/new-quote" className="nav-buttons-button_false-a">
               수강신청 대비
             </NavLink>
-          </li>
-          <li>
-            <NavLink to='/new-quote' activeClassName={classes.active}>
+          </button>
+          <button className="nav-buttons-button_false">
+            <NavLink to="/new-quote" className="nav-buttons-button_false-a">
               강의 추천
             </NavLink>
-          </li>
+          </button>
         </ul>
       </nav>
     </header>
