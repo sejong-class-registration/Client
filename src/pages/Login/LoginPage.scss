@@ -1,7 +1,8 @@
 .login {
   &-background {
     width: 100vw;
-    height: 1080px;
+    height: 100vh;
+    min-height: 1080px;
     background: linear-gradient(#a31432 50%, #eeede3 50%);
     z-index: -9999;
   }

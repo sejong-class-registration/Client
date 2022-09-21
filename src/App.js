@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { MAIN_PATH, ROOT_PATH } from "./common/constants/path.const";
 import LoginPage from "./pages/Login/LoginPage";
 import MainPage from "./pages/Main/MainPage";
+import './App.scss';
 
 function App() {
   return (
