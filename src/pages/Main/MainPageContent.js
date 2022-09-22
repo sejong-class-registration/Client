@@ -1,11 +1,19 @@
 import "./MainPageContent.scss";
 import searchIcon from "../../common/icons/searchIcon.svg";
+import Modal from "./Modal";
 import { useState } from "react";
 
 const MainPageContent = () => {
-  
+  const [modalOpen, setModalOpen] = useState(false);
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
 
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
   const lecture = {
     title: "알고리즘및실습",
     type: "전필",
@@ -117,7 +125,8 @@ const MainPageContent = () => {
       </div>
       <div className="frame_2">
         <div className="filter">
-          <button className="filter-button" >
+            {modalOpen && <Modal close={closeModal}></Modal>}
+          <button className="filter-button" onClick={openModal}>
             <img className="filter-button-img" src={searchIcon}></img>
           </button>
         </div>
