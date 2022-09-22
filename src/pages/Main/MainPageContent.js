@@ -1,6 +1,11 @@
 import "./MainPageContent.scss";
+import searchIcon from "../../common/icons/searchIcon.svg";
+import { useState } from "react";
 
 const MainPageContent = () => {
+  
+  const [isDropDownOpen, setIsDropDownOpen] = useState(false);
+
   const lecture = {
     title: "알고리즘및실습",
     type: "전필",
@@ -112,11 +117,13 @@ const MainPageContent = () => {
       </div>
       <div className="frame_2">
         <div className="filter">
-          <button>필터</button>
+          <button className="filter-button" >
+            <img className="filter-button-img" src={searchIcon}></img>
+          </button>
         </div>
         <div className="content2">
           <div className="sort_selecter">
-            <button>정렬기준</button>
+            <button className="sort_selecter-button">정렬기준</button>
           </div>
           <div className="lecture_list">
             <div className="lecture">

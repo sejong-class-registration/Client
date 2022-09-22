@@ -112,10 +112,40 @@
     }
   }
 }
+.sort_selecter {
+  margin: 0 2rem 1rem 2rem;
+  text-align: end;
+  &-button {
+    margin: 0;
+    width: 5.5rem;
+    height: max-content;
+    border: 1px solid #626060;
+    border-radius: 15px;
+    background-color: #ffffff;
+    &-img {
+      height: 1.2rem;
+    }
+  }
+}
 
 .filter {
-  margin: 0 4rem 1rem 2rem;
+  margin: 0 2rem 1rem 2rem;
   text-align: end;
+  :hover {
+    background-color: #626060;
+  }
+  &-button {
+    margin: 0;
+    width: 5.5rem;
+    height: max-content;
+    border: 1px solid #626060;
+    border-radius: 15px;
+    background-color: #ffffff;
+
+    &-img {
+      height: 1.2rem;
+    }
+  }
 }
 
 .sort_selecter {
