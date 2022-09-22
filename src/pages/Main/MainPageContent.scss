@@ -77,8 +77,11 @@
   &-info {
     display: flex;
     justify-content: space-between;
-    padding: 1rem 0 0 3rem;
+    align-items: center;
+    padding: 1rem 0 0 0;
     &-calculator {
+      max-width: 12rem;
+      width: 40%;
       border: 0.5px solid #e0e0e0;
       border-radius: 15px;
       font-weight: 400;
@@ -89,16 +92,23 @@
       flex-direction: column;
       justify-content: space-around;
     }
-
-    &-button {
-      font-size: 18px;
-      margin: 0 0 0 2rem;
-      color: #ffffff;
-      width: 7rem;
-      height: 2rem;
-      background: #a31432;
-      border: none;
-      border-radius: 15px;
+    &-buttons {
+      height: 100%;
+      width: 60%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      &-button {
+        font-size: 18px;
+        margin-left: 1rem;
+        color: #ffffff;
+        max-width: 6rem;
+        width: 40%;
+        height: 30%;
+        background: #a31432;
+        border: none;
+        border-radius: 15px;
+      }
     }
   }
 }

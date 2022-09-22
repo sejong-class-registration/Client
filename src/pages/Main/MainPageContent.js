@@ -102,12 +102,10 @@ const MainPageContent = () => {
               <div>졸업까지 남은 학점: 20</div>
               <div>이번학기 남은 학점: 6</div>
             </div>
-            <div>
-              <ul className="calendar-info-ul">
-                <button className="calendar-info-button">A</button>
-                <button className="calendar-info-button">B</button>
-                <button className="calendar-info-button">C</button>
-              </ul>
+            <div className="calendar-info-buttons">
+              <button className="calendar-info-buttons-button">A</button>
+              <button className="calendar-info-buttons-button">B</button>
+              <button className="calendar-info-buttons-button">C</button>
             </div>
           </div>
         </div>
