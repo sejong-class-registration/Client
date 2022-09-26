@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import "./Modal.scss";
 import xIcon from "../../common/icons/xIcon.svg";
 import { useState } from "react";
-import { type } from "@testing-library/user-event/dist/type";
 
 const Backdrop = (props) => {
   return <div className="backdrop" onClick={props.close}></div>;
@@ -13,7 +12,7 @@ const ModalOverlay = (props) => {
   const [major, setMajor] = useState("AI연계융합전공[3317 학부]연계전공");
   const [title, setTitle] = useState("");
   const [prof, setProf] = useState("");
-  const [classType, setClassType] = useState("");
+  const [classType, setClassType] = useState("all");
 
   const majorChangeHandler = (props) => {
     setMajor(props.target.value);
@@ -52,7 +51,7 @@ const ModalOverlay = (props) => {
     <div className="modal">
       <div className="modal-closeButton">
         <button className="modal-closeButton-button" onClick={props.close}>
-          <img className="modal-closeButton-button-img" src={xIcon}></img>
+          <img className="modal-closeButton-button-img" src={xIcon} alt="Close Button"></img>
         </button>
       </div>
       <div className="modal-contents">
@@ -89,8 +88,17 @@ const ModalOverlay = (props) => {
               className="modal-contents-third-type-select"
               onChange={classTypeChangeHandler}
             >
-              <option value="test">test</option>
-              <option value="test">test</option>
+              <option value="all"> - 전체 - </option>
+              <option value="교양필수">교양필수</option>
+              <option value="공통교양필수">공통교양필수</option>
+              <option value="균형교양필수">균형교양필수</option>
+              <option value="교양선택(1영역)">교양선택(1영역)</option>
+              <option value="교양선택(2영역)">교양선택(2영역)</option>
+              <option value="학문기초교양">학문기초교양</option>
+              <option value="전공기초">전공기초</option>
+              <option value="전공필수">전공필수</option>
+              <option value="교직">교직</option>
+              <option value="무관후보생교육">무관후보생교육</option>
             </select>
           </div>
           <button
