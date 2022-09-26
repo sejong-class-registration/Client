@@ -125,14 +125,20 @@ const MainPageContent = () => {
       </div>
       <div className="frame_2">
         <div className="filter">
-            {modalOpen && <Modal close={closeModal}></Modal>}
+          {modalOpen && <Modal close={closeModal}></Modal>}
           <button className="filter-button" onClick={openModal}>
             <img className="filter-button-img" src={searchIcon}></img>
           </button>
         </div>
         <div className="content2">
           <div className="sort_selecter">
-            <button className="sort_selecter-button">정렬기준</button>
+            <select className="sort_selecter-select">
+              <option value="가나다 순">가나다 순</option>
+              <option value="이수 구분">이수 구분</option>
+              <option value="요일 순">요일 순</option>
+              <option value="평점 순">평정 순</option>
+              <option value="교수명 순">교수명 순</option>
+            </select>
           </div>
           <div className="lecture_list">
             <div className="lecture">

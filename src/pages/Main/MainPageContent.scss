@@ -115,10 +115,11 @@
 .sort_selecter {
   margin: 0 2rem 1rem 2rem;
   text-align: end;
-  &-button {
+  &-select {
+    text-align: center;
     margin: 0;
-    width: 5.5rem;
-    height: max-content;
+    width: 8rem;
+    height: 1.3rem;
     border: 1px solid #626060;
     border-radius: 15px;
     background-color: #ffffff;

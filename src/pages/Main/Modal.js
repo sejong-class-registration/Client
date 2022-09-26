@@ -31,10 +31,9 @@ const ModalOverlay = (props) => {
     setClassType(props.target.value);
   };
 
-
   const submitHandler = (props) => {
     console.log(major, title, prof, classType);
-  }
+  };
   // const majorList = [
   //   "AI연계융합전공[3317 학부]연계전공",
   //   "AI연계융합전공 소셜미디어매니지먼트소프트웨어[3328 학부]연계전공",
@@ -94,7 +93,12 @@ const ModalOverlay = (props) => {
               <option value="test">test</option>
             </select>
           </div>
-          <button className="modal-contents-third-button" onClick={submitHandler}>조회</button>
+          <button
+            className="modal-contents-third-button"
+            onClick={submitHandler}
+          >
+            조회
+          </button>
         </div>
       </div>
     </div>
