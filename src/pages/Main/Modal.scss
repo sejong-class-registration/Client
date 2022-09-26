@@ -18,21 +18,27 @@
   overflow: hidden;
   border-radius: 15px;
   &-closeButton {
-    text-align: end;
+    display: flex;
+    justify-content: end;
+    align-items: center;
     margin: 1rem 1rem 0 0;
     &-button {
-      width: 10%;
+      height: 2rem;
+      width: 7rem;
       border: 0;
       border-radius: 15px;
       color: #ffffff;
       background-color: #a31432;
+      &-img {
+        height: 1.2rem;
+      }
     }
   }
   &-contents {
     margin: 1rem 2rem 2rem 2rem;
     display: flex;
     flex-direction: column;
-
+    font-weight: bold;
     &-first {
       margin-bottom: 1rem;
       display: flex;
@@ -44,6 +50,7 @@
       }
       &-select {
         width: 80%;
+        height: 2rem;
         font-size: 18px;
         border: 0.5px solid #626060;
         border-radius: 15px;
@@ -61,6 +68,7 @@
       }
       &-input {
         border: 0.5px solid #626060;
+        height: 2rem;
         width: 80%;
         font-size: 18px;
         border-radius: 15px;
@@ -83,6 +91,7 @@
           border: 0.5px solid #626060;
           border-radius: 15px;
           text-align: center;
+          height: 2rem;
         }
       }
       &-type {
@@ -95,6 +104,7 @@
           width: 50%;
         }
         &-select {
+          height: 2rem;
           width: 45%;
           margin-right: 5%;
           font-size: 16px;
@@ -110,6 +120,7 @@
         color: #ffffff;
         background-color: #a31432;
         border-radius: 15px;
+        font-size: 18px;
       }
     }
   }
