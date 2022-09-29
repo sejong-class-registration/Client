@@ -3,6 +3,8 @@ import searchIcon from "../../common/icons/searchIcon.svg";
 import Modal from "./Modal";
 import { useState } from "react";
 import ClassModal from "./ClassModal";
+import axios from "axios";
+import { useEffect } from "react";
 
 const MainPageContent = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -15,6 +17,19 @@ const MainPageContent = () => {
   const closeModal = () => {
     setModalOpen(false);
   };
+
+  const getLectureList = async () => {
+    const response = await axios(
+      "https://sejong-enrollment.herokuapp.com/lectures"
+    );
+    console.log(response);
+    console.log(1);
+  };
+
+  useEffect(() => {
+    getLectureList();
+  }, []);
+
   const lecture = {
     title: "알고리즘및실습",
     type: "전필",
