@@ -1,20 +1,9 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import img from "../../common/icons/logo.png";
+import img from "../common/icons/logo.png";
 import "./MainNavigation.scss";
 
-const MainNavigation = () => {
-  const [navState, setNavState] = useState(1);
-
-  const firstButtonHandler = () => {
-    setNavState(1);
-  };
-  const secondButtonHandler = () => {
-    setNavState(2);
-  };
-  const thirdButtonHandler = () => {
-    setNavState(3);
-  };
+const MainNavigation = (props) => {
   return (
     <header className="header">
       <div className="title">
@@ -31,39 +20,42 @@ const MainNavigation = () => {
         </div>
         <ul className="nav-buttons">
           <button
-            className={`nav-buttons-button${navState === 1 ? "" : "_false"}`}
-            onClick={firstButtonHandler}
+            className={`nav-buttons-button${
+              props.onPage === 1 ? "" : "_false"
+            }`}
           >
             <NavLink
-              to=""
+              to="/main"
               className={`nav-buttons-button${
-                navState === 1 ? "" : "_false"
+                props.onPage === 1 ? "" : "_false"
               }-a`}
             >
               시간표 짜기
             </NavLink>
           </button>
           <button
-            className={`nav-buttons-button${navState === 2 ? "" : "_false"}`}
-            onClick={secondButtonHandler}
+            className={`nav-buttons-button${
+              props.onPage === 2 ? "" : "_false"
+            }`}
           >
             <NavLink
               to=""
               className={`nav-buttons-button${
-                navState === 2 ? "" : "_false"
+                props.onPage === 2 ? "" : "_false"
               }-a`}
             >
               수강신청 대비
             </NavLink>
           </button>
           <button
-            className={`nav-buttons-button${navState === 3 ? "" : "_false"}`}
-            onClick={thirdButtonHandler}
+            className={`nav-buttons-button${
+              props.onPage === 3 ? "" : "_false"
+            }`}
           >
             <NavLink
-              to=""
+              to="/recommendedlecture"
               className={`nav-buttons-button${
-                navState === 3 ? "" : "_false"
+                props.onPage === 3 ? "" : "_false"
               }-a`}
             >
               강의 추천

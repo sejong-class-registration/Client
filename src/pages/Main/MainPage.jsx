@@ -1,12 +1,12 @@
 import React from "react";
-import MainNavigation from "./MainNavigation";
+import MainNavigation from "../../UI/MainNavigation";
 import MainPageContent from "./MainPageContent";
 
 
 function MainPage() {
   return (
     <>
-      <MainNavigation></MainNavigation>
+      <MainNavigation onPage = {1}></MainNavigation>
       <MainPageContent></MainPageContent>
     </>
   );

@@ -3,6 +3,7 @@ import LectureList from "./LectureList";
 import FilterModal from "./FilterModal";
 import { GrFilter } from "react-icons/gr";
 import "./RecommendedLecturePage.scss";
+import MainNavigation from "../../UI/MainNavigation";
 
 const DUMMY_LIST = [
   {
@@ -103,7 +104,7 @@ const RecommendedLecturePage = () => {
   }
   return (
     <div className="recommended-lecture">
-      <header className="recommended-lecture-header"></header>
+      <MainNavigation onPage = {3}/>
       <button className="recommended-lecture-filterbutton" onClick={filterButtonHandler}>
         <span className="recommended-lecture-filterbutton-icon">
           <GrFilter size="25" />
