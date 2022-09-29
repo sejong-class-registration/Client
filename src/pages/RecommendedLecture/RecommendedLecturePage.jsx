@@ -102,15 +102,15 @@ const RecommendedLecturePage = () => {
     setfilteropen(false);
   }
   return (
-    <div className="lecture">
-      <header className="lecture-header"></header>
-      <button className="lecture-filterbutton" onClick={filterButtonHandler}>
-        <span className="lecture-filterbutton-icon">
+    <div className="recommended-lecture">
+      <header className="recommended-lecture-header"></header>
+      <button className="recommended-lecture-filterbutton" onClick={filterButtonHandler}>
+        <span className="recommended-lecture-filterbutton-icon">
           <GrFilter size="25" />
         </span>
-        <span className="lecture-filterbutton-word">필터</span>
+        <span className="recommended-lecture-filterbutton-word">필터</span>
       </button>
-      <div className="lecture-list">
+      <div className="recommended-lecture-list">
         <ul>{lecturesList}</ul>
       </div>
       {filteropen && <div><FilterModal onClose = {filtercloseHandler}/></div>}
