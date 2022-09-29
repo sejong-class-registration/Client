@@ -14,7 +14,7 @@
     cursor: pointer;
     display: block;
     margin: auto;
-    top: 2rem;
+    top: 3rem;
     width: 15rem;
     height: 5rem;
     background: rgb(255, 255, 255);
@@ -24,7 +24,7 @@
     box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.493);
     margin-top: 15px;
     margin-bottom: 5px;
-    transition: all 0.2s ;
+    transition: all 0.2s;
     &-icon {
       position: relative;
     }
@@ -38,13 +38,17 @@
     }
   }
   &-filterbutton:hover {
-    box-shadow: 0px 0px 0px 4px rgba(0, 0, 0, 0.493);
+    box-shadow: 2px 2px 0px 3px rgba(0, 0, 0, 0.493);
   }
   &-list {
-    position: relative;
     ul {
+      position: relative;
       list-style: none;
+      padding-top: -50px;
       padding-left: 0px;
+      padding-bottom: 80px;
+      margin-bottom: 80px;
+      margin-top: 50px;
     }
   }
 }

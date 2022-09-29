@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import LectureList from "./LectureList";
+import FilterModal from "./FilterModal";
 import { GrFilter } from "react-icons/gr";
 import "./RecommendedLecturePage.scss";
-import { useState } from "react";
-import FilterModal from "./FilterModal";
 
 const DUMMY_LIST = [
   {
