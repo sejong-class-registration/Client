@@ -1,8 +1,20 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import img from "../../common/icons/logo.png";
 import "./MainNavigation.scss";
 
 const MainNavigation = () => {
+  const [navState, setNavState] = useState(1);
+
+  const firstButtonHandler = () => {
+    setNavState(1);
+  };
+  const secondButtonHandler = () => {
+    setNavState(2);
+  };
+  const thirdButtonHandler = () => {
+    setNavState(3);
+  };
   return (
     <header className="header">
       <div className="title">
@@ -18,18 +30,42 @@ const MainNavigation = () => {
           <button className="nav-userInfo-logout">로그아웃</button>
         </div>
         <ul className="nav-buttons">
-          <button className="nav-buttons-button">
-            <NavLink to="/quotes" className="nav-buttons-button-a">
+          <button
+            className={`nav-buttons-button${navState === 1 ? "" : "_false"}`}
+            onClick={firstButtonHandler}
+          >
+            <NavLink
+              to=""
+              className={`nav-buttons-button${
+                navState === 1 ? "" : "_false"
+              }-a`}
+            >
               시간표 짜기
             </NavLink>
           </button>
-          <button className="nav-buttons-button_false">
-            <NavLink to="/new-quote" className="nav-buttons-button_false-a">
+          <button
+            className={`nav-buttons-button${navState === 2 ? "" : "_false"}`}
+            onClick={secondButtonHandler}
+          >
+            <NavLink
+              to=""
+              className={`nav-buttons-button${
+                navState === 2 ? "" : "_false"
+              }-a`}
+            >
               수강신청 대비
             </NavLink>
           </button>
-          <button className="nav-buttons-button_false">
-            <NavLink to="/new-quote" className="nav-buttons-button_false-a">
+          <button
+            className={`nav-buttons-button${navState === 3 ? "" : "_false"}`}
+            onClick={thirdButtonHandler}
+          >
+            <NavLink
+              to=""
+              className={`nav-buttons-button${
+                navState === 3 ? "" : "_false"
+              }-a`}
+            >
               강의 추천
             </NavLink>
           </button>
