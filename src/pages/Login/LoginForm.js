@@ -14,35 +14,35 @@ const LoginForm = () => {
       )
     })
   }
-  const idInputHandler = () => {
+
+  const inputBlurHandler = (e) => {
+    const selectedId = e.target.id;
     setInputIsTouched((prev)=>{
-      return {...prev, id: true};
+      return {...prev, [selectedId]: true};
     })
 
-    if (EnteredInput.id.trim() === "" || isNaN(EnteredInput.id)) {
-      setEnteredInputIsValid((prev)=>{
-        return {...prev, id : false}
-      });
-    } else {
-      setEnteredInputIsValid((prev)=>{
-        return {...prev, id : true}
-      });
+    if(selectedId === 'id'){
+      if (EnteredInput.id.trim() === "" || isNaN(EnteredInput.id)) {
+        setEnteredInputIsValid((prev)=>{
+          return {...prev, id : false}
+        });
+      } else {
+        setEnteredInputIsValid((prev)=>{
+          return {...prev, id : true}
+        });
+      }
+    }else{
+      if (EnteredInput.pw.trim() === "") {
+        setEnteredInputIsValid((prev)=>{
+          return {...prev, pw : false}
+        });
+      } else {
+        setEnteredInputIsValid((prev)=>{
+          return {...prev, pw : true}
+        });
+      }
     }
-  };
-  const pwInputHandler = () => {
-    setInputIsTouched((prev)=>{
-      return {...prev, pw: true};
-    })
 
-    if (EnteredInput.pw.trim() === "") {
-      setEnteredInputIsValid((prev)=>{
-        return {...prev, pw : false}
-      });
-    } else {
-      setEnteredInputIsValid((prev)=>{
-        return {...prev, pw : true}
-      });
-    }
   };
 
   const LoginSubmitHandler = (event) => {
@@ -82,7 +82,7 @@ const LoginForm = () => {
         className={idInputClassName}
         type="text"
         id="id"
-        onBlur={idInputHandler}
+        onBlur={inputBlurHandler}
         onChange = {inputChangeHandler}
         value = {EnteredInput.id}
       />
@@ -94,7 +94,7 @@ const LoginForm = () => {
         className={pwInputClassName}
         type="password"
         id="pw"
-        onBlur={pwInputHandler}
+        onBlur={inputBlurHandler}
         onChange = {inputChangeHandler}
         value = {EnteredInput.pw}
       />
