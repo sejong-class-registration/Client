@@ -9,6 +9,7 @@ import { useEffect } from "react";
 const MainPageContent = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [classModalOpen, setClassModalOpen] = useState(false);
+  const [lectureList, setLectureList] = useState([]);
 
   const openModal = () => {
     setModalOpen(true);
@@ -20,11 +21,13 @@ const MainPageContent = () => {
 
   const getLectureList = async () => {
     const response = await axios(
-      "https://sejong-enrollment.herokuapp.com/lectures"
+      "https://sejong-enrollment.herokuapp.com/lectures?department=컴퓨터공학과"
     );
-    console.log(response);
-    console.log(1);
+    setLectureList(response.data.data.lectures);
   };
+  
+  console.log(lectureList);
+  
 
   useEffect(() => {
     getLectureList();
