@@ -1,0 +1,54 @@
+.login {
+  &-background {
+    width: 100vw;
+    height: 100vh;
+    min-height: 1080px;
+    background: linear-gradient(#a31432 50%, #eeede3 50%);
+    z-index: -9999;
+  }
+  &-logo {
+    position: relative;
+    top: 30px;
+    display: block;
+    margin: auto;
+    overflow: hidden;
+  }
+
+  &-text {
+    position: relative;
+    top: 50px;
+    color: #ffffff;
+    font-family: "Inter";
+    font-style: normal;
+    text-align: center;
+    span {
+      color: #ffea9b;
+    }
+    &-title {
+      font-size: 35px;
+      font-weight: 700;
+      letter-spacing: -3.5px;
+    }
+
+    &-exp {
+      font-size: 14px;
+    }
+  }
+  &-copyright {
+    position: relative;
+    display: block;
+    top: 300px;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 200;
+    font-size: 13px;
+    text-align: center;
+    color: #0000006c;
+  }
+}
+
+div.loginForm {
+  position: relative;
+  margin: auto;
+  top: 100px;
+}
