@@ -2,10 +2,11 @@ import "./MainPageContent.scss";
 import searchIcon from "../../common/icons/searchIcon.svg";
 import Modal from "./Modal";
 import { useState } from "react";
+import ClassModal from "./ClassModal";
 
 const MainPageContent = () => {
   const [modalOpen, setModalOpen] = useState(false);
-  const [isDropDownOpen, setIsDropDownOpen] = useState(false);
+  const [classModalOpen, setClassModalOpen] = useState(false);
 
   const openModal = () => {
     setModalOpen(true);
@@ -20,6 +21,15 @@ const MainPageContent = () => {
     score: 3,
     time: "화 10:30 - 12:30",
     prof: "노재춘",
+  };
+
+  const openClassModal = (props) => {
+    setClassModalOpen(true);
+    console.log(classModalOpen);
+  };
+  const closeClassModal = (props) => {
+    setClassModalOpen(false);
+    console.log(classModalOpen);
   };
   return (
     <div className="body">
@@ -124,6 +134,7 @@ const MainPageContent = () => {
         </div>
       </div>
       <div className="frame_2">
+        {classModalOpen && <ClassModal close={closeClassModal}></ClassModal>}
         <div className="filter">
           {modalOpen && <Modal close={closeModal}></Modal>}
           <button className="filter-button" onClick={openModal}>
@@ -141,7 +152,7 @@ const MainPageContent = () => {
             </select>
           </div>
           <div className="lecture_list">
-            <div className="lecture">
+            <div className="lecture" onClick={openClassModal}>
               <div className="lecture_title">{lecture.title}</div>
               <div className="lecture_type">{lecture.type}</div>
               <div className="lecture_score">{lecture.score + "학점"}</div>
