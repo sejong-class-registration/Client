@@ -10,6 +10,7 @@
   width: 55%;
   height: 100%;
 }
+
 .frame_2 {
   margin-top: 1rem;
   max-width: 45%;
@@ -195,8 +196,8 @@
 }
 
 .content2 {
-  min-width: 550px;
-  margin: 0 2rem;
+  width: 100%;
+  // margin: 0 2rem;
   border: 0.5px solid #626060;
   border-radius: 15px;
 }
