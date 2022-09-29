@@ -1,17 +1,19 @@
 .body {
-  width: max-content;
+  width: 98vw;
   height: 100vh;
   display: flex;
 }
 
 .frame_1 {
   margin-top: 1rem;
-  width: 55vw;
+  max-width: 55%;
+  width: 55%;
   height: 100%;
 }
 .frame_2 {
   margin-top: 1rem;
-  // width: 45vw;
+  max-width: 45%;
+  width: 45%;
   height: 100%;
 }
 
