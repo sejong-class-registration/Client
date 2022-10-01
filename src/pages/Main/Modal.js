@@ -13,6 +13,7 @@ const ModalOverlay = (props) => {
   const [title, setTitle] = useState("");
   const [prof, setProf] = useState("");
   const [classType, setClassType] = useState("");
+
   const [conditionOfLecture, setConditionOfLecture] = useState({
     department: major,
     name: title,
@@ -22,18 +23,22 @@ const ModalOverlay = (props) => {
 
   const majorChangeHandler = (props) => {
     setMajor(props.target.value);
+    // console.log(props.target.value);
   };
 
   const titleChangeHandler = (props) => {
     setTitle(props.target.value);
+    // console.log(props.target.value);
   };
 
   const profChangeHandler = (props) => {
     setProf(props.target.value);
+    // console.log(props.target.value);
   };
 
   const classTypeChangeHandler = (props) => {
     setClassType(props.target.value);
+    // console.log(props.target.value);
   };
 
   const submitHandler = (props) => {
@@ -43,7 +48,6 @@ const ModalOverlay = (props) => {
       profName: prof,
       classification: classType,
     });
-    console.log(conditionOfLecture);
   };
   return (
     <div className="modal">
