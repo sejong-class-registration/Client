@@ -10,7 +10,7 @@ const ModalOverlay = (props) => {
   return (
     <div className="classModal">
       <div className="classModal-content">
-
+        
       </div>
     </div>
   );

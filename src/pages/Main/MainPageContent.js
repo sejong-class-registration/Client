@@ -32,17 +32,17 @@ const MainPageContent = () => {
     getLectureList();
   }, []);
 
-  const openClassModal = (props) => {
+  const openClassModal = () => {
     setClassModalOpen(true);
     // console.log(classModalOpen);
   };
-  const closeClassModal = (props) => {
+  const closeClassModal = () => {
     setClassModalOpen(false);
     // console.log(classModalOpen);
   };
   return (
     <div className="body">
-      {classModalOpen && <ClassModal close={closeClassModal} ></ClassModal>}
+      {classModalOpen && <ClassModal close={closeClassModal}></ClassModal>}
       {modalOpen && <Modal close={closeModal}></Modal>}
       <div className="frame_1">
         <div className="calendar-label">
@@ -163,13 +163,14 @@ const MainPageContent = () => {
           <div className="lecture_list">
             {lectureList.map((lecture) => (
               <LectureItem
-                key={lecture.id}
+                key={lecture._id}
+                id={lecture._id}
                 name={lecture.name}
                 classification={lecture.classification}
                 credit={lecture.credit}
                 dayAndTime={lecture.dayAndTime}
                 profName={lecture.profName}
-                openModal={openClassModal}
+                openClassModal={openClassModal}
               ></LectureItem>
             ))}
           </div>
