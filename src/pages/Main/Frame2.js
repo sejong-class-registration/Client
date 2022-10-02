@@ -14,6 +14,8 @@ const Frame2 = (props) => {
     setLectureList(response.data.data.lectures);
   };
 
+  // console.log(lectureList);
+
   useEffect(() => {
     getLectureList();
   }, []);
@@ -27,11 +29,11 @@ const Frame2 = (props) => {
       <div className="content2">
         <div className="sort_selecter">
           <select className="sort_selecter-select">
-            <option value="가나다 순">가나다 순</option>
-            <option value="이수 구분">이수 구분</option>
-            <option value="요일 순">요일 순</option>
-            <option value="평점 순">평정 순</option>
-            <option value="교수명 순">교수명 순</option>
+            <option value="가나다 순">과목명</option>
+            <option value="이수 구분">이수구분</option>
+            <option value="요일 순">요일</option>
+            <option value="평점 순">평점</option>
+            <option value="교수명 순">교수명</option>
           </select>
         </div>
         <div className="lecture_list">
