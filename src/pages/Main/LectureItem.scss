@@ -3,15 +3,17 @@
   border: 0.5px solid #626060;
   border-radius: 10px;
   margin: 0.5rem 2rem;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
-  justify-content: space-evenly;
+  padding: 0.2rem 0;
+  text-align: center;
+  // justify-content: space-around;
 
   &_title {
-    font-size: larger;
+    font-size: 16px;
     font-weight: bold;
-    margin-left: 1.5rem;
-    margin-right: 1.5rem;
+    width: 40%;
+    
   }
   &_type {
     font-size: smaller;
