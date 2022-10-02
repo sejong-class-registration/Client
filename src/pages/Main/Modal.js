@@ -21,6 +21,8 @@ const ModalOverlay = (props) => {
     classification: classType,
   });
 
+  // console.log(conditionOfLecture);
+
   const majorChangeHandler = (props) => {
     setMajor(props.target.value);
     // console.log(props.target.value);

@@ -1,0 +1,30 @@
+.lecture {
+  display: flex;
+  border: 0.5px solid #626060;
+  border-radius: 10px;
+  margin: 0.5rem 2rem;
+  font-size: 16px;
+  font-weight: 700;
+  justify-content: space-evenly;
+
+  &_title {
+    font-size: larger;
+    font-weight: bold;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+  }
+  &_type {
+    font-size: smaller;
+    margin-right: 0.5rem;
+  }
+  &_score {
+    font-size: smaller;
+    margin-right: 1rem;
+  }
+  &_time {
+    margin-right: 1rem;
+  }
+  &_prof {
+    margin-right: 2rem;
+  }
+}

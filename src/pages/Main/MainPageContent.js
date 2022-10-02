@@ -4,18 +4,7 @@ import Modal from "./Modal";
 import { useState, useEffect } from "react";
 import ClassModal from "./ClassModal";
 import axios from "axios";
-
-const LectureItem = (props) => {
-  return (
-    <div className="lecture" onClick={props.openModal}>
-      <div className="lecture_title">{props.name}</div>
-      <div className="lecture_type">{props.classification}</div>
-      <div className="lecture_score">{props.credit.substr(0, 1) + "학점"}</div>
-      <div className="lecture_time">{props.dayAndTime}</div>
-      <div className="lecture_prof">{props.profName}</div>
-    </div>
-  );
-};
+import LectureItem from "./LectureItem";
 
 const MainPageContent = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -37,30 +26,24 @@ const MainPageContent = () => {
     setLectureList(response.data.data.lectures);
   };
 
-  console.log(lectureList);
+  // console.log(lectureList);
 
   useEffect(() => {
     getLectureList();
   }, []);
 
-  const lecture = {
-    title: "알고리즘및실습",
-    type: "전필",
-    score: 3,
-    time: "화 10:30 - 12:30",
-    prof: "노재춘",
-  };
-
   const openClassModal = (props) => {
     setClassModalOpen(true);
-    console.log(classModalOpen);
+    // console.log(classModalOpen);
   };
   const closeClassModal = (props) => {
     setClassModalOpen(false);
-    console.log(classModalOpen);
+    // console.log(classModalOpen);
   };
   return (
     <div className="body">
+      {classModalOpen && <ClassModal close={closeClassModal} ></ClassModal>}
+      {modalOpen && <Modal close={closeModal}></Modal>}
       <div className="frame_1">
         <div className="calendar-label">
           <label>2022-2학기</label>
@@ -162,11 +145,9 @@ const MainPageContent = () => {
         </div>
       </div>
       <div className="frame_2">
-        {classModalOpen && <ClassModal close={closeClassModal}></ClassModal>}
         <div className="filter">
-          {modalOpen && <Modal close={closeModal}></Modal>}
           <button className="filter-button" onClick={openModal}>
-            <img className="filter-button-img" src={searchIcon}></img>
+            <img className="filter-button-img" src={searchIcon} alt=""></img>
           </button>
         </div>
         <div className="content2">
