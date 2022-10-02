@@ -1,5 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { useSelector } from "react-redux";
+
 import "./ClassModal.scss";
 
 const Backdrop = (props) => {
@@ -7,11 +9,12 @@ const Backdrop = (props) => {
 };
 
 const ModalOverlay = (props) => {
+  const info = useSelector((state) => state.selectedLec.selectedLec);
+  console.log(info);
+
   return (
     <div className="classModal">
-      <div className="classModal-content">
-        
-      </div>
+      <div className="classModal-content"></div>
     </div>
   );
 };

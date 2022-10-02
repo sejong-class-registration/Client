@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { checkboxReducer } from "./slice/checkboxSlice";
-import { selectedIdReducer } from "./slice/selectedIdSlice";
+import { selectedLecReducer } from "./slice/selectedLecSlice";
 import { classModalReducer } from "./slice/classModalSlice";
 
 const store = configureStore({
   reducer: {
     checkbox: checkboxReducer,
-    selectedId: selectedIdReducer,
+    selectedLec: selectedLecReducer,
     classModal: classModalReducer,
   },
 });

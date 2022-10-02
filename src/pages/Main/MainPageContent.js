@@ -164,12 +164,17 @@ const MainPageContent = () => {
             {lectureList.map((lecture) => (
               <LectureItem
                 key={lecture._id}
-                id={lecture._id}
-                name={lecture.name}
                 classification={lecture.classification}
                 credit={lecture.credit}
                 dayAndTime={lecture.dayAndTime}
+                department={lecture.department}
+                distrib={lecture.distrib}
+                lectureGrade={lecture.lectureGrade}
+                lectureId={lecture.lectureId}
+                name={lecture.name}
                 profName={lecture.profName}
+                room={lecture.room}
+                id={lecture._id}
                 openClassModal={openClassModal}
               ></LectureItem>
             ))}

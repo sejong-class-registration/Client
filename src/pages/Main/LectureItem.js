@@ -1,13 +1,27 @@
 import "./LectureItem.scss";
 import { useDispatch } from "react-redux";
-import { selectedIdActions } from "../../redux/slice/selectedIdSlice";
+import { selectedLecActions } from "../../redux/slice/selectedLecSlice";
 const LectureItem = (props) => {
   const dispatch = useDispatch();
   const openModal = props.openClassModal;
+  const selectedLecInfo = {
+    classification: props.classification,
+    credit: props.credit,
+    dayAndTime: props.dayAndTime,
+    department: props.department,
+    distrib: props.distrib,
+    lectureGrade: props.lectureGrade,
+    lectureId: props.lectureId,
+    name: props.name,
+    profName: props.profName,
+    room: props.room,
+    id: props._id,
+  };
 
   const clickLectureHandler = () => {
-    dispatch(selectedIdActions.changeSelectedId(props.id));
-    console.log(props.id);
+    dispatch(
+      selectedLecActions.changeSelectedLec({ selectedLec: selectedLecInfo })
+    );
     openModal();
   };
   return (
