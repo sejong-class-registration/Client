@@ -3,54 +3,54 @@ import ReactDOM from "react-dom";
 import "./Modal.scss";
 import xIcon from "../../common/icons/xIcon.svg";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { classFilterActions } from "../../redux/slice/classFilterSlice";
 
 const Backdrop = (props) => {
   return <div className="backdrop" onClick={props.close}></div>;
 };
 
 const ModalOverlay = (props) => {
-  const [major, setMajor] = useState("데이터사이언스학과");
-  const [title, setTitle] = useState("");
-  const [prof, setProf] = useState("");
-  const [classType, setClassType] = useState("");
+  const [department, setdepartment] = useState("데이터사이언스학과");
+  const [name, setname] = useState("");
+  const [profName, setprofName] = useState("");
+  const [classification, setclassification] = useState("");
 
-  const [conditionOfLecture, setConditionOfLecture] = useState({
-    department: major,
-    name: title,
-    profName: prof,
-    classification: classType,
-  });
-
-  // console.log(conditionOfLecture);
-
-  const majorChangeHandler = (props) => {
-    setMajor(props.target.value);
-    // console.log(props.target.value);
-  };
-
-  const titleChangeHandler = (props) => {
-    setTitle(props.target.value);
-    // console.log(props.target.value);
-  };
-
-  const profChangeHandler = (props) => {
-    setProf(props.target.value);
-    // console.log(props.target.value);
-  };
-
-  const classTypeChangeHandler = (props) => {
-    setClassType(props.target.value);
-    // console.log(props.target.value);
-  };
+  const dispatch = useDispatch();
 
   const submitHandler = (props) => {
-    setConditionOfLecture({
-      department: major,
-      name: title,
-      profName: prof,
-      classification: classType,
-    });
+    dispatch(
+      classFilterActions.changeClassFilter({
+        classFilter: {
+          department: department,
+          name: name,
+          profName: profName,
+          classification: classification,
+        },
+      })
+    );
   };
+
+  const departmentChangeHandler = (props) => {
+    setdepartment(props.target.value);
+    // console.log(props.target.value);
+  };
+
+  const nameChangeHandler = (props) => {
+    setname(props.target.value);
+    // console.log(props.target.value);
+  };
+
+  const profNameChangeHandler = (props) => {
+    setprofName(props.target.value);
+    // console.log(props.target.value);
+  };
+
+  const classificationChangeHandler = (props) => {
+    setclassification(props.target.value);
+    // console.log(props.target.value);
+  };
+
   return (
     <div className="modal">
       <div className="modal-closeButton">
@@ -67,7 +67,7 @@ const ModalOverlay = (props) => {
           <label className="modal-contents-first-label">학과전공</label>
           <select
             className="modal-contents-first-select"
-            onChange={majorChangeHandler}
+            onChange={departmentChangeHandler}
           >
             <option value="데이터사이언스학과">데이터사이언스학과</option>
             <option value="소프트웨어학과">소프트웨어학과</option>
@@ -94,22 +94,24 @@ const ModalOverlay = (props) => {
           <label className="modal-contents-second-label">교과목명</label>
           <input
             className="modal-contents-second-input"
-            onChange={titleChangeHandler}
+            onChange={nameChangeHandler}
           ></input>
         </div>
         <div className="modal-contents-third">
-          <div className="modal-contents-third-prof">
-            <label className="modal-contents-third-prof-label">교수명</label>
+          <div className="modal-contents-third-profName">
+            <label className="modal-contents-third-profName-label">
+              교수명
+            </label>
             <input
-              className="modal-contents-third-prof-input"
-              onChange={profChangeHandler}
+              className="modal-contents-third-profName-input"
+              onChange={profNameChangeHandler}
             ></input>
           </div>
           <div className="modal-contents-third-type">
             <label className="modal-contents-third-type-label">이수구분</label>
             <select
               className="modal-contents-third-type-select"
-              onChange={classTypeChangeHandler}
+              onChange={classificationChangeHandler}
             >
               <option value=""> - 전체 - </option>
               <option value="교필">교필</option>

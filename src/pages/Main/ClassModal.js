@@ -10,7 +10,7 @@ const Backdrop = (props) => {
 
 const ModalOverlay = (props) => {
   const info = useSelector((state) => state.selectedLec.selectedLec);
-  console.log(info);
+  // console.log(info);
 
   return (
     <div className="classModal">
