@@ -7,7 +7,7 @@ const store = configureStore({
   reducer: {
     checkbox: checkboxReducer,
     selectedLec: selectedLecReducer,
-    classFilterModal: classFilterReducer,
+    classFilter: classFilterReducer,
   },
 });
 

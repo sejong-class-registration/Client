@@ -3,22 +3,34 @@ import LectureItem from "./LectureItem";
 import searchIcon from "../../common/icons/searchIcon.svg";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const Frame2 = (props) => {
   const [lectureList, setLectureList] = useState([]);
+  const savedFilterInfo = useSelector((state) => state.classFilter.classFilter);
 
-  const getLectureList = async () => {
+  const getLectureList = async (info) => {
     const response = await axios(
-      `https://sejong-enrollment.herokuapp.com/lectures`
+      `https://sejong-enrollment.herokuapp.com/lectures?${
+        info.department === "" ? "" : `&department=${info.department}`
+      }${info.name === "" ? "" : `&name=${info.name}`}${
+        info.profName === "" ? "" : `&profName=${info.profName}`
+      }${
+        info.classification === ""
+          ? ""
+          : `&classification=${info.classification}`
+      }`
     );
+    // console.log(info.department);
     setLectureList(response.data.data.lectures);
   };
 
   // console.log(lectureList);
 
   useEffect(() => {
-    getLectureList();
-  }, []);
+    getLectureList(savedFilterInfo);
+    // console.log(savedFilterInfo);
+  }, [savedFilterInfo]);
   return (
     <div className="frame_2">
       <div className="filter">
