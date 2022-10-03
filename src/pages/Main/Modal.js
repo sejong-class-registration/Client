@@ -3,55 +3,63 @@ import ReactDOM from "react-dom";
 import "./Modal.scss";
 import xIcon from "../../common/icons/xIcon.svg";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { classFilterActions } from "../../redux/slice/classFilterSlice";
 
 const Backdrop = (props) => {
   return <div className="backdrop" onClick={props.close}></div>;
 };
 
 const ModalOverlay = (props) => {
-  const [major, setMajor] = useState("AI연계융합전공[3317 학부]연계전공");
-  const [title, setTitle] = useState("");
-  const [prof, setProf] = useState("");
-  const [classType, setClassType] = useState("all");
+  const [department, setdepartment] = useState("데이터사이언스학과");
+  const [name, setname] = useState("");
+  const [profName, setprofName] = useState("");
+  const [classification, setclassification] = useState("");
 
-  const majorChangeHandler = (props) => {
-    setMajor(props.target.value);
-  };
-
-  const titleChangeHandler = (props) => {
-    setTitle(props.target.value);
-  };
-
-  const profChangeHandler = (props) => {
-    setProf(props.target.value);
-  };
-
-  const classTypeChangeHandler = (props) => {
-    setClassType(props.target.value);
-  };
+  const dispatch = useDispatch();
 
   const submitHandler = (props) => {
-    console.log(major, title, prof, classType);
+    dispatch(
+      classFilterActions.changeClassFilter({
+        classFilter: {
+          department: department,
+          name: name,
+          profName: profName,
+          classification: classification,
+        },
+      })
+    );
   };
-  // const majorList = [
-  //   "AI연계융합전공[3317 학부]연계전공",
-  //   "AI연계융합전공 소셜미디어매니지먼트소프트웨어[3328 학부]연계전공",
-  //   "AI연계융합전공 스마트투어리즘매니지멘트소프트웨어[3331 학부]연계전공",
-  //   "AI연계융합전공 시스템생명공학[3324 학부]연계전공",
-  //   "AI연계융합전공 에듀테크콘텐츠애널리틱스[3326 학부]연계전공",
-  // ];
-  // const returnMajor = (props) => {
-  //   return props.map((major, index) => {
-  //     <option key={index} value={major}>
-  //       {major}
-  //     </option>;
-  //   });
-  // };
+
+  const departmentChangeHandler = (props) => {
+    setdepartment(props.target.value);
+    // console.log(props.target.value);
+  };
+
+  const nameChangeHandler = (props) => {
+    setname(props.target.value);
+    // console.log(props.target.value);
+  };
+
+  const profNameChangeHandler = (props) => {
+    setprofName(props.target.value);
+    // console.log(props.target.value);
+  };
+
+  const classificationChangeHandler = (props) => {
+    setclassification(props.target.value);
+    // console.log(props.target.value);
+  };
+
   return (
     <div className="modal">
       <div className="modal-closeButton">
         <button className="modal-closeButton-button" onClick={props.close}>
-          <img className="modal-closeButton-button-img" src={xIcon} alt="Close Button"></img>
+          <img
+            className="modal-closeButton-button-img"
+            src={xIcon}
+            alt="Close Button"
+          ></img>
         </button>
       </div>
       <div className="modal-contents">
@@ -59,46 +67,60 @@ const ModalOverlay = (props) => {
           <label className="modal-contents-first-label">학과전공</label>
           <select
             className="modal-contents-first-select"
-            onChange={majorChangeHandler}
+            onChange={departmentChangeHandler}
           >
-            <option value="AI연계융합전공[3317 학부]연계전공">
-              AI연계융합전공[3317 학부]연계전공
+            <option value="데이터사이언스학과">데이터사이언스학과</option>
+            <option value="소프트웨어학과">소프트웨어학과</option>
+            <option value="인공지능학과">인공지능학과</option>
+            <option value="정보보호학과">정보보호학과</option>
+            <option value="지능기전공학부">지능기전공학부</option>
+            <option value="지능기전공학부 무인이동체공학전공">
+              지능기전공학부 무인이동체공학전공
             </option>
-            <option value="test">test</option>
+            <option value="지능기전공학부 스마트기기공학전공">
+              지능기전공학부 스마트기기공학전공
+            </option>
+            <option value="창의소프트학부">창의소프트학부</option>
+            <option value="창의소프트학부 디자인이노베이션전공">
+              창의소프트학부 디자인이노베이션전공
+            </option>
+            <option value="창의소프트학부 만화애니메이션텍전공">
+              창의소프트학부 만화애니메이션텍전공
+            </option>
+            <option value="컴퓨터공학과">컴퓨터공학과</option>
           </select>
         </div>
         <div className="modal-contents-second">
           <label className="modal-contents-second-label">교과목명</label>
           <input
             className="modal-contents-second-input"
-            onChange={titleChangeHandler}
+            onChange={nameChangeHandler}
           ></input>
         </div>
         <div className="modal-contents-third">
-          <div className="modal-contents-third-prof">
-            <label className="modal-contents-third-prof-label">교수명</label>
+          <div className="modal-contents-third-profName">
+            <label className="modal-contents-third-profName-label">
+              교수명
+            </label>
             <input
-              className="modal-contents-third-prof-input"
-              onChange={profChangeHandler}
+              className="modal-contents-third-profName-input"
+              onChange={profNameChangeHandler}
             ></input>
           </div>
           <div className="modal-contents-third-type">
             <label className="modal-contents-third-type-label">이수구분</label>
             <select
               className="modal-contents-third-type-select"
-              onChange={classTypeChangeHandler}
+              onChange={classificationChangeHandler}
             >
-              <option value="all"> - 전체 - </option>
-              <option value="교양필수">교양필수</option>
-              <option value="공통교양필수">공통교양필수</option>
-              <option value="균형교양필수">균형교양필수</option>
-              <option value="교양선택(1영역)">교양선택(1영역)</option>
-              <option value="교양선택(2영역)">교양선택(2영역)</option>
-              <option value="학문기초교양">학문기초교양</option>
-              <option value="전공기초">전공기초</option>
-              <option value="전공필수">전공필수</option>
+              <option value=""> - 전체 - </option>
+              <option value="교필">교필</option>
+              <option value="공필">공필</option>
+              <option value="교선">교선</option>
+              <option value="기교">기교</option>
+              <option value="전필">전필</option>
+              <option value="전선">전선</option>
               <option value="교직">교직</option>
-              <option value="무관후보생교육">무관후보생교육</option>
             </select>
           </div>
           <button

@@ -17,36 +17,44 @@
   z-index: 100;
   overflow: hidden;
   border-radius: 15px;
+
   &-closeButton {
     text-align: end;
     align-items: center;
     margin: 1rem 1rem 0 0;
+
     &-button {
-      height: 2rem;
-      width: 7rem;
+      height: 1.5rem;
+      max-width: 5rem;
+      width: 20%;
       border: 0;
       border-radius: 15px;
       color: #ffffff;
       background-color: #a31432;
+
       &-img {
-        height: 1.2rem;
+        height: 0.7rem;
       }
     }
   }
+
   &-contents {
     margin: 1rem 2rem 2rem 2rem;
     display: flex;
     flex-direction: column;
     font-weight: bold;
+
     &-first {
       margin-bottom: 1rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+
       &-label {
         width: 20%;
         font-size: 18px;
       }
+
       &-select {
         width: 80%;
         height: 2rem;
@@ -56,15 +64,18 @@
         text-align: center;
       }
     }
+
     &-second {
       margin-bottom: 1rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+
       &-label {
         width: 20%;
         font-size: 18px;
       }
+
       &-input {
         border: 0.5px solid #626060;
         height: 2rem;
@@ -74,16 +85,21 @@
         text-align: center;
       }
     }
+
     &-third {
       display: flex;
-      &-prof {
+
+      &-profName {
         width: 40%;
         display: flex;
         justify-content: space-between;
+        align-items: center;
+
         &-label {
           font-size: 18px;
           width: 50%;
         }
+
         &-input {
           width: 45%;
           margin-right: 5%;
@@ -93,15 +109,19 @@
           height: 2rem;
         }
       }
+
       &-type {
         margin-left: 5%;
         width: 35%;
         display: flex;
         justify-content: space-between;
+        align-items: center;
+
         &-label {
           font-size: 18px;
           width: 50%;
         }
+
         &-select {
           height: 2rem;
           width: 45%;
@@ -112,6 +132,7 @@
           text-align: center;
         }
       }
+
       &-button {
         margin-left: 5%;
         width: 15%;
