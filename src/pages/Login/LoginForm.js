@@ -103,9 +103,6 @@ const LoginForm = () => {
       )}
       <div className="login-formbox-help">
         <span>
-          <Link to="/findid">아이디 찾기</Link>
-        </span>
-        <span>
           <Link to="/findpw">비밀번호 찾기</Link>
         </span>
         <span>
