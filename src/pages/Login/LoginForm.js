@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./LoginForm.scss";
 
 const LoginForm = () => {
@@ -103,10 +103,10 @@ const LoginForm = () => {
       )}
       <div className="login-formbox-help">
         <span>
-          <Link to="/findpw">비밀번호 찾기</Link>
+          <NavLink to="/findpw">비밀번호찾기</NavLink>
         </span>
         <span>
-          <Link to="/signup">회원가입</Link>
+          <NavLink to="/signup">회원가입</NavLink>
         </span>
       </div>
       <button>로그인</button>
