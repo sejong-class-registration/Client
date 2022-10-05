@@ -80,15 +80,7 @@ const Frame1 = () => {
             <td className="calendar-class"></td>
           </tr>
           <tr>
-            <td className="calendar-number">17</td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
-          </tr>
-          <tr>
-            <td className="calendar-number left_down_corner">18</td>
+            <td className="calendar-number left_down_corner">17</td>
             <td className="calendar-class"></td>
             <td className="calendar-class"></td>
             <td className="calendar-class"></td>
