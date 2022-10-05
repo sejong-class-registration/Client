@@ -5,12 +5,14 @@ import xIcon from "../../common/icons/xIcon.svg";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { classFilterActions } from "../../redux/slice/classFilterSlice";
+import { useSelector } from "react-redux";
 
 const Backdrop = (props) => {
   return <div className="backdrop" onClick={props.close}></div>;
 };
 
 const ModalOverlay = (props) => {
+  const savedFilterInfo = useSelector((state) => state.classFilter.classFilter);
   const [department, setdepartment] = useState("데이터사이언스학과");
   const [name, setname] = useState("");
   const [profName, setprofName] = useState("");
@@ -30,6 +32,20 @@ const ModalOverlay = (props) => {
       })
     );
   };
+
+  const departmentList = [
+    "데이터사이언스학과",
+    "소프트웨어학과",
+    "인공지능학과",
+    "정보보호학과",
+    "지능기전공학부",
+    "지능기전공학부 무인이동체공학전공",
+    "지능기전공학부 스마트기기공학전공",
+    "창의소프트학부",
+    "창의소프트학부 디자인이노베이션전공",
+    "창의소프트학부 만화애니메이션텍전공",
+    "컴퓨터공학과",
+  ];
 
   const departmentChangeHandler = (props) => {
     setdepartment(props.target.value);
@@ -69,25 +85,15 @@ const ModalOverlay = (props) => {
             className="modal-contents-first-select"
             onChange={departmentChangeHandler}
           >
-            <option value="데이터사이언스학과">데이터사이언스학과</option>
-            <option value="소프트웨어학과">소프트웨어학과</option>
-            <option value="인공지능학과">인공지능학과</option>
-            <option value="정보보호학과">정보보호학과</option>
-            <option value="지능기전공학부">지능기전공학부</option>
-            <option value="지능기전공학부 무인이동체공학전공">
-              지능기전공학부 무인이동체공학전공
-            </option>
-            <option value="지능기전공학부 스마트기기공학전공">
-              지능기전공학부 스마트기기공학전공
-            </option>
-            <option value="창의소프트학부">창의소프트학부</option>
-            <option value="창의소프트학부 디자인이노베이션전공">
-              창의소프트학부 디자인이노베이션전공
-            </option>
-            <option value="창의소프트학부 만화애니메이션텍전공">
-              창의소프트학부 만화애니메이션텍전공
-            </option>
-            <option value="컴퓨터공학과">컴퓨터공학과</option>
+            {departmentList.map((dep) =>
+              savedFilterInfo.department === dep ? (
+                <option value={dep} selected>
+                  {dep}
+                </option>
+              ) : (
+                <option value={dep}>{dep}</option>
+              )
+            )}
           </select>
         </div>
         <div className="modal-contents-second">
