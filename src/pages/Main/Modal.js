@@ -28,6 +28,7 @@ const ModalOverlay = (props) => {
           name: name,
           profName: profName,
           classification: classification,
+          test: "test",
         },
       })
     );
