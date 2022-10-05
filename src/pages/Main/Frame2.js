@@ -18,6 +18,8 @@ const Frame2 = (props) => {
       }${
         info.classification === ""
           ? ""
+          : info.classification === "전체"
+          ? ""
           : `&classification=${info.classification}`
       }`
     );
