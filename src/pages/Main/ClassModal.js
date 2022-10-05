@@ -52,6 +52,11 @@ const ModalOverlay = (props) => {
           <label htmlFor="room">강의실</label>
           <div>{info.room}</div>
         </div>
+        <div className="classModal-contents-buttons">
+          <button>추가</button>
+          <button>수업계획서</button>
+          <button>강의평가</button>
+        </div>
       </div>
     </div>
   );
