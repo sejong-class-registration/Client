@@ -6,6 +6,7 @@ const Frame1 = () => {
         <label>2022-2학기</label>
       </div>
       <div className="calendar">
+        <div className="test">test</div>
         <table className="calendar-table">
           <tr>
             <th className="calendar-number left_up_corner"></th>
