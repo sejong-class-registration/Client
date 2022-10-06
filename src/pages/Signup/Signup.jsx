@@ -10,13 +10,28 @@ const Signup = () => {
     second: false,
     third: false,
   });
-  const showSecondPage = () => {
+  const [userinfo, setUserinfo] = useState({
+    id: "",
+    password: "",
+    username: "",
+    adyear: 2022,
+    grade: 1,
+    semester: 1,
+  });
+
+  const showSecondPage = (info) => {
+    Object.assign(userinfo, info);
     setSignupPage({ first: false, second: true, third: false });
   };
 
   const showThirdPage = () => {
     setSignupPage({ first: false, second: false, third: true });
   };
+
+  const userInfoHandler = (info) => {
+    Object.assign(userinfo, info);
+    console.log(userinfo);
+  }
 
   return (
     <div className="signup-background">
@@ -30,9 +45,18 @@ const Signup = () => {
         <p>회원가입</p>
       </div>
       <div className="signup-box">
-        {signupPage.first && <SignupForm showSecondPage = {showSecondPage}/>}
-        {signupPage.second && <SignupForm2 showThirdPage = {showThirdPage}/>}
-        {signupPage.third && <SignupForm3/>}
+        {signupPage.first && (
+          <SignupForm
+            showSecondPage={showSecondPage}
+          />
+        )}
+        {signupPage.second && (
+          <SignupForm2
+            showThirdPage={showThirdPage}
+            userInfoHandler = {userInfoHandler}
+          />
+        )}
+        {signupPage.third && <SignupForm3  username = {userinfo.username}/>}
       </div>
       <div className="signup-copyright">
         <p>copyright ⓒ 2022 열일곱스물하나</p>

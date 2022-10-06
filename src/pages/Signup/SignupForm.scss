@@ -27,6 +27,26 @@
     font-size: 15px;
     letter-spacing: 1px;
   }
+  &-input-invalid {
+    background-color: #ff898933;
+    border-radius: 15px;
+    &-idtxt {
+      position: absolute;
+      color: #c3002f;
+      font-family: "inter";
+      font-size: 13px;
+      top: 110px;
+      left: 4rem;
+    }
+    &-pwtxt{
+      position: absolute;
+      color: #c3002f;
+      font-family: "inter";
+      font-size: 13px;
+      top: 385px;
+      left: 4rem;
+    }
+  }
   &-nameinput {
     margin-bottom: -1rem;
   }
@@ -54,6 +74,13 @@
       color: #898989;
       margin-top: -3rem;
       margin-bottom: 2rem;
+      &-invalid {
+        font-size: 13px;
+        font-weight: 300;
+        color: #c3002f;
+        margin-top: -3rem;
+        margin-bottom: 2rem;
+      }
     }
   }
   &-button {
@@ -71,8 +98,26 @@
     font-weight: 800;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     color: white;
+    cursor: pointer;
+
+    &-disabled {
+      position: absolute;
+      top: 450px;
+      width: 75%;
+      height: 3rem;
+      display: block;
+      background-color: #7575758f;
+      text-align: center;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 20px;
+      font-weight: 800;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      color: white;
+    }
   }
-  button:hover {
+  &_button:hover {
     cursor: pointer;
     background-color: #c73154;
   }
@@ -102,7 +147,7 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     color: white;
     text-decoration: none;
-    span{
+    span {
       display: inline-block;
       line-height: 4rem;
     }
