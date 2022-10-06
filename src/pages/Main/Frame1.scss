@@ -1,6 +1,7 @@
 .frame_1 {
   margin-top: 1rem;
   max-width: 55%;
+  min-width: 600px;
   width: 55%;
   height: 80%;
 }
@@ -18,7 +19,7 @@
   &-label {
     margin: 0 0 1rem 2rem;
     font-weight: 600;
-    font-size: 20px;
+    // font-size: 20px;
     color: #c62917;
   }
 
@@ -33,7 +34,7 @@
   &-day {
     text-align: center;
     background-color: #eeeeee;
-    width: 7rem;
+    // width: 7rem;
     height: 3rem;
     border: 1px solid #e0e0e0;
     border-radius: 0px;
