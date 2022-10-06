@@ -175,7 +175,7 @@ const ModalOverlay = (props) => {
             </select>
           </div>
           <button
-            className="modal-contents-third-button"
+            className={`modal-contents-third-button`}
             onClick={submitHandler}
           >
             조회

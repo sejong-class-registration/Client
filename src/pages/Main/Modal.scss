@@ -21,6 +21,9 @@
   &-buttons {
     text-align: end;
     margin: 1rem 2rem 0 2rem;
+    :hover {
+      background-color: #a3143378;
+    }
 
     &-closeButton {
       height: 2rem;
@@ -30,6 +33,7 @@
       border-radius: 15px;
       color: #ffffff;
       background-color: #a31432;
+      
 
       &-img {
         height: 1.2rem;
@@ -156,6 +160,7 @@
         background-color: #a31432;
         border-radius: 15px;
         font-size: 18px;
+        
       }
     }
   }

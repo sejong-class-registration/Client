@@ -5,7 +5,6 @@ const Frame1 = () => {
       <div className="calendar-label">
         <label>2022-2학기</label>
       </div>
-      <div className="test"></div>
       <div className="calendar">
         <table className="calendar-table">
           <tr>
