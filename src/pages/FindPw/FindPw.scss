@@ -1,0 +1,36 @@
+.findpw {
+  &-background {
+    width: 100vw;
+    height: 100vh;
+    min-height: 1080px;
+    background: linear-gradient(#a31432 50%, #eeede3 50%);
+    z-index: -9999;
+  }
+  &-text {
+    position: relative;
+    text-align: center;
+    top: 50px;
+    p {
+      color: white;
+      font-size: 35px;
+      font-weight: 700;
+      font-family: "inter";
+      line-height: 0.5rem;
+      letter-spacing: -2px;
+    }
+    &-exp{
+      position: relative;
+      top: 65px;
+      text-align: center;
+      line-height: 10px;
+      color: white;
+      font-weight: 100;
+      font-size: 14px;
+      span {
+        color: yellow;
+        font-weight: 500;
+        font-size: 15px;
+      }
+    }
+  }
+}
