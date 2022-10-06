@@ -3,11 +3,16 @@ import LectureItem from "./LectureItem";
 import searchIcon from "../../common/icons/searchIcon.svg";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Frame2 = (props) => {
   const [lectureList, setLectureList] = useState([]);
   const savedFilterInfo = useSelector((state) => state.classFilter.classFilter);
+  const savedSortInfo = useSelector((state) => state.sortFilter.sortFilter);
+
+  const dispatch = useDispatch();
+
+  const sortChangeHandler = () => {};
 
   const getLectureList = async (info) => {
     const response = await axios(
@@ -35,8 +40,8 @@ const Frame2 = (props) => {
 
   useEffect(() => {
     getLectureList(savedFilterInfo);
-    // console.log(savedFilterInfo);
   }, [savedFilterInfo]);
+
   return (
     <div className="frame_2">
       <div className="filter">
@@ -46,7 +51,7 @@ const Frame2 = (props) => {
       </div>
       <div className="content2">
         <div className="sort_selecter">
-          <select className="sort_selecter-select">
+          <select className="sort_selecter-select" onChange={sortChangeHandler}>
             <option value="가나다 순">과목명</option>
             <option value="이수 구분">이수구분</option>
             <option value="요일 순">요일</option>
