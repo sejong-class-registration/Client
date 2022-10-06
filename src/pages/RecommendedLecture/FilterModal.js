@@ -68,27 +68,29 @@ const FilterModal = (props) => {
       <div className="filtermodal">
         <div className="filtermodal-grades">
           <p>학점</p>
-          {GRADES_CHECKBOX_LIST.map((item) => {
-            return (
-              <label key={item.id}>
-                <input
-                  type="checkbox"
-                  id={item.id}
-                  onChange={(e) => {
-                    onGradesCheckedElemnet(e.target.checked, e.target.id);
-                  }}
-                  checked={gradesCheckedList.includes(item.id) ? true : false}
-                />
-                <span>{item.data}</span>
-              </label>
-            );
-          })}
+          <div className="filtermodal-grades-checkboxlist">
+            {GRADES_CHECKBOX_LIST.map((item) => {
+              return (
+                <label htmlFor={item.id} key={item.id}>
+                  <input
+                    type="checkbox"
+                    id={item.id}
+                    onChange={(e) => {
+                      onGradesCheckedElemnet(e.target.checked, e.target.id);
+                    }}
+                    checked={gradesCheckedList.includes(item.id) ? true : false}
+                  />
+                  <span>{item.data}학점</span>
+                </label>
+              );
+            })}
+          </div>
         </div>
         <div>
           <p>선택영역</p>
           {SELECTION_CHECKBOX_LIST.map((item) => {
             return (
-              <label key={item.id}>
+              <label htmlFor={item.id} key={item.id}>
                 <input
                   type="checkbox"
                   id={item.id}

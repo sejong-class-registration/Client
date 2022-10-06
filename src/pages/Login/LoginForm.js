@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./LoginForm.scss";
 
 const LoginForm = () => {
@@ -69,8 +69,32 @@ const LoginForm = () => {
       return;
     }
 
-    console.log(EnteredInput);
+    loginFetchHandler();
   };
+
+  const loginFetchHandler = () => {
+
+    fetch('http://127.0.0.1:3000/users/signin', {
+      method: 'POST',
+      body: JSON.stringify({
+        studentId: EnteredInput.id,
+        password: EnteredInput.pw,
+      })
+    })
+    .then((response) => {
+      if(response.message === 'Success'){
+        window.localStorage.setItem('token', response.token);
+        goToMain();
+      }else{
+        alert('아이디 또는 비밀번호가 일치하지않습니다.');
+      }
+    })
+   
+  }
+
+  const goToMain = () => {
+    window.location.replace('/main');
+  }
 
   const idInputClassName = EnteredInputIsValid.id ? "" : "login-invalid-input";
   const pwInputClassName = EnteredInputIsValid.pw ? "" : "login-invalid-input";
@@ -103,13 +127,10 @@ const LoginForm = () => {
       )}
       <div className="login-formbox-help">
         <span>
-          <Link to="/findid">아이디 찾기</Link>
+          <NavLink to="/findpw">비밀번호 찾기</NavLink>
         </span>
         <span>
-          <Link to="/findpw">비밀번호 찾기</Link>
-        </span>
-        <span>
-          <Link to="/signup">회원가입</Link>
+          <NavLink to="/signup">회원가입</NavLink>
         </span>
       </div>
       <button>로그인</button>
