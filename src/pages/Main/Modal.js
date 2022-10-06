@@ -37,6 +37,7 @@ const ModalOverlay = (props) => {
   };
 
   const departmentList = [
+    "전체",
     "데이터사이언스학과",
     "소프트웨어학과",
     "인공지능학과",

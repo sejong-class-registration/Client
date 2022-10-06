@@ -12,7 +12,11 @@ const Frame2 = (props) => {
   const getLectureList = async (info) => {
     const response = await axios(
       `https://sejong-enrollment.herokuapp.com/lectures?${
-        info.department === "" ? "" : `&department=${info.department}`
+        info.department === ""
+          ? ""
+          : info.department === "전체"
+          ? ""
+          : `&department=${info.department}`
       }${info.name === "" ? "" : `&name=${info.name}`}${
         info.profName === "" ? "" : `&profName=${info.profName}`
       }${
