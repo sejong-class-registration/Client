@@ -69,8 +69,32 @@ const LoginForm = () => {
       return;
     }
 
-    console.log(EnteredInput);
+    loginFetchHandler();
   };
+
+  const loginFetchHandler = () => {
+
+    fetch('http://127.0.0.1:3000/users/signin', {
+      method: 'POST',
+      body: JSON.stringify({
+        studentId: EnteredInput.id,
+        password: EnteredInput.pw,
+      })
+    })
+    .then((response) => {
+      if(response.message === 'Success'){
+        window.localStorage.setItem('token', response.token);
+        goToMain();
+      }else{
+        alert('아이디 또는 비밀번호가 일치하지않습니다.');
+      }
+    })
+   
+  }
+
+  const goToMain = () => {
+    window.location.replace('/main');
+  }
 
   const idInputClassName = EnteredInputIsValid.id ? "" : "login-invalid-input";
   const pwInputClassName = EnteredInputIsValid.pw ? "" : "login-invalid-input";
@@ -103,7 +127,7 @@ const LoginForm = () => {
       )}
       <div className="login-formbox-help">
         <span>
-          <NavLink to="/findpw">비밀번호찾기</NavLink>
+          <NavLink to="/findpw">비밀번호 찾기</NavLink>
         </span>
         <span>
           <NavLink to="/signup">회원가입</NavLink>
