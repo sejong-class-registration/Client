@@ -23,7 +23,7 @@ const Frame2 = (props) => {
 
   console.log(savedSortInfo);
 
-  const getLectureList = async (info) => {
+  const getLectureList = async (info, sort) => {
     const response = await axios(
       `https://sejong-enrollment.herokuapp.com/lectures?${
         info.department === ""
@@ -39,7 +39,7 @@ const Frame2 = (props) => {
           : info.classification === "전체"
           ? ""
           : `&classification=${info.classification}`
-      }`
+      }&sort=${sort}`
     );
     // console.log(info.department);
     setLectureList(response.data.data.lectures);
@@ -48,8 +48,8 @@ const Frame2 = (props) => {
   // console.log(lectureList);
 
   useEffect(() => {
-    getLectureList(savedFilterInfo);
-  }, [savedFilterInfo]);
+    getLectureList(savedFilterInfo, savedSortInfo);
+  }, [savedFilterInfo, savedSortInfo]);
 
   return (
     <div className="frame_2">
@@ -64,8 +64,8 @@ const Frame2 = (props) => {
             <option value="name">과목명</option>
             <option value="classification">이수구분</option>
             <option value="dayAndTime">요일</option>
-            <option value="credit">평점</option>
-            <option value="profName">교수명</option>
+            <option value="credit">학점 순</option>
+            <option value="profName">교수명(ㄱㄴㄷ)</option>
           </select>
         </div>
         <div className="lecture_list">
