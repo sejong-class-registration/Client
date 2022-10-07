@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { classFilterActions } from "../../redux/slice/classFilterSlice";
 import { useSelector } from "react-redux";
+import { isOpenModalActions } from "../../redux/slice/isOpenModalSlice";
 
 const Backdrop = (props) => {
   return <div className="backdrop" onClick={props.close}></div>;
@@ -23,7 +24,8 @@ const ModalOverlay = (props) => {
 
   const dispatch = useDispatch();
 
-  const submitHandler = (props) => {
+  const submitHandler = () => {
+    dispatch(isOpenModalActions.changeIsOpen());
     dispatch(
       classFilterActions.changeClassFilter({
         classFilter: {

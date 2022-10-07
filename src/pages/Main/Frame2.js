@@ -21,7 +21,7 @@ const Frame2 = (props) => {
     );
   };
 
-  console.log(savedSortInfo);
+  // console.log(savedSortInfo);
 
   const getLectureList = async (info, sort) => {
     const response = await axios(
