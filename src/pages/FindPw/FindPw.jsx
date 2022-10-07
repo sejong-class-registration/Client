@@ -1,7 +1,9 @@
 import React from "react";
 import "./FindPw.scss";
+import FindPwForm1 from "./FindPwForm1";
 
 const FindPw = () => {
+
   return (
     <div className="findpw-background">
       <img
@@ -18,8 +20,8 @@ const FindPw = () => {
         <span>세종대학교 학사정보시스템</span> 학번과 비밀번호를
         <p>입력해주시기 바랍니다</p>
       </div>
-      <div>
-        
+      <div className="findpw-formbox">
+        <FindPwForm1 />
       </div>
       <div className="login-copyright">
         <p>copyright ⓒ 2022 열일곱스물하나</p>
