@@ -4,6 +4,7 @@ import searchIcon from "../../common/icons/searchIcon.svg";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import { sortFilterActions } from "../../redux/slice/sortFilterSlice"
 
 const Frame2 = (props) => {
   const [lectureList, setLectureList] = useState([]);
@@ -12,7 +13,15 @@ const Frame2 = (props) => {
 
   const dispatch = useDispatch();
 
-  const sortChangeHandler = () => {};
+  const sortChangeHandler = (e) => {
+    dispatch(
+      sortFilterActions.changeSortFilter({
+        sortFilter: e.target.value,
+      })
+    );
+  };
+
+  console.log(savedSortInfo);
 
   const getLectureList = async (info) => {
     const response = await axios(
@@ -52,11 +61,11 @@ const Frame2 = (props) => {
       <div className="content2">
         <div className="sort_selecter">
           <select className="sort_selecter-select" onChange={sortChangeHandler}>
-            <option value="가나다 순">과목명</option>
-            <option value="이수 구분">이수구분</option>
-            <option value="요일 순">요일</option>
-            <option value="평점 순">평점</option>
-            <option value="교수명 순">교수명</option>
+            <option value="name">과목명</option>
+            <option value="classification">이수구분</option>
+            <option value="dayAndTime">요일</option>
+            <option value="credit">평점</option>
+            <option value="profName">교수명</option>
           </select>
         </div>
         <div className="lecture_list">
