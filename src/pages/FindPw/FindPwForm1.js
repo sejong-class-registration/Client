@@ -1,17 +1,12 @@
 import React from 'react';
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import './FindPwForm1.scss';
 
 const FindPwForm1 = () => {
   const [EnteredInput, setEnteredInput] = useState({id: '', pw: ''});
   const [EnteredInputIsValid, setEnteredInputIsValid] = useState({id: true, pw: true});
   const [inputIsTouched, setInputIsTouched] = useState({id: false, pw: false});
-  const [certificationn, setCertification] = useState(false);
-
-  const certificationSuccess = () => {
-    setCertification(true);
-    window.location.replace('/changepw');
-  }
 
   const inputChangeHandler = (event) => {
     setEnteredInput((prev)=>{
@@ -75,7 +70,7 @@ const FindPwForm1 = () => {
     }
 
     console.log(EnteredInput);
-    certificationSuccess();
+    window.location.replace('/changepw');
   };
 
   const idInputClassName = EnteredInputIsValid.id ? "" : "login-invalid-input";
@@ -83,7 +78,7 @@ const FindPwForm1 = () => {
 
   return (
     <form onSubmit={certificationSubmitHandler} className = 'login-formbox'>
-      <p>학번/아이디</p>
+      <p>학번</p>
       <input
         className={idInputClassName}
         type="text"

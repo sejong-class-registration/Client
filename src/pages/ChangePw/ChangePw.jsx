@@ -1,8 +1,8 @@
 import React from "react";
-import "./FindPw.scss";
-import FindPwForm1 from "./FindPwForm1";
+import "./ChangePw.scss";
+import ChangePwForm1 from "./ChangePwForm1";
 
-const FindPw = () => {
+const ChangePw = () => {
   return (
     <div className="findpw-background">
       <img
@@ -12,15 +12,13 @@ const FindPw = () => {
       />
       <div className="findpw-text">
         <p>수강신청 도우미</p>
-        <p>비밀번호 찾기</p>
+        <p>비밀번호 변경</p>
       </div>
       <div className="findpw-text-exp">
-        <p>학생 인증을 위해</p>
-        <span>세종대학교 학사정보시스템</span> 학번과 비밀번호를
-        <p>입력해주시기 바랍니다</p>
+        <p>비밀번호는 <span>특수문자를 포함한 10자 이상</span>으로 구성해아합니다</p>
       </div>
       <div className="findpw-formbox">
-        <FindPwForm1 />
+        <ChangePwForm1 />
       </div>
       <div className="login-copyright">
         <p>copyright ⓒ 2022 열일곱스물하나</p>
@@ -30,4 +28,4 @@ const FindPw = () => {
   );
 };
 
-export default FindPw;
+export default ChangePw;
