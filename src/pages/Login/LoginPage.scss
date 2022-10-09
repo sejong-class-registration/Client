@@ -34,18 +34,20 @@
       font-size: 14px;
     }
   }
-  &-copyright {
-    position: absolute;
+  &-copyright{
+    position: relative;
     display: inline-block;
     width: 30%;
     left: 35%;
-    top: 80%;
+    top: 15%;
+    overflow: hidden;
     font-family: "Inter";
     font-style: normal;
     font-weight: 200;
     font-size: 13px;
     text-align: center;
     color: #0000006c;
+    z-index: 0;
   }
 }
 
