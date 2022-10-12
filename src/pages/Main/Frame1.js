@@ -6,7 +6,6 @@ const Frame1 = () => {
         <label>2022-2학기</label>
       </div>
       <div className="calendar">
-        <div className="test">test</div>
         <table className="calendar-table">
           <tr>
             <th className="calendar-number left_up_corner"></th>
@@ -18,10 +17,12 @@ const Frame1 = () => {
           </tr>
           <tr>
             <td className="calendar-number">9</td>
+            <td className="calendar-class">
+              <div className="test"></div>
+            </td>
             <td className="calendar-class"></td>
             <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
+            <td className="calendar-class"><div className="test"></div></td>
             <td className="calendar-class"></td>
           </tr>
           <tr>
@@ -29,7 +30,7 @@ const Frame1 = () => {
             <td className="calendar-class"></td>
             <td className="calendar-class"></td>
             <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
+            <td className="calendar-class"><div className="test"></div></td>
             <td className="calendar-class"></td>
           </tr>
           <tr>
@@ -37,7 +38,7 @@ const Frame1 = () => {
             <td className="calendar-class"></td>
             <td className="calendar-class"></td>
             <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
+            <td className="calendar-class"><div className="test"></div></td>
             <td className="calendar-class"></td>
           </tr>
           <tr>
@@ -51,7 +52,7 @@ const Frame1 = () => {
           <tr>
             <td className="calendar-number">13</td>
             <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
+            <td className="calendar-class"><div className="test"></div></td>
             <td className="calendar-class"></td>
             <td className="calendar-class"></td>
             <td className="calendar-class"></td>
