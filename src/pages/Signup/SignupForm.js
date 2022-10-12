@@ -73,11 +73,11 @@ const SignupForm = (props) => {
     }
   };
 
-  const buttonHandler = () => {
-    props.showSecondPage({
-      id: EnteredInput.id,
-      password: EnteredInput.password,
-    })
+  const submitHandler = (event) => {
+    event.preventDefault();
+
+    console.log(EnteredInput);
+    window.location.replace('/signup2');
   }
 
   const idInputClassName = EnteredInputIsValid.id
@@ -97,7 +97,7 @@ const SignupForm = (props) => {
     EnteredInputIsValid.id && EnteredInputIsValid.password && pwIsValid.match;
 
   return (
-    <div className="signup-form">
+    <form className="signup-form" onSubmit={submitHandler}>
       <div>
         <label htmlFor="id">아이디(학번)</label>
         <input
@@ -150,12 +150,12 @@ const SignupForm = (props) => {
           buttonActivate ? "signup-form-button" : "signup-form-button-disabled"
         }
         disabled={!buttonActivate}
-        onClick={buttonHandler}
         value={EnteredInput.passwordCheck}
+        to='/signup2'
       >
         다음
       </button>
-    </div>
+    </form>
   );
 };
 

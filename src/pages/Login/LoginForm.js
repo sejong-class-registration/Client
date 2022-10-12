@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./LoginForm.scss";
@@ -144,7 +143,7 @@ const LoginForm = () => {
           <NavLink to="/findpw">비밀번호 찾기</NavLink>
         </span>
         <span>
-          <NavLink to="/signup">회원가입</NavLink>
+          <NavLink to="/signup1">회원가입</NavLink>
         </span>
       </div>
       <button>로그인</button>

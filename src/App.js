@@ -1,12 +1,14 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { CHANGEPW_PATH, FINDPW_PATH, LECTURE_PATH, MAIN_PATH, ROOT_PATH, SIGNUP_PATH } from "./common/constants/path.const";
+import { CHANGEPW_PATH, FINDPW_PATH, LECTURE_PATH, MAIN_PATH, ROOT_PATH, SIGNUP1_PATH, SIGNUP2_PATH, SIGNUP3_PATH } from "./common/constants/path.const";
 import LoginPage from "./pages/Login/LoginPage";
 import MainPage from "./pages/Main/MainPage";
 import RecommendedLecturePage from "./pages/RecommendedLecture/RecommendedLecturePage";
 import Signup from "./pages/Signup/Signup";
 import FindPw from "./pages/FindPw/FindPw";
 import ChangePw from "./pages/ChangePw/ChangePw";
+import Signup2 from "./pages/Signup/Signup2";
+import Signup3 from "./pages/Signup/Signup3";
 import './App.scss';
 
 function App() {
@@ -17,7 +19,9 @@ function App() {
         <Route path={ROOT_PATH} element={<LoginPage/>} />
         <Route path={MAIN_PATH} element={<MainPage/>}/>
         <Route path={LECTURE_PATH} element = {<RecommendedLecturePage/>}/>
-        <Route path={SIGNUP_PATH} element = {<Signup/>}/>
+        <Route path={SIGNUP1_PATH} element = {<Signup/>}/>
+        <Route path={SIGNUP2_PATH} element = {<Signup2/>}/>
+        <Route path={SIGNUP3_PATH} element = {<Signup3/>}/>
         <Route path={FINDPW_PATH} element = {<FindPw/>}/>
         <Route path={CHANGEPW_PATH} element = {<ChangePw/>}/>
       </Routes>

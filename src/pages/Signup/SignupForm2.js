@@ -24,19 +24,15 @@ const SignupForm2 = (props) => {
     }
   };
 
-  const formSubmitHandler = () => {
-    props.userInfoHandler({
-      username: enteredInput.username,
-      adyear: +enteredInput.adyear,
-      grade: +enteredInput.grade,
-      semester: +enteredInput.semester,
-    });
+  const formSubmitHandler = (event) => {
+    event.preventDefault();
+    console.log(enteredInput);
 
-    props.showThirdPage();
+    window.location.replace('/signup3');
   };
 
   return (
-    <div className="signup-form" onSubmit={formSubmitHandler}>
+    <form className="signup-form" onSubmit={formSubmitHandler}>
       <div className="signup-form-nameinput">
         <label htmlFor="username">이름</label>
         <input
@@ -76,11 +72,10 @@ const SignupForm2 = (props) => {
         className={
           inputIsValid ? "signup-form-button" : "signup-form-button-disabled"
         }
-        onClick={formSubmitHandler}
       >
         회원가입
       </button>
-    </div>
+    </form>
   );
 };
 

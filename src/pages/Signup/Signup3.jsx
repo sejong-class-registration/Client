@@ -1,7 +1,7 @@
 import "./Signup.scss";
-import SignupForm from "./SignupForm";
+import SignupForm3 from "./SignupForm3";
 
-const Signup = () => {
+const Signup3 = () => {
   return (
     <div className="signup-background">
       <img
@@ -14,7 +14,7 @@ const Signup = () => {
         <p>회원가입</p>
       </div>
       <div className="signup-box">
-          <SignupForm/>
+          <SignupForm3/>
       </div>
       <div className="signup-copyright">
         <p>copyright ⓒ 2022 열일곱스물하나</p>
@@ -24,4 +24,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Signup3;
