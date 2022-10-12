@@ -21,7 +21,6 @@ const LoginForm = () => {
   };
 
   const inputBlurHandler = (e) => {
-    console.log('inputBlurHandler');
     const selectedId = e.target.id;
     setInputIsTouched((prev) => {
       return { ...prev, [selectedId]: true };
@@ -51,8 +50,6 @@ const LoginForm = () => {
   };
 
   const LoginSubmitHandler = (event) => {
-    console.log('LoginSubmit');
-
     event.preventDefault();
     if (
       (!EnteredInputIsValid.id &&
@@ -86,7 +83,6 @@ const LoginForm = () => {
   };
 
   const loginFetchHandler = () => {
-    console.log('inputBlurHandler');
     fetch("http://127.0.0.1:3000/users/signin", {
       method: "POST",
       body: JSON.stringify({

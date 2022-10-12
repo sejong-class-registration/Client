@@ -73,11 +73,17 @@ const FindPwForm1 = () => {
     window.location.replace('/changepw');
   };
 
+  const onCheckEnter = (event) =>{
+    if(event.key === 'Enter'){
+      inputBlurHandler(event)
+    }
+  }
+
   const idInputClassName = EnteredInputIsValid.id ? "" : "login-invalid-input";
   const pwInputClassName = EnteredInputIsValid.pw ? "" : "login-invalid-input";
 
   return (
-    <form onSubmit={certificationSubmitHandler} className = 'login-formbox'>
+    <form onKeyPress={onCheckEnter} onSubmit={certificationSubmitHandler} className = 'login-formbox'>
       <p>학번</p>
       <input
         className={idInputClassName}
