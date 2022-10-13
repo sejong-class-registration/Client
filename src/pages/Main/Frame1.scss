@@ -9,9 +9,15 @@
 .test {
   padding: 0;
   position: relative;
-  height: 150%;
-  background-color: #626060;
+  height: calc(200% + 2px);
+  background-color: #f99;
   overflow: visible;
+  &-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
 .calendar {
