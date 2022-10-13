@@ -20,6 +20,7 @@
   border: 0.5px solid #626060;
   border-radius: 15px;
   height: 100%;
+  font-size: 12px;
 
   &-label {
     margin: 0 0 1rem 2rem;
@@ -90,7 +91,7 @@
       border-radius: 15px;
       font-weight: 400;
       color: #626060;
-      font-size: 14px;
+      font-size: 11px;
       padding: 0.3rem 1rem;
       display: flex;
       flex-direction: column;
@@ -105,7 +106,9 @@
       align-items: center;
 
       &-button {
-        font-size: 18px;
+        line-height: 20px;
+        font-size: 13px;
+        font-weight: bold;
         margin-left: 1rem;
         color: #ffffff;
         max-width: 6rem;
