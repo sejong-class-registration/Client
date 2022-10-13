@@ -17,10 +17,12 @@ const Frame1 = () => {
           </tr>
           <tr>
             <td className="calendar-number">9</td>
+            <td className="calendar-class">
+              <div className="test"></div>
+            </td>
             <td className="calendar-class"></td>
             <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
+            <td className="calendar-class"><div className="test"></div></td>
             <td className="calendar-class"></td>
           </tr>
           <tr>
@@ -28,7 +30,7 @@ const Frame1 = () => {
             <td className="calendar-class"></td>
             <td className="calendar-class"></td>
             <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
+            <td className="calendar-class"><div className="test"></div></td>
             <td className="calendar-class"></td>
           </tr>
           <tr>
@@ -36,7 +38,7 @@ const Frame1 = () => {
             <td className="calendar-class"></td>
             <td className="calendar-class"></td>
             <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
+            <td className="calendar-class"><div className="test"></div></td>
             <td className="calendar-class"></td>
           </tr>
           <tr>
@@ -50,7 +52,7 @@ const Frame1 = () => {
           <tr>
             <td className="calendar-number">13</td>
             <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
+            <td className="calendar-class"><div className="test"></div></td>
             <td className="calendar-class"></td>
             <td className="calendar-class"></td>
             <td className="calendar-class"></td>

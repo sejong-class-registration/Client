@@ -4,15 +4,20 @@ import { useState } from "react";
 import ClassModal from "./ClassModal";
 import Frame1 from "./Frame1";
 import Frame2 from "./Frame2";
+import { useDispatch, useSelector } from "react-redux";
+import { isOpenModalActions } from "../../redux/slice/isOpenModalSlice";
 
 const MainPageContent = () => {
-  const [modalOpen, setModalOpen] = useState(false);
   const [classModalOpen, setClassModalOpen] = useState(false);
+  const isOpen = useSelector((state) => state.isOpenModal.isOpen);
+
+  const dispatch = useDispatch();
+
   const openModal = () => {
-    setModalOpen(true);
+    dispatch(isOpenModalActions.changeIsOpen());
   };
   const closeModal = () => {
-    setModalOpen(false);
+    dispatch(isOpenModalActions.changeIsOpen());
   };
   const openClassModal = () => {
     setClassModalOpen(true);
@@ -20,10 +25,12 @@ const MainPageContent = () => {
   const closeClassModal = () => {
     setClassModalOpen(false);
   };
+
+  console.log(isOpen);
   return (
     <div className="body">
       {classModalOpen && <ClassModal close={closeClassModal}></ClassModal>}
-      {modalOpen && <Modal close={closeModal}></Modal>}
+      {isOpen && <Modal close={closeModal}></Modal>}
       <Frame1></Frame1>
       <Frame2 openModal={openModal} openClassModal={openClassModal}></Frame2>
     </div>

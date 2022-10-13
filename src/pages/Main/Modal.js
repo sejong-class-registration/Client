@@ -2,23 +2,30 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./Modal.scss";
 import xIcon from "../../common/icons/xIcon.svg";
+import refreshIcon from "../../common/icons/rotate-right-solid.svg";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { classFilterActions } from "../../redux/slice/classFilterSlice";
+import { useSelector } from "react-redux";
+import { isOpenModalActions } from "../../redux/slice/isOpenModalSlice";
 
 const Backdrop = (props) => {
   return <div className="backdrop" onClick={props.close}></div>;
 };
 
 const ModalOverlay = (props) => {
-  const [department, setdepartment] = useState("데이터사이언스학과");
-  const [name, setname] = useState("");
-  const [profName, setprofName] = useState("");
-  const [classification, setclassification] = useState("");
+  const savedFilterInfo = useSelector((state) => state.classFilter.classFilter);
+  const [department, setdepartment] = useState(savedFilterInfo.department);
+  const [name, setName] = useState(savedFilterInfo.name);
+  const [profName, setprofName] = useState(savedFilterInfo.profName);
+  const [classification, setclassification] = useState(
+    savedFilterInfo.classification
+  );
 
   const dispatch = useDispatch();
 
-  const submitHandler = (props) => {
+  const submitHandler = () => {
+    dispatch(isOpenModalActions.changeIsOpen());
     dispatch(
       classFilterActions.changeClassFilter({
         classFilter: {
@@ -31,13 +38,56 @@ const ModalOverlay = (props) => {
     );
   };
 
+  const departmentList = [
+    "전체",
+    "데이터사이언스학과",
+    "소프트웨어학과",
+    "인공지능학과",
+    "정보보호학과",
+    "지능기전공학부",
+    "지능기전공학부 무인이동체공학전공",
+    "지능기전공학부 스마트기기공학전공",
+    "창의소프트학부",
+    "창의소프트학부 디자인이노베이션전공",
+    "창의소프트학부 만화애니메이션텍전공",
+    "컴퓨터공학과",
+  ];
+
+  const classificationList = [
+    "전체",
+    "교필",
+    "공필",
+    "교선",
+    "기교",
+    "전필",
+    "전선",
+    "교직",
+  ];
+
+  const initButtonHandler = () => {
+    dispatch(
+      classFilterActions.changeClassFilter({
+        classFilter: {
+          department: departmentList[0],
+          name: "",
+          profName: "",
+          classification: classificationList[0],
+        },
+      })
+    );
+    setName("");
+    setdepartment(departmentList[0]);
+    setprofName("");
+    setclassification(classificationList[0]);
+  };
+
   const departmentChangeHandler = (props) => {
     setdepartment(props.target.value);
     // console.log(props.target.value);
   };
 
   const nameChangeHandler = (props) => {
-    setname(props.target.value);
+    setName(props.target.value);
     // console.log(props.target.value);
   };
 
@@ -53,10 +103,20 @@ const ModalOverlay = (props) => {
 
   return (
     <div className="modal">
-      <div className="modal-closeButton">
-        <button className="modal-closeButton-button" onClick={props.close}>
+      <div className="modal-buttons">
+        <button
+          className="modal-buttons-initButton"
+          onClick={initButtonHandler}
+        >
           <img
-            className="modal-closeButton-button-img"
+            className="modal-buttons-initButton-img"
+            src={refreshIcon}
+            alt="Init Button"
+          ></img>
+        </button>
+        <button className="modal-buttons-closeButton" onClick={props.close}>
+          <img
+            className="modal-buttons-closeButton-img"
             src={xIcon}
             alt="Close Button"
           ></img>
@@ -69,25 +129,15 @@ const ModalOverlay = (props) => {
             className="modal-contents-first-select"
             onChange={departmentChangeHandler}
           >
-            <option value="데이터사이언스학과">데이터사이언스학과</option>
-            <option value="소프트웨어학과">소프트웨어학과</option>
-            <option value="인공지능학과">인공지능학과</option>
-            <option value="정보보호학과">정보보호학과</option>
-            <option value="지능기전공학부">지능기전공학부</option>
-            <option value="지능기전공학부 무인이동체공학전공">
-              지능기전공학부 무인이동체공학전공
-            </option>
-            <option value="지능기전공학부 스마트기기공학전공">
-              지능기전공학부 스마트기기공학전공
-            </option>
-            <option value="창의소프트학부">창의소프트학부</option>
-            <option value="창의소프트학부 디자인이노베이션전공">
-              창의소프트학부 디자인이노베이션전공
-            </option>
-            <option value="창의소프트학부 만화애니메이션텍전공">
-              창의소프트학부 만화애니메이션텍전공
-            </option>
-            <option value="컴퓨터공학과">컴퓨터공학과</option>
+            {departmentList.map((dep) =>
+              savedFilterInfo.department === dep ? (
+                <option value={dep} selected>
+                  {dep}
+                </option>
+              ) : (
+                <option value={dep}>{dep}</option>
+              )
+            )}
           </select>
         </div>
         <div className="modal-contents-second">
@@ -95,6 +145,7 @@ const ModalOverlay = (props) => {
           <input
             className="modal-contents-second-input"
             onChange={nameChangeHandler}
+            placeholder={name}
           ></input>
         </div>
         <div className="modal-contents-third">
@@ -105,6 +156,7 @@ const ModalOverlay = (props) => {
             <input
               className="modal-contents-third-profName-input"
               onChange={profNameChangeHandler}
+              placeholder={profName}
             ></input>
           </div>
           <div className="modal-contents-third-type">
@@ -113,18 +165,19 @@ const ModalOverlay = (props) => {
               className="modal-contents-third-type-select"
               onChange={classificationChangeHandler}
             >
-              <option value=""> - 전체 - </option>
-              <option value="교필">교필</option>
-              <option value="공필">공필</option>
-              <option value="교선">교선</option>
-              <option value="기교">기교</option>
-              <option value="전필">전필</option>
-              <option value="전선">전선</option>
-              <option value="교직">교직</option>
+              {classificationList.map((cla) =>
+                savedFilterInfo.classification === cla ? (
+                  <option value={cla} selected>
+                    {cla}
+                  </option>
+                ) : (
+                  <option value={cla}>{cla}</option>
+                )
+              )}
             </select>
           </div>
           <button
-            className="modal-contents-third-button"
+            className={`modal-contents-third-button`}
             onClick={submitHandler}
           >
             조회

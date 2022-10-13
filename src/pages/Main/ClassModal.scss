@@ -10,7 +10,7 @@
 
 .classModal {
   width: 30%;
-  min-width: 350px;
+  min-width: 500px;
   position: absolute;
   left: 35%;
   top: 15%;
@@ -47,6 +47,23 @@
         width: 80%;
         text-align: center;
       }
+    }
+
+    &-buttons {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: space-around;
+
+      button {
+        font-size: 18px;
+        color: #ffffff;
+        background-color: #a31432;
+        width: 25%;
+        height: 2rem;
+        border: 0;
+        border-radius: 15px;
+      }
+
     }
   }
 }
