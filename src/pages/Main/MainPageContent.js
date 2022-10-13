@@ -26,7 +26,8 @@ const MainPageContent = () => {
     setClassModalOpen(false);
   };
 
-  console.log(isOpen);
+  // console.log(isOpen);
+  
   return (
     <div className="body">
       {classModalOpen && <ClassModal close={closeClassModal}></ClassModal>}

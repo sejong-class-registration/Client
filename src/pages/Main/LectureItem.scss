@@ -66,6 +66,7 @@
 
 .lecture:hover {
   transform: scale(1.08);
+  transition: all 0.05s;
   // box-shadow: 0 0 2px;
   // border-radius: 10px;
   // transform: translateX(-5px);

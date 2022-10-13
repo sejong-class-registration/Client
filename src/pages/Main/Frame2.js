@@ -45,7 +45,7 @@ const Frame2 = (props) => {
     setLectureList(response.data.data.lectures);
   };
 
-  console.log(lectureList);
+  // console.log(lectureList);
 
   useEffect(() => {
     getLectureList(savedFilterInfo, savedSortInfo);
