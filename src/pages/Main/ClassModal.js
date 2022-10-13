@@ -10,6 +10,10 @@ const Backdrop = (props) => {
 
 const ModalOverlay = (props) => {
   const info = useSelector((state) => state.selectedLec.selectedLec);
+
+  const addLectureHandler = (props) => {
+    console.log(info);
+  }
   // console.log(info);
 
   return (
@@ -53,7 +57,7 @@ const ModalOverlay = (props) => {
           <div>{info.room}</div>
         </div>
         <div className="classModal-contents-buttons">
-          <button>추가</button>
+          <button onClick={addLectureHandler}>추가</button>
           <button>수업계획서</button>
           <button>강의평가</button>
         </div>
