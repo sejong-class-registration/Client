@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import axios from "axios";
 import "./SignupForm.scss";
 
 const SignupForm = (props) => {
@@ -8,7 +9,8 @@ const SignupForm = (props) => {
     password: "",
     passwordCheck: "",
     username: "",
-    adyear: 2022,
+    major: '컴퓨터공학과',
+    doubleMajor: '',
     grade: 1,
     semester: 1,
   });
@@ -22,10 +24,10 @@ const SignupForm = (props) => {
     second: false,
   });
   const [inputIsValid, setInputIsValid] = useState(false);
-
+  const [checkboxOn, setCheckboxOn] = useState(false);
 
   const inputHandler = (event) => {
-    setEnteredInput((prev) => {
+      setEnteredInput((prev) => {
       return { ...prev, [event.target.id]: event.target.value };
     });
 
@@ -104,13 +106,28 @@ const SignupForm = (props) => {
       second: true,
     })
   }
+
+  const doubleMajorHandler = () => {
+    setCheckboxOn((prev)=>!prev);
+  }
   
   const formSubmitHandler = (event) => {
     event.preventDefault();
     console.log(EnteredInput);
 
-    window.location.replace('/signupend');
+    // window.location.replace('/signupend');
   };
+
+  // const signupFetchHandler = async () => {
+  //   const response = await axios.post("https://sejong-enrollment.herokuapp.com/users/signin", {
+  //     name: EnteredInput.username,
+  //     userId: EnteredInput.id,
+  //     password: EnteredInput.password,
+  //     userGrade: EnteredInput.grade,
+  //     major: EnteredInput.major,
+  //     dobuleMajor: EnteredInput.doubleMajor,
+  //   })
+  // }
 
   const idInputClassName = EnteredInputIsValid.id
     ? ""
@@ -211,16 +228,28 @@ const SignupForm = (props) => {
           tabIndex= '5'
         />
       </div>
-      <div className="signup-form-adyear">
-        <label htmlFor="adyear">입학년도</label>
-        <select id="adyear" onChange={inputHandler} tabIndex = '6' >
-          <option value={2022}>2022</option>
-          <option value={2021}>2021</option>
-          <option value={2020}>2020</option>
-          <option value={2019}>2019</option>
-          <option value={2018}>2018</option>
-          <option value={2017}>2017</option>
+      <div >
+        <label htmlFor="major">전공과목</label>
+        <span>
+          <label htmlFor="doubleMajorCheck" className="signup-form-doublemajor-label">복수전공</label>
+          <input id = 'doubleMajorCheck'type="checkbox" className="signup-form-doublemajor-checkbox" onChange={doubleMajorHandler}/>
+        </span>
+        <select id="major" onChange={inputHandler} tabIndex = '6' >
+          <option value='컴퓨터공학과'>컴퓨터공학과</option>
+          <option value='소프트웨어학과'>소프트웨어학과</option>
+          <option value='정보보호학과'>정보보호학과</option>
+          <option value='데이터사이언스학과'>데이터사이언스학과</option>
+          <option value='지능기전공학부'>지능기전공학부</option>
+          <option value='인공지능학과'>인공지능학과</option>
         </select>
+        {checkboxOn && <select id="doublemajor" onChange={inputHandler} className = 'signup-form-doublemajor-input'>
+          <option value='컴퓨터공학과'>컴퓨터공학과</option>
+          <option value='소프트웨어학과'>소프트웨어학과</option>
+          <option value='정보보호학과'>정보보호학과</option>
+          <option value='데이터사이언스학과'>데이터사이언스학과</option>
+          <option value='지능기전공학부'>지능기전공학부</option>
+          <option value='인공지능학과'>인공지능학과</option>
+        </select>}
       </div>
       <div>
         <label htmlFor="grade">학년</label>

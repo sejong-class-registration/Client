@@ -97,11 +97,11 @@ const LoginForm = () => {
       password: EnteredInput.pw
     })
     console.log(response);
-    if (response.status === "201") {
+    if (response.status === 201) {
       window.localStorage.setItem("token", response.token);
       goToMain();
     } else {
-      alert("아이디 또는 비밀번호가 일치하지않습니다.");
+      alert(response.data.message);
     }
   }
 
