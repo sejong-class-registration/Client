@@ -1,5 +1,5 @@
-import "./Signup.scss";
 import SignupForm from "./SignupForm";
+import "./Signup.scss";
 
 const Signup = () => {
   return (
@@ -14,7 +14,7 @@ const Signup = () => {
         <p>회원가입</p>
       </div>
       <div className="signup-box">
-          <SignupForm/>
+          <SignupForm />
       </div>
       <div className="signup-copyright">
         <p>copyright ⓒ 2022 열일곱스물하나</p>

@@ -1,7 +1,7 @@
 import "./Signup.scss";
 import SignupForm3 from "./SignupForm3";
 
-const Signup3 = () => {
+const SignupFinal = () => {
   return (
     <div className="signup-background">
       <img
@@ -24,4 +24,4 @@ const Signup3 = () => {
   );
 };
 
-export default Signup3;
+export default SignupFinal;

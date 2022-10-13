@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 import "./LoginForm.scss";
 
 const LoginForm = () => {
@@ -81,23 +82,29 @@ const LoginForm = () => {
     loginFetchHandler();
   };
 
-  const loginFetchHandler = () => {
-    fetch("http://127.0.0.1:3000/users/signin", {
-      method: "POST",
-      body: JSON.stringify({
-        studentId: EnteredInput.id,
-        password: EnteredInput.pw,
-      }),
-    }).then((response) => {
-      if (response.message === "Success") {
-        window.localStorage.setItem("token", response.token);
-        goToMain();
-      } else {
-        alert("아이디 또는 비밀번호가 일치하지않습니다.");
-        setEnteredInput({ id: "", pw: "" });
-      }
-    });
-  };
+  const loginFetchHandler = async () => {
+    // fetch("https://sejong-enrollment.herokuapp.com/users/signin", {
+    //   method: 'POST',
+    //   body: JSON.stringify({
+    //     studentId: EnteredInput.id * 1,
+    //     password: EnteredInput.pw * 1,
+    //   }),
+    // }).then(response => response.json())
+    // .then(result => console.log(result))
+
+    const response = await axios.post("https://sejong-enrollment.herokuapp.com/users/signin", {
+      studentId: EnteredInput.id,
+      password: EnteredInput.pw
+    })
+    console.log(response);
+    if (response.status === "201") {
+      window.localStorage.setItem("token", response.token);
+      goToMain();
+    } else {
+      alert("아이디 또는 비밀번호가 일치하지않습니다.");
+    }
+  }
+
 
   const goToMain = () => {
     window.location.replace("/main");
@@ -143,7 +150,7 @@ const LoginForm = () => {
           <NavLink to="/findpw">비밀번호 찾기</NavLink>
         </span>
         <span>
-          <NavLink to="/signup1">회원가입</NavLink>
+          <NavLink to="/signup">회원가입</NavLink>
         </span>
       </div>
       <button>로그인</button>
