@@ -4,6 +4,7 @@ import { selectedLecReducer } from "./slice/selectedLecSlice";
 import { classFilterReducer } from "./slice/classFilterSlice";
 import { sortFilterReducer } from "./slice/sortFilterSlice";
 import { isOpenModalReducer } from "./slice/isOpenModalSlice";
+import { userScheduleReducer } from "./slice/userSlice";
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     classFilter: classFilterReducer,
     sortFilter: sortFilterReducer,
     isOpenModal: isOpenModalReducer,
+    userSchedule: userScheduleReducer,
   },
 });
 
