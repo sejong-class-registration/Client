@@ -12,7 +12,7 @@
     overflow: hidden;
     justify-content: space-around;
   }
-
+  
   &-wrap-necessary {
     display: flex;
     border: 0.5px solid #626060;
@@ -25,6 +25,19 @@
     justify-content: space-around;
     background-color: #e3cbcb;
   }
+  &-wrap-online {
+    display: flex;
+    border: 0.5px solid #626060;
+    border-radius: 10px;
+    font-size: 12px;
+    padding: 0.2rem 0;
+    height: 1rem;
+    width: 100%;
+    overflow: hidden;
+    justify-content: space-around;
+    background-color: #cbe3d5;
+  }
+
 
   &_title {
     text-align: center;

@@ -31,7 +31,11 @@ const LectureItem = (props) => {
     <div className="lecture" onClick={clickLectureHandler}>
       <div
         className={`lecture-wrap${
-          props.classification === "전필" ? "-necessary" : ""
+          props.dayAndTime === "" && props.classification !== "전필"
+            ? "-online"
+            : props.classification === "전필"
+            ? "-necessary"
+            : ""
         }`}
       >
         <div className="lecture_title">{`${
