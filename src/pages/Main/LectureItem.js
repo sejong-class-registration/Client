@@ -10,10 +10,13 @@ const LectureItem = (props) => {
     dayAndTime: props.dayAndTime,
     department: props.department,
     distrib: props.distrib,
+    english: props.english,
     lectureGrade: props.lectureGrade,
     lectureId: props.lectureId,
     name: props.name,
+    notice: props.notice,
     profName: props.profName,
+    recommend: props.recommend,
     room: props.room,
     id: props._id,
   };
@@ -26,8 +29,18 @@ const LectureItem = (props) => {
   };
   return (
     <div className="lecture" onClick={clickLectureHandler}>
-      <div className="lecture-wrap">
-        <div className="lecture_title">{props.name}</div>
+      <div
+        className={`lecture-wrap${
+          props.classification === "전필" ? "-necessary" : ""
+        }`}
+      >
+        <div className="lecture_title">{`${
+          props.notice === "외국인대상강좌"
+            ? "⚠️ "
+            : props.english === "영어"
+            ? "🔤 "
+            : ""
+        }${props.name}`}</div>
         <div className="lecture_type">{props.classification}</div>
         <div className="lecture_score">
           {props.credit.substr(0, 1) + "학점"}

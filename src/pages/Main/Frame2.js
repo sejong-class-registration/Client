@@ -45,7 +45,7 @@ const Frame2 = (props) => {
     setLectureList(response.data.data.lectures);
   };
 
-  // console.log(lectureList);
+  console.log(lectureList);
 
   useEffect(() => {
     getLectureList(savedFilterInfo, savedSortInfo);
@@ -77,10 +77,13 @@ const Frame2 = (props) => {
               dayAndTime={lecture.dayAndTime}
               department={lecture.department}
               distrib={lecture.distrib}
+              english={lecture.english}
               lectureGrade={lecture.lectureGrade}
               lectureId={lecture.lectureId}
               name={lecture.name}
+              notice={lecture.notice}
               profName={lecture.profName}
+              recommend={lecture.recommend}
               room={lecture.room}
               id={lecture._id}
               openClassModal={props.openClassModal}
