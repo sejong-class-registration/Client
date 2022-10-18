@@ -12,8 +12,9 @@
   width: 30%;
   min-width: 500px;
   position: absolute;
-  left: 35%;
-  top: 15%;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
   background-color: #ffffff;
   z-index: 100;
   overflow: hidden;
@@ -47,6 +48,12 @@
         width: 80%;
         text-align: center;
       }
+
+      &-notice {
+        width: 80%;
+        text-align: center;
+        color: #a31432;
+      }
     }
 
     &-buttons {
@@ -63,7 +70,6 @@
         border: 0;
         border-radius: 15px;
       }
-
     }
   }
 }
