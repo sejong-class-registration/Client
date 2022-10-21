@@ -2,15 +2,27 @@ import "./Frame1.scss";
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { userScheduleActions } from "../../redux/slice/userScheduleSlice";
 const Frame1 = () => {
   const [userSchedule, setUserSchedule] = useState([]);
   const [scheduleId, setScheduleId] = useState(0);
+
+  const dispatch = useDispatch();
+
   const getUserSchedule = async (id) => {
     const response = await axios(
       `https://sejong-enrollment.herokuapp.com/schedules?userId=17011502`
     );
     setUserSchedule(response.data.data.schedules[id]);
+
+    dispatch(
+      userScheduleActions.changeUserSchedule({
+        lectureList: response.data.data.schedules[id],
+      })
+    );
   };
+  
   useEffect(() => {
     getUserSchedule(scheduleId);
   }, [scheduleId]);
