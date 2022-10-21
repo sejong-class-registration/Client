@@ -1,5 +1,22 @@
 import "./Frame1.scss";
+import axios from "axios";
+import { useEffect } from "react";
+import { useState } from "react";
 const Frame1 = () => {
+  const [userSchedule, setUserSchedule] = useState([]);
+
+  const getUserSchedule = async () => {
+    const response = await axios(
+      `https://sejong-enrollment.herokuapp.com/schedules?userId=17011502`
+    );
+    setUserSchedule(response.data.data.schedules);
+  };
+  useEffect(() => {
+    getUserSchedule();
+  }, []);
+
+  console.log(userSchedule);
+
   return (
     <div className="frame_1">
       <div className="calendar-label">
