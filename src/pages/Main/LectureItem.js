@@ -1,8 +1,14 @@
 import "./LectureItem.scss";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectedLecActions } from "../../redux/slice/selectedLecSlice";
 const LectureItem = (props) => {
+  const lecturesInSchedule = useSelector(
+    (state) => state.userSchedule.userSchedule
+  );
+
   const dispatch = useDispatch();
+
   const openModal = props.openClassModal;
   const selectedLecInfo = {
     classification: props.classification,

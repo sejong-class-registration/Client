@@ -4,7 +4,7 @@ import searchIcon from "../../common/icons/searchIcon.svg";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { sortFilterActions } from "../../redux/slice/sortFilterSlice"
+import { sortFilterActions } from "../../redux/slice/sortFilterSlice";
 
 const Frame2 = (props) => {
   const [lectureList, setLectureList] = useState([]);

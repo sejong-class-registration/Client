@@ -15,19 +15,16 @@ const Frame1 = () => {
       `https://sejong-enrollment.herokuapp.com/schedules?userId=17011502`
     );
     setUserSchedule(response.data.data.schedules[id]);
-
     dispatch(
       userScheduleActions.changeUserSchedule({
-        lectureList: response.data.data.schedules[id],
+        userSchedule: response.data.data.schedules[id].schedule,
       })
     );
   };
-  
+
   useEffect(() => {
     getUserSchedule(scheduleId);
   }, [scheduleId]);
-
-  console.log(userSchedule);
 
   const scheduleIdTo0 = () => {
     setScheduleId(0);

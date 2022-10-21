@@ -3,11 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const userScheduleSlice = createSlice({
   name: "userSchedule",
   initialState: {
-    lectureList: [],
+    userSchedule: {},
   },
   reducers: {
     changeUserSchedule(state, action) {
-      state.lectureList = action.payload.lectureList;
+      state.userSchedule = action.payload.userSchedule;
     },
   },
 });
