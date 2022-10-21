@@ -4,18 +4,28 @@ import { useEffect } from "react";
 import { useState } from "react";
 const Frame1 = () => {
   const [userSchedule, setUserSchedule] = useState([]);
-
-  const getUserSchedule = async () => {
+  const [scheduleId, setScheduleId] = useState(0);
+  const getUserSchedule = async (id) => {
     const response = await axios(
       `https://sejong-enrollment.herokuapp.com/schedules?userId=17011502`
     );
-    setUserSchedule(response.data.data.schedules);
+    setUserSchedule(response.data.data.schedules[id]);
   };
   useEffect(() => {
-    getUserSchedule();
-  }, []);
+    getUserSchedule(scheduleId);
+  }, [scheduleId]);
 
   console.log(userSchedule);
+
+  const scheduleIdTo0 = () => {
+    setScheduleId(0);
+  };
+  const scheduleIdTo1 = () => {
+    setScheduleId(1);
+  };
+  const scheduleIdTo2 = () => {
+    setScheduleId(2);
+  };
 
   return (
     <div className="frame_1">
@@ -115,9 +125,24 @@ const Frame1 = () => {
             <div>이번학기 남은 학점: 6</div>
           </div>
           <div className="calendar-info-buttons">
-            <button className="calendar-info-buttons-button">A</button>
-            <button className="calendar-info-buttons-button">B</button>
-            <button className="calendar-info-buttons-button">C</button>
+            <button
+              className="calendar-info-buttons-button"
+              onClick={scheduleIdTo0}
+            >
+              A
+            </button>
+            <button
+              className="calendar-info-buttons-button"
+              onClick={scheduleIdTo1}
+            >
+              B
+            </button>
+            <button
+              className="calendar-info-buttons-button"
+              onClick={scheduleIdTo2}
+            >
+              C
+            </button>
           </div>
         </div>
       </div>
