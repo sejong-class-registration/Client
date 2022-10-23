@@ -1,15 +1,15 @@
 import "./LectureItem.scss";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectedLecActions } from "../../redux/slice/selectedLecSlice";
 const LectureItem = (props) => {
-  const lecturesInSchedule = useSelector(
-    (state) => state.userSchedule.userSchedule
+  const dispatch = useDispatch();
+  const openModal = props.openClassModal;
+  const userLectureIdList = useSelector(
+    (state) => state.userLectures.userLectures
   );
 
-  const dispatch = useDispatch();
+  // console.log(userLectureIdList);
 
-  const openModal = props.openClassModal;
   const selectedLecInfo = {
     classification: props.classification,
     credit: props.credit,
@@ -33,11 +33,16 @@ const LectureItem = (props) => {
     );
     openModal();
   };
+
+  console.log(userLectureIdList.includes(props.lectureId));
+
   return (
     <div className="lecture" onClick={clickLectureHandler}>
       <div
         className={`lecture-wrap${
-          props.dayAndTime === "" && props.classification !== "전필"
+          userLectureIdList.includes(props.lectureId)
+            ? "-isInSchedule"
+            : props.dayAndTime === "" && props.classification !== "전필"
             ? "-online"
             : props.classification === "전필"
             ? "-necessary"

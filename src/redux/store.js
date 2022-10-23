@@ -5,6 +5,7 @@ import { classFilterReducer } from "./slice/classFilterSlice";
 import { sortFilterReducer } from "./slice/sortFilterSlice";
 import { isOpenModalReducer } from "./slice/isOpenModalSlice";
 import { userScheduleReducer } from "./slice/userScheduleSlice";
+import { userLecturesReducer } from "./slice/userLecturesSlice";
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     sortFilter: sortFilterReducer,
     isOpenModal: isOpenModalReducer,
     userSchedule: userScheduleReducer,
+    userLectures: userLecturesReducer,
   },
 });
 

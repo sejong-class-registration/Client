@@ -5,12 +5,15 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { sortFilterActions } from "../../redux/slice/sortFilterSlice";
+import { userLecturesActions } from "../../redux/slice/userLecturesSlice";
 
 const Frame2 = (props) => {
   const [lectureList, setLectureList] = useState([]);
   const savedFilterInfo = useSelector((state) => state.classFilter.classFilter);
   const savedSortInfo = useSelector((state) => state.sortFilter.sortFilter);
-
+  const lecturesInSchedule = useSelector(
+    (state) => state.userSchedule.userSchedule
+  );
   const dispatch = useDispatch();
 
   const sortChangeHandler = (e) => {
@@ -20,6 +23,17 @@ const Frame2 = (props) => {
       })
     );
   };
+  console.log(lecturesInSchedule);
+  useEffect(() => {
+    for (var lecture = 0; lecture < lecturesInSchedule.length; lecture++) {
+      // console.log(lecturesInSchedule[lecture].lectureId);
+      dispatch(
+        userLecturesActions.changeUserLectures({
+          userLectures: lecturesInSchedule[lecture].lectureId,
+        })
+      );
+    }
+  }, [lecturesInSchedule]);
 
   // console.log(savedSortInfo);
 

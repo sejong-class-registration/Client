@@ -12,6 +12,20 @@
     overflow: hidden;
     justify-content: space-around;
   }
+
+  &-wrap-isInSchedule {
+    display: flex;
+    border: 0.5px solid #626060;
+    border-radius: 10px;
+    font-size: 12px;
+    padding: 0.2rem 0;
+    height: 1rem;
+    width: 100%;
+    overflow: hidden;
+    justify-content: space-around;
+    background-color: gray;
+    color: #dbdbdb
+  }
   
   &-wrap-necessary {
     display: flex;
@@ -25,6 +39,7 @@
     justify-content: space-around;
     background-color: #e3cbcb;
   }
+
   &-wrap-online {
     display: flex;
     border: 0.5px solid #626060;
