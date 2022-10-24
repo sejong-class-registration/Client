@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { classFilterActions } from "../../redux/slice/classFilterSlice";
 import { useSelector } from "react-redux";
 import { isOpenModalActions } from "../../redux/slice/isOpenModalSlice";
+import Autocomplete from "./Autocomplete";
 
 const Backdrop = (props) => {
   return <div className="backdrop" onClick={props.close}></div>;
@@ -25,7 +26,8 @@ const ModalOverlay = (props) => {
     (state) => state.filteredLecture.filteredLecture
   );
 
-  console.log(filteredLecList);
+  // console.log(filteredLecList);
+
   const dispatch = useDispatch();
 
   const submitHandler = () => {
@@ -92,7 +94,7 @@ const ModalOverlay = (props) => {
   };
 
   const nameChangeHandler = (props) => {
-    setName(props.target.value);
+    setName(props);
     // console.log(props.target.value);
   };
 
@@ -147,11 +149,7 @@ const ModalOverlay = (props) => {
         </div>
         <div className="modal-contents-second">
           <label className="modal-contents-second-label">교과목명</label>
-          <input
-            className="modal-contents-second-input"
-            onChange={nameChangeHandler}
-            placeholder={name}
-          ></input>
+          <Autocomplete name={name} onChange={nameChangeHandler}></Autocomplete>
         </div>
         <div className="modal-contents-third">
           <div className="modal-contents-third-profName">
