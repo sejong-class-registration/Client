@@ -93,11 +93,7 @@ const Frame2 = (props) => {
             <option value="profName">교수명(ㄱㄴㄷ)</option>
           </select>
         </div>
-        {isLoading && (
-          <div className="loading">
-            Loading...
-          </div>
-        )}
+        {isLoading && <div className="loading">Loading...</div>}
         {!isLoading && (
           <div className="lecture_list">
             {lectureList.map((lecture) => (
