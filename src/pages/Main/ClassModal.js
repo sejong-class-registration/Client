@@ -83,16 +83,16 @@ const ModalOverlay = (props) => {
         {info.notice === "외국인대상강좌" ? (
           <div className="classModal-contents-content">
             <label htmlFor="notice">공지</label>
-            <div className="classModal-contents-content-notice">
+            <mark className="classModal-contents-content-notice">
               {info.notice}
-            </div>
+            </mark>
           </div>
         ) : info.notice === "" ? (
           <></>
         ) : (
           <div className="classModal-contents-content">
             <label htmlFor="notice">공지</label>
-            <div>{info.notice}</div>
+            <mark className="classModal-contents-content-notice">{info.notice}</mark>
           </div>
         )}
         <div className="classModal-contents-buttons">

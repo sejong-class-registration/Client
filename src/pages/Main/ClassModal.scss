@@ -49,10 +49,16 @@
         text-align: center;
       }
 
+      &-english {
+        width: 80%;
+        text-align: center;
+        background-color: aqua;
+      }
+
       &-notice {
         width: 80%;
         text-align: center;
-        color: #a31432;
+        // color: #a31432;
       }
     }
 
