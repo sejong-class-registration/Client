@@ -10,6 +10,7 @@ import { filteredLectureActions } from "../../redux/slice/filteredLectureSlice";
 
 const Frame2 = (props) => {
   const [lectureList, setLectureList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const savedFilterInfo = useSelector((state) => state.classFilter.classFilter);
   const savedSortInfo = useSelector((state) => state.sortFilter.sortFilter);
   const lecturesInSchedule = useSelector(
@@ -41,6 +42,7 @@ const Frame2 = (props) => {
   // console.log(savedSortInfo);
 
   const getLectureList = async (info, sort) => {
+    setIsLoading(true);
     const response = await axios(
       `https://sejong-enrollment.herokuapp.com/lectures?${
         info.department === ""
@@ -65,6 +67,7 @@ const Frame2 = (props) => {
         filteredLecture: response.data.data.lectures,
       })
     );
+    setIsLoading(false);
   };
 
   // console.log(lectureList);
@@ -90,28 +93,35 @@ const Frame2 = (props) => {
             <option value="profName">교수명(ㄱㄴㄷ)</option>
           </select>
         </div>
-        <div className="lecture_list">
-          {lectureList.map((lecture) => (
-            <LectureItem
-              key={lecture._id}
-              classification={lecture.classification}
-              credit={lecture.credit}
-              dayAndTime={lecture.dayAndTime}
-              department={lecture.department}
-              distrib={lecture.distrib}
-              english={lecture.english}
-              lectureGrade={lecture.lectureGrade}
-              lectureId={lecture.lectureId}
-              name={lecture.name}
-              notice={lecture.notice}
-              profName={lecture.profName}
-              recommend={lecture.recommend}
-              room={lecture.room}
-              id={lecture._id}
-              openClassModal={props.openClassModal}
-            ></LectureItem>
-          ))}
-        </div>
+        {isLoading && (
+          <div className="loading">
+            Loading...
+          </div>
+        )}
+        {!isLoading && (
+          <div className="lecture_list">
+            {lectureList.map((lecture) => (
+              <LectureItem
+                key={lecture._id}
+                classification={lecture.classification}
+                credit={lecture.credit}
+                dayAndTime={lecture.dayAndTime}
+                department={lecture.department}
+                distrib={lecture.distrib}
+                english={lecture.english}
+                lectureGrade={lecture.lectureGrade}
+                lectureId={lecture.lectureId}
+                name={lecture.name}
+                notice={lecture.notice}
+                profName={lecture.profName}
+                recommend={lecture.recommend}
+                room={lecture.room}
+                id={lecture._id}
+                openClassModal={props.openClassModal}
+              ></LectureItem>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
