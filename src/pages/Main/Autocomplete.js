@@ -33,6 +33,7 @@ const Autocomplete = ({ name, onChange }) => {
           return option.includes(inputValue);
         })
       );
+      setOptions([...new Set(options)]);
     }
   }, [inputValue]);
 
@@ -43,17 +44,22 @@ const Autocomplete = ({ name, onChange }) => {
   };
 
   return (
-    <>
-      <input
-        className="modal-contents-second-input"
-        onChange={inputChangeHandler}
-        placeholder={name}
-      ></input>
-      <DropDown
-        options={options}
-        handleComboBox={handleDropDownClick}
-      ></DropDown>
-    </>
+    <div>
+      <div className="modal-contents-second">
+        <label className="modal-contents-second-label">교과목명</label>
+        <input
+          className="modal-contents-second-input"
+          onChange={inputChangeHandler}
+          placeholder={name}
+        ></input>
+      </div>
+      <div>
+        <DropDown
+          options={options}
+          handleComboBox={handleDropDownClick}
+        ></DropDown>
+      </div>
+    </div>
   );
 };
 
@@ -62,13 +68,13 @@ export const DropDown = ({ options, handleComboBox, selected }) => {
     <div className="dropdownContainer">
       {options.map((option, index) => {
         return (
-          <li
+          <div
             className="dropdownContainer-item"
             key={index}
             onClick={() => handleComboBox(option)}
           >
             {option}
-          </li>
+          </div>
         );
       })}
     </div>

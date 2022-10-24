@@ -147,10 +147,7 @@ const ModalOverlay = (props) => {
             )}
           </select>
         </div>
-        <div className="modal-contents-second">
-          <label className="modal-contents-second-label">교과목명</label>
-          <Autocomplete name={name} onChange={nameChangeHandler}></Autocomplete>
-        </div>
+        <Autocomplete name={name} onChange={nameChangeHandler}></Autocomplete>
         <div className="modal-contents-third">
           <div className="modal-contents-third-profName">
             <label className="modal-contents-third-profName-label">
