@@ -1,12 +1,14 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { classFilterActions } from "../../redux/slice/classFilterSlice";
 import "./Autocomplete.scss";
 
 const Autocomplete = ({ name, onChange }) => {
   const [hasText, setHasText] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [options, setOptions] = useState([]);
+  const dispatch = useDispatch();
 
   const lectureList = useSelector(
     (state) => state.filteredLecture.filteredLecture
@@ -20,6 +22,18 @@ const Autocomplete = ({ name, onChange }) => {
     setInputValue(clickedOption);
     onChange(clickedOption);
   };
+  useEffect(() => {
+    dispatch(
+      classFilterActions.changeClassFilter({
+        classFilter: {
+          department: savedFilterInfo.department,
+          name: "",
+          profName: savedFilterInfo.profName,
+          classification: savedFilterInfo.classification,
+        },
+      })
+    );
+  }, []);
 
   useEffect(() => {
     if (inputValue === "") {
