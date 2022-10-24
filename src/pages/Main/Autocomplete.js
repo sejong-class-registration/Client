@@ -14,6 +14,10 @@ const Autocomplete = ({ name, onChange }) => {
 
   //   console.log(lectureList);
 
+  const handleDropDownClick = (clickedOption) => {
+    setInputValue(clickedOption);
+  };
+
   useEffect(() => {
     if (inputValue === "") {
       setHasText(false);
@@ -24,7 +28,11 @@ const Autocomplete = ({ name, onChange }) => {
         lectureNameList.push(lectureList[lecture].name);
       }
       //   console.log(lectureNameList);
-      setOptions();
+      setOptions(
+        lectureNameList.filter((option) => {
+          return option.includes(inputValue);
+        })
+      );
     }
   }, [inputValue]);
 
@@ -35,11 +43,35 @@ const Autocomplete = ({ name, onChange }) => {
   };
 
   return (
-    <input
-      className="modal-contents-second-input"
-      onChange={inputChangeHandler}
-      placeholder={name}
-    ></input>
+    <>
+      <input
+        className="modal-contents-second-input"
+        onChange={inputChangeHandler}
+        placeholder={name}
+      ></input>
+      <DropDown
+        options={options}
+        handleComboBox={handleDropDownClick}
+      ></DropDown>
+    </>
+  );
+};
+
+export const DropDown = ({ options, handleComboBox, selected }) => {
+  return (
+    <div className="dropdownContainer">
+      {options.map((option, index) => {
+        return (
+          <li
+            className="dropdownContainer-item"
+            key={index}
+            onClick={() => handleComboBox(option)}
+          >
+            {option}
+          </li>
+        );
+      })}
+    </div>
   );
 };
 
