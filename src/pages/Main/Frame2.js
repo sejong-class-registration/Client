@@ -6,7 +6,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { sortFilterActions } from "../../redux/slice/sortFilterSlice";
 import { userLecturesActions } from "../../redux/slice/userLecturesSlice";
-import { filteredLectureActions } from "../../redux/slice/filteredLectures";
+import { filteredLectureActions } from "../../redux/slice/filteredLectureSlice";
 
 const Frame2 = (props) => {
   const [lectureList, setLectureList] = useState([]);
