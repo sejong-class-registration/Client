@@ -6,6 +6,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { sortFilterActions } from "../../redux/slice/sortFilterSlice";
 import { userLecturesActions } from "../../redux/slice/userLecturesSlice";
+import { filteredLectureActions } from "../../redux/slice/filteredLectures";
 
 const Frame2 = (props) => {
   const [lectureList, setLectureList] = useState([]);
@@ -23,7 +24,9 @@ const Frame2 = (props) => {
       })
     );
   };
-  console.log(lecturesInSchedule);
+
+  // console.log(lecturesInSchedule);
+
   useEffect(() => {
     for (var lecture = 0; lecture < lecturesInSchedule.length; lecture++) {
       // console.log(lecturesInSchedule[lecture].lectureId);
@@ -57,6 +60,11 @@ const Frame2 = (props) => {
     );
     // console.log(info.department);
     setLectureList(response.data.data.lectures);
+    dispatch(
+      filteredLectureActions.changefilteredLecture({
+        filteredLecture: response.data.data.lectures,
+      })
+    );
   };
 
   // console.log(lectureList);

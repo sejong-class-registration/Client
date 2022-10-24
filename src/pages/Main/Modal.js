@@ -21,7 +21,11 @@ const ModalOverlay = (props) => {
   const [classification, setclassification] = useState(
     savedFilterInfo.classification
   );
+  const filteredLecList = useSelector(
+    (state) => state.filteredLecture.filteredLecture
+  );
 
+  console.log(filteredLecList);
   const dispatch = useDispatch();
 
   const submitHandler = () => {

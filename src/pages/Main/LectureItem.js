@@ -34,7 +34,7 @@ const LectureItem = (props) => {
     openModal();
   };
 
-  console.log(userLectureIdList.includes(props.lectureId));
+  // console.log(userLectureIdList.includes(props.lectureId));
 
   return (
     <div className="lecture" onClick={clickLectureHandler}>
