@@ -33,7 +33,7 @@ const Autocomplete = ({ name, onChange }) => {
           return option.includes(inputValue);
         })
       );
-      setOptions([...new Set(options)]);
+      //   setOptions([...new Set(options)]);
     }
   }, [inputValue]);
 
@@ -54,10 +54,12 @@ const Autocomplete = ({ name, onChange }) => {
         ></input>
       </div>
       <div>
-        <DropDown
-          options={options}
-          handleComboBox={handleDropDownClick}
-        ></DropDown>
+        {hasText && (
+          <DropDown
+            options={options}
+            handleComboBox={handleDropDownClick}
+          ></DropDown>
+        )}
       </div>
     </div>
   );
@@ -66,17 +68,19 @@ const Autocomplete = ({ name, onChange }) => {
 export const DropDown = ({ options, handleComboBox, selected }) => {
   return (
     <div className="dropdownContainer">
-      {options.map((option, index) => {
-        return (
-          <div
-            className="dropdownContainer-item"
-            key={index}
-            onClick={() => handleComboBox(option)}
-          >
-            {option}
-          </div>
-        );
-      })}
+      {options
+        .filter((element, index) => options.indexOf(element) === index)
+        .map((option, index) => {
+          return (
+            <div
+              className="dropdownContainer-item"
+              key={index}
+              onClick={() => handleComboBox(option)}
+            >
+              {option}
+            </div>
+          );
+        })}
     </div>
   );
 };
