@@ -1,4 +1,4 @@
-import { Children, useEffect } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import "./Autocomplete.scss";
@@ -12,10 +12,13 @@ const Autocomplete = ({ name, onChange }) => {
     (state) => state.filteredLecture.filteredLecture
   );
 
+  const savedFilterInfo = useSelector((state) => state.classFilter.classFilter);
+
   //   console.log(lectureList);
 
   const handleDropDownClick = (clickedOption) => {
     setInputValue(clickedOption);
+    onChange(clickedOption);
   };
 
   useEffect(() => {
@@ -48,6 +51,7 @@ const Autocomplete = ({ name, onChange }) => {
       <div className="modal-contents-second">
         <label className="modal-contents-second-label">교과목명</label>
         <input
+          value={inputValue}
           className="modal-contents-second-input"
           onChange={inputChangeHandler}
           placeholder={name}

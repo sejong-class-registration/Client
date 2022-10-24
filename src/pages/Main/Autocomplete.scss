@@ -8,10 +8,26 @@
 }
 
 .dropdownContainer {
-    overflow: visible;
-    display: flex;
-    flex-direction: column;
+  align-items: center;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #626060;
+  margin-bottom: 1rem;
+  max-height: 20rem;
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    border-radius: 15px;
+  }
+  :hover {
+    background-color: #d0d0d0;
+  }
   &-item {
-    
+    width: 90%;
+    margin: 0.4rem;
+    text-align: center;
+    line-height: 1.6rem;
+    border-radius: 15px;
+    font-weight: lighter;
   }
 }
