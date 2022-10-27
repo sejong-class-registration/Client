@@ -2,12 +2,18 @@ import "./Signup.scss";
 import SignupForm3 from "./SignupForm3";
 
 const SignupFinal = () => {
+  const logoClickHandler = () => {
+    window.location.replace('/');
+  }
+
+
   return (
     <div className="signup-background">
       <img
         src="https://portal.sejong.ac.kr/content/02comm/css/images/login/login_logo.png"
         alt="logo"
         className="login-logo"
+        onClick={logoClickHandler}
       />
       <div className="signup-text">
         <p>수강신청 도우미</p>

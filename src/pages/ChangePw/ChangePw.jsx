@@ -3,12 +3,17 @@ import "./ChangePw.scss";
 import ChangePwForm1 from "./ChangePwForm1";
 
 const ChangePw = () => {
+  const logoClickHandler = () => {
+    window.location.replace('/');
+  }
+
   return (
     <div className="findpw-background">
       <img
         src="https://portal.sejong.ac.kr/content/02comm/css/images/login/login_logo.png"
         alt="logo"
         className="login-logo"
+        onClick={logoClickHandler}
       />
       <div className="findpw-text">
         <p>수강신청 도우미</p>

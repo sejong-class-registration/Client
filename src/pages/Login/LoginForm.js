@@ -91,12 +91,10 @@ const LoginForm = () => {
     //   }),
     // }).then(response => response.json())
     // .then(result => console.log(result))
-
     const response = await axios.post("https://sejong-enrollment.herokuapp.com/users/signin", {
       studentId: EnteredInput.id,
       password: EnteredInput.pw
     })
-    console.log(response);
     if (response.status === 201) {
       window.localStorage.setItem("token", response.token);
       goToMain();
