@@ -6,7 +6,11 @@ import "./MainNavigation.scss";
 const MainNavigation = (props) => {
   const logoClickHandler =()=>{
     window.location.replace('/main');
-    
+  }
+
+  const logoutHandler = () => {
+    localStorage.removeItem('token');
+    window.location.replace('/');
   }
 
   return (
@@ -21,7 +25,7 @@ const MainNavigation = (props) => {
       <nav className="nav">
         <div className="nav-userInfo">
           <div>이기성님 안녕하세요</div>
-          <button className="nav-userInfo-logout">로그아웃</button>
+          <button className="nav-userInfo-logout" onClick={logoutHandler}>로그아웃</button>
         </div>
         <ul className="nav-buttons">
           <button

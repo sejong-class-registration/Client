@@ -96,7 +96,8 @@ const LoginForm = () => {
       password: EnteredInput.pw
     })
     if (response.status === 201) {
-      window.localStorage.setItem("token", response.token);
+      console.log(response);  
+      window.localStorage.setItem("token", response.data.token);
       goToMain();
     } else {
       alert(response.data.message);

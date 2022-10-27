@@ -1,8 +1,17 @@
 import React from "react";
+import { useEffect } from "react";
 import LoginForm from "./LoginForm";
 import "./LoginPage.scss";
 
 function LoginPage() {
+  useEffect (() => {
+    const getToken = localStorage.getItem('token');
+
+    if(getToken){
+      window.location.replace('/main');
+    }
+  }, []);
+
   const logoClickHandler = () => {
     window.location.replace('/');
   }
