@@ -31,8 +31,8 @@
   }
   &-doublemajor-input{
     position: relative;
-    margin-top: -2.5rem;
-    margin-bottom: -1.5rem;
+    margin-top: -1.5em;
+    margin-bottom: -0.5rem;
   }
   select {
     position: relative;
@@ -108,7 +108,7 @@
   }
   &-button {
     position: absolute;
-    top: 450px;
+    top: 430px;
     width: 75%;
     height: 3rem;
     display: block;
@@ -124,7 +124,7 @@
     cursor: pointer;
     &-disabled {
       position: absolute;
-      top: 450px;
+      top: 430px;
       width: 75%;
       height: 3rem;
       display: block;

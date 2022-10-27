@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import "./SignupForm.scss";
+import { useEffect } from "react";
 
 const SignupForm = (props) => {
   const [EnteredInput, setEnteredInput] = useState({
@@ -9,25 +10,70 @@ const SignupForm = (props) => {
     password: "",
     passwordCheck: "",
     username: "",
-    major: '컴퓨터공학과',
-    doubleMajor: '',
+    major: "컴퓨터공학과",
+    doubleMajor: "",
     grade: 1,
-    semester: 1,
   });
   const [EnteredInputIsValid, setEnteredInputIsValid] = useState({
     id: true,
     password: true,
   });
   const [pwIsValid, setPwIsValid] = useState({ touched: false, match: false });
+  const [istouched, setIsTouched] = useState({ id: false, password: false });
   const [currentPage, setCurrentPage] = useState({
     first: true,
     second: false,
   });
   const [inputIsValid, setInputIsValid] = useState(false);
   const [checkboxOn, setCheckboxOn] = useState(false);
+  useEffect(() => {
+    if (pwIsValid.touched === true) {
+      if (EnteredInput.passwordCheck !== EnteredInput.password) {
+        setPwIsValid((prev) => {
+          return { ...prev, match: false };
+        });
+      } else {
+        setPwIsValid((prev) => {
+          return { ...prev, match: true };
+        });
+      }
+    }
+  }, [EnteredInput.passwordCheck]);
+  useEffect(() => {
+    const specialLetter = EnteredInput.password.search(
+      /[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/
+    );
+
+    if (istouched.id === true) {
+      if (
+        EnteredInput.id.trim() === "" ||
+        isNaN(EnteredInput.id) ||
+        EnteredInput.id.trim().length !== 8
+      ) {
+        setEnteredInputIsValid((prev) => {
+          return { ...prev, id: false };
+        });
+      } else {
+        setEnteredInputIsValid((prev) => {
+          return { ...prev, id: true };
+        });
+      }
+    }
+    if (istouched.password === true) {
+      if (EnteredInput.password.trim().length >= 10 && specialLetter >= 1) {
+        setEnteredInputIsValid((prev) => {
+          return { ...prev, password: true };
+        });
+      } else {
+        setEnteredInputIsValid((prev) => {
+          return { ...prev, password: false };
+        });
+      }
+    }
+  }, [EnteredInput.password, EnteredInput.id]);
 
   const inputHandler = (event) => {
-      setEnteredInput((prev) => {
+    setEnteredInput((prev) => {
       return { ...prev, [event.target.id]: event.target.value };
     });
 
@@ -39,35 +85,40 @@ const SignupForm = (props) => {
       }
     }
   };
-  
+
   const inputChangeHandler = (event) => {
     setEnteredInput((prev) => {
       return { ...prev, [event.target.id]: event.target.value };
     });
-    
+
     if (event.target.id === "passwordCheck") {
       setPwIsValid((prev) => {
         return { ...prev, touched: true };
       });
     }
+    if (event.target.id === "id" || event.target.id === "password") {
+      setIsTouched((prev) => {
+        return { ...prev, [event.target.id]: true };
+      });
+    }
   };
-  
+
   const inputBlurHandler = (e) => {
     const selectedId = e.target.id;
     const specialLetter = EnteredInput.password.search(
       /[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/
-      );
-      
-      if (selectedId === "id") {
-        if (
-          EnteredInput.id.trim() === "" ||
-          isNaN(EnteredInput.id) ||
-          EnteredInput.id.trim().length !== 8
-          ) {
-            setEnteredInputIsValid((prev) => {
-              return { ...prev, id: false };
-            });
-          } else {
+    );
+
+    if (selectedId === "id") {
+      if (
+        EnteredInput.id.trim() === "" ||
+        isNaN(EnteredInput.id) ||
+        EnteredInput.id.trim().length !== 8
+      ) {
+        setEnteredInputIsValid((prev) => {
+          return { ...prev, id: false };
+        });
+      } else {
         setEnteredInputIsValid((prev) => {
           return { ...prev, id: true };
         });
@@ -84,43 +135,28 @@ const SignupForm = (props) => {
       }
     }
   };
-  
-  const passwordBlurHandler = () => {
-    if (pwIsValid.touched === true) {
-      if (EnteredInput.passwordCheck !== EnteredInput.password) {
-        setPwIsValid((prev) => {
-          return { ...prev, match: false };
-        });
-      } else {
-        setPwIsValid((prev) => {
-          return { ...prev, match: true };
-        });
-      }
-    }
-  };
-  
+
   const nextButtonHandler = () => {
     setCurrentPage({
       first: false,
       second: true,
-    })
-  }
+    });
+  };
 
   const doubleMajorHandler = (event) => {
-    setCheckboxOn((prev)=>!prev);
+    setCheckboxOn((prev) => !prev);
 
-    if(!checkboxOn){
+    if (!checkboxOn) {
       setEnteredInput((prev) => {
-        return { ...prev, doubleMajor: '컴퓨터공학과'};
+        return { ...prev, doubleMajor: "컴퓨터공학과" };
+      });
+    } else {
+      setEnteredInput((prev) => {
+        return { ...prev, doubleMajor: "" };
       });
     }
-    else{
-      setEnteredInput((prev) => {
-        return { ...prev, doubleMajor: '' };
-      });
-    }
-  }
-  
+  };
+
   const formSubmitHandler = (event) => {
     event.preventDefault();
     console.log(EnteredInput);
@@ -159,7 +195,7 @@ const SignupForm = (props) => {
 
   return (
     <form className="signup-form" onSubmit={formSubmitHandler}>
-      {currentPage.first &&
+      {currentPage.first && (
         <div>
           <div>
             <label htmlFor="id">아이디(학번)</label>
@@ -170,7 +206,7 @@ const SignupForm = (props) => {
               onBlur={inputBlurHandler}
               onChange={inputChangeHandler}
               value={EnteredInput.id}
-              tabIndex = '1'
+              tabIndex="1"
             />
             {!EnteredInputIsValid.id && (
               <p className="signup-form-input-invalid-idtxt">
@@ -187,7 +223,7 @@ const SignupForm = (props) => {
               onBlur={inputBlurHandler}
               onChange={inputChangeHandler}
               value={EnteredInput.password}
-              tabIndex = '2'
+              tabIndex="2"
             />
             <div className={pwHelpClassName}>
               <p>최소 10자리 이상</p>
@@ -200,10 +236,9 @@ const SignupForm = (props) => {
               className={pwCheckClassName}
               id="passwordCheck"
               type="password"
-              onBlur={passwordBlurHandler}
               onChange={inputChangeHandler}
               value={EnteredInput.passwordCheck}
-              tabIndex = '3'
+              tabIndex="3"
             />
             {!pwIsValid.match && pwIsValid.touched && (
               <p className="signup-form-input-invalid-pwtxt">
@@ -212,8 +247,8 @@ const SignupForm = (props) => {
             )}
           </div>
           <button
-          type="button"
-          onClick={nextButtonHandler}
+            type="button"
+            onClick={nextButtonHandler}
             className={
               buttonActivate
                 ? "signup-form-button"
@@ -222,71 +257,82 @@ const SignupForm = (props) => {
             disabled={!buttonActivate}
             value={EnteredInput.passwordCheck}
             to="/signup2"
-            tabIndex='4'
+            tabIndex="4"
           >
             다음
           </button>
         </div>
-      }
-      {currentPage.second &&
+      )}
+      {currentPage.second && (
         <div>
-        <div className="signup-form-nameinput">
-        <label htmlFor="username">이름</label>
-        <input
-          type="text"
-          id="username"
-          onChange={inputHandler}
-          value={EnteredInput.username}
-          tabIndex= '5'
-        />
-      </div>
-      <div className="signup-form-major-div">
-        <label htmlFor="major">전공과목</label>
-        <span>
-          <label htmlFor="doubleMajorCheck" className="signup-form-doublemajor-label">복수전공</label>
-          <input id = 'doubleMajorCheck'type="checkbox" className="signup-form-doublemajor-checkbox" onChange={doubleMajorHandler}/>
-        </span>
-        <select id="major" onChange={inputHandler} tabIndex = '6' >
-          <option value='컴퓨터공학과'>컴퓨터공학과</option>
-          <option value='소프트웨어학과'>소프트웨어학과</option>
-          <option value='정보보호학과'>정보보호학과</option>
-          <option value='데이터사이언스학과'>데이터사이언스학과</option>
-          <option value='지능기전공학부'>지능기전공학부</option>
-          <option value='인공지능학과'>인공지능학과</option>
-        </select>
-        {checkboxOn && <div  className = 'signup-form-doublemajor-input'><select id="doubleMajor" onChange={inputHandler}>
-          <option value='컴퓨터공학과'>컴퓨터공학과</option>
-          <option value='소프트웨어학과'>소프트웨어학과</option>
-          <option value='정보보호학과'>정보보호학과</option>
-          <option value='데이터사이언스학과'>데이터사이언스학과</option>
-          <option value='지능기전공학부'>지능기전공학부</option>
-          <option value='인공지능학과'>인공지능학과</option>
-        </select></div>}
-      </div>
-      <div>
-        <label htmlFor="grade">학년</label>
-        <select id="grade" onChange={inputHandler} tabIndex = '7'>
-          <option value={1}>1학년</option>
-          <option value={2}>2학년</option>
-          <option value={3}>3학년</option>s
-          <option value={4}>4학년</option>
-        </select>
-        <label htmlFor="semester">학기</label>
-        <select id="semester" onChange={inputHandler} tabIndex = '8'>
-          <option value={1}>1학기</option>
-          <option value={2}>2학기</option>
-        </select>
-      </div>
-      <button
-        disabled={!twoButtonActivate}
-        className={
-          twoButtonActivate ? "signup-form-button" : "signup-form-button-disabled"
-        }
-        tabIndex = '9'
-      >
-        회원가입
-      </button></div>
-      }
+          <div className="signup-form-nameinput">
+            <label htmlFor="username">이름</label>
+            <input
+              type="text"
+              id="username"
+              onChange={inputHandler}
+              value={EnteredInput.username}
+              tabIndex="5"
+            />
+          </div>
+          <div className="signup-form-major-div">
+            <label htmlFor="major">전공과목</label>
+            <span>
+              <label
+                htmlFor="doubleMajorCheck"
+                className="signup-form-doublemajor-label"
+              >
+                복수전공
+              </label>
+              <input
+                id="doubleMajorCheck"
+                type="checkbox"
+                className="signup-form-doublemajor-checkbox"
+                onChange={doubleMajorHandler}
+              />
+            </span>
+            <select id="major" onChange={inputHandler} tabIndex="6">
+              <option value="컴퓨터공학과">컴퓨터공학과</option>
+              <option value="소프트웨어학과">소프트웨어학과</option>
+              <option value="정보보호학과">정보보호학과</option>
+              <option value="데이터사이언스학과">데이터사이언스학과</option>
+              <option value="지능기전공학부">지능기전공학부</option>
+              <option value="인공지능학과">인공지능학과</option>
+            </select>
+            {checkboxOn && (
+              <div className="signup-form-doublemajor-input">
+                <select id="doubleMajor" onChange={inputHandler}>
+                  <option value="컴퓨터공학과">컴퓨터공학과</option>
+                  <option value="소프트웨어학과">소프트웨어학과</option>
+                  <option value="정보보호학과">정보보호학과</option>
+                  <option value="데이터사이언스학과">데이터사이언스학과</option>
+                  <option value="지능기전공학부">지능기전공학부</option>
+                  <option value="인공지능학과">인공지능학과</option>
+                </select>
+              </div>
+            )}
+          </div>
+          <div>
+            <label htmlFor="grade">학년</label>
+            <select id="grade" onChange={inputHandler} tabIndex="7">
+              <option value={1}>1학년</option>
+              <option value={2}>2학년</option>
+              <option value={3}>3학년</option>s<option value={4}>4학년</option>
+            </select>
+          </div>
+          <button
+            disabled={!twoButtonActivate}
+            className={
+              twoButtonActivate
+                ? "signup-form-button"
+                : "signup-form-button-disabled"
+            }
+            tabIndex="9"
+          >
+            회원가입
+          </button>
+        </div>
+      )}
     </form>
   );
 };
