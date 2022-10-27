@@ -85,21 +85,61 @@ const ModalOverlay = (props) => {
 
   const departmentChangeHandler = (props) => {
     setdepartment(props.target.value);
+    dispatch(
+      classFilterActions.changeClassFilter({
+        classFilter: {
+          department: props.target.value,
+          name: name,
+          profName: profName,
+          classification: classification,
+        },
+      })
+    );
     // console.log(props.target.value);
   };
 
   const nameChangeHandler = (props) => {
     setName(props);
+    dispatch(
+      classFilterActions.changeClassFilter({
+        classFilter: {
+          department: department,
+          name: props.target.value,
+          profName: profName,
+          classification: classification,
+        },
+      })
+    );
     // console.log(props.target.value);
   };
 
   const profNameChangeHandler = (props) => {
     setprofName(props.target.value);
+    dispatch(
+      classFilterActions.changeClassFilter({
+        classFilter: {
+          department: department,
+          name: name,
+          profName: props.target.value,
+          classification: classification,
+        },
+      })
+    );
     // console.log(props.target.value);
   };
 
   const classificationChangeHandler = (props) => {
     setclassification(props.target.value);
+    dispatch(
+      classFilterActions.changeClassFilter({
+        classFilter: {
+          department: department,
+          name: name,
+          profName: profName,
+          classification: props.target.value,
+        },
+      })
+    );
     // console.log(props.target.value);
   };
 

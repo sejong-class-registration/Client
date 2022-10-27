@@ -15,13 +15,14 @@ const Autocomplete = ({ name, onChange }) => {
   );
 
   const savedFilterInfo = useSelector((state) => state.classFilter.classFilter);
-
+  console.log(savedFilterInfo);
   //   console.log(lectureList);
 
   const handleDropDownClick = (clickedOption) => {
     setInputValue(clickedOption);
     onChange(clickedOption);
   };
+
   useEffect(() => {
     dispatch(
       classFilterActions.changeClassFilter({
