@@ -1,5 +1,41 @@
 import "./Frame1.scss";
+import axios from "axios";
+import { useEffect } from "react";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { userScheduleActions } from "../../redux/slice/userScheduleSlice";
 const Frame1 = () => {
+  const [userSchedule, setUserSchedule] = useState([]);
+  const [scheduleId, setScheduleId] = useState(0);
+
+  const dispatch = useDispatch();
+
+  const getUserSchedule = async (id) => {
+    const response = await axios(
+      `https://sejong-enrollment.herokuapp.com/schedules?userId=17011502`
+    );
+    setUserSchedule(response.data.data.schedules[id]);
+    dispatch(
+      userScheduleActions.changeUserSchedule({
+        userSchedule: response.data.data.schedules[id].schedule,
+      })
+    );
+  };
+
+  useEffect(() => {
+    getUserSchedule(scheduleId);
+  }, [scheduleId]);
+
+  const scheduleIdTo0 = () => {
+    setScheduleId(0);
+  };
+  const scheduleIdTo1 = () => {
+    setScheduleId(1);
+  };
+  const scheduleIdTo2 = () => {
+    setScheduleId(2);
+  };
+
   return (
     <div className="frame_1">
       <div className="calendar-label">
@@ -17,12 +53,14 @@ const Frame1 = () => {
           </tr>
           <tr>
             <td className="calendar-number">9</td>
+            <td className="calendar-class"></td>
+            <td className="calendar-class"></td>
+            <td className="calendar-class"></td>
             <td className="calendar-class">
-              <div className="test"></div>
+              <div className="test">
+                <div className="test-content">test</div>
+              </div>
             </td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"><div className="test"></div></td>
             <td className="calendar-class"></td>
           </tr>
           <tr>
@@ -30,7 +68,7 @@ const Frame1 = () => {
             <td className="calendar-class"></td>
             <td className="calendar-class"></td>
             <td className="calendar-class"></td>
-            <td className="calendar-class"><div className="test"></div></td>
+            <td className="calendar-class"></td>
             <td className="calendar-class"></td>
           </tr>
           <tr>
@@ -38,7 +76,7 @@ const Frame1 = () => {
             <td className="calendar-class"></td>
             <td className="calendar-class"></td>
             <td className="calendar-class"></td>
-            <td className="calendar-class"><div className="test"></div></td>
+            <td className="calendar-class"></td>
             <td className="calendar-class"></td>
           </tr>
           <tr>
@@ -52,7 +90,7 @@ const Frame1 = () => {
           <tr>
             <td className="calendar-number">13</td>
             <td className="calendar-class"></td>
-            <td className="calendar-class"><div className="test"></div></td>
+            <td className="calendar-class"></td>
             <td className="calendar-class"></td>
             <td className="calendar-class"></td>
             <td className="calendar-class"></td>
@@ -96,9 +134,24 @@ const Frame1 = () => {
             <div>이번학기 남은 학점: 6</div>
           </div>
           <div className="calendar-info-buttons">
-            <button className="calendar-info-buttons-button">A</button>
-            <button className="calendar-info-buttons-button">B</button>
-            <button className="calendar-info-buttons-button">C</button>
+            <button
+              className="calendar-info-buttons-button"
+              onClick={scheduleIdTo0}
+            >
+              A
+            </button>
+            <button
+              className="calendar-info-buttons-button"
+              onClick={scheduleIdTo1}
+            >
+              B
+            </button>
+            <button
+              className="calendar-info-buttons-button"
+              onClick={scheduleIdTo2}
+            >
+              C
+            </button>
           </div>
         </div>
       </div>

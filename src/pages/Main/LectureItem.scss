@@ -1,35 +1,89 @@
 .lecture {
-  display: flex;
-  border: 0.5px solid #626060;
-  border-radius: 10px;
   margin: 0.5rem 1.5rem;
-  font-size: 12px;
-  padding: 0.2rem 0;
-  height: 1rem;
-  width: 100%;
-  overflow: hidden;
-  // justify-content: space-around;
+
+  &-wrap {
+    display: flex;
+    border: 0.5px solid #626060;
+    border-radius: 10px;
+    font-size: 12px;
+    padding: 0.2rem 0;
+    height: 1rem;
+    width: 100%;
+    overflow: hidden;
+    justify-content: space-around;
+  }
+
+  &-wrap-isInSchedule {
+    display: flex;
+    border: 0.5px solid rgba(60, 60, 60, 0.3);
+    border-radius: 10px;
+    font-size: 12px;
+    padding: 0.2rem 0;
+    height: 1rem;
+    width: 100%;
+    overflow: hidden;
+    justify-content: space-around;
+    background-color: rgba(60, 60, 60, 0.3);
+    color: rgb(90, 240, 200)
+  }
   
+  &-wrap-necessary {
+    display: flex;
+    border: 0.5px solid #626060;
+    border-radius: 10px;
+    font-size: 12px;
+    padding: 0.2rem 0;
+    height: 1rem;
+    width: 100%;
+    overflow: hidden;
+    justify-content: space-around;
+    background-color: #e3cbcb;
+  }
+
+  &-wrap-online {
+    display: flex;
+    border: 0.5px solid #626060;
+    border-radius: 10px;
+    font-size: 12px;
+    padding: 0.2rem 0;
+    height: 1rem;
+    width: 100%;
+    overflow: hidden;
+    justify-content: space-around;
+    background-color: #cbe3d5;
+  }
+
+
   &_title {
     text-align: center;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: bold;
-    width: 12rem;    
+    width: 15rem;
   }
+
   &_type {
     font-size: smaller;
-    margin-right: 0.5rem;
   }
+
   &_score {
     font-size: smaller;
-    margin-right: 1rem;
   }
+
   &_time {
     font-size: smaller;
-    margin-right: 1rem;
     width: 5rem;
   }
+
   &_prof {
     width: 3rem;
   }
+}
+
+.lecture:hover {
+  transform: scale(1.08);
+  transition: all 0.05s;
+  // box-shadow: 0 0 2px;
+  // border-radius: 10px;
+  // transform: translateX(-5px);
+  // opacity: 0.2;
 }

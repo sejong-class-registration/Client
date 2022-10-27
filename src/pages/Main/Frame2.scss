@@ -47,12 +47,8 @@
 }
 
 .lecture_list {
-  width: 90%;
+  width: 100%;
   padding-bottom: 1rem;
-  :hover {
-    background-color: #a31432;
-    color: #ffffff;
-  }
 }
 
 .content2 {
@@ -65,4 +61,14 @@
   ::-webkit-scrollbar {
     border-radius: 15px;
   }
+}
+
+.loading {
+  font-size: 25px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 70%;
 }

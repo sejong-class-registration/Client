@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { classFilterActions } from "../../redux/slice/classFilterSlice";
 import { useSelector } from "react-redux";
 import { isOpenModalActions } from "../../redux/slice/isOpenModalSlice";
+import Autocomplete from "./Autocomplete";
 
 const Backdrop = (props) => {
   return <div className="backdrop" onClick={props.close}></div>;
@@ -40,6 +41,7 @@ const ModalOverlay = (props) => {
 
   const departmentList = [
     "전체",
+    "대양휴머니티칼리지",
     "데이터사이언스학과",
     "소프트웨어학과",
     "인공지능학과",
@@ -83,21 +85,61 @@ const ModalOverlay = (props) => {
 
   const departmentChangeHandler = (props) => {
     setdepartment(props.target.value);
+    dispatch(
+      classFilterActions.changeClassFilter({
+        classFilter: {
+          department: props.target.value,
+          name: name,
+          profName: profName,
+          classification: classification,
+        },
+      })
+    );
     // console.log(props.target.value);
   };
 
   const nameChangeHandler = (props) => {
-    setName(props.target.value);
+    setName(props);
+    dispatch(
+      classFilterActions.changeClassFilter({
+        classFilter: {
+          department: department,
+          name: props.target.value,
+          profName: profName,
+          classification: classification,
+        },
+      })
+    );
     // console.log(props.target.value);
   };
 
   const profNameChangeHandler = (props) => {
     setprofName(props.target.value);
+    dispatch(
+      classFilterActions.changeClassFilter({
+        classFilter: {
+          department: department,
+          name: name,
+          profName: props.target.value,
+          classification: classification,
+        },
+      })
+    );
     // console.log(props.target.value);
   };
 
   const classificationChangeHandler = (props) => {
     setclassification(props.target.value);
+    dispatch(
+      classFilterActions.changeClassFilter({
+        classFilter: {
+          department: department,
+          name: name,
+          profName: profName,
+          classification: props.target.value,
+        },
+      })
+    );
     // console.log(props.target.value);
   };
 
@@ -140,14 +182,7 @@ const ModalOverlay = (props) => {
             )}
           </select>
         </div>
-        <div className="modal-contents-second">
-          <label className="modal-contents-second-label">교과목명</label>
-          <input
-            className="modal-contents-second-input"
-            onChange={nameChangeHandler}
-            placeholder={name}
-          ></input>
-        </div>
+        <Autocomplete name={name} onChange={nameChangeHandler}></Autocomplete>
         <div className="modal-contents-third">
           <div className="modal-contents-third-profName">
             <label className="modal-contents-third-profName-label">

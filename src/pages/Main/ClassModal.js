@@ -10,6 +10,10 @@ const Backdrop = (props) => {
 
 const ModalOverlay = (props) => {
   const info = useSelector((state) => state.selectedLec.selectedLec);
+
+  const addLectureHandler = (props) => {
+    console.log(info);
+  };
   // console.log(info);
 
   return (
@@ -20,10 +24,14 @@ const ModalOverlay = (props) => {
           <label htmlFor="department">학과</label>
           <div>{info.department}</div>
         </div>
-        <div className="classModal-contents-content">
-          <label htmlFor="dayAndTime">강의시간</label>
-          <div>{info.dayAndTime}</div>
-        </div>
+        {info.dayAndTime === "" ? (
+          <></>
+        ) : (
+          <div className="classModal-contents-content">
+            <label htmlFor="dayAndTime">강의시간</label>
+            <div>{info.dayAndTime}</div>
+          </div>
+        )}
         <div className="classModal-contents-content">
           <label htmlFor="classification">구분</label>
           <div>{info.classification}</div>
@@ -34,7 +42,7 @@ const ModalOverlay = (props) => {
         </div>
         <div className="classModal-contents-content">
           <label htmlFor="lectureGrade">대상</label>
-          <div>{info.lectureGrade+"학년"}</div>
+          <div>{info.lectureGrade + "학년"}</div>
         </div>
         <div className="classModal-contents-content">
           <label htmlFor="lectureId">학수번호</label>
@@ -44,16 +52,51 @@ const ModalOverlay = (props) => {
           <label htmlFor="distrib">분반</label>
           <div>{info.distrib}</div>
         </div>
-        <div className="classModal-contents-content">
-          <label htmlFor="profName">교수명</label>
-          <div>{info.profName}</div>
-        </div>
-        <div className="classModal-contents-content">
-          <label htmlFor="room">강의실</label>
-          <div>{info.room}</div>
-        </div>
+        {info.profName === "" ? (
+          <></>
+        ) : (
+          <div className="classModal-contents-content">
+            <label htmlFor="profName">교수명</label>
+            <div>{info.profName}</div>
+          </div>
+        )}
+
+        {info.room === "" || "//" ? (
+          <></>
+        ) : (
+          <div className="classModal-contents-content">
+            <label htmlFor="room">강의실</label>
+            <div>{info.room}</div>
+          </div>
+        )}
+
+        {info.english === "" ? (
+          <></>
+        ) : (
+          <div className="classModal-contents-content">
+            <label htmlFor="english">언어</label>
+            <div className="classModal-contents-content-english">
+              {info.english}
+            </div>
+          </div>
+        )}
+        {info.notice === "외국인대상강좌" ? (
+          <div className="classModal-contents-content">
+            <label htmlFor="notice">공지</label>
+            <mark className="classModal-contents-content-notice">
+              {info.notice}
+            </mark>
+          </div>
+        ) : info.notice === "" ? (
+          <></>
+        ) : (
+          <div className="classModal-contents-content">
+            <label htmlFor="notice">공지</label>
+            <mark className="classModal-contents-content-notice">{info.notice}</mark>
+          </div>
+        )}
         <div className="classModal-contents-buttons">
-          <button>추가</button>
+          <button onClick={addLectureHandler}>추가</button>
           <button>수업계획서</button>
           <button>강의평가</button>
         </div>
