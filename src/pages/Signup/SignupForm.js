@@ -39,7 +39,6 @@ const SignupForm = (props) => {
       }
     }
   };
-
   
   const inputChangeHandler = (event) => {
     setEnteredInput((prev) => {
@@ -107,8 +106,19 @@ const SignupForm = (props) => {
     })
   }
 
-  const doubleMajorHandler = () => {
+  const doubleMajorHandler = (event) => {
     setCheckboxOn((prev)=>!prev);
+
+    if(!checkboxOn){
+      setEnteredInput((prev) => {
+        return { ...prev, doubleMajor: '컴퓨터공학과'};
+      });
+    }
+    else{
+      setEnteredInput((prev) => {
+        return { ...prev, doubleMajor: '' };
+      });
+    }
   }
   
   const formSubmitHandler = (event) => {
@@ -144,6 +154,8 @@ const SignupForm = (props) => {
       : "signup-form-input-invalid";
   const buttonActivate =
     EnteredInputIsValid.id && EnteredInputIsValid.password && pwIsValid.match;
+  const doubleMajorInvalidate = EnteredInput.doubleMajor === EnteredInput.major;
+  const twoButtonActivate = inputIsValid && !doubleMajorInvalidate;
 
   return (
     <form className="signup-form" onSubmit={formSubmitHandler}>
@@ -228,7 +240,7 @@ const SignupForm = (props) => {
           tabIndex= '5'
         />
       </div>
-      <div >
+      <div className="signup-form-major-div">
         <label htmlFor="major">전공과목</label>
         <span>
           <label htmlFor="doubleMajorCheck" className="signup-form-doublemajor-label">복수전공</label>
@@ -242,14 +254,14 @@ const SignupForm = (props) => {
           <option value='지능기전공학부'>지능기전공학부</option>
           <option value='인공지능학과'>인공지능학과</option>
         </select>
-        {checkboxOn && <select id="doublemajor" onChange={inputHandler} className = 'signup-form-doublemajor-input'>
+        {checkboxOn && <div  className = 'signup-form-doublemajor-input'><select id="doubleMajor" onChange={inputHandler}>
           <option value='컴퓨터공학과'>컴퓨터공학과</option>
           <option value='소프트웨어학과'>소프트웨어학과</option>
           <option value='정보보호학과'>정보보호학과</option>
           <option value='데이터사이언스학과'>데이터사이언스학과</option>
           <option value='지능기전공학부'>지능기전공학부</option>
           <option value='인공지능학과'>인공지능학과</option>
-        </select>}
+        </select></div>}
       </div>
       <div>
         <label htmlFor="grade">학년</label>
@@ -266,9 +278,9 @@ const SignupForm = (props) => {
         </select>
       </div>
       <button
-        disabled={!inputIsValid}
+        disabled={!twoButtonActivate}
         className={
-          inputIsValid ? "signup-form-button" : "signup-form-button-disabled"
+          twoButtonActivate ? "signup-form-button" : "signup-form-button-disabled"
         }
         tabIndex = '9'
       >
