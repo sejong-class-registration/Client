@@ -4,10 +4,15 @@ import img from "../common/icons/logo.png";
 import "./MainNavigation.scss";
 
 const MainNavigation = (props) => {
+  const logoClickHandler =()=>{
+    window.location.replace('/main');
+    
+  }
+
   return (
     <header className="header">
-      <div className="title">
-        <img className="title-img" src={img} alt="" />
+      <div className="title" onClick={logoClickHandler}>
+        <img className="title-img" src={img} alt=""/>
         <div className="logo">
           <div className="logo-first">세종대학교</div>
           <div>수강신청도우미</div>
