@@ -38,7 +38,7 @@ const SignupForm = (props) => {
         });
       }
     }
-  }, [EnteredInput.passwordCheck]);
+  }, [EnteredInput.passwordCheck, pwIsValid.touched]);
   useEffect(() => {
     const specialLetter = EnteredInput.password.search(
       /[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/
@@ -161,19 +161,25 @@ const SignupForm = (props) => {
     event.preventDefault();
     console.log(EnteredInput);
 
-    // window.location.replace('/signupend');
+    window.location.replace('/main');
   };
 
-  // const signupFetchHandler = async () => {
-  //   const response = await axios.post("https://sejong-enrollment.herokuapp.com/users/signin", {
-  //     name: EnteredInput.username,
-  //     userId: EnteredInput.id,
-  //     password: EnteredInput.password,
-  //     userGrade: EnteredInput.grade,
-  //     major: EnteredInput.major,
-  //     dobuleMajor: EnteredInput.doubleMajor,
-  //   })
-  // }
+  const signupFetchHandler = async () => {
+    const response = await axios.post("https://sejong-enrollment.herokuapp.com/users/signup", {
+      name: EnteredInput.username,
+      studentId: EnteredInput.id,
+      password: EnteredInput.password,
+      userGrade: EnteredInput.grade,
+      major: EnteredInput.major,
+      dobuleMajor: EnteredInput.doubleMajor,
+    })
+    if (response.status === 201) {
+      console.log(response);  
+      window.location.replace("/main");
+    } else {
+      alert(response.data.message);
+    }
+  }
 
   const idInputClassName = EnteredInputIsValid.id
     ? ""
