@@ -161,7 +161,7 @@ const SignupForm = (props) => {
     event.preventDefault();
     console.log(EnteredInput);
 
-    window.location.replace('/main');
+    // signupFetchHandler();
   };
 
   const signupFetchHandler = async () => {
@@ -175,7 +175,7 @@ const SignupForm = (props) => {
     })
     if (response.status === 201) {
       console.log(response);  
-      window.location.replace("/main");
+      window.location.replace("/signupend");
     } else {
       alert(response.data.message);
     }

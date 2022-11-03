@@ -156,7 +156,7 @@
   padding: 50px 60px 100px 60px;
   &-button {
     position: absolute;
-    top: 330px;
+    top: 300px;
     width: 75%;
     height: 4rem;
     display: block;
@@ -180,6 +180,8 @@
     background-color: #c73154;
   }
   &-txt {
+    position: relative;
+    top: 60px;
     text-align: center;
     font-size: 2rem;
     font-weight: 800;

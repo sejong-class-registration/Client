@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import axios from "axios";
 import "./LoginForm.scss";
+import { userInfoActions } from "../../redux/slice/userSlice";
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
   const [EnteredInput, setEnteredInput] = useState({ id: "", pw: "" });
   const [EnteredInputIsValid, setEnteredInputIsValid] = useState({
     id: true,
@@ -97,6 +100,7 @@ const LoginForm = () => {
     })
     if (response.status === 201) {
       window.localStorage.setItem("token", response.data.token);
+      // dispatch(userInfoActions.saveUserInfo(response.data.userInfo));
       goToMain();
     } else {
       alert(response.data.message);
