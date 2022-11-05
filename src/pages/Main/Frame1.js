@@ -2,11 +2,14 @@ import "./Frame1.scss";
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userScheduleActions } from "../../redux/slice/userScheduleSlice";
 const Frame1 = () => {
-  const [userSchedule, setUserSchedule] = useState([]);
+  // const [userSchedule, setUserSchedule] = useState(null);
   const [scheduleId, setScheduleId] = useState(0);
+  const userScheduleData = useSelector(
+    (state) => state.userSchedule.userSchedule
+  );
 
   const dispatch = useDispatch();
 
@@ -14,12 +17,36 @@ const Frame1 = () => {
     const response = await axios(
       `https://sejong-enrollment.herokuapp.com/schedules?userId=17011502`
     );
-    setUserSchedule(response.data.data.schedules[id]);
+    // setUserSchedule(response.data.data.schedules[id].schedule);
     dispatch(
       userScheduleActions.changeUserSchedule({
         userSchedule: response.data.data.schedules[id].schedule,
       })
     );
+  };
+
+  // for (var i = 0; i < userScheduleData.length; i++) {
+  //   console.log(userScheduleData[i]);
+  //   // console.log(userScheduleData[i].time);
+  //   console.log(userScheduleData[i].time.day.includes("화"));
+  // }
+
+  const returnSticker = (day, startTime) => {
+    for (var i = 0; i < userScheduleData.length; i++) {
+      // console.log(userScheduleData[i]);
+      // console.log(userScheduleData[i].time);
+      // console.log(userScheduleData[i].time.day.includes("화"));
+      if (
+        userScheduleData[i].time.day.includes(day) &&
+        userScheduleData[i].time.startTime === startTime
+      ) {
+        return (
+          <div className="sticker">
+            <div className="sticker-content">test</div>
+          </div>
+        );
+      }
+    }
   };
 
   useEffect(() => {
@@ -57,9 +84,10 @@ const Frame1 = () => {
             <td className="calendar-class"></td>
             <td className="calendar-class"></td>
             <td className="calendar-class">
-              <div className="test">
+              {returnSticker("목", 540)}
+              {/* <div className="test">
                 <div className="test-content">test</div>
-              </div>
+              </div> */}
             </td>
             <td className="calendar-class"></td>
           </tr>
