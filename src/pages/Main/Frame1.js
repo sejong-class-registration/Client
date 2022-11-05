@@ -28,17 +28,13 @@ const Frame1 = () => {
   };
   console.log(userScheduleData);
 
-  // for (var i = 0; i < userScheduleData.length; i++) {
-  //   console.log(userScheduleData[i]);
-  //   // console.log(userScheduleData[i].time);
-  //   console.log(userScheduleData[i].time.day.includes("화"));
-  // }
-
   const returnSticker = (day, startTime) => {
     for (var i = 0; i < userScheduleData.length; i++) {
       // console.log(userScheduleData[i]);
       // console.log(userScheduleData[i].time);
       // console.log(userScheduleData[i].time.day.includes("화"));
+
+      // 정각
       if (
         userScheduleData[i].time.day.includes(day) &&
         userScheduleData[i].time.startTime === startTime
@@ -49,6 +45,28 @@ const Frame1 = () => {
         const className = "sticker" + timeLength;
         const classNameContent = "sticker" + timeLength + "-content";
         // console.log(className);
+        return (
+          <div
+            className={className}
+            style={{
+              backgroundColor: color,
+            }}
+          >
+            <div className={classNameContent}>{userScheduleData[i].name}</div>
+          </div>
+        );
+      }
+
+      if(
+        userScheduleData[i].time.day.includes(day) &&
+        userScheduleData[i].time.startTime === startTime+30
+      ){
+        var color = randomColor();
+        const timeLength =
+          userScheduleData[i].time.endTime - userScheduleData[i].time.startTime;
+        const className = "sticker" + timeLength + "half";
+        const classNameContent = "sticker" + timeLength + "-content";
+        console.log(className);
         return (
           <div
             className={className}

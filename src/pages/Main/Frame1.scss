@@ -34,6 +34,21 @@
   }
 }
 
+.sticker90half {
+  padding: 0;
+  position: relative;
+  top: 50%;
+  height: calc(150% + 3px);
+  background-color: #626060;
+  overflow: visible;
+  &-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
 .sticker120 {
   padding: 0;
   position: relative;
@@ -76,8 +91,6 @@
   }
 }
 
-
-
 .calendar {
   margin: 0 2rem;
   padding: 2rem 2rem 1rem 2rem;
@@ -99,6 +112,7 @@
     text-align: center;
     border-spacing: 0px;
     margin: auto;
+    font-weight: 1000;
   }
 
   &-day {
