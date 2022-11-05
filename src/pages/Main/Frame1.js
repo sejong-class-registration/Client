@@ -4,6 +4,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userScheduleActions } from "../../redux/slice/userScheduleSlice";
+import randomColor from "randomcolor";
+import { calculateNewValue } from "@testing-library/user-event/dist/utils";
 const Frame1 = () => {
   // const [userSchedule, setUserSchedule] = useState(null);
   const [scheduleId, setScheduleId] = useState(0);
@@ -24,6 +26,7 @@ const Frame1 = () => {
       })
     );
   };
+  console.log(userScheduleData);
 
   // for (var i = 0; i < userScheduleData.length; i++) {
   //   console.log(userScheduleData[i]);
@@ -40,9 +43,20 @@ const Frame1 = () => {
         userScheduleData[i].time.day.includes(day) &&
         userScheduleData[i].time.startTime === startTime
       ) {
+        var color = randomColor();
+        const timeLength =
+          userScheduleData[i].time.endTime - userScheduleData[i].time.startTime;
+        const className = "sticker" + timeLength;
+        const classNameContent = "sticker" + timeLength + "-content";
+        // console.log(className);
         return (
-          <div className="sticker">
-            <div className="sticker-content">test</div>
+          <div
+            className={className}
+            style={{
+              backgroundColor: color,
+            }}
+          >
+            <div className={classNameContent}>{userScheduleData[i].name}</div>
           </div>
         );
       }
@@ -80,80 +94,77 @@ const Frame1 = () => {
           </tr>
           <tr>
             <td className="calendar-number">9</td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class">
-              {returnSticker("목", 540)}
-              {/* <div className="test">
-                <div className="test-content">test</div>
-              </div> */}
-            </td>
-            <td className="calendar-class"></td>
+            <td className="calendar-class">{returnSticker("월", 540)}</td>
+            <td className="calendar-class">{returnSticker("화", 540)}</td>
+            <td className="calendar-class">{returnSticker("수", 540)}</td>
+            <td className="calendar-class">{returnSticker("목", 540)}</td>
+            <td className="calendar-class">{returnSticker("금", 540)}</td>
           </tr>
           <tr>
             <td className="calendar-number">10</td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
+            <td className="calendar-class">{returnSticker("월", 600)}</td>
+            <td className="calendar-class">{returnSticker("화", 600)}</td>
+            <td className="calendar-class">{returnSticker("수", 600)}</td>
+            <td className="calendar-class">{returnSticker("목", 600)}</td>
+            <td className="calendar-class">{returnSticker("금", 600)}</td>
           </tr>
           <tr>
             <td className="calendar-number">11</td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
+            <td className="calendar-class">{returnSticker("월", 660)}</td>
+            <td className="calendar-class">{returnSticker("화", 660)}</td>
+            <td className="calendar-class">{returnSticker("수", 660)}</td>
+            <td className="calendar-class">{returnSticker("목", 660)}</td>
+            <td className="calendar-class">{returnSticker("금", 660)}</td>
           </tr>
           <tr>
             <td className="calendar-number">12</td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
+            <td className="calendar-class">{returnSticker("월", 720)}</td>
+            <td className="calendar-class">{returnSticker("화", 720)}</td>
+            <td className="calendar-class">{returnSticker("수", 720)}</td>
+            <td className="calendar-class">{returnSticker("목", 720)}</td>
+            <td className="calendar-class">{returnSticker("금", 720)}</td>
           </tr>
           <tr>
             <td className="calendar-number">13</td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
+            <td className="calendar-class">{returnSticker("월", 780)}</td>
+            <td className="calendar-class">{returnSticker("화", 780)}</td>
+            <td className="calendar-class">{returnSticker("수", 780)}</td>
+            <td className="calendar-class">{returnSticker("목", 780)}</td>
+            <td className="calendar-class">{returnSticker("금", 780)}</td>
           </tr>
           <tr>
             <td className="calendar-number">14</td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
+            <td className="calendar-class">{returnSticker("월", 840)}</td>
+            <td className="calendar-class">{returnSticker("화", 840)}</td>
+            <td className="calendar-class">{returnSticker("수", 840)}</td>
+            <td className="calendar-class">{returnSticker("목", 840)}</td>
+            <td className="calendar-class">{returnSticker("금", 840)}</td>
           </tr>
           <tr>
             <td className="calendar-number">15</td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
+            <td className="calendar-class">{returnSticker("월", 900)}</td>
+            <td className="calendar-class">{returnSticker("화", 900)}</td>
+            <td className="calendar-class">{returnSticker("수", 900)}</td>
+            <td className="calendar-class">{returnSticker("목", 900)}</td>
+            <td className="calendar-class">{returnSticker("금", 900)}</td>
           </tr>
           <tr>
             <td className="calendar-number">16</td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
+            <td className="calendar-class">{returnSticker("월", 960)}</td>
+            <td className="calendar-class">{returnSticker("화", 960)}</td>
+            <td className="calendar-class">{returnSticker("수", 960)}</td>
+            <td className="calendar-class">{returnSticker("목", 960)}</td>
+            <td className="calendar-class">{returnSticker("금", 960)}</td>
           </tr>
           <tr>
             <td className="calendar-number left_down_corner">17</td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class"></td>
-            <td className="calendar-class right_down_corner"></td>
+            <td className="calendar-class">{returnSticker("월", 1020)}</td>
+            <td className="calendar-class">{returnSticker("화", 1020)}</td>
+            <td className="calendar-class">{returnSticker("수", 1020)}</td>
+            <td className="calendar-class">{returnSticker("목", 1020)}</td>
+            <td className="calendar-class right_down_corner">
+              {returnSticker("금", 1020)}
+            </td>
           </tr>
         </table>
         <div className="calendar-info">
