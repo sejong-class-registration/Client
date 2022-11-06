@@ -5,7 +5,6 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userScheduleActions } from "../../redux/slice/userScheduleSlice";
 import randomColor from "randomcolor";
-import { calculateNewValue } from "@testing-library/user-event/dist/utils";
 const Frame1 = () => {
   // const [userSchedule, setUserSchedule] = useState(null);
   const [scheduleId, setScheduleId] = useState(0);
@@ -26,7 +25,7 @@ const Frame1 = () => {
       })
     );
   };
-  console.log(userScheduleData);
+  // console.log(userScheduleData);
 
   const returnSticker = (day, startTime) => {
     for (var i = 0; i < userScheduleData.length; i++) {
@@ -57,16 +56,16 @@ const Frame1 = () => {
         );
       }
 
-      if(
+      if (
         userScheduleData[i].time.day.includes(day) &&
-        userScheduleData[i].time.startTime === startTime+30
-      ){
+        userScheduleData[i].time.startTime === startTime + 30
+      ) {
         var color = randomColor();
         const timeLength =
           userScheduleData[i].time.endTime - userScheduleData[i].time.startTime;
         const className = "sticker" + timeLength + "half";
         const classNameContent = "sticker" + timeLength + "-content";
-        console.log(className);
+        // console.log(className);
         return (
           <div
             className={className}
@@ -192,19 +191,25 @@ const Frame1 = () => {
           </div>
           <div className="calendar-info-buttons">
             <button
-              className="calendar-info-buttons-button"
+              className={`calendar-info-buttons-button${
+                scheduleId === 0 ? "" : `-deactive`
+              }`}
               onClick={scheduleIdTo0}
             >
               A
             </button>
             <button
-              className="calendar-info-buttons-button"
+              className={`calendar-info-buttons-button${
+                scheduleId === 1 ? "" : `-deactive`
+              }`}
               onClick={scheduleIdTo1}
             >
               B
             </button>
             <button
-              className="calendar-info-buttons-button"
+              className={`calendar-info-buttons-button${
+                scheduleId === 2 ? "" : `-deactive`
+              }`}
               onClick={scheduleIdTo2}
             >
               C
