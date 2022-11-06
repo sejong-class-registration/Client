@@ -199,18 +199,26 @@
 
         &-deactive {
           line-height: 20px;
-        font-size: 13px;
-        font-weight: bold;
-        margin-left: 1rem;
-        color: #ffffff;
-        max-width: 6rem;
-        width: 40%;
-        height: 30%;
-        background: #a314334d;
-        border: none;
-        border-radius: 15px;
+          font-size: 13px;
+          font-weight: bold;
+          margin-left: 1rem;
+          color: #ffffff;
+          max-width: 6rem;
+          width: 40%;
+          height: 30%;
+          background: #a314334d;
+          border: none;
+          border-radius: 15px;
         }
       }
     }
+  }
+}
+
+.test {
+  height: 1rem;
+
+  &-test {
+    border-radius: 15px;
   }
 }

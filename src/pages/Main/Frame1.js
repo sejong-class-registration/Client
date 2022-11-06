@@ -91,19 +91,25 @@ const Frame1 = () => {
   const returnOnlineClassSticker = () => {
     const lectureList = [];
     for (var i = 0; i < userScheduleData.length; i++) {
+      var color = randomColor();
       // console.log(userScheduleData[i]);
       if (userScheduleData[i].time.startTime === 0) {
         lectureList.push(userScheduleData[i]);
       }
     }
     console.log(lectureList);
-    return (
-      <tr>
-        {lectureList.map((lec) => (
-          <td>{lec.name}</td>
-        ))}
+    return lectureList.map((lec) => (
+      <tr
+        style={{
+          backgroundColor: color,
+        }}
+        className="test"
+      >
+        <td colspan="6" className="test-test">
+          {lec.name}
+        </td>
       </tr>
-    );
+    ));
   };
 
   useEffect(() => {
