@@ -11,6 +11,7 @@ const Frame1 = () => {
   const userScheduleData = useSelector(
     (state) => state.userSchedule.userSchedule
   );
+  const [isThereOnlineClass, setIsThereOnlineClass] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -24,8 +25,15 @@ const Frame1 = () => {
         userSchedule: response.data.data.schedules[id].schedule,
       })
     );
+    // console.log(response.data.data.schedules[id].schedule);
+    setIsThereOnlineClass(false);
+    for (var i = 0; i < response.data.data.schedules[id].schedule.length; i++) {
+      if (response.data.data.schedules[id].schedule[i].time.startTime === 0)
+        setIsThereOnlineClass(true);
+    }
   };
   // console.log(userScheduleData);
+  // console.log(isThereOnlineClass);
 
   const returnSticker = (day, startTime) => {
     for (var i = 0; i < userScheduleData.length; i++) {
@@ -55,7 +63,7 @@ const Frame1 = () => {
           </div>
         );
       }
-
+      // 정각 + 30분 시작
       if (
         userScheduleData[i].time.day.includes(day) &&
         userScheduleData[i].time.startTime === startTime + 30
@@ -78,6 +86,24 @@ const Frame1 = () => {
         );
       }
     }
+  };
+
+  const returnOnlineClassSticker = () => {
+    const lectureList = [];
+    for (var i = 0; i < userScheduleData.length; i++) {
+      // console.log(userScheduleData[i]);
+      if (userScheduleData[i].time.startTime === 0) {
+        lectureList.push(userScheduleData[i]);
+      }
+    }
+    console.log(lectureList);
+    return (
+      <tr>
+        {lectureList.map((lec) => (
+          <td>{lec.name}</td>
+        ))}
+      </tr>
+    );
   };
 
   useEffect(() => {
@@ -183,6 +209,7 @@ const Frame1 = () => {
               {returnSticker("금", 1020)}
             </td>
           </tr>
+          {isThereOnlineClass && returnOnlineClassSticker()}
         </table>
         <div className="calendar-info">
           <div className="calendar-info-calculator">
