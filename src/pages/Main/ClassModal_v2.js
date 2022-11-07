@@ -19,7 +19,6 @@ const ModalOverlay = (props) => {
         { userId: 17011502, scheduleId: 0 }
       );
       console.log(info.id);
-      console.log(response);
     } catch (error) {
       console.log(error);
     }
