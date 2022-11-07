@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { userInfoActions } from "../../redux/slice/userSlice";
 import axios from "axios";
 import "./LoginForm.scss";
-import { userInfoActions } from "../../redux/slice/userSlice";
 
 const LoginForm = () => {
   const dispatch = useDispatch();

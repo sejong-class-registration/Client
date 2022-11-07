@@ -1,10 +1,13 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { userInfoActions } from "../../redux/slice/userSlice";
+import { useDispatch } from "react-redux";
 import "./SignupForm.scss";
-import { useEffect } from "react";
+import Loading from "../../UI/Loading";
 
 const SignupForm = (props) => {
+  const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
   const [EnteredInput, setEnteredInput] = useState({
     id: "",
     password: "",
@@ -39,6 +42,7 @@ const SignupForm = (props) => {
       }
     }
   }, [EnteredInput.passwordCheck, pwIsValid.touched]);
+
   useEffect(() => {
     const specialLetter = EnteredInput.password.search(
       /[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/
@@ -161,25 +165,32 @@ const SignupForm = (props) => {
     event.preventDefault();
     console.log(EnteredInput);
 
-    // signupFetchHandler();
+    signupFetchHandler();
   };
 
   const signupFetchHandler = async () => {
-    const response = await axios.post("https://sejong-enrollment.herokuapp.com/users/signup", {
-      name: EnteredInput.username,
-      studentId: EnteredInput.id,
-      password: EnteredInput.password,
-      userGrade: EnteredInput.grade,
-      major: EnteredInput.major,
-      dobuleMajor: EnteredInput.doubleMajor,
-    })
+    setIsLoading(true);
+    const response = await axios.post(
+      "https://sejong-enrollment.herokuapp.com/users/signup",
+      {
+        name: EnteredInput.username,
+        studentId: EnteredInput.id,
+        password: EnteredInput.password,
+        userGrade: EnteredInput.grade,
+        major: EnteredInput.major,
+        dobuleMajor: EnteredInput.doubleMajor,
+      }
+    );
+    setIsLoading(false);
     if (response.status === 201) {
-      console.log(response);  
-      window.location.replace("/signupend");
+      console.log(response);
+      window.localStorage.setItem("token", response.data.token);
+      // dispatch(userInfoActions.saveUserInfo(response.data.userInfo));
+      window.location.replace("/main");
     } else {
       alert(response.data.message);
     }
-  }
+  };
 
   const idInputClassName = EnteredInputIsValid.id
     ? ""
@@ -337,6 +348,11 @@ const SignupForm = (props) => {
           >
             회원가입
           </button>
+          {isLoading && (
+            <div className="Signup-Loading">
+              <Loading message="학생 인증 중 입니다.." />
+            </div>
+          )}
         </div>
       )}
     </form>

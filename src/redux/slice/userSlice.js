@@ -6,7 +6,6 @@ const userInfoSlice = createSlice({
     userInfo: {
       name: '',
       studentId: '',
-      password: '',
       userGrade: '',
       major: '',
       dobuleMajor: '',
@@ -17,7 +16,6 @@ const userInfoSlice = createSlice({
       state.userInfo = {
         name: '',
         studentId: '',
-        password: '',
         userGrade: '',
         major: '',
         dobuleMajor: '',
