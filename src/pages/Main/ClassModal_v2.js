@@ -15,8 +15,9 @@ const ModalOverlay = (props) => {
   const delLectureToSchedule = async () => {
     try {
       const response = await axios.delete(
-        `https://sejong-enrollment.herokuapp.com/schedules/${info.id}`,
-        { userId: 17011502, scheduleId: 0 }
+        `https://sejong-enrollment.herokuapp.com/schedules/${
+          info.id
+        }?userId=${17011502}&scheduleId=${0}`
       );
       console.log(info.id);
     } catch (error) {
