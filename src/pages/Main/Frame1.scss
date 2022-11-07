@@ -10,6 +10,7 @@
   padding: 0;
   position: relative;
   overflow: visible;
+
   &.h60 {
     height: calc(100%);
     &-content {
@@ -21,6 +22,7 @@
     &-half {
       height: calc(100%);
       top: 50%;
+
       &-content {
         position: absolute;
         top: 50%;
