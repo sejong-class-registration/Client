@@ -32,7 +32,7 @@ const Frame1 = () => {
         setIsThereOnlineClass(true);
     }
   };
-  // console.log(userScheduleData);
+  console.log(userScheduleData);
   // console.log(isThereOnlineClass);
 
   const returnSticker = (day, startTime) => {
@@ -97,15 +97,15 @@ const Frame1 = () => {
         lectureList.push(userScheduleData[i]);
       }
     }
-    console.log(lectureList);
+    // console.log(lectureList);
     return lectureList.map((lec) => (
       <tr
         style={{
           backgroundColor: color,
         }}
-        className="test"
+        className="outRangeLecures"
       >
-        <td colspan="6" className="test-test">
+        <td colspan="6" className="outRangeLecures-lecture">
           {lec.name}
         </td>
       </tr>
@@ -114,7 +114,8 @@ const Frame1 = () => {
 
   useEffect(() => {
     getUserSchedule(scheduleId);
-  }, [scheduleId]);
+    // console.log(userScheduleData);
+  }, [scheduleId, ]);
 
   const scheduleIdTo0 = () => {
     setScheduleId(0);

@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import ReactDOM from "react-dom";
 import { useSelector } from "react-redux";
@@ -11,7 +12,21 @@ const Backdrop = (props) => {
 const ModalOverlay = (props) => {
   const info = useSelector((state) => state.selectedLec.selectedLec);
 
+  const putLectureToSchedule = async () => {
+    try {
+      const response = await axios.put(
+        `https://sejong-enrollment.herokuapp.com/schedules/${info.id}`,
+        { userId: 17011502, scheduleId: 0 }
+      );
+      console.log(info.id);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const addLectureHandler = (props) => {
+    putLectureToSchedule();
     console.log(info);
   };
   // console.log(info);
@@ -92,7 +107,9 @@ const ModalOverlay = (props) => {
         ) : (
           <div className="classModal-contents-content">
             <label htmlFor="notice">공지</label>
-            <mark className="classModal-contents-content-notice">{info.notice}</mark>
+            <mark className="classModal-contents-content-notice">
+              {info.notice}
+            </mark>
           </div>
         )}
         <div className="classModal-contents-buttons">

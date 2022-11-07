@@ -24,7 +24,7 @@ const LectureItem = (props) => {
     profName: props.profName,
     recommend: props.recommend,
     room: props.room,
-    id: props._id,
+    id: props.id,
   };
 
   const clickLectureHandler = () => {
