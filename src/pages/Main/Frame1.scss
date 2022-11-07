@@ -6,17 +6,223 @@
   height: 80%;
 }
 
-.test {
+
+.sticker {
   padding: 0;
   position: relative;
-  height: calc(200% + 2px);
-  background-color: #f99;
   overflow: visible;
-  &-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+
+  &.h60 {
+    height: calc(100%);
+    &-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    &-half {
+      height: calc(100%);
+      top: 50%;
+
+      &-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+  &.h90 {
+    height: calc(150%);
+    &-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    &-half {
+      height: calc(100%);
+      top: 50%;
+      &-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+  &.h120 {
+    height: calc(200% + 2px);
+    
+    &-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    &-half {
+      height: calc(200% + 2px);
+      top: 50%;
+      &-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+  &.h150 {
+    height: calc(250% + 2px);
+    &-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    &-half {
+      height: calc(250% + 2px);
+      top: 50%;
+      &-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+  &.h180 {
+    height: calc(300% + 4px);
+    
+    &-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    &-half {
+      height: calc(300% + 4px);
+      top: 50%;
+      &-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+  &.h210 {
+    height: calc(350% + 4px);
+    &-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    &-half {
+      height: calc(350% + 4px);
+      top: 50%;
+      &-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+  &.h240 {
+    height: calc(400% + 6px);
+    &-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    &-half {
+      height: calc(400% + 6px);
+      top: 50%;
+      &-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+  &.h270 {
+    height: calc(450% + 6px);
+    &-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    &-half {
+      height: calc(450% + 6px);
+      top: 50%;
+      &-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+  &.h300 {
+    height: calc(500% + 8px);
+    &-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    &-half {
+      height: calc(500% + 8px);
+      top: 50%;
+      &-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+  &.h330 {
+    height: calc(550% + 8px);
+    &-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    &-half {
+      height: calc(550% + 8px);
+      top: 50%;
+      &-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+  &.h360 {
+    height: calc(600% + 10px);
+    &-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    &-half {
+      top: 50%;
+      height: calc(600% + 10px);
+      &-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
   }
 }
 
@@ -41,6 +247,8 @@
     text-align: center;
     border-spacing: 0px;
     margin: auto;
+    //
+    font-weight: 1000;
   }
 
   &-day {
@@ -123,7 +331,29 @@
         background: #a31432;
         border: none;
         border-radius: 15px;
+
+        &-deactive {
+          line-height: 20px;
+          font-size: 13px;
+          font-weight: bold;
+          margin-left: 1rem;
+          color: #ffffff;
+          max-width: 6rem;
+          width: 40%;
+          height: 30%;
+          background: #a314334d;
+          border: none;
+          border-radius: 15px;
+        }
       }
     }
+  }
+}
+
+.outRangeLecures {
+  height: 1.3rem;
+
+  &-lecture {
+    // border-radius: 15px;
   }
 }

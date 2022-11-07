@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { useSelector } from "react-redux";
 
-import "./ClassModal.scss";
+import "./ClassModal_v2.scss";
 
 const Backdrop = (props) => {
   return <div className="backdrop" onClick={props.close}></div>;
@@ -12,21 +12,20 @@ const Backdrop = (props) => {
 const ModalOverlay = (props) => {
   const info = useSelector((state) => state.selectedLec.selectedLec);
 
-  const putLectureToSchedule = async () => {
+  const delLectureToSchedule = async () => {
     try {
-      const response = await axios.put(
+      const response = await axios.delete(
         `https://sejong-enrollment.herokuapp.com/schedules/${info.id}`,
         { userId: 17011502, scheduleId: 0 }
       );
       console.log(info.id);
-      console.log(response);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const addLectureHandler = (props) => {
-    putLectureToSchedule();
+  const delLectureHandler = (props) => {
+    delLectureToSchedule();
     console.log(info);
   };
   // console.log(info);
@@ -113,7 +112,7 @@ const ModalOverlay = (props) => {
           </div>
         )}
         <div className="classModal-contents-buttons">
-          <button onClick={addLectureHandler}>추가</button>
+          <button onClick={delLectureHandler}>제거</button>
           <button>수업계획서</button>
           <button>강의평가</button>
         </div>
@@ -122,7 +121,7 @@ const ModalOverlay = (props) => {
   );
 };
 
-const ClassModal = (props) => {
+const ClassModal_v2 = (props) => {
   return (
     <>
       {ReactDOM.createPortal(
@@ -137,4 +136,4 @@ const ClassModal = (props) => {
   );
 };
 
-export default ClassModal;
+export default ClassModal_v2;
