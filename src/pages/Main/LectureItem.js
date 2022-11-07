@@ -8,7 +8,7 @@ const LectureItem = (props) => {
     (state) => state.userLectures.userLectures
   );
 
-  console.log(userLectureIdList);
+  // console.log(userLectureIdList);
 
   const selectedLecInfo = {
     classification: props.classification,

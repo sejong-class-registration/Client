@@ -2,11 +2,14 @@ import "./Frame1.scss";
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
+import { selectedLecActions } from "../../redux/slice/selectedLecSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { userScheduleActions } from "../../redux/slice/userScheduleSlice";
 import randomColor from "randomcolor";
+import ClassModal_v2 from "./ClassModal_v2";
 const Frame1 = () => {
   // const [userSchedule, setUserSchedule] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
   const [scheduleId, setScheduleId] = useState(0);
   const userScheduleData = useSelector(
     (state) => state.userSchedule.userSchedule
@@ -14,6 +17,10 @@ const Frame1 = () => {
   const [isThereOnlineClass, setIsThereOnlineClass] = useState(false);
 
   const dispatch = useDispatch();
+
+  const closeClassModal = () => {
+    setIsOpen(false);
+  };
 
   const getUserSchedule = async (id) => {
     const response = await axios(
@@ -32,7 +39,7 @@ const Frame1 = () => {
         setIsThereOnlineClass(true);
     }
   };
-  console.log(userScheduleData);
+  // console.log(userScheduleData);
   // console.log(isThereOnlineClass);
 
   const returnSticker = (day, startTime) => {
@@ -46,6 +53,33 @@ const Frame1 = () => {
         userScheduleData[i].time.day.includes(day) &&
         userScheduleData[i].time.startTime === startTime
       ) {
+        // console.log(userScheduleData[i]);
+
+        const selectedLecInfo = {
+          classification: userScheduleData[i].classification,
+          credit: userScheduleData[i].credit,
+          dayAndTime: userScheduleData[i].dayAndTime,
+          department: userScheduleData[i].department,
+          distrib: userScheduleData[i].distrib,
+          english: userScheduleData[i].english,
+          lectureGrade: userScheduleData[i].lectureGrade,
+          lectureId: userScheduleData[i].lectureId,
+          name: userScheduleData[i].name,
+          notice: userScheduleData[i].notice,
+          profName: userScheduleData[i].profName,
+          recommend: userScheduleData[i].recommend,
+          room: userScheduleData[i].room,
+          id: userScheduleData[i].id,
+        };
+
+        const onClickHandler = () => {
+          dispatch(
+            selectedLecActions.changeSelectedLec({
+              selectedLec: selectedLecInfo,
+            })
+          );
+          setIsOpen(true);
+        };
         var color = randomColor();
         const timeLength =
           userScheduleData[i].time.endTime - userScheduleData[i].time.startTime;
@@ -58,6 +92,7 @@ const Frame1 = () => {
             style={{
               backgroundColor: color,
             }}
+            onClick={onClickHandler}
           >
             <div className={classNameContent}>{userScheduleData[i].name}</div>
           </div>
@@ -68,6 +103,31 @@ const Frame1 = () => {
         userScheduleData[i].time.day.includes(day) &&
         userScheduleData[i].time.startTime === startTime + 30
       ) {
+        const selectedLecInfo = {
+          classification: userScheduleData[i].classification,
+          credit: userScheduleData[i].credit,
+          dayAndTime: userScheduleData[i].dayAndTime,
+          department: userScheduleData[i].department,
+          distrib: userScheduleData[i].distrib,
+          english: userScheduleData[i].english,
+          lectureGrade: userScheduleData[i].lectureGrade,
+          lectureId: userScheduleData[i].lectureId,
+          name: userScheduleData[i].name,
+          notice: userScheduleData[i].notice,
+          profName: userScheduleData[i].profName,
+          recommend: userScheduleData[i].recommend,
+          room: userScheduleData[i].room,
+          id: userScheduleData[i].id,
+        };
+
+        const onClickHandler = () => {
+          dispatch(
+            selectedLecActions.changeSelectedLec({
+              selectedLec: selectedLecInfo,
+            })
+          );
+          setIsOpen(true);
+        };
         var color = randomColor();
         const timeLength =
           userScheduleData[i].time.endTime - userScheduleData[i].time.startTime;
@@ -80,6 +140,7 @@ const Frame1 = () => {
             style={{
               backgroundColor: color,
             }}
+            onClick={onClickHandler}
           >
             <div className={classNameContent}>{userScheduleData[i].name}</div>
           </div>
@@ -91,12 +152,13 @@ const Frame1 = () => {
   const returnOnlineClassSticker = () => {
     const lectureList = [];
     for (var i = 0; i < userScheduleData.length; i++) {
-      var color = randomColor();
       // console.log(userScheduleData[i]);
       if (userScheduleData[i].time.startTime === 0) {
         lectureList.push(userScheduleData[i]);
+        var color = randomColor();
       }
     }
+
     // console.log(lectureList);
     return lectureList.map((lec) => (
       <tr
@@ -105,7 +167,13 @@ const Frame1 = () => {
         }}
         className="outRangeLecures"
       >
-        <td colspan="6" className="outRangeLecures-lecture">
+        <td
+          style={{
+            border: "1px solid #fff",
+          }}
+          colspan="6"
+          className="outRangeLecures-lecture"
+        >
           {lec.name}
         </td>
       </tr>
@@ -129,6 +197,7 @@ const Frame1 = () => {
 
   return (
     <div className="frame_1">
+      {isOpen && <ClassModal_v2 close={closeClassModal}></ClassModal_v2>}
       <div className="calendar-label">
         <label>2022-2학기</label>
       </div>

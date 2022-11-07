@@ -26,7 +26,7 @@ const Frame2 = (props) => {
     );
   };
 
-  console.log(lecturesInSchedule);
+  // console.log(lecturesInSchedule);
 
   useEffect(() => {
     for (var lecture = 0; lecture < lecturesInSchedule.length; lecture++) {
