@@ -1,0 +1,22 @@
+.loading {
+  position: relative;
+  width: 400px;
+  height: 380px;
+  background-color: white;
+  margin: auto;
+  border-radius: 15px;
+  padding: 50px 60px 100px 60px;
+  &-spinner{
+    position: relative;
+    top: 220px;
+    left: 100px;
+  }
+  &-message{
+    position: relative;
+    width: fit-content;
+    margin: auto;
+    top: 80px;
+    font-weight: 500;
+    font-size: 30px;
+  }
+}

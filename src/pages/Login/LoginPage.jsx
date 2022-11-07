@@ -1,14 +1,28 @@
 import React from "react";
+import { useEffect } from "react";
 import LoginForm from "./LoginForm";
 import "./LoginPage.scss";
 
 function LoginPage() {
+  useEffect (() => {
+    const getToken = localStorage.getItem('token');
+
+    if(getToken){
+      window.location.replace('/main');
+    }
+  }, []);
+
+  const logoClickHandler = () => {
+    window.location.replace('/');
+  }
+
   return (
     <div className="login-background">
       <img
         src="https://portal.sejong.ac.kr/content/02comm/css/images/login/login_logo.png"
         alt="logo"
         className="login-logo"
+        onClick={logoClickHandler}
       />
       <div className="login-text">
         <p className="login-text-title">수강신청 도우미</p>

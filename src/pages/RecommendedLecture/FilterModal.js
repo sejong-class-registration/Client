@@ -25,39 +25,20 @@ const FilterModal = (props) => {
     (state) => state.checkbox.selection
   );
   const dispatch = useDispatch();
-  const [gradesCheckedList, setGradesCheckedList] = useState(
-    savedGradesCheckboxList
-  );
-  const [selectionCheckedList, setSelectionCheckedList] = useState(
-    savedSelectionCheckboxList
-  );
 
-  const onGradesCheckedElemnet = (checked, item) => {
-    if (checked) {
-      setGradesCheckedList((prev) => {
-        return [...prev, item];
-      });
-    } else if (!checked) {
-      setGradesCheckedList(gradesCheckedList.filter((el) => el !== item));
-    }
+  const onGradesCheckedElement = (i) => {
+    dispatch(checkboxActions.gradeChecked(i));
   };
 
-  const onSelectionCheckedElemnet = (checked, item) => {
-    if (checked) {
-      setSelectionCheckedList((prev) => {
-        return [...prev, item];
-      });
-    } else if (!checked) {
-      setSelectionCheckedList(selectionCheckedList.filter((el) => el !== item));
-    }
+  const onSelectionCheckedElemnet = (i) => {
+    dispatch(checkboxActions.selectionChecked(i));
   };
 
   const filterSubmitHandler = () => {
     let checkedList = {
-      grades: gradesCheckedList,
-      selection: selectionCheckedList,
+      grades: savedGradesCheckboxList,
+      selection: savedSelectionCheckboxList,
     };
-    dispatch(checkboxActions.save(checkedList));
     console.log(checkedList);
     props.onClose();
   };
@@ -69,16 +50,16 @@ const FilterModal = (props) => {
         <div className="filtermodal-grades">
           <p>학점</p>
           <div className="filtermodal-grades-checkboxlist">
-            {GRADES_CHECKBOX_LIST.map((item) => {
+            {GRADES_CHECKBOX_LIST.map((item, i) => {
               return (
                 <label htmlFor={item.id} key={item.id}>
                   <input
                     type="checkbox"
                     id={item.id}
-                    onChange={(e) => {
-                      onGradesCheckedElemnet(e.target.checked, e.target.id);
+                    onChange={() => {
+                      onGradesCheckedElement(i);
                     }}
-                    checked={gradesCheckedList.includes(item.id) ? true : false}
+                    checked={savedGradesCheckboxList[i]}
                   />
                   <span>{item.data}학점</span>
                 </label>
@@ -88,18 +69,16 @@ const FilterModal = (props) => {
         </div>
         <div>
           <p>선택영역</p>
-          {SELECTION_CHECKBOX_LIST.map((item) => {
+          {SELECTION_CHECKBOX_LIST.map((item, i) => {
             return (
               <label htmlFor={item.id} key={item.id}>
                 <input
                   type="checkbox"
                   id={item.id}
-                  onChange={(e) => {
-                    onSelectionCheckedElemnet(e.target.checked, e.target.id);
+                  onChange={() => {
+                    onSelectionCheckedElemnet(i);
                   }}
-                  checked={
-                    selectionCheckedList.includes(item.id) ? true : false
-                  }
+                  checked={savedSelectionCheckboxList[i]}
                 />
                 <span>{item.data}</span>
               </label>
