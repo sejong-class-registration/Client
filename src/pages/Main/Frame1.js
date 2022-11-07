@@ -49,8 +49,8 @@ const Frame1 = () => {
         var color = randomColor();
         const timeLength =
           userScheduleData[i].time.endTime - userScheduleData[i].time.startTime;
-        const className = "sticker" + timeLength;
-        const classNameContent = "sticker" + timeLength + "-content";
+        const className = "sticker h" + timeLength;
+        const classNameContent = className + "-content";
         // console.log(className);
         return (
           <div
@@ -71,8 +71,8 @@ const Frame1 = () => {
         var color = randomColor();
         const timeLength =
           userScheduleData[i].time.endTime - userScheduleData[i].time.startTime;
-        const className = "sticker" + timeLength + "half";
-        const classNameContent = "sticker" + timeLength + "-content";
+        const className = "sticker h" + timeLength + "-half";
+        const classNameContent = className + "-content";
         // console.log(className);
         return (
           <div
@@ -115,7 +115,7 @@ const Frame1 = () => {
   useEffect(() => {
     getUserSchedule(scheduleId);
     // console.log(userScheduleData);
-  }, [scheduleId, ]);
+  }, [scheduleId]);
 
   const scheduleIdTo0 = () => {
     setScheduleId(0);
