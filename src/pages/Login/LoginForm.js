@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { userInfoActions } from "../../redux/slice/userSlice";
 import axios from "axios";
 import "./LoginForm.scss";
@@ -100,12 +100,13 @@ const LoginForm = () => {
     })
     if (response.status === 201) {
       window.localStorage.setItem("token", response.data.token);
-      dispatch(userInfoActions.saveUserInfo(response.data.user));
+      // dispatch(userInfoActions.saveUserInfo(response.data.userInfo));
       goToMain();
     } else {
       alert(response.data.message);
     }
   }
+
 
   const goToMain = () => {
     window.location.replace("/main");

@@ -44,6 +44,10 @@ const SignupForm = (props) => {
   }, [EnteredInput.passwordCheck, pwIsValid.touched]);
 
   useEffect(() => {
+    const specialLetter = EnteredInput.password.search(
+      /[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/
+    );
+
     if (istouched.id === true) {
       if (
         EnteredInput.id.trim() === "" ||
@@ -59,7 +63,18 @@ const SignupForm = (props) => {
         });
       }
     }
-  }, [EnteredInput.id]);
+    if (istouched.password === true) {
+      if (EnteredInput.password.trim().length >= 10 && specialLetter >= 1) {
+        setEnteredInputIsValid((prev) => {
+          return { ...prev, password: true };
+        });
+      } else {
+        setEnteredInputIsValid((prev) => {
+          return { ...prev, password: false };
+        });
+      }
+    }
+  }, [EnteredInput.password, EnteredInput.id]);
 
   const inputHandler = (event) => {
     setEnteredInput((prev) => {
@@ -94,7 +109,10 @@ const SignupForm = (props) => {
 
   const inputBlurHandler = (e) => {
     const selectedId = e.target.id;
-  
+    const specialLetter = EnteredInput.password.search(
+      /[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/
+    );
+
     if (selectedId === "id") {
       if (
         EnteredInput.id.trim() === "" ||
@@ -109,7 +127,17 @@ const SignupForm = (props) => {
           return { ...prev, id: true };
         });
       }
-    } 
+    } else {
+      if (EnteredInput.password.trim().length >= 10 && specialLetter >= 1) {
+        setEnteredInputIsValid((prev) => {
+          return { ...prev, password: true };
+        });
+      } else {
+        setEnteredInputIsValid((prev) => {
+          return { ...prev, password: false };
+        });
+      }
+    }
   };
 
   const nextButtonHandler = () => {
@@ -153,7 +181,6 @@ const SignupForm = (props) => {
         dobuleMajor: EnteredInput.doubleMajor,
       }
     );
-    console.log(response);
     setIsLoading(false);
     if (response.status === 201) {
       console.log(response);
@@ -170,16 +197,16 @@ const SignupForm = (props) => {
     : "signup-form-input-invalid";
   const pwInputClassName = EnteredInputIsValid.password
     ? ""
-    : "";
+    : "signup-form-input-invalid";
   const pwHelpClassName = EnteredInputIsValid.password
-    ? "signup-form-pw-help-invalid"
+    ? "signup-form-pw-help"
     : "signup-form-pw-help-invalid";
   const pwCheckClassName =
     (pwIsValid.match && pwIsValid.touched) || !pwIsValid.touched
       ? ""
       : "signup-form-input-invalid";
   const buttonActivate =
-    EnteredInputIsValid.id && pwIsValid.match;
+    EnteredInputIsValid.id && EnteredInputIsValid.password && pwIsValid.match;
   const doubleMajorInvalidate = EnteredInput.doubleMajor === EnteredInput.major;
   const twoButtonActivate = inputIsValid && !doubleMajorInvalidate;
 
@@ -216,8 +243,8 @@ const SignupForm = (props) => {
               tabIndex="2"
             />
             <div className={pwHelpClassName}>
-              <p>학사정보 시스템 비밀번호를 입력해주세요</p>
-              <p>(학생 인증)</p>
+              <p>최소 10자리 이상</p>
+              <p>(특수문자 포함 10글자 이상으로 구성)</p>
             </div>
           </div>
           <div>
@@ -321,12 +348,11 @@ const SignupForm = (props) => {
           >
             회원가입
           </button>
-          {
-            isLoading && 
-          <div className="Signup-Loading">
-            <Loading message="학생 인증 중 입니다.." />
-          </div>
-          }
+          {isLoading && (
+            <div className="Signup-Loading">
+              <Loading message="학생 인증 중 입니다.." />
+            </div>
+          )}
         </div>
       )}
     </form>
