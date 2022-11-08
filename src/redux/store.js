@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { checkboxReducer } from "./slice/checkboxSlice";
 import { selectedLecReducer } from "./slice/selectedLecSlice";
 import { classFilterReducer } from "./slice/classFilterSlice";
@@ -8,8 +8,11 @@ import { isOpenModalReducer } from "./slice/isOpenModalSlice";
 import { userScheduleReducer } from "./slice/userScheduleSlice";
 import { userLecturesReducer } from "./slice/userLecturesSlice";
 import { filteredLectureReducer } from "./slice/filteredLectureSlice";
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
-const store = configureStore({
+
+const reducers = combineReducers({
   reducer: {
     checkbox: checkboxReducer,
     selectedLec: selectedLecReducer,
@@ -22,6 +25,17 @@ const store = configureStore({
     userLectures: userLecturesReducer,
     filteredLecture: filteredLectureReducer,
   },
+});
+
+const persistConfig = {
+  key: 'root',
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, reducers);
+
+const store = configureStore({
+  reducer: persistedReducer,
 });
 
 export default store;
