@@ -12,30 +12,41 @@ import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 
-const reducers = combineReducers({
-  reducer: {
-    checkbox: checkboxReducer,
-    selectedLec: selectedLecReducer,
-    classFilterModal: classFilterReducer,
-    userInfo: userInfoReducer,
-    classFilter: classFilterReducer,
-    sortFilter: sortFilterReducer,
-    isOpenModal: isOpenModalReducer,
-    userSchedule: userScheduleReducer,
-    userLectures: userLecturesReducer,
-    filteredLecture: filteredLectureReducer,
-  },
-});
+// const reducers = combineReducers({
+//   reducer: {
+//     checkbox: checkboxReducer,
+//     selectedLec: selectedLecReducer,
+//     classFilterModal: classFilterReducer,
+//     userInfo: userInfoReducer,
+//     classFilter: classFilterReducer,
+//     sortFilter: sortFilterReducer,
+//     isOpenModal: isOpenModalReducer,
+//     userSchedule: userScheduleReducer,
+//     userLectures: userLecturesReducer,
+//     filteredLecture: filteredLectureReducer,
+//   },
+// });
 
-const persistConfig = {
-  key: 'root',
-  storage,
-};
+// const persistConfig = {
+//   key: 'root',
+//   storage,
+// };
 
-const persistedReducer = persistReducer(persistConfig, reducers);
+// const persistedReducer = persistReducer(persistConfig, reducers);
 
 const store = configureStore({
-  reducer: persistedReducer,
+  reducer: {
+        checkbox: checkboxReducer,
+        selectedLec: selectedLecReducer,
+        classFilterModal: classFilterReducer,
+        userInfo: userInfoReducer,
+        classFilter: classFilterReducer,
+        sortFilter: sortFilterReducer,
+        isOpenModal: isOpenModalReducer,
+        userSchedule: userScheduleReducer,
+        userLectures: userLecturesReducer,
+        filteredLecture: filteredLectureReducer,
+      },
 });
 
 export default store;

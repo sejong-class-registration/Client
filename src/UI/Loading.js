@@ -4,15 +4,15 @@ import "./Loading.scss";
 
 const Loading = (props) => {
   return (
-    <div className="loading">
+    <div className="signup-loading">
       <PulseLoader
         color="#c3002f"
         size={30}
         margin={20}
         speedMultiplier = {0.7}
-        className="loading-spinner"
+        className="signup-loading-spinner"
       />
-      <div className="loading-message">{props.message}</div>
+      <div className="signup-loading-message">{props.message}</div>
     </div>
   );
 };
