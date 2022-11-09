@@ -100,7 +100,7 @@ const LoginForm = () => {
     })
     if (response.status === 201) {
       window.localStorage.setItem("token", response.data.token);
-      // dispatch(userInfoActions.saveUserInfo(response.data.userInfo));
+      dispatch(userInfoActions.saveUserInfo(response.data.user));
       goToMain();
     } else {
       alert(response.data.message);
