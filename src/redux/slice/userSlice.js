@@ -1,25 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { PURGE } from "redux-persist";
+
+const initialState = {
+  userInfo: {
+    name: "",
+    studentId: "",
+    userGrade: "",
+    major: "",
+    dobuleMajor: "",
+  },
+}
 
 const userInfoSlice = createSlice({
   name: "userInfo",
-  initialState: {
-    userInfo: {
-      name: '',
-      studentId: '',
-      userGrade: '',
-      major: '',
-      dobuleMajor: '',
-    }
-  },
+  initialState,
   reducers: {
     clearUserInfo(state) {
       state.userInfo = {
-        name: '',
-        studentId: '',
-        userGrade: '',
-        major: '',
-        dobuleMajor: '',
-      }
+        name: "",
+        studentId: "",
+        userGrade: "",
+        major: "",
+        dobuleMajor: "",
+      };
     },
     saveUserInfo(state, action) {
       state.userInfo = {
@@ -28,10 +31,12 @@ const userInfoSlice = createSlice({
         userGrade: +action.payload.userGrade,
         major: action.payload.major,
         dobuleMajor: action.payload.doubleMajor,
-      }
-      console.log(state.userInfo);
-    }
+      };
+    },
   },
+  extraReducers: builder => {
+    builder.addCase(PURGE, () => initialState);
+  }
 });
 
 export const userInfoActions = userInfoSlice.actions;
