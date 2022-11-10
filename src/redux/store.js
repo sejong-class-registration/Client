@@ -8,9 +8,9 @@ import { isOpenModalReducer } from "./slice/isOpenModalSlice";
 import { userScheduleReducer } from "./slice/userScheduleSlice";
 import { userLecturesReducer } from "./slice/userLecturesSlice";
 import { filteredLectureReducer } from "./slice/filteredLectureSlice";
+import { isFetchingReducer } from "./slice/isFetchingSlice";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-
 
 const reducers = combineReducers({
     checkbox: checkboxReducer,
@@ -23,6 +23,7 @@ const reducers = combineReducers({
     userSchedule: userScheduleReducer,
     userLectures: userLecturesReducer,
     filteredLecture: filteredLectureReducer,
+    isFetching: isFetchingReducer,
 });
 
 const persistConfig = {

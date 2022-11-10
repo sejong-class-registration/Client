@@ -14,6 +14,8 @@ const Frame1 = () => {
   const userScheduleData = useSelector(
     (state) => state.userSchedule.userSchedule
   );
+
+  const isFetching = useSelector((state) => state.isFetching.isFetching);
   const [isThereOnlineClass, setIsThereOnlineClass] = useState(false);
 
   const dispatch = useDispatch();
@@ -151,6 +153,17 @@ const Frame1 = () => {
 
   const returnOnlineClassSticker = () => {
     const lectureList = [];
+
+    const outRangeLecClickHandler = (lec) => {
+      console.log(lec);
+      dispatch(
+        selectedLecActions.changeSelectedLec({
+          selectedLec: lec,
+        })
+      );
+      setIsOpen(true);
+    };
+
     for (var i = 0; i < userScheduleData.length; i++) {
       // console.log(userScheduleData[i]);
       if (userScheduleData[i].time.startTime === 0) {
@@ -160,6 +173,7 @@ const Frame1 = () => {
     }
 
     // console.log(lectureList);
+
     return lectureList.map((lec) => (
       <tr
         style={{
@@ -167,12 +181,15 @@ const Frame1 = () => {
         }}
         className="outRangeLecures"
       >
+        {/* {console.log(lec)} */}
         <td
           style={{
             border: "1px solid #fff",
           }}
           colspan="6"
           className="outRangeLecures-lecture"
+          onClick={() => outRangeLecClickHandler(lec)}
+          info={lec}
         >
           {lec.name}
         </td>
@@ -183,7 +200,7 @@ const Frame1 = () => {
   useEffect(() => {
     getUserSchedule(scheduleId);
     // console.log(userScheduleData);
-  }, [scheduleId]);
+  }, [scheduleId, isFetching]);
 
   const scheduleIdTo0 = () => {
     setScheduleId(0);

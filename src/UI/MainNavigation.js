@@ -9,6 +9,7 @@ import "./MainNavigation.scss";
 const MainNavigation = (props) => {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.userInfo.userInfo);
+  
   const logoClickHandler = () => {
     window.location.replace('/main');
   };

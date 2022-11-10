@@ -1,7 +1,8 @@
 import axios from "axios";
 import React from "react";
 import ReactDOM from "react-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { isFetchingActions } from "../../redux/slice/isFetchingSlice";
 
 import "./ClassModal.scss";
 
@@ -11,8 +12,11 @@ const Backdrop = (props) => {
 
 const ModalOverlay = (props) => {
   const info = useSelector((state) => state.selectedLec.selectedLec);
+  const dispatch = useDispatch();
+  const close = props.close;
 
   const putLectureToSchedule = async () => {
+    dispatch(isFetchingActions.changeIsFetching());
     try {
       const response = await axios.put(
         `https://sejong-enrollment.herokuapp.com/schedules/${info.id}`,
@@ -23,10 +27,12 @@ const ModalOverlay = (props) => {
     } catch (error) {
       console.log(error);
     }
+    dispatch(isFetchingActions.changeIsFetching());
   };
 
   const addLectureHandler = (props) => {
     putLectureToSchedule();
+    close();
     console.log(info);
   };
   // console.log(info);
