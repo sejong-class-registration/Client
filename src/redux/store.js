@@ -8,6 +8,7 @@ import { isOpenModalReducer } from "./slice/isOpenModalSlice";
 import { userScheduleReducer } from "./slice/userScheduleSlice";
 import { userLecturesReducer } from "./slice/userLecturesSlice";
 import { filteredLectureReducer } from "./slice/filteredLectureSlice";
+import { isFetchingReducer } from "./slice/isFetchingSlice";
 
 const store = configureStore({
   reducer: {
@@ -21,6 +22,7 @@ const store = configureStore({
     userSchedule: userScheduleReducer,
     userLectures: userLecturesReducer,
     filteredLecture: filteredLectureReducer,
+    isFetching: isFetchingReducer,
   },
 });
 

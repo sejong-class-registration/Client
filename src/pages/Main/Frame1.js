@@ -14,6 +14,8 @@ const Frame1 = () => {
   const userScheduleData = useSelector(
     (state) => state.userSchedule.userSchedule
   );
+
+  const isFetching = useSelector((state) => state.isFetching.isFetching);
   const [isThereOnlineClass, setIsThereOnlineClass] = useState(false);
 
   const dispatch = useDispatch();
@@ -198,7 +200,7 @@ const Frame1 = () => {
   useEffect(() => {
     getUserSchedule(scheduleId);
     // console.log(userScheduleData);
-  }, [scheduleId]);
+  }, [scheduleId, isFetching]);
 
   const scheduleIdTo0 = () => {
     setScheduleId(0);
