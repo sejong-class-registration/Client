@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { persistor } from "..";
 import img from "../common/icons/logo.png";
 import { userInfoActions } from "../redux/slice/userSlice";
 import "./MainNavigation.scss";
@@ -8,23 +9,21 @@ import "./MainNavigation.scss";
 const MainNavigation = (props) => {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.userInfo.userInfo);
-
-  // console.log(userInfo);
-  const logoClickHandler =()=>{
-    // window.location.replace('/main');
-    console.log(userInfo);
-  }
+  
+  const logoClickHandler = () => {
+    window.location.replace('/main');
+  };
 
   const logoutHandler = () => {
     dispatch(userInfoActions.clearUserInfo());
-    localStorage.removeItem('token');
-    window.location.replace('/');
-  }
+    localStorage.removeItem("token");
+    window.location.replace("/");
+  };
 
   return (
     <header className="header">
       <div className="title" onClick={logoClickHandler}>
-        <img className="title-img" src={img} alt=""/>
+        <img className="title-img" src={img} alt="" />
         <div className="logo">
           <div className="logo-first">세종대학교</div>
           <div>수강신청도우미</div>
@@ -33,7 +32,9 @@ const MainNavigation = (props) => {
       <nav className="nav">
         <div className="nav-userInfo">
           <div>{userInfo.name} 님 안녕하세요</div>
-          <button className="nav-userInfo-logout" onClick={logoutHandler}>로그아웃</button>
+          <button className="nav-userInfo-logout" onClick={logoutHandler}>
+            로그아웃
+          </button>
         </div>
         <ul className="nav-buttons">
           <button

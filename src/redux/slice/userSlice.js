@@ -4,22 +4,22 @@ const userInfoSlice = createSlice({
   name: "userInfo",
   initialState: {
     userInfo: {
-      name: '',
-      studentId: '',
-      userGrade: '',
-      major: '',
-      dobuleMajor: '',
-    }
+      name: "",
+      studentId: "",
+      userGrade: "",
+      major: "",
+      dobuleMajor: "",
+    },
   },
   reducers: {
     clearUserInfo(state) {
       state.userInfo = {
-        name: '',
-        studentId: '',
-        userGrade: '',
-        major: '',
-        dobuleMajor: '',
-      }
+        name: "",
+        studentId: "",
+        userGrade: "",
+        major: "",
+        dobuleMajor: "",
+      };
     },
     saveUserInfo(state, action) {
       state.userInfo = {
@@ -28,9 +28,8 @@ const userInfoSlice = createSlice({
         userGrade: +action.payload.userGrade,
         major: action.payload.major,
         dobuleMajor: action.payload.doubleMajor,
-      }
-      console.log(state.userInfo);
-    }
+      };
+    },
   },
 });
 

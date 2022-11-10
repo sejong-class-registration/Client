@@ -8,12 +8,11 @@ import { isOpenModalReducer } from "./slice/isOpenModalSlice";
 import { userScheduleReducer } from "./slice/userScheduleSlice";
 import { userLecturesReducer } from "./slice/userLecturesSlice";
 import { filteredLectureReducer } from "./slice/filteredLectureSlice";
+import { isFetchingReducer } from "./slice/isFetchingSlice";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import { isFetchingReducer } from "./slice/isFetchingSlice";
 
-const store = configureStore({
-  reducer: {
+const reducers = combineReducers({
     checkbox: checkboxReducer,
     selectedLec: selectedLecReducer,
     classFilterModal: classFilterReducer,
@@ -25,7 +24,18 @@ const store = configureStore({
     userLectures: userLecturesReducer,
     filteredLecture: filteredLectureReducer,
     isFetching: isFetchingReducer,
-  },
+});
+
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['userInfo'],    //userInfo에만 persistredux 적용
+};
+
+const persistedReducer = persistReducer(persistConfig, reducers);
+
+const store = configureStore({
+  reducer: persistedReducer
 });
 
 export default store;
