@@ -41,7 +41,7 @@ const Frame1 = () => {
         setIsThereOnlineClass(true);
     }
   };
-  // console.log(userScheduleData);
+  console.log(userScheduleData);
   // console.log(isThereOnlineClass);
 
   const returnSticker = (day, startTime) => {
