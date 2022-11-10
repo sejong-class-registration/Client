@@ -29,16 +29,29 @@ const Frame1 = () => {
       `https://sejong-enrollment.herokuapp.com/schedules?userId=17011502`
     );
     // setUserSchedule(response.data.data.schedules[id].schedule);
-    dispatch(
-      userScheduleActions.changeUserSchedule({
-        userSchedule: response.data.data.schedules[id].schedule,
-      })
-    );
-    // console.log(response.data.data.schedules[id].schedule);
-    setIsThereOnlineClass(false);
-    for (var i = 0; i < response.data.data.schedules[id].schedule.length; i++) {
-      if (response.data.data.schedules[id].schedule[i].time.startTime === 0)
-        setIsThereOnlineClass(true);
+    console.log(response.data.data.schedules[id]);
+    if (!response.data.data.schedules[id]) {
+      dispatch(
+        userScheduleActions.changeUserSchedule({
+          userSchedule: {},
+        })
+      );
+    } else {
+      dispatch(
+        userScheduleActions.changeUserSchedule({
+          userSchedule: response.data.data.schedules[id].schedule,
+        })
+      );
+      console.log(response.data.data.schedules[id].schedule, id);
+      setIsThereOnlineClass(false);
+      for (
+        var i = 0;
+        i < response.data.data.schedules[id].schedule.length;
+        i++
+      ) {
+        if (response.data.data.schedules[id].schedule[i].time.startTime === 0)
+          setIsThereOnlineClass(true);
+      }
     }
   };
   console.log(userScheduleData);
