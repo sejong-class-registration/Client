@@ -1,7 +1,8 @@
 import axios from "axios";
 import React from "react";
 import ReactDOM from "react-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { isFetchingActions } from "../../redux/slice/isFetchingSlice";
 
 import "./ClassModal_v2.scss";
 
@@ -11,21 +12,27 @@ const Backdrop = (props) => {
 
 const ModalOverlay = (props) => {
   const info = useSelector((state) => state.selectedLec.selectedLec);
+  const dispatch = useDispatch();
+  const close = props.close;
 
   const delLectureToSchedule = async () => {
+    dispatch(isFetchingActions.changeIsFetching());
     try {
       const response = await axios.delete(
-        `https://sejong-enrollment.herokuapp.com/schedules/${info.id}`,
-        { userId: 17011502, scheduleId: 0 }
+        `https://sejong-enrollment.herokuapp.com/schedules/${
+          info.id
+        }?userId=${17011502}&scheduleId=${0}`
       );
       console.log(info.id);
     } catch (error) {
       console.log(error);
     }
+    dispatch(isFetchingActions.changeIsFetching());
   };
 
   const delLectureHandler = (props) => {
     delLectureToSchedule();
+    close();
     console.log(info);
   };
   // console.log(info);

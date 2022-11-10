@@ -23,10 +23,9 @@
     width: 100%;
     overflow: hidden;
     justify-content: space-around;
-    background-color: rgba(60, 60, 60, 0.3);
-    color: rgb(90, 240, 200)
+    color: rgba(0, 0, 0, 0.242);
   }
-  
+
   &-wrap-necessary {
     display: flex;
     border: 0.5px solid #626060;
@@ -52,7 +51,6 @@
     justify-content: space-around;
     background-color: #cbe3d5;
   }
-
 
   &_title {
     text-align: center;
