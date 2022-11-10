@@ -11,7 +11,8 @@ const MainNavigation = (props) => {
 
   // console.log(userInfo);
   const logoClickHandler =()=>{
-    window.location.replace('/main');
+    // window.location.replace('/main');
+    console.log(userInfo);
   }
 
   const logoutHandler = () => {
@@ -31,7 +32,7 @@ const MainNavigation = (props) => {
       </div>
       <nav className="nav">
         <div className="nav-userInfo">
-          <div>{userInfo.name} 안녕하세요</div>
+          <div>{userInfo.name} 님 안녕하세요</div>
           <button className="nav-userInfo-logout" onClick={logoutHandler}>로그아웃</button>
         </div>
         <ul className="nav-buttons">
