@@ -13,6 +13,7 @@ const Backdrop = (props) => {
 const ModalOverlay = (props) => {
   const info = useSelector((state) => state.selectedLec.selectedLec);
   const dispatch = useDispatch();
+  const close = props.close;
 
   const putLectureToSchedule = async () => {
     dispatch(isFetchingActions.changeIsFetching());
@@ -31,6 +32,7 @@ const ModalOverlay = (props) => {
 
   const addLectureHandler = (props) => {
     putLectureToSchedule();
+    close();
     console.log(info);
   };
   // console.log(info);
