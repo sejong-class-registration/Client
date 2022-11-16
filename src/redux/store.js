@@ -10,6 +10,7 @@ import { userLecturesReducer } from "./slice/userLecturesSlice";
 import { filteredLectureReducer } from "./slice/filteredLectureSlice";
 import { isFetchingReducer } from "./slice/isFetchingSlice";
 import { persistReducer } from "redux-persist";
+import { excelFileReducer } from "./slice/excelfileSlice";
 import storage from "redux-persist/lib/storage";
 
 const reducers = combineReducers({
@@ -24,12 +25,13 @@ const reducers = combineReducers({
     userLectures: userLecturesReducer,
     filteredLecture: filteredLectureReducer,
     isFetching: isFetchingReducer,
+    excelFile: excelFileReducer,
 });
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['userInfo'],    //userInfo에만 persistredux 적용
+  whitelist: ['userInfo', 'excelFile'],    //여기에만 persistredux 적용
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);
