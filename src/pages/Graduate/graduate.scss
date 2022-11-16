@@ -1,6 +1,3 @@
-ul {
-}
-
 .graduation {
   &-total {
     position: relative;
@@ -50,6 +47,7 @@ ul {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    
     &-title {
       position: absolute;
       left: 10px;
@@ -65,28 +63,50 @@ ul {
       margin: 40px 10px 10px 10px;
       padding: 0;
       border-radius: 15px;
-      &-title {
+      &-txt{
         position: absolute;
-        left: 20px;
+        left: 25px;
+      }
+      &-title {
+        position: relative;
         font-size: 1.5rem;
         // border-bottom: 1px solid #c74444;
       }
       &-score {
-        position: absolute;
-        left: 130px;
+        position: relative;
+        margin-left: 10px;
         font-size: 1.25rem;
-        top: 10px;
-        border: 1px solid #0000007a;
+        font-weight: 800;
         border-radius: 30px;
         padding: 2px 20px;
+        color: white;
+        background-color: #c74444;
       }
     }
     &-2 {
       flex-basis: 50%;
-      margin: 10px 10px;
+      height: 85%;
+      margin: 40px 10px 10px 10px;
       padding: 0;
-      &-title {
+      border-radius: 15px;
+      &-txt{
         position: absolute;
+        left: 50%;
+      }
+      &-title {
+        position: relative;
+        font-size: 1.5rem;
+        // border-bottom: 1px solid #c74444;
+      }
+      &-score {
+        position: relative;
+        font-size: 1.25rem;
+        margin-left: 10px;
+        border-radius: 30px;
+        font-weight: 800;
+        padding: 2px 20px;
+        color: white;
+        background-color: #c74444;
       }
     }
     ul {

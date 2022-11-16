@@ -44,14 +44,14 @@ const MAJOR_DUMMY_LIST = [
     title: "자료구조",
     number_code: "000006",
     grade: 3,
-    completed: true,
+    completed: false,
   },
   {
     id: "l7",
     title: "운영체제",
     number_code: "000007",
     grade: 3,
-    completed: true,
+    completed: false,
   },
   {
     id: "l8",
@@ -59,31 +59,36 @@ const MAJOR_DUMMY_LIST = [
     number_code: "000008",
     grade: 3,
     completed: true,
-  }, {
+  },
+  {
     id: "l9",
     title: "확률과 프로그래밍",
     number_code: "000008",
     grade: 3,
     completed: true,
-  }, {
+  },
+  {
     id: "l10",
     title: "확률과 프로그래밍",
     number_code: "000008",
     grade: 3,
     completed: true,
-  }, {
+  },
+  {
     id: "l11",
     title: "확률과 프로그래밍",
     number_code: "000008",
     grade: 3,
     completed: true,
-  }, {
+  },
+  {
     id: "l12",
     title: "확률과 프로그래밍",
     number_code: "000008",
     grade: 3,
     completed: true,
-  }, {
+  },
+  {
     id: "l13",
     title: "확률과 프로그래밍",
     number_code: "000008",
@@ -128,11 +133,16 @@ const Graduation = () => {
           </div>
           <div className="graduation-major">
             <span className="graduation-major-title">전공</span>
-            <span className="graduation-major-1-title">전공필수</span>
-            <span className="graduation-major-1-score">25 / 50</span>
+            <div className="graduation-major-1-txt">
+              <span className="graduation-major-1-title">전공필수</span>
+              <span className="graduation-major-1-score">25 / 50</span>
+            </div>
             <ul className="graduation-major-1">{lecturesList}</ul>
-            <span className="graduation-major-2-title">전공선택</span>
-            <ul className="graduation-major-2">{/* {lecturesList} */}</ul>
+            <div className="graduation-major-2-txt">
+              <span className="graduation-major-2-title">전공선택</span>
+              <span className="graduation-major-2-score">15 / 80</span>
+            </div>
+            <ul className="graduation-major-2">{lecturesList}</ul>
           </div>
           <div className="graduation-GE">
             <span className="graduation-GE-title">교양</span>
