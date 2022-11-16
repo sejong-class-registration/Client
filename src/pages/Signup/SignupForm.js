@@ -175,7 +175,7 @@ const SignupForm = (props) => {
     if (response.status === 201) {
       console.log(response);
       window.localStorage.setItem("token", response.data.token);
-      // dispatch(userInfoActions.saveUserInfo(response.data.userInfo));
+      dispatch(userInfoActions.saveUserInfo(response.data.user));
       window.location.replace("/main");
     } else {
       alert(response.data.message);

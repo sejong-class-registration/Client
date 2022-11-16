@@ -9,9 +9,9 @@ import "./MainNavigation.scss";
 const MainNavigation = (props) => {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.userInfo.userInfo);
-  
+
   const logoClickHandler = () => {
-    window.location.replace('/main');
+    window.location.replace("/main");
   };
 
   const logoutHandler = () => {
@@ -77,6 +77,19 @@ const MainNavigation = (props) => {
               }-a`}
             >
               강의 추천
+            </NavLink>
+          </button>
+          <button
+            className={`nav-buttons-button${
+              props.onPage === 4 ? "" : "_false"
+            }`}>
+            <NavLink
+              to="/graduation"
+              className={`nav-buttons-button${
+                props.onPage === 4 ? "" : "_false"
+              }-a`}
+            >
+              졸업요건 확인
             </NavLink>
           </button>
         </ul>
