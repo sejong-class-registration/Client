@@ -9,6 +9,7 @@ import randomColor from "randomcolor";
 import ClassModal_v2 from "./ClassModal_v2";
 const Frame1 = () => {
   // const [userSchedule, setUserSchedule] = useState(null);
+  const userInfo = useSelector((state) => state.userInfo.userInfo);
   const [isOpen, setIsOpen] = useState(false);
   const [scheduleId, setScheduleId] = useState(0);
   const userScheduleData = useSelector(
@@ -26,10 +27,10 @@ const Frame1 = () => {
 
   const getUserSchedule = async (id) => {
     const response = await axios(
-      `https://sejong-enrollment.herokuapp.com/schedules?userId=17011502`
+      `https://sejong-enrollment.herokuapp.com/schedules?userId=${userInfo.studentId}`
     );
     // setUserSchedule(response.data.data.schedules[id].schedule);
-    console.log(response.data.data.schedules[id]);
+    // console.log(response);
     if (!response.data.data.schedules[id]) {
       dispatch(
         userScheduleActions.changeUserSchedule({
@@ -42,7 +43,7 @@ const Frame1 = () => {
           userSchedule: response.data.data.schedules[id].schedule,
         })
       );
-      console.log(response.data.data.schedules[id].schedule, id);
+      // console.log(response.data.data.schedules[id].schedule, id);
       setIsThereOnlineClass(false);
       for (
         var i = 0;
@@ -54,7 +55,7 @@ const Frame1 = () => {
       }
     }
   };
-  console.log(userScheduleData);
+  // console.log(userScheduleData);
   // console.log(isThereOnlineClass);
 
   const returnSticker = (day, startTime) => {

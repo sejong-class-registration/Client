@@ -12,6 +12,7 @@ const Backdrop = (props) => {
 
 const ModalOverlay = (props) => {
   const info = useSelector((state) => state.selectedLec.selectedLec);
+  const userInfo = useSelector((state) => state.userInfo.userInfo);
   const dispatch = useDispatch();
   const close = props.close;
 
@@ -19,9 +20,9 @@ const ModalOverlay = (props) => {
     dispatch(isFetchingActions.changeIsFetching());
     try {
       const response = await axios.delete(
-        `https://sejong-enrollment.herokuapp.com/schedules/${
-          info.id
-        }?userId=${17011502}&scheduleId=${0}`
+        `https://sejong-enrollment.herokuapp.com/schedules/${info.id}?userId=${
+          userInfo.studentId
+        }&scheduleId=${0}`
       );
       console.log(info.id);
     } catch (error) {

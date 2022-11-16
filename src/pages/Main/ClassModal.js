@@ -12,6 +12,9 @@ const Backdrop = (props) => {
 
 const ModalOverlay = (props) => {
   const info = useSelector((state) => state.selectedLec.selectedLec);
+  const userInfo = useSelector((state) => state.userInfo.userInfo);
+  console.log(userInfo.studentId);
+  console.log(info.id);
   const dispatch = useDispatch();
   const close = props.close;
 
@@ -20,9 +23,10 @@ const ModalOverlay = (props) => {
     try {
       const response = await axios.put(
         `https://sejong-enrollment.herokuapp.com/schedules/${info.id}`,
-        { userId: 17011502, scheduleId: 0 }
+        { userId: userInfo.studentId, scheduleId: 0 }
       );
-      console.log(info.id);
+      console.log(info);
+      console.log("유저학번 :" + userInfo.studentId);
       console.log(response);
     } catch (error) {
       console.log(error);
