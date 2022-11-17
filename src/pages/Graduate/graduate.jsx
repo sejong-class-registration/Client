@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import ExcelUploadPage from "../../UI/excelUploadPage";
 import MainNavigation from "../../UI/MainNavigation";
 import "./graduate.scss";
@@ -120,23 +121,40 @@ const Graduation = () => {
     />
   ));
 
-  const excelFileHandler = () => {
+  const excelFileHandler = () => {};
 
-  }
   const tempHandler = () => {
     setIsUploaded(true);
-  }
+  };
 
   return (
     <div className="graduation">
       <MainNavigation onPage={4} />
       {!isUploaded && (
-        <div>
-          <span>기이수성적 엑셀파일을 올려주세요!</span>
+        <div className="graduation-excel">
           <button onClick={tempHandler}>하잉</button>
-          <ExcelUploadPage/>
-          <div>
-            <span>세종대학교 학사 정보 시스템 -> 수업 / 성적 -> 기성적 및 강의 평가 -> 기이수 성적 조회 -> 성적 엑셀 다운로드 </span>
+          <div className="graduation-excel-title">졸업요건 확인</div>
+          <div className="graduation-excel-upload">
+            <span className="graduation-excel-upload-txt1">
+              기이수성적 엑셀파일을 올려주세요!
+            </span>
+            <ExcelUploadPage className="graduation-excel-upload-file" />
+          </div>
+          <div className="graduation-excel-upload-help">
+            <div className="graduation-excel-upload-help-title">
+              엑셀파일 받는법
+            </div>
+            <div className="graduation-excel-upload-help-txt1">
+              세종대학교 학사 정보 시스템 ▷ 수업 / 성적 ▷ 기성적 및 강의 평가 ▷
+              기이수 성적 조회 ▷ 성적 엑셀 다운로드
+            </div>
+            <a
+              href="https://sjpt.sejong.ac.kr/"
+              target="_blank"
+              className="graduation-excel-upload-help-link"
+            >
+              세종대학교 학사정보시스템 바로가기
+            </a>
           </div>
         </div>
       )}
@@ -179,6 +197,10 @@ const Graduation = () => {
               <span className="graduation-GE-3-score">12 / 25</span>
             </div>
             <ul className="graduation-GE-3">{GELecturesList}</ul>
+          </div>
+          <div className="graduation-margin">
+            <p>copyright ⓒ 2022 열일곱스물하나</p>
+            <p>이기성 김찬규 최가빈 김윤희</p>
           </div>
         </div>
       )}
