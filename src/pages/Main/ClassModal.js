@@ -13,6 +13,9 @@ const Backdrop = (props) => {
 const ModalOverlay = (props) => {
   const info = useSelector((state) => state.selectedLec.selectedLec);
   const userInfo = useSelector((state) => state.userInfo.userInfo);
+  const selectedScheduleId = useSelector(
+    (state) => state.scheduleNum.scheduleNum
+  );
   console.log(userInfo.studentId);
   console.log(info.id);
   const dispatch = useDispatch();
@@ -23,7 +26,7 @@ const ModalOverlay = (props) => {
     try {
       const response = await axios.put(
         `https://sejong-enrollment.herokuapp.com/schedules/${info.id}`,
-        { userId: userInfo.studentId, scheduleId: 0 }
+        { userId: userInfo.studentId, scheduleId: selectedScheduleId }
       );
       console.log(info);
       console.log("유저학번 :" + userInfo.studentId);

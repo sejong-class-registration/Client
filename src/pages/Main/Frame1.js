@@ -7,11 +7,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { userScheduleActions } from "../../redux/slice/userScheduleSlice";
 import randomColor from "randomcolor";
 import ClassModal_v2 from "./ClassModal_v2";
+import { scheduleNumActions } from "../../redux/slice/scheduleNumSlice";
 const Frame1 = () => {
   // const [userSchedule, setUserSchedule] = useState(null);
   const userInfo = useSelector((state) => state.userInfo.userInfo);
   const [isOpen, setIsOpen] = useState(false);
   const [scheduleId, setScheduleId] = useState(0);
+  // const selectedScheduleId = useSelector(
+  //   (state) => state.scheduleNum.scheduleNum
+  // );
+  // console.log(selectedScheduleId);
   const userScheduleData = useSelector(
     (state) => state.userSchedule.userSchedule
   );
@@ -30,7 +35,7 @@ const Frame1 = () => {
       `https://sejong-enrollment.herokuapp.com/schedules?userId=${userInfo.studentId}`
     );
     // setUserSchedule(response.data.data.schedules[id].schedule);
-    // console.log(response);
+    console.log(response.data.data);
     if (!response.data.data.schedules[id]) {
       dispatch(
         userScheduleActions.changeUserSchedule({
@@ -217,12 +222,15 @@ const Frame1 = () => {
   }, [scheduleId, isFetching]);
 
   const scheduleIdTo0 = () => {
+    dispatch(scheduleNumActions.changeScheduleNum({ scheduleNum: 0 }));
     setScheduleId(0);
   };
   const scheduleIdTo1 = () => {
+    dispatch(scheduleNumActions.changeScheduleNum({ scheduleNum: 1 }));
     setScheduleId(1);
   };
   const scheduleIdTo2 = () => {
+    dispatch(scheduleNumActions.changeScheduleNum({ scheduleNum: 2 }));
     setScheduleId(2);
   };
 
