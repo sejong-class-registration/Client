@@ -6,7 +6,6 @@
   height: 80%;
 }
 
-
 .sticker {
   padding: 0;
   position: relative;
@@ -53,7 +52,7 @@
   }
   &.h120 {
     height: calc(200% + 2px);
-    
+
     &-content {
       position: absolute;
       top: 50%;
@@ -92,7 +91,7 @@
   }
   &.h180 {
     height: calc(300% + 4px);
-    
+
     &-content {
       position: absolute;
       top: 50%;
