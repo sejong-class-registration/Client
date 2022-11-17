@@ -1,0 +1,31 @@
+.graduateMajor {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.527);
+  line-height: 30px;
+  &-list{
+    &-title{
+      display: inline-block;
+      width: 200px;
+      font-size: 1.25rem;
+      font-weight: 0;
+    }
+    &-num{
+      font-size: 0.8rem;
+    }
+    &-grade{
+      font-size: 1rem;
+    }
+  }
+}
+
+.graduateMajor-completed{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.527);
+  line-height: 30px;
+  background-color: rgba(0, 0, 0, 0.096);
+  color: rgb(126, 126, 126);
+}

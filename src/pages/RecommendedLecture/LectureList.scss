@@ -1,4 +1,4 @@
-li {
+.lecture-list {
   position: relative;
   top: 80px;
   display: flex;
@@ -23,9 +23,6 @@ li {
     font-family: "Inter";
     font-style: normal;
   }
-}
-
-.lecture-list {
   &-rank {
     height: 80px;
     width: 80px;

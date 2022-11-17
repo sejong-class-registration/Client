@@ -5,3 +5,4 @@ export const SIGNUP_PATH = '/signup';
 export const SIGNUPFINSH_PATH = '/signupend'
 export const FINDPW_PATH = '/findpw'
 export const CHANGEPW_PATH = '/changepw';
+export const GRADUATE_PATH = '/graduation';
