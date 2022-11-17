@@ -1,0 +1,32 @@
+.wrapper{
+    display: flex;
+}
+
+.ddayContent {
+  width: 340px;
+  height: 700px;
+  border: 1.5px solid #626060;
+  border-radius: 30px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1rem;
+
+  &-box {
+    width: 316px;
+    height: 120px;
+    background-color: #62606030;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+  }
+}
+
+.ddayImage {
+    margin-left: 5rem;
+    width: calc(100% - 340px - 5rem);
+    height: 90vh;
+    border-left: 1px solid #626060;
+    background-color: #ff999930;
+}
+
