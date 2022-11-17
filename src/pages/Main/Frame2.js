@@ -77,40 +77,9 @@ const Frame2 = (props) => {
     getLectureList(savedFilterInfo, savedSortInfo);
   }, [savedFilterInfo, savedSortInfo]);
 
-  const handleSubmit = async (e) => {
-    const tempFile = e.target.files[0];
-    console.log(tempFile);
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("xlsx", tempFile);
-    const response = await axios.post(
-      `https://sejong-enrollment.herokuapp.com/users/${userInfo.studentId}/excel`,
-
-      formData,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      }
-    );
-
-    console.log(response);
-  };
-
   return (
     <div className="frame_2">
       <div className="filter">
-        <button className="">
-          <input
-            type="file"
-            onChange={handleSubmit}
-            name="photo"
-
-            // className="modal-contents-third-profName-input"
-            // onChange={profNameChangeHandler}
-            // placeholder={profName}
-          ></input>
-        </button>
         <button className="filter-button" onClick={props.openModal}>
           <img className="filter-button-img" src={searchIcon} alt=""></img>
         </button>

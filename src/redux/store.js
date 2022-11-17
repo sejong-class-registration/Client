@@ -14,30 +14,30 @@ import storage from "redux-persist/lib/storage";
 import { scheduleNumReducer } from "./slice/scheduleNumSlice";
 
 const reducers = combineReducers({
-    checkbox: checkboxReducer,
-    selectedLec: selectedLecReducer,
-    classFilterModal: classFilterReducer,
-    userInfo: userInfoReducer,
-    classFilter: classFilterReducer,
-    sortFilter: sortFilterReducer,
-    isOpenModal: isOpenModalReducer,
-    userSchedule: userScheduleReducer,
-    userLectures: userLecturesReducer,
-    filteredLecture: filteredLectureReducer,
-    isFetching: isFetchingReducer,
-    scheduleNum: scheduleNumReducer,
+  checkbox: checkboxReducer,
+  selectedLec: selectedLecReducer,
+  classFilterModal: classFilterReducer,
+  userInfo: userInfoReducer,
+  classFilter: classFilterReducer,
+  sortFilter: sortFilterReducer,
+  isOpenModal: isOpenModalReducer,
+  userSchedule: userScheduleReducer,
+  userLectures: userLecturesReducer,
+  filteredLecture: filteredLectureReducer,
+  isFetching: isFetchingReducer,
+  scheduleNum: scheduleNumReducer,
 });
 
 const persistConfig = {
-  key: 'root',
+  key: "root",
   storage,
-  whitelist: ['userInfo'],    //userInfo에만 persistredux 적용
+  whitelist: ["userInfo"], //userInfo에만 persistredux 적용
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);
 
 const store = configureStore({
-  reducer: persistedReducer
+  reducer: persistedReducer,
 });
 
 export default store;
