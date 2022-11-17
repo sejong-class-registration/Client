@@ -138,7 +138,9 @@ const Graduation = () => {
             <span className="graduation-excel-upload-txt1">
               기이수성적 엑셀파일을 올려주세요!
             </span>
-            <ExcelUploadPage className="graduation-excel-upload-file" />
+            <div className="graduation-excel-upload-file">
+              <ExcelUploadPage />
+            </div>
           </div>
           <div className="graduation-excel-upload-help">
             <div className="graduation-excel-upload-help-title">
