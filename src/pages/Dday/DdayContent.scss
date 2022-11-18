@@ -68,8 +68,31 @@
   }
 }
 
-.ddayContent::-webkit-scrollbar{
+.ddayContent::-webkit-scrollbar {
   width: 2px;
+}
+
+.scheduleSelector {
+  margin-bottom: 1rem;
+  position: sticky;
+  top: 0;
+
+  :hover {
+    background-color: #a31432;
+    color: #fff;
+  }
+
+  &-selectBox {
+    text-align: center;
+    width: 250px;
+    height: 40px;
+    border: 1.5px solid #626060;
+    border-radius: 15px;
+  }
+
+  &-option {
+    text-align: center;
+  }
 }
 
 .ddayImage {
