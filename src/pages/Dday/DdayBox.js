@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import randomColor from "randomcolor";
 
 const DdayBox = (props) => {
   const userInfo = useSelector((state) => state.userInfo.userInfo);
@@ -20,14 +21,29 @@ const DdayBox = (props) => {
     getUserSchedule(props.id);
   }, [props.id]);
 
+  var color = randomColor({
+    // hue: "random",
+    // luminosity: "bright",
+    opacity: 0.3,
+  });
+
   return (
-    <div className="ddayContent-box">
-      <div className="ddayContent-box-name">컴퓨터구조</div>
-      <div className="ddayContent-box-others">
-        <div className="ddayContent-box-others-lectureId">123123</div>
-        <div className="ddayContent-box-others-distrib">001</div>
-      </div>
-    </div>
+    <>
+      {schedules &&
+        schedules.map((schedule) => (
+          <div className="ddayContent-box" style={{ backgroundColor: color }}>
+            <div className="ddayContent-box-name">{schedule.name}</div>
+            <div className="ddayContent-box-others">
+              <div className="ddayContent-box-others-lectureId">
+                {schedule.lectureId}
+              </div>
+              <div className="ddayContent-box-others-distrib">
+                {schedule.distrib}
+              </div>
+            </div>
+          </div>
+        ))}
+    </>
   );
 };
 

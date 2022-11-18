@@ -12,12 +12,14 @@
   flex-direction: column;
   align-items: center;
   padding-top: 1rem;
+  overflow-y: scroll;
 
   &-box {
     width: 316px;
     height: 120px;
     background-color: #ffc3c350;
     border-radius: 15px;
+    margin-bottom: 1rem;
 
     display: flex;
     justify-content: space-between;
@@ -27,11 +29,12 @@
       margin: 10px 20px;
       width: 90px;
       height: 90px;
-      background-color: #ffc3c3;
+      background-color: #fff;
       border-radius: 15px;
       align-items: center;
       display: flex;
       justify-content: center;
+      text-align: center;
     }
 
     &-others {
@@ -63,6 +66,10 @@
       }
     }
   }
+}
+
+.ddayContent::-webkit-scrollbar{
+  width: 2px;
 }
 
 .ddayImage {
