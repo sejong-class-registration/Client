@@ -1,0 +1,74 @@
+.mypage{
+  width: 100vw;
+  height: 100vh;
+  background: #cccccc7a;
+  &-title{
+    position: relative;
+    font-size: 3rem;
+    font-weight: 800;
+    width: fit-content;
+    margin: auto;
+    top: 80px;
+    padding: 10px;
+    border-bottom:5px solid #a31432;
+  }
+  &-login-form{
+    position: relative;
+    margin: auto;
+    width: 700px;
+    height: 350px;
+    display: flex;
+    border-radius: 15px;
+    flex-direction: column;
+    align-items: center;
+    top: 180px;
+    padding: 20px 20px;
+    background-color: white;
+    &-txt{
+      position: relative;
+      font-size: 1.1rem;
+      font-weight: 100;
+      top: 40px;
+    }
+
+    &-id{
+      position: relative;
+      top: 90px;
+    }
+    &-pw{
+      position: relative;
+      top: 110px;
+    }
+    label{
+      position: relative;
+      display: inline-block;
+      top: 5px;
+      width:  40px;
+    }
+    input{
+      border: 1px solid rgba(0, 0, 0, 0.473);
+      border-radius: 30px;
+      padding: 10px 10px;
+      line-height: 1.5rem;
+      font-size: 1.25rem;
+      width: 300px;
+    }
+    input:focus{
+      outline: none;
+    }
+    button{
+      position: relative;
+      top: 160px;
+      border: none;
+      border-radius: 20px;
+      background-color: #a31432;
+      color: white;
+      font-size: 1.5rem;
+      padding: 10px 40px;
+    }
+    button:hover{
+      cursor: pointer;
+      background-color: #bd2344;
+    }
+  }
+}
