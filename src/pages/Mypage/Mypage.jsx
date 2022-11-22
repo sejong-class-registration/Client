@@ -4,6 +4,8 @@ import MainNavigation from "../../UI/MainNavigation";
 import { SlLockOpen, SlUser } from "react-icons/sl";
 import "./Mypage.scss";
 import axios from "axios";
+import ExcelUploadPage from "../../UI/excelUploadPage";
+import { userInfoActions } from "../../redux/slice/userSlice";
 
 const Mypage = () => {
   const dispatch = useDispatch();
@@ -16,10 +18,9 @@ const Mypage = () => {
     studentId: userInfo.studentId,
     userGrade: userInfo.userGrade,
     major: userInfo.major,
-    dobuleMajor: userInfo.dobuleMajor,
-    // admissionYear,
-  
+    doubleMajor: userInfo.doubleMajor,
   });
+
   const submitHandler = (event) => {
     event.preventDefault();
     loginFetchHandler();
@@ -68,6 +69,23 @@ const Mypage = () => {
     }
   };
 
+  const userinfoChangeHandler = (event) => {
+    event.preventDefault();
+    dispatch(userInfoActions.saveUserInfo(enteredInput));
+    console.log(userInfo);
+    //다시 수정하는거 보내주어야댐
+  };
+
+  const onReset = () => {
+    setEnteredInput({
+      name: userInfo.name,
+      studentId: userInfo.studentId,
+      userGrade: userInfo.userGrade,
+      major: userInfo.major,
+      dobuleMajor: userInfo.dobuleMajor,
+    });
+  };
+
   return (
     <div className="mypage">
       <MainNavigation />
@@ -99,7 +117,7 @@ const Mypage = () => {
       )}
       {isCertification && (
         <div>
-          <div>
+          <form className="mypage-userinfo" onSubmit={userinfoChangeHandler}>
             <div>
               <label htmlFor="name">이름</label>
               <input
@@ -115,7 +133,9 @@ const Mypage = () => {
                 id="studentId"
                 type="text"
                 value={enteredInput.studentId}
+                readOnly
               />
+              <span className="mypage-userinfo-txt">수정불가</span>
             </div>
             <div>
               <label htmlFor="userGrade">학년</label>
@@ -156,7 +176,7 @@ const Mypage = () => {
                 <div>
                   <select
                     id="doubleMajor"
-                    value={enteredInput.dobuleMajor}
+                    value={enteredInput.doubleMajor}
                     onChange={formChangeHandler}
                   >
                     <option value="컴퓨터공학과">컴퓨터공학과</option>
@@ -170,10 +190,24 @@ const Mypage = () => {
                   </select>
                 </div>
               )}
+              <div className="mypage-userinfo-buttons">
+                <button
+                  className="mypage-userinfo-buttons-reset"
+                  type="button"
+                  onClick={onReset}
+                >
+                  취소
+                </button>
+                <button className="mypage-userinfo-buttons-submit">
+                  정보 수정
+                </button>
+              </div>
             </div>
-            <div>입학년도</div>
+          </form>
+          <div>
+            <div>엑셀 파일 업로드</div>
+            <ExcelUploadPage />
           </div>
-          <div>엑셀파일</div>
         </div>
       )}
     </div>

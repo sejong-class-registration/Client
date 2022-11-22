@@ -8,7 +8,7 @@ const userInfoSlice = createSlice({
       studentId: "",
       userGrade: "",
       major: "",
-      dobuleMajor: "",
+      doubleMajor: "",
     },
   },
   reducers: {
@@ -18,7 +18,7 @@ const userInfoSlice = createSlice({
         studentId: "",
         userGrade: "",
         major: "",
-        dobuleMajor: "",
+        doubleMajor: "",
       };
     },
     saveUserInfo(state, action) {
@@ -27,7 +27,7 @@ const userInfoSlice = createSlice({
         studentId: action.payload.studentId,
         userGrade: +action.payload.userGrade,
         major: action.payload.major,
-        dobuleMajor: action.payload.doubleMajor,
+        doubleMajor: action.payload.doubleMajor,
       };
     },
   },

@@ -168,7 +168,7 @@ const SignupForm = (props) => {
         password: EnteredInput.password,
         userGrade: EnteredInput.grade,
         major: EnteredInput.major,
-        dobuleMajor: EnteredInput.doubleMajor,
+        doubleMajor: EnteredInput.doubleMajor,
       }
     );
     setIsLoading(false);
