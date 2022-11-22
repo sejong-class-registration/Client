@@ -20,6 +20,10 @@ const MainNavigation = (props) => {
     window.location.replace("/");
   };
 
+  const myPageHandler = () => {
+    window.location.replace("/mypage");
+  }
+
   return (
     <header className="header">
       <div className="title" onClick={logoClickHandler}>
@@ -31,7 +35,7 @@ const MainNavigation = (props) => {
       </div>
       <nav className="nav">
         <div className="nav-userInfo">
-          <div>{userInfo.name} 님 안녕하세요</div>
+          <div><span className="nav-userInfo-name" onClick={myPageHandler}>{userInfo.name}</span>님 안녕하세요</div>
           <button className="nav-userInfo-logout" onClick={logoutHandler}>
             로그아웃
           </button>

@@ -41,6 +41,13 @@
     justify-content: end;
     align-items: center;
     font-size: 13px;
+    &-name{
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    &-name:hover{
+      font-weight: 800;
+    }
 
     &-logout {
       margin-left: 2rem;
