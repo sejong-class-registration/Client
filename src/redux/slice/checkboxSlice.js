@@ -3,8 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const checkboxSlice = createSlice({
   name: "checkboxList",
   initialState: {
-    grades: [true, true, true],
+    grades: [true, true, true, true],
     selection: [true, true, true, true, true, true, false],
+
   },
   reducers: {
     gradeChecked(state, action){

@@ -12,6 +12,7 @@ import { isFetchingReducer } from "./slice/isFetchingSlice";
 import { persistReducer } from "redux-persist";
 import { excelFileReducer } from "./slice/excelfileSlice";
 import storage from "redux-persist/lib/storage";
+import { recommendedLecturesSliceReducer } from "./slice/recommendedLecturesSlice";
 
 const reducers = combineReducers({
     checkbox: checkboxReducer,
@@ -26,6 +27,7 @@ const reducers = combineReducers({
     filteredLecture: filteredLectureReducer,
     isFetching: isFetchingReducer,
     excelFile: excelFileReducer,
+    recommendedLecture: recommendedLecturesSliceReducer,
 });
 
 const persistConfig = {

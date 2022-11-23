@@ -5,7 +5,7 @@
   margin: auto;
   margin-bottom: 20px;
   max-width: 1510px;
-  min-width: 780px;
+  min-width: 870px;
   padding-left: 2%;
   padding-right: 2%;
   padding-top: 1%;
@@ -35,15 +35,32 @@
   }
   &-title {
     font-weight: 800;
-    font-size: 30px;
+    font-size: 30px; 
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 400px;
+    min-width: 150px;
+  }
+  &-title:hover{
+    overflow: visible;
+    text-overflow: ellipsis;
+    white-space: wrap;
   }
   &-exp {
     font-weight: 500;
     font-size: 20px;
     padding-left: 3%;
+    width: 150px;
+    &-txt{
+      position: relative;
+      font-size: 15px;
+      font-weight: 100;
+    }
   }
   &-standard{
-    color: #f0d800;
+    color: #a31432;
     font-weight: 600;
     font-size: 20px;
     padding-left: 3%;
