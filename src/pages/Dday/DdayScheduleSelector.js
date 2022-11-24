@@ -1,12 +1,12 @@
 const DdayScheduleSelector = (props) => {
   const changeId = (e) => {
-    if (e.target.value == "A") {
+    if (e.target.value === "A") {
       props.changeIdTo0();
     }
-    if (e.target.value == "B") {
+    if (e.target.value === "B") {
       props.changeIdTo1();
     }
-    if (e.target.value == "C") {
+    if (e.target.value === "C") {
       props.changeIdTo2();
     }
   };

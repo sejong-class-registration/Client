@@ -22,8 +22,8 @@ const DdayBox = (props) => {
   }, [props.id]);
 
   var color = randomColor({
-    // hue: "random",
-    // luminosity: "bright",
+    hue: "random",
+    luminosity: "bright",
     opacity: 0.3,
   });
 

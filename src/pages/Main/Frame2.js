@@ -27,7 +27,7 @@ const Frame2 = (props) => {
     );
   };
 
-  // console.log(lecturesInSchedule);
+  console.log(lecturesInSchedule);
 
   useEffect(() => {
     for (var lecture = 0; lecture < lecturesInSchedule.length; lecture++) {
@@ -92,6 +92,7 @@ const Frame2 = (props) => {
             <option value="dayAndTime">요일</option>
             <option value="credit">학점 순</option>
             <option value="profName">교수명(ㄱㄴㄷ)</option>
+            <option value="lectureGrade">학년 순</option>
           </select>
         </div>
         {isLoading && <div className="loading">Loading...</div>}
