@@ -28,7 +28,7 @@ const DdayBox = (props) => {
   });
 
   const doCopy = (text) => {
-    // 흐음 1.
+    // 흐름 1.
     if (navigator.clipboard) {
       // (IE는 사용 못하고, 크롬은 66버전 이상일때 사용 가능합니다.)
       navigator.clipboard
