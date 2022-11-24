@@ -9,11 +9,10 @@ import randomColor from "randomcolor";
 import ClassModal_v2 from "./ClassModal_v2";
 import { scheduleNumActions } from "../../redux/slice/scheduleNumSlice";
 const Frame1 = () => {
-  
   // const [userSchedule, setUserSchedule] = useState(null);
 
   const userInfo = useSelector((state) => state.userInfo.userInfo);
-  console.log(userInfo);
+  // console.log(userInfo);
   const [isOpen, setIsOpen] = useState(false);
   const [scheduleId, setScheduleId] = useState(0);
 
@@ -39,7 +38,6 @@ const Frame1 = () => {
     const response = await axios(
       `https://sejong-enrollment.herokuapp.com/schedules?userId=${userInfo.studentId}`
     );
-    // setUserSchedule(response.data.data.schedules[id].schedule);
     console.log(response.data.data);
     if (!response.data.data.schedules[id]) {
       dispatch(
@@ -53,20 +51,23 @@ const Frame1 = () => {
           userSchedule: response.data.data.schedules[id].schedule,
         })
       );
-      // console.log(response.data.data.schedules[id].schedule, id);
+      console.log(response.data.data.schedules[id].schedule, id);
       setIsThereOnlineClass(false);
       for (
         var i = 0;
         i < response.data.data.schedules[id].schedule.length;
         i++
       ) {
-        if (response.data.data.schedules[id].schedule[i].time.startTime === 0)
+        if (
+          response.data.data.schedules[id].schedule[i].time.startTime === 0 ||
+          response.data.data.schedules[id].schedule[i].time.startTime >= 1080
+        )
           setIsThereOnlineClass(true);
       }
     }
   };
   // console.log(userScheduleData);
-  // console.log(isThereOnlineClass);
+  console.log(isThereOnlineClass);
 
   const returnSticker = (day, startTime) => {
     for (var i = 0; i < userScheduleData.length; i++) {
@@ -190,7 +191,10 @@ const Frame1 = () => {
 
     for (var i = 0; i < userScheduleData.length; i++) {
       // console.log(userScheduleData[i]);
-      if (userScheduleData[i].time.startTime === 0) {
+      if (
+        userScheduleData[i].time.startTime === 0 ||
+        userScheduleData[i].time.startTime >= 1080
+      ) {
         lectureList.push(userScheduleData[i]);
         var color = randomColor();
       }

@@ -8,7 +8,7 @@ const LectureItem = (props) => {
     (state) => state.userSchedule.userSchedule
   );
 
-  console.log(lecturesInSchedule);
+  // console.log(lecturesInSchedule);
 
   const lectures = [];
   for (var i = 0; i < lecturesInSchedule.length; i++) {
