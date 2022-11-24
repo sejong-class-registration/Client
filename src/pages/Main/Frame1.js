@@ -11,6 +11,7 @@ import { scheduleNumActions } from "../../redux/slice/scheduleNumSlice";
 const Frame1 = () => {
   // const [userSchedule, setUserSchedule] = useState(null);
   const userInfo = useSelector((state) => state.userInfo.userInfo);
+  console.log(userInfo);
   const [isOpen, setIsOpen] = useState(false);
   const [scheduleId, setScheduleId] = useState(0);
   // const selectedScheduleId = useSelector(
