@@ -5,7 +5,91 @@
   margin: auto;
   margin-bottom: 20px;
   max-width: 1510px;
-  min-width: 780px;
+  min-width: 870px;
+  padding-left: 2%;
+  padding-right: 2%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  width: 70%;
+  height: 80px;
+  line-height: 80px;
+  border: 1px solid #ccc;
+  text-align: center;
+  justify-content: space-between;
+  border-radius: 30px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-color: rgba(233, 233, 233, 0.699);
+  span {
+    line-height: 80px;
+    font-family: "Inter";
+    font-style: normal;
+  }
+  &-rank {
+    height: 80px;
+    // width: 80px;
+    color: #000000;
+    // border: 1px solid #000000;
+    // background: #ffffff;
+    text-shadow: -1px 0 rgb(255, 255, 255), 0 1px rgb(255, 255, 255), 1px 0 rgb(255, 255, 255),
+    0 -1px rgb(255, 255, 255);
+    border-radius: 100px;
+    font-weight: 800;
+    font-size: 30px;
+  }
+  &-title {
+    font-weight: 800;
+    font-size: 30px;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 400px;
+    min-width: 150px;
+  }
+  &-title:hover {
+    overflow: visible;
+    text-overflow: ellipsis;
+    white-space: wrap;
+  }
+  &-exp {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 500;
+    font-size: 20px;
+    padding-left: 3%;
+    width: 150px;
+    &-txt {
+      position: relative;
+      font-size: 15px;
+      font-weight: 100;
+    }
+  }
+  &-exp:hover {
+    overflow: visible;
+    text-overflow: ellipsis;
+    white-space: wrap;
+  }
+  &-standard {
+    color: #a31432;
+    text-shadow: -1px 0 rgb(255, 255, 255), 0 1px rgb(255, 255, 255), 1px 0 rgb(255, 255, 255),
+      0 -1px rgb(255, 255, 255);
+    font-weight: 600;
+    font-size: 20px;
+    padding-left: 3%;
+    width: 100px;
+  }
+}
+
+.lecture-list-rank1 {
+  position: relative;
+  top: 80px;
+  display: flex;
+  margin: auto;
+  margin-bottom: 20px;
+  max-width: 1510px;
+  min-width: 870px;
   padding-left: 2%;
   padding-right: 2%;
   padding-top: 1%;
@@ -18,39 +102,6 @@
   justify-content: space-between;
   border-radius: 30px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  span {
-    line-height: 80px;
-    font-family: "Inter";
-    font-style: normal;
-  }
-  &-rank {
-    height: 80px;
-    width: 80px;
-    color: #000000;
-    border: 1px solid #000000;
-    background: #ffffff;
-    border-radius: 100px;
-    font-weight: 800;
-    font-size: 30px;
-  }
-  &-title {
-    font-weight: 800;
-    font-size: 30px;
-  }
-  &-exp {
-    font-weight: 500;
-    font-size: 20px;
-    padding-left: 3%;
-  }
-  &-standard{
-    color: #f0d800;
-    font-weight: 600;
-    font-size: 20px;
-    padding-left: 3%;
-  }
-}
-
-.lecture-list-rank1 {
   border: none;
   background-color: #a31432;
   color: white;
@@ -58,6 +109,25 @@
 }
 
 .lecture-list-rank2 {
+  position: relative;
+  top: 80px;
+  display: flex;
+  margin: auto;
+  margin-bottom: 20px;
+  max-width: 1510px;
+  min-width: 870px;
+  padding-left: 2%;
+  padding-right: 2%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  width: 70%;
+  height: 80px;
+  line-height: 80px;
+  border: 1px solid black;
+  text-align: center;
+  justify-content: space-between;
+  border-radius: 30px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border: none;
   background-color: #c7566e;
   color: white;
@@ -65,6 +135,25 @@
 }
 
 .lecture-list-rank3 {
+  position: relative;
+  top: 80px;
+  display: flex;
+  margin: auto;
+  margin-bottom: 20px;
+  max-width: 1510px;
+  min-width: 870px;
+  padding-left: 2%;
+  padding-right: 2%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  width: 70%;
+  height: 80px;
+  line-height: 80px;
+  border: 1px solid black;
+  text-align: center;
+  justify-content: space-between;
+  border-radius: 30px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border: none;
   background-color: #c64d65b0;
   color: white;

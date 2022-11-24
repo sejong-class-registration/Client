@@ -151,9 +151,9 @@ const LoginForm = () => {
         <p className="login-invalid">비밀번호를 입력해주세요</p>
       )}
       <div className="login-formbox-help">
-        <span>
+        {/* <span>
           <NavLink to="/findpw">비밀번호 찾기</NavLink>
-        </span>
+        </span> */}
         <span>
           <NavLink to="/signup">회원가입</NavLink>
         </span>

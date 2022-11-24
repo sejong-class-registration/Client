@@ -1,4 +1,4 @@
-.graduateMajor {
+.graduateGE {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -7,9 +7,11 @@
   &-list{
     &-title{
       display: inline-block;
-      text-overflow: hidden;
+      overflow: hidden;
+      text-overflow: ellipsis;
       white-space: nowrap;
-      width: 200px;
+      width: 50%;
+      min-width: 100px;
       font-size: 1.15rem;
       font-weight: 0;
     }
@@ -17,12 +19,15 @@
       font-size: 0.8rem;
     }
     &-grade{
+      display: inline-block;
+      text-overflow: hidden;
+      white-space: nowrap;
       font-size: 1rem;
     }
   }
 }
 
-.graduateMajor-completed{
+.graduateGE-completed{
   color: rgba(0, 0, 0, 0.356);
   background-color: rgba(0, 0, 0, 0.123);
   display: flex;
