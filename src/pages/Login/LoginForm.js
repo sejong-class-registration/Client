@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { userInfoActions } from "../../redux/slice/userSlice";
 import axios from "axios";
@@ -7,6 +7,7 @@ import "./LoginForm.scss";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [EnteredInput, setEnteredInput] = useState({ id: "", pw: "" });
   const [EnteredInputIsValid, setEnteredInputIsValid] = useState({
     id: true,
@@ -94,38 +95,38 @@ const LoginForm = () => {
     //   }),
     // }).then(response => response.json())
     // .then(result => console.log(result))
-    const response = await axios.post("https://sejong-enrollment.herokuapp.com/users/signin", {
-      studentId: EnteredInput.id,
-      password: EnteredInput.pw
-    })
-    console.log(response);
-
-    if (response.status === 201) {
-      console.log(response);
-      window.localStorage.setItem("token", response.data.token);
-      dispatch(userInfoActions.saveUserInfo(response.data.data));
-      goToMain();
-    } else {
-      alert(response.data.message);
-    }
-  }
-
-
-  const goToMain = () => {
-    window.location.replace("/main");
+    const response = await axios
+      .post("https://sejong-enrollment.herokuapp.com/users/signin", {
+        studentId: EnteredInput.id,
+        password: EnteredInput.pw,
+      })
+      .then((response) => {
+        console.log(response);
+        if (response.status === 201) {
+          window.localStorage.setItem("token", response.data.token);
+          dispatch(userInfoActions.saveUserInfo(response.data.data));
+          navigate('/main');
+        } else {
+          alert(response.data.message);
+        }
+      });
   };
 
-  const onCheckEnter = (event) =>{
-    if(event.key === 'Enter'){
-      inputBlurHandler(event)
+  const onCheckEnter = (event) => {
+    if (event.key === "Enter") {
+      inputBlurHandler(event);
     }
-  }
+  };
 
   const idInputClassName = EnteredInputIsValid.id ? "" : "login-invalid-input";
   const pwInputClassName = EnteredInputIsValid.pw ? "" : "login-invalid-input";
 
   return (
-    <form onKeyPress={onCheckEnter} onSubmit={LoginSubmitHandler} className="login-formbox">
+    <form
+      onKeyPress={onCheckEnter}
+      onSubmit={LoginSubmitHandler}
+      className="login-formbox"
+    >
       <p>학번/아이디</p>
       <input
         className={idInputClassName}

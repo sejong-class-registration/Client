@@ -20,6 +20,7 @@ const userInfoSlice = createSlice({
         userGrade: "",
         major: "",
         doubleMajor: "",
+        recommendLecture: [],
       };
     },
     saveUserInfo(state, action) {

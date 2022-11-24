@@ -164,6 +164,7 @@ const Mypage = () => {
             <div>
               <label htmlFor="doubleMajor">복수전공</label>
               <input
+                className="mypage-userinfo-checkbox"
                 type="checkbox"
                 value={enteredInput.dobuleMajor}
                 onChange={checkboxHandler}

@@ -1,19 +1,21 @@
 import React from "react";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import LoginForm from "./LoginForm";
 import "./LoginPage.scss";
 
 function LoginPage() {
+  const navigate = useNavigate();
   useEffect (() => {
     const getToken = localStorage.getItem('token');
 
     if(getToken){
-      window.location.replace('/main');
+      navigate('/main');
     }
   }, []);
 
   const logoClickHandler = () => {
-    window.location.replace('/');
+    navigate('/');
   }
 
   return (

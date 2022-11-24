@@ -1,9 +1,11 @@
 import SignupForm from "./SignupForm";
 import "./Signup.scss";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const navigate = useNavigate();
   const logoClickHandler = () => {
-    window.location.replace('/');
+    navigate('/');
   }
 
   return (
