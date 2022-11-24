@@ -9,6 +9,7 @@ const userInfoSlice = createSlice({
       userGrade: "",
       major: "",
       dobuleMajor: "",
+      recommendLecture: [],
     },
   },
   reducers: {
@@ -28,6 +29,7 @@ const userInfoSlice = createSlice({
         userGrade: +action.payload.userGrade,
         major: action.payload.major,
         dobuleMajor: action.payload.doubleMajor,
+        recommendLecture: action.payload.recommendLecture,
       };
     },
   },

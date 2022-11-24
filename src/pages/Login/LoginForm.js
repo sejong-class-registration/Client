@@ -98,9 +98,12 @@ const LoginForm = () => {
       studentId: EnteredInput.id,
       password: EnteredInput.pw
     })
+    console.log(response);
+
     if (response.status === 201) {
+      console.log(response);
       window.localStorage.setItem("token", response.data.token);
-      dispatch(userInfoActions.saveUserInfo(response.data.user));
+      dispatch(userInfoActions.saveUserInfo(response.data.data));
       goToMain();
     } else {
       alert(response.data.message);

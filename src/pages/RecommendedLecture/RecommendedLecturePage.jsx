@@ -101,11 +101,14 @@ const RecommendedLecturePage = () => {
 
   const filtercloseHandler = () => {
     setfilteropen(false);
-  }
+  };
   return (
     <div className="recommended-lecture">
-      <MainNavigation onPage = {3}/>
-      <button className="recommended-lecture-filterbutton" onClick={filterButtonHandler}>
+      <MainNavigation onPage={3} />
+      <button
+        className="recommended-lecture-filterbutton"
+        onClick={filterButtonHandler}
+      >
         <span className="recommended-lecture-filterbutton-icon">
           <GrFilter size="25" />
         </span>
@@ -114,7 +117,11 @@ const RecommendedLecturePage = () => {
       <div className="recommended-lecture-list">
         <ul>{lecturesList}</ul>
       </div>
-      {filteropen && <div><FilterModal onClose = {filtercloseHandler}/></div>}
+      {filteropen && (
+        <div>
+          <FilterModal onClose={filtercloseHandler} />
+        </div>
+      )}
     </div>
   );
 };

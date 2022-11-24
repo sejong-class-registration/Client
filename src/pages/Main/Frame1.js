@@ -9,14 +9,19 @@ import randomColor from "randomcolor";
 import ClassModal_v2 from "./ClassModal_v2";
 import { scheduleNumActions } from "../../redux/slice/scheduleNumSlice";
 const Frame1 = () => {
+  
   // const [userSchedule, setUserSchedule] = useState(null);
+
   const userInfo = useSelector((state) => state.userInfo.userInfo);
+  console.log(userInfo);
   const [isOpen, setIsOpen] = useState(false);
   const [scheduleId, setScheduleId] = useState(0);
+
   // const selectedScheduleId = useSelector(
   //   (state) => state.scheduleNum.scheduleNum
   // );
   // console.log(selectedScheduleId);
+
   const userScheduleData = useSelector(
     (state) => state.userSchedule.userSchedule
   );

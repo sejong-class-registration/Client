@@ -4,11 +4,16 @@ import { selectedLecActions } from "../../redux/slice/selectedLecSlice";
 const LectureItem = (props) => {
   const dispatch = useDispatch();
   const openModal = props.openClassModal;
-  const userLectureIdList = useSelector(
-    (state) => state.userLectures.userLectures
+  const lecturesInSchedule = useSelector(
+    (state) => state.userSchedule.userSchedule
   );
 
-  // console.log(userLectureIdList);
+  console.log(lecturesInSchedule);
+
+  const lectures = [];
+  for (var i = 0; i < lecturesInSchedule.length; i++) {
+    lectures.push(lecturesInSchedule[i].lectureId);
+  }
 
   const selectedLecInfo = {
     classification: props.classification,
@@ -40,7 +45,7 @@ const LectureItem = (props) => {
     <div className="lecture" onClick={clickLectureHandler}>
       <div
         className={`lecture-wrap${
-          userLectureIdList.includes(props.lectureId)
+          lectures.includes(props.lectureId)
             ? "-isInSchedule"
             : props.dayAndTime === "" && props.classification !== "전필"
             ? "-online"

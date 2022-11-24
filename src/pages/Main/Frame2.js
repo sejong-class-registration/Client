@@ -16,6 +16,7 @@ const Frame2 = (props) => {
   const lecturesInSchedule = useSelector(
     (state) => state.userSchedule.userSchedule
   );
+  const userInfo = useSelector((state) => state.userInfo.userInfo);
   const dispatch = useDispatch();
 
   const sortChangeHandler = (e) => {
@@ -91,6 +92,7 @@ const Frame2 = (props) => {
             <option value="dayAndTime">요일</option>
             <option value="credit">학점 순</option>
             <option value="profName">교수명(ㄱㄴㄷ)</option>
+            <option value="lectureGrade">학년 순</option>
           </select>
         </div>
         {isLoading && <div className="loading">Loading...</div>}
