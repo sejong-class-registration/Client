@@ -7,6 +7,7 @@ import MainNavigation from "../../UI/MainNavigation";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { recommendedLecturesSliceActions } from "../../redux/slice/recommendedLecturesSlice";
+import Loading from "../../UI/Loading";
 
 const MAJOR_DUMMY_LIST = [
   {
@@ -107,7 +108,7 @@ const RecommendedLecturePage = () => {
     (state) => state.recommendedLecture.lecturesList
   );
   const [filteropen, setfilteropen] = useState(false);
-  const [istouched, setIsTouched] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const filterButtonHandler = () => {
     setfilteropen((currentvalue) => !currentvalue);
@@ -118,7 +119,7 @@ const RecommendedLecturePage = () => {
   };
 
   const lectureFetchHandler = async (convertedList) => {
-    setIsTouched(true)
+    setIsLoading(true);
     const response = await axios.get(
       "https://sejong-enrollment.herokuapp.com/lectures/recommend",
       {
@@ -132,6 +133,7 @@ const RecommendedLecturePage = () => {
     dispatch(
       recommendedLecturesSliceActions.getRecommendedLecture(fetchLecturesList)
     );
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -147,7 +149,6 @@ const RecommendedLecturePage = () => {
       ],
     });
   }, []);
-
 
   const lecturesList = recommendedLectures.map((lecture) => (
     <LectureList
@@ -173,10 +174,23 @@ const RecommendedLecturePage = () => {
         </span>
         <span className="recommended-lecture-filterbutton-word">필터</span>
       </button>
-      {/* {!istouched && <div className="recommended-lecture-txt">원하는 교양을 검색해주세요!</div>} */}
-      <div className="recommended-lecture-list">
-        <ul>{lecturesList}</ul>
-      </div>
+      {isLoading && (
+        <div className="recommended-lecture-loading">
+          <Loading />
+        </div>
+      )}
+      {!isLoading && (
+        <div className="recommended-lecture-list">
+          <div className="recommended-lecture-list-exp">
+            <span className="recommended-lecture-list-exp-title">제목</span>
+            <span className="recommended-lecture-list-exp-exp">학수번호</span>
+            <span className="recommended-lecture-list-exp-exp">교양영역</span>
+            <span className="recommended-lecture-list-exp-exp">학점</span>
+            <span className="recommended-lecture-list-exp-rank">수강횟수</span>
+          </div>
+          <ul>{lecturesList}</ul>
+        </div>
+      )}
       {filteropen && (
         <div>
           <FilterModal

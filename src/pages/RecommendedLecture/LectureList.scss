@@ -35,7 +35,7 @@
   }
   &-title {
     font-weight: 800;
-    font-size: 30px; 
+    font-size: 30px;
     display: inline-block;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -43,27 +43,37 @@
     width: 400px;
     min-width: 150px;
   }
-  &-title:hover{
+  &-title:hover {
     overflow: visible;
     text-overflow: ellipsis;
     white-space: wrap;
   }
   &-exp {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     font-weight: 500;
     font-size: 20px;
     padding-left: 3%;
     width: 150px;
-    &-txt{
+    &-txt {
       position: relative;
       font-size: 15px;
       font-weight: 100;
     }
   }
-  &-standard{
+  &-exp:hover {
+    overflow: visible;
+    text-overflow: ellipsis;
+    white-space: wrap;
+  }
+  &-standard {
     color: #a31432;
     font-weight: 600;
     font-size: 20px;
     padding-left: 3%;
+    width: 100px;
   }
 }
 
