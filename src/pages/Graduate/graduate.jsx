@@ -185,17 +185,17 @@ const Graduation = () => {
           <div className="graduation-GE">
             <span className="graduation-GE-title">교양</span>
             <div className="graduation-GE-1-txt">
-              <span className="graduation-GE-1-title">교양필수</span>
+              <span className="graduation-GE-1-title">공통필수</span>
               <span className="graduation-GE-1-score">10 / 30</span>
             </div>
             <ul className="graduation-GE-1">{GELecturesList}</ul>
             <div className="graduation-GE-2-txt">
-              <span className="graduation-GE-2-title">기초교양필수</span>
+              <span className="graduation-GE-2-title">선택필수</span>
               <span className="graduation-GE-2-score">10 / 10</span>
             </div>
             <ul className="graduation-GE-2">{GELecturesList}</ul>
             <div className="graduation-GE-3-txt">
-              <span className="graduation-GE-3-title">교양선택</span>
+              <span className="graduation-GE-3-title">학문기초</span>
               <span className="graduation-GE-3-score">12 / 25</span>
             </div>
             <ul className="graduation-GE-3">{GELecturesList}</ul>

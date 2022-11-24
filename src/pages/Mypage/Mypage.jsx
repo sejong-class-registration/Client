@@ -13,6 +13,7 @@ const Mypage = () => {
   const [isCertification, setIsCertification] = useState(false);
   const [password, setPassword] = useState("");
   const [checkboxOn, setCheckboxOn] = useState(userInfo.dobuleMajor);
+  const [isLoading, setIsLoading] = useState(false);
   const [enteredInput, setEnteredInput] = useState({
     name: userInfo.name,
     studentId: userInfo.studentId,
@@ -170,7 +171,7 @@ const Mypage = () => {
                 onChange={checkboxHandler}
               />
               {checkboxOn && (
-                <div>
+                <div className="mypage-userinfo-doublemajor">
                   <select
                     id="doubleMajor"
                     value={enteredInput.doubleMajor}
@@ -201,9 +202,17 @@ const Mypage = () => {
               </div>
             </div>
           </form>
-          <div>
-            <div>엑셀 파일 업로드</div>
-            <ExcelUploadPage />
+          <div className="mypage-userinfo-ex">
+            <div className="mypage-userinfo-excel">
+              <div className="mypage-userinfo-excel-title">
+                엑셀 파일 업로드
+              </div>
+              <ExcelUploadPage />
+            </div>
+            <div className="mypage-userinfo-secession">
+              <div>회원 탈퇴</div>
+              <button>탈퇴ㅠㅠ</button>
+            </div>
           </div>
         </div>
       )}
