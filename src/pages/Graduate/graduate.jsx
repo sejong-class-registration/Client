@@ -200,6 +200,10 @@ const Graduation = () => {
             </div>
             <ul className="graduation-GE-3">{GELecturesList}</ul>
           </div>
+          <div className="graduation-excel-reupload">
+            <span>엑셀파일 갱신</span>
+            <ExcelUploadPage />
+          </div>
           <div className="graduation-margin">
             <p>copyright ⓒ 2022 열일곱스물하나</p>
             <p>이기성 김찬규 최가빈 김윤희</p>
