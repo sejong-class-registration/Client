@@ -118,6 +118,7 @@ const RecommendedLecturePage = () => {
     setfilteropen(false);
   };
 
+
   const lectureFetchHandler = async (convertedList) => {
     setIsLoading(true);
     const response = await axios.get(
@@ -175,6 +176,7 @@ const RecommendedLecturePage = () => {
         </span>
         <span className="recommended-lecture-filterbutton-word">필터</span>
       </button>
+
       {isLoading && (
         <div className="recommended-lecture-loading">
           <Loading />
@@ -200,6 +202,7 @@ const RecommendedLecturePage = () => {
             onClose={filtercloseHandler}
             onSearch={lectureFetchHandler}
           />
+
         </div>
       )}
     </div>

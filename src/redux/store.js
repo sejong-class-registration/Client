@@ -14,24 +14,26 @@ import { excelFileReducer } from "./slice/excelfileSlice";
 import storage from "redux-persist/lib/storage";
 import { recommendedLecturesSliceReducer } from "./slice/recommendedLecturesSlice";
 
+import { scheduleNumReducer } from "./slice/scheduleNumSlice";
+
 const reducers = combineReducers({
-    checkbox: checkboxReducer,
-    selectedLec: selectedLecReducer,
-    classFilterModal: classFilterReducer,
-    userInfo: userInfoReducer,
-    classFilter: classFilterReducer,
-    sortFilter: sortFilterReducer,
-    isOpenModal: isOpenModalReducer,
-    userSchedule: userScheduleReducer,
-    userLectures: userLecturesReducer,
-    filteredLecture: filteredLectureReducer,
-    isFetching: isFetchingReducer,
-    excelFile: excelFileReducer,
-    recommendedLecture: recommendedLecturesSliceReducer,
+  checkbox: checkboxReducer,
+  selectedLec: selectedLecReducer,
+  classFilterModal: classFilterReducer,
+  userInfo: userInfoReducer,
+  classFilter: classFilterReducer,
+  sortFilter: sortFilterReducer,
+  isOpenModal: isOpenModalReducer,
+  userSchedule: userScheduleReducer,
+  userLectures: userLecturesReducer,
+  filteredLecture: filteredLectureReducer,
+  isFetching: isFetchingReducer,
+  scheduleNum: scheduleNumReducer,
+  recommendedLecture: recommendedLecturesSliceReducer,
 });
 
 const persistConfig = {
-  key: 'root',
+  key: "root",
   storage,
   whitelist: ['userInfo', 'excelFile'],    //여기에만 persistredux 적용
 };
@@ -39,7 +41,7 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, reducers);
 
 const store = configureStore({
-  reducer: persistedReducer
+  reducer: persistedReducer,
 });
 
 export default store;

@@ -61,7 +61,7 @@ const MainNavigation = (props) => {
             }`}
           >
             <NavLink
-              to=""
+              to="/dday"
               className={`nav-buttons-button${
                 props.onPage === 2 ? "" : "_false"
               }-a`}

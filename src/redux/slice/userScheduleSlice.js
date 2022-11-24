@@ -9,6 +9,9 @@ const userScheduleSlice = createSlice({
     changeUserSchedule(state, action) {
       state.userSchedule = action.payload.userSchedule;
     },
+    initUserSchedule(state) {
+      state.userSchedule = {};
+    },
   },
 });
 

@@ -8,7 +8,8 @@ const userInfoSlice = createSlice({
       studentId: "",
       userGrade: "",
       major: "",
-      doubleMajor: "",
+      dobuleMajor: "",
+      recommendLecture: [],
     },
   },
   reducers: {
@@ -27,7 +28,8 @@ const userInfoSlice = createSlice({
         studentId: action.payload.studentId,
         userGrade: +action.payload.userGrade,
         major: action.payload.major,
-        doubleMajor: action.payload.doubleMajor,
+        dobuleMajor: action.payload.doubleMajor,
+        recommendLecture: action.payload.recommendLecture,
       };
     },
   },

@@ -1,0 +1,105 @@
+.wrapper {
+  display: flex;
+}
+
+.ddayContent {
+  width: 340px;
+  height: 700px;
+  border: 1.5px solid #626060;
+  border-radius: 30px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1rem;
+  overflow-y: scroll;
+  font-weight: bold;
+
+  &-box {
+    width: 316px;
+    height: 120px;
+    background-color: #ffc3c350;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &-name {
+      margin: 10px 20px;
+      width: 90px;
+      height: 90px;
+      background-color: #fff;
+      border-radius: 15px;
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+    }
+
+    &-others {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      height: 80%;
+
+      margin-right: 15px;
+      &-lectureId {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 160px;
+        height: 35px;
+        background-color: #fff;
+        border-radius: 15px;
+      }
+
+      &-distrib {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 160px;
+        height: 35px;
+        background-color: #fff;
+        border-radius: 15px;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.ddayContent::-webkit-scrollbar {
+  width: 2px;
+}
+
+.scheduleSelector {
+  margin-bottom: 1rem;
+  position: sticky;
+  top: 0;
+
+  // :hover {
+  //   background-color: #a31432;
+  //   color: #fff;
+  // }
+
+  &-selectBox {
+    text-align: center;
+    width: 250px;
+    height: 40px;
+    border: 1.5px solid #626060;
+    border-radius: 15px;
+  }
+
+  &-option {
+    text-align: center;
+  }
+}
+
+.ddayImage {
+  margin-left: 5rem;
+  width: calc(100% - 340px - 5rem);
+  height: 90vh;
+  border-left: 1px solid #626060;
+  background-color: #ff999930;
+}
