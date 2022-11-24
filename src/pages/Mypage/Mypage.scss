@@ -122,6 +122,12 @@
     font-weight: 100;
 
   }
+
+  input[type="checkbox"] {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+  }
   &-txt{
     position: relative;
     font-size: 0.8rem;

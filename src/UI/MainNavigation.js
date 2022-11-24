@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { persistor } from "..";
 import img from "../common/icons/logo.png";
 import { userInfoActions } from "../redux/slice/userSlice";
@@ -8,20 +8,21 @@ import "./MainNavigation.scss";
 
 const MainNavigation = (props) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const userInfo = useSelector((state) => state.userInfo.userInfo);
 
   const logoClickHandler = () => {
-    window.location.replace("/main");
+    navigate("/main");
   };
 
   const logoutHandler = () => {
     dispatch(userInfoActions.clearUserInfo());
     localStorage.removeItem("token");
-    window.location.replace("/");
+    navigate("/");
   };
 
   const myPageHandler = () => {
-    window.location.replace("/mypage");
+    navigate("/mypage");
   }
 
   return (
