@@ -45,10 +45,6 @@ const Mypage = () => {
     }
   };
 
-  const goToMain = () => {
-    window.location.replace("/main");
-  };
-
   const formChangeHandler = (event) => {
     setEnteredInput((prev) => {
       return { ...prev, [event.target.id]: event.target.value };
@@ -172,7 +168,7 @@ const Mypage = () => {
                 value={enteredInput.dobuleMajor}
                 onChange={checkboxHandler}
               />
-              {!checkboxOn && (
+              {checkboxOn && (
                 <div>
                   <select
                     id="doubleMajor"

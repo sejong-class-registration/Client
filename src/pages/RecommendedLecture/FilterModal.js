@@ -73,9 +73,9 @@ const FilterModal = (props) => {
     }else{
       convertedList.convertedSelections = convertedList.convertedSelections.filter((element) => element !== '사회와문화');
     }if(savedSelectionCheckboxList[2] === true){
-      convertedList.convertedSelections.push('자기계발과진로');
+      convertedList.convertedSelections.push('자기계발과진로', '융합과창업');
     }else{
-      convertedList.convertedSelections = convertedList.convertedSelections.filter((element) => element !== '자기계발과진로');
+      convertedList.convertedSelections = convertedList.convertedSelections.filter((element) => element !== '자기계발과진로', '융합과창업');
     }if(savedSelectionCheckboxList[3] === true){
       convertedList.convertedSelections.push('자연과과학기술');
     }else{
@@ -89,9 +89,9 @@ const FilterModal = (props) => {
     }else{
       convertedList.convertedSelections = convertedList.convertedSelections.filter((element) => element !== '예술과체육');
     }if(savedSelectionCheckboxList[6] === true){
-      convertedList.convertedSelections.push('융합과 창업', '사회와제도', '인성과도덕', '역사와문화', '생명과자연', '예술과생활', "생명과 과학");
+      convertedList.convertedSelections.push('사회와제도', '인성과도덕', '역사와문화', '생명과자연', '예술과생활', "생명과 과학");
     }else{
-      convertedList.convertedSelections = convertedList.convertedSelections.filter((element) => element !== '융합과 창업', '사회와제도', '인성과도덕', '역사와문화', '생명과자연', '예술과생활', "생명과 과학");
+      convertedList.convertedSelections = convertedList.convertedSelections.filter((element) => element !== '사회와제도', '인성과도덕', '역사와문화', '생명과자연', '예술과생활', "생명과 과학");
     }
 
     props.onSearch(convertedList);

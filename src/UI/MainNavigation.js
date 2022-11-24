@@ -80,7 +80,7 @@ const MainNavigation = (props) => {
                 props.onPage === 3 ? "" : "_false"
               }-a`}
             >
-              강의 추천
+              교양 추천
             </NavLink>
           </button>
           <button

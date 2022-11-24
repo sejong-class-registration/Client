@@ -134,6 +134,7 @@ const RecommendedLecturePage = () => {
       recommendedLecturesSliceActions.getRecommendedLecture(fetchLecturesList)
     );
     setIsLoading(false);
+    console.log(fetchLecturesList);
   };
 
   useEffect(() => {
@@ -150,10 +151,10 @@ const RecommendedLecturePage = () => {
     });
   }, []);
 
-  const lecturesList = recommendedLectures.map((lecture) => (
+  const lecturesList = recommendedLectures.map((lecture, i) => (
     <LectureList
       key={lecture._id}
-      // rank={lecture.recommendNumber}
+      rank={i+1}
       title={lecture.name}
       number_code={lecture.lectureId}
       field={lecture.area}
@@ -182,6 +183,7 @@ const RecommendedLecturePage = () => {
       {!isLoading && (
         <div className="recommended-lecture-list">
           <div className="recommended-lecture-list-exp">
+            <span className="recommended-lecture-list-exp-exp1">순위</span>
             <span className="recommended-lecture-list-exp-title">제목</span>
             <span className="recommended-lecture-list-exp-exp">학수번호</span>
             <span className="recommended-lecture-list-exp-exp">교양영역</span>

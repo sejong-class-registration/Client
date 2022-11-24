@@ -15,10 +15,10 @@ const LectureList = (props) => {
   }
   
   return (
-    <li className='lecture-list'>
-      {/* <span className="lecture-list-rank">{props.rank}</span> */}
+    <li className={listClassName}>
+      <span className="lecture-list-rank">{props.rank}</span>
       <span className="lecture-list-title">{props.title}</span>
-      <span className="lecture-list-exp"><span className="lecture-list-exp-txt">학번</span> {props.number_code}</span>
+      <span className="lecture-list-exp">{props.number_code}</span>
       <span className="lecture-list-exp">{props.field}</span>
       <span className="lecture-list-exp">{props.grade}학점</span>
       <span className="lecture-list-standard">{props.standard}회</span>
