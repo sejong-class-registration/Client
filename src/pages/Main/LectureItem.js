@@ -48,7 +48,7 @@ const LectureItem = (props) => {
         className={`lecture-wrap${
           lectures.includes(props.lectureId)
             ? "-isInSchedule"
-            : userInfo.takenLectures.includes(props.name)
+            : userInfo.takenLectures.includes(props.name.split(" ").join(""))
             ? "-isTaken"
             : props.dayAndTime === "" && props.classification !== "전필"
             ? "-online"

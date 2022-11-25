@@ -60,6 +60,12 @@
         text-align: center;
         // color: #a31432;
       }
+
+      &-isTaken {
+        width: 80%;
+        text-align: center;
+        background-color: #fe6788;
+      }
     }
 
     &-buttons {

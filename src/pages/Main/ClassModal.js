@@ -111,6 +111,7 @@ const ModalOverlay = (props) => {
             </div>
           </div>
         )}
+
         {info.notice === "외국인대상강좌" ? (
           <div className="classModal-contents-content">
             <label htmlFor="notice">공지</label>
@@ -127,6 +128,17 @@ const ModalOverlay = (props) => {
               {info.notice}
             </mark>
           </div>
+        )}
+
+        {userInfo.takenLectures.includes(info.name.split(" ").join("")) ? (
+          <div className="classModal-contents-content">
+            <label htmlFor="isTaken">이수 여부</label>
+            <div className="classModal-contents-content-isTaken">
+              이미 이수한 강의입니다.
+            </div>
+          </div>
+        ) : (
+          <></>
         )}
         <div className={`classModal-contents-buttons`}>
           <button onClick={addLectureHandler}>
