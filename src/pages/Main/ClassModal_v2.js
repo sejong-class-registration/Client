@@ -121,6 +121,16 @@ const ModalOverlay = (props) => {
             </mark>
           </div>
         )}
+        {userInfo.takenLectures.includes(info.name.split(" ").join("")) ? (
+          <div className="classModal-contents-content">
+            <label htmlFor="isTaken">이수 여부</label>
+            <div className="classModal-contents-content-isTaken">
+              이미 이수한 강의입니다.
+            </div>
+          </div>
+        ) : (
+          <></>
+        )}
         <div className="classModal-contents-buttons">
           <button onClick={delLectureHandler}>
             {isFetching ? "Loading ..." : "제거"}

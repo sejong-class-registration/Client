@@ -19,6 +19,7 @@ const ModalOverlay = (props) => {
   );
   console.log(userInfo.studentId);
   console.log(info.id);
+
   const dispatch = useDispatch();
   const close = props.close;
 
@@ -142,7 +143,11 @@ const ModalOverlay = (props) => {
         )}
         <div className={`classModal-contents-buttons`}>
           <button onClick={addLectureHandler}>
-            {isFetching ? "Loading ..." : "추가"}
+            {isFetching
+              ? "Loading ..."
+              : userInfo.takenLectures.includes(info.name.split(" ").join(""))
+              ? "재수강"
+              : "추가"}
           </button>
           {/* <button>수업계획서</button>
           <button>강의평가</button> */}

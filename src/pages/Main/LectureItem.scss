@@ -36,6 +36,7 @@
     width: 100%;
     overflow: hidden;
     justify-content: space-around;
+    color: rgba(130, 0, 0, 0.5);
     text-decoration: line-through;
   }
 
@@ -70,7 +71,7 @@
     font-size: 15px;
     // font-weight: bold;
     width: 15rem;
-    
+
     &-recommend {
       text-align: center;
       font-size: 15px;
