@@ -16,6 +16,12 @@ const LectureItem = (props) => {
     lectures.push(lecturesInSchedule[i].lectureId);
   }
 
+  const recommendLectures = [];
+  for (i = 0; i < userInfo.recommendLecture.length; i++) {
+    recommendLectures.push(userInfo.recommendLecture[i].name);
+  }
+  // console.log(recommendLectures);
+
   const selectedLecInfo = {
     classification: props.classification,
     credit: props.credit,
@@ -57,13 +63,20 @@ const LectureItem = (props) => {
             : ""
         }`}
       >
-        <div className="lecture_title">{`${
-          props.notice === "외국인대상강좌"
-            ? "⚠️ "
-            : props.english === "영어"
-            ? "🔤 "
-            : ""
-        }${props.name}`}</div>
+        <div className={`lecture_title`}>
+          {recommendLectures.includes(props.name.split(" ").join("")) ? (
+            <span className="recommend">추천❗️ </span>
+          ) : (
+            ""
+          )}
+          {`${
+            props.notice === "외국인대상강좌"
+              ? "⚠️ "
+              : props.english === "영어"
+              ? "🔤 "
+              : ""
+          }${props.name}`}
+        </div>
         <div className="lecture_type">{props.classification}</div>
         <div className="lecture_score">
           {props.credit.substr(0, 1) + "학점"}

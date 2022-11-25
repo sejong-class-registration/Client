@@ -37,7 +37,6 @@
     overflow: hidden;
     justify-content: space-around;
     text-decoration: line-through;
-    
   }
 
   &-wrap-necessary {
@@ -98,4 +97,9 @@
   // border-radius: 10px;
   // transform: translateX(-5px);
   // opacity: 0.2;
+}
+
+.recommend {
+  font-weight: bold;
+  color: #a31432;
 }
