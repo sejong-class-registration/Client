@@ -32,7 +32,8 @@ const ModalOverlay = (props) => {
       console.log("유저학번 :" + userInfo.studentId);
       console.log(response);
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data.message);
+      alert(error.response.data.message);
     }
     dispatch(isFetchingActions.changeIsFetching());
   };
@@ -127,8 +128,8 @@ const ModalOverlay = (props) => {
         )}
         <div className="classModal-contents-buttons">
           <button onClick={addLectureHandler}>추가</button>
-          <button>수업계획서</button>
-          <button>강의평가</button>
+          {/* <button>수업계획서</button>
+          <button>강의평가</button> */}
         </div>
       </div>
     </div>

@@ -122,8 +122,8 @@ const ModalOverlay = (props) => {
         )}
         <div className="classModal-contents-buttons">
           <button onClick={delLectureHandler}>제거</button>
-          <button>수업계획서</button>
-          <button>강의평가</button>
+          {/* <button>수업계획서</button>
+          <button>강의평가</button> */}
         </div>
       </div>
     </div>
