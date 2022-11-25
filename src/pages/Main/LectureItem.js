@@ -7,7 +7,8 @@ const LectureItem = (props) => {
   const lecturesInSchedule = useSelector(
     (state) => state.userSchedule.userSchedule
   );
-
+  const userInfo = useSelector((state) => state.userInfo.userInfo);
+  // console.log(userInfo);
   // console.log(lecturesInSchedule);
 
   const lectures = [];
@@ -47,6 +48,8 @@ const LectureItem = (props) => {
         className={`lecture-wrap${
           lectures.includes(props.lectureId)
             ? "-isInSchedule"
+            : userInfo.takenLectures.includes(props.name)
+            ? "-isTaken"
             : props.dayAndTime === "" && props.classification !== "전필"
             ? "-online"
             : props.classification === "전필"
