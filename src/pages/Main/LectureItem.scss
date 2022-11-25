@@ -70,6 +70,13 @@
     font-size: 15px;
     // font-weight: bold;
     width: 15rem;
+    
+    &-recommend {
+      text-align: center;
+      font-size: 15px;
+      font-weight: bold;
+      width: 15rem;
+    }
   }
 
   &_type {
@@ -100,6 +107,6 @@
 }
 
 .recommend {
-  font-weight: bold;
+  // font-weight: bold;
   color: #a31432;
 }

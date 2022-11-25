@@ -63,9 +63,15 @@ const LectureItem = (props) => {
             : ""
         }`}
       >
-        <div className={`lecture_title`}>
+        <div
+          className={`lecture_title${
+            recommendLectures.includes(props.name.split(" ").join(""))
+              ? "-recommend"
+              : ""
+          }`}
+        >
           {recommendLectures.includes(props.name.split(" ").join("")) ? (
-            <span className="recommend">추천❗️ </span>
+            <span className="recommend">추천❗️</span>
           ) : (
             ""
           )}
