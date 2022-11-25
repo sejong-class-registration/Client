@@ -8,6 +8,8 @@
 .sort_selecter {
   margin: 0 2rem 1rem 2rem;
   text-align: end;
+  display: flex;
+  justify-content: end;
   &-select {
     text-align: center;
     margin: 0;

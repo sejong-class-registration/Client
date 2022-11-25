@@ -86,6 +86,10 @@ const Frame2 = (props) => {
       </div>
       <div className="content2">
         <div className="sort_selecter">
+          <div className="checkboxwrapper">
+            <input type="checkbox" className="checkboxwrapper-isTaken-input" />
+            <label className="checkboxwrapper-isTaken-label">기이수 강의</label>
+          </div>
           <select className="sort_selecter-select" onChange={sortChangeHandler}>
             <option value="name">과목명</option>
             <option value="classification">이수구분</option>
