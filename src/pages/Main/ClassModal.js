@@ -13,6 +13,7 @@ const Backdrop = (props) => {
 const ModalOverlay = (props) => {
   const info = useSelector((state) => state.selectedLec.selectedLec);
   const userInfo = useSelector((state) => state.userInfo.userInfo);
+  const isFetching = useSelector((state) => state.isFetching.isFetching);
   const selectedScheduleId = useSelector(
     (state) => state.scheduleNum.scheduleNum
   );
@@ -21,7 +22,7 @@ const ModalOverlay = (props) => {
   const dispatch = useDispatch();
   const close = props.close;
 
-  const putLectureToSchedule = async () => {
+  const putLectureToSchedule = async (close) => {
     dispatch(isFetchingActions.changeIsFetching());
     try {
       const response = await axios.put(
@@ -36,11 +37,12 @@ const ModalOverlay = (props) => {
       alert(error.response.data.message);
     }
     dispatch(isFetchingActions.changeIsFetching());
+    close();
   };
 
   const addLectureHandler = (props) => {
-    putLectureToSchedule();
-    close();
+    putLectureToSchedule(close);
+
     console.log(info);
   };
   // console.log(info);
@@ -126,8 +128,10 @@ const ModalOverlay = (props) => {
             </mark>
           </div>
         )}
-        <div className="classModal-contents-buttons">
-          <button onClick={addLectureHandler}>추가</button>
+        <div className={`classModal-contents-buttons`}>
+          <button onClick={addLectureHandler}>
+            {isFetching ? "Loading ..." : "추가"}
+          </button>
           {/* <button>수업계획서</button>
           <button>강의평가</button> */}
         </div>
