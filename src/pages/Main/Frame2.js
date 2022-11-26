@@ -11,8 +11,13 @@ import { filteredLectureActions } from "../../redux/slice/filteredLectureSlice";
 const Frame2 = (props) => {
   const [lectureList, setLectureList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  //filter state
   const savedFilterInfo = useSelector((state) => state.classFilter.classFilter);
+
+  //sort state
   const savedSortInfo = useSelector((state) => state.sortFilter.sortFilter);
+
   const lecturesInSchedule = useSelector(
     (state) => state.userSchedule.userSchedule
   );
@@ -77,6 +82,13 @@ const Frame2 = (props) => {
     getLectureList(savedFilterInfo, savedSortInfo);
   }, [savedFilterInfo, savedSortInfo]);
 
+  //checkbox state
+  const [takenChecked, setTakenChecked] = useState(false);
+  // console.log(takenChecked);
+  const takenChangeHandler = (props) => {
+    setTakenChecked(!takenChecked);
+  };
+
   return (
     <div className="frame_2">
       <div className="filter">
@@ -87,7 +99,12 @@ const Frame2 = (props) => {
       <div className="content2">
         <div className="sort_selecter">
           <div className="checkboxwrapper">
-            <input type="checkbox" className="checkboxwrapper-isTaken-input" />
+            <input
+              type="checkbox"
+              className="checkboxwrapper-isTaken-input"
+              checked={takenChecked}
+              onChange={takenChangeHandler}
+            />
             <label className="checkboxwrapper-isTaken-label">기이수 강의</label>
           </div>
           <select className="sort_selecter-select" onChange={sortChangeHandler}>

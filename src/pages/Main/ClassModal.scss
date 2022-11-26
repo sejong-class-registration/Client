@@ -29,6 +29,16 @@
       text-align: center;
       padding-bottom: 1rem;
       border-bottom: 1px solid #a31432;
+
+      &-recommend {
+        white-space: pre-wrap;
+        font-size: 25px;
+        font-weight: 1000;
+        text-align: center;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #a31432;
+        color: #ff0000;
+      }
     }
 
     &-content {

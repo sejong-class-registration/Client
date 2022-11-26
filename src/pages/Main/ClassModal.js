@@ -24,6 +24,15 @@ const ModalOverlay = (props) => {
   for (var i = 0; i < userInfo.recommendLecture.length; i++) {
     recommendLectures.push(userInfo.recommendLecture[i].name);
   }
+  // console.log(userInfo);
+
+  var recommendComment = null;
+  for (i = 0; i < userInfo.recommendLecture.length; i++) {
+    if (userInfo.recommendLecture[i].name === info.name.split(" ").join("")) {
+      recommendComment = userInfo.recommendLecture[i].comment;
+    }
+  }
+  console.log(recommendComment);
 
   const dispatch = useDispatch();
   const close = props.close;
@@ -56,15 +65,16 @@ const ModalOverlay = (props) => {
   return (
     <div className="classModal">
       <div className="classModal-contents">
-        <div className="classModal-contents-name">{info.name}</div>
         {recommendLectures.includes(info.name.split(" ").join("")) ? (
-          <div className="classModal-contents-content">
-            <label htmlFor="pleasegraduate">추천</label>
-            <div className="classModal-contents-content-recommend">{}</div>
+          <div className="classModal-contents-name-recommend">
+            <div>{info.name + `\n⭐${recommendComment}⭐`}</div>
           </div>
         ) : (
-          <></>
+          <div className="classModal-contents-name">
+            <div>{info.name}</div>
+          </div>
         )}
+
         <div className="classModal-contents-content">
           <label htmlFor="department">학과</label>
           <div>{info.department}</div>
