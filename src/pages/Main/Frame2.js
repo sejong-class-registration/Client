@@ -102,14 +102,16 @@ const Frame2 = (props) => {
       </div>
       <div className="content2">
         <div className="sort_selecter">
-          <div className="checkboxwrapper">
+          <div className="checkboxWrapper">
             <input
               type="checkbox"
-              className="checkboxwrapper-isTaken-input"
+              className="checkboxWrapper-isTaken-input"
               checked={takenChecked}
               onChange={takenChangeHandler}
             />
-            <label className="checkboxwrapper-isTaken-label">이수 강의 제거</label>
+            <label className="checkboxWrapper-isTaken-label">
+              이수 강의 제거
+            </label>
           </div>
           <select className="sort_selecter-select" onChange={sortChangeHandler}>
             <option value="name">과목명</option>
