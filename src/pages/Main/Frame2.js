@@ -110,7 +110,7 @@ const Frame2 = (props) => {
               onChange={takenChangeHandler}
             />
             <label className="checkboxWrapper-isTaken-label">
-              이수 강의 제거
+              이수한 강의 안볼래요
             </label>
           </div>
           <select className="sort_selecter-select" onChange={sortChangeHandler}>

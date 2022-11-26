@@ -79,12 +79,12 @@
   border: 1px solid #626060;
   border-radius: 15px;
   margin-right: 10px;
-  width: 10rem;
+  padding: 0 1rem;
 
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
   &-isTaken-input {
     width: 1rem;
     height: 1rem;
