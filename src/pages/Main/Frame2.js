@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { sortFilterActions } from "../../redux/slice/sortFilterSlice";
 import { userLecturesActions } from "../../redux/slice/userLecturesSlice";
 import { filteredLectureActions } from "../../redux/slice/filteredLectureSlice";
+import { takenCheckBoxActions } from "../../redux/slice/takenCheckBoxSlice";
 
 const Frame2 = (props) => {
   const [lectureList, setLectureList] = useState([]);
@@ -83,10 +84,13 @@ const Frame2 = (props) => {
   }, [savedFilterInfo, savedSortInfo]);
 
   //checkbox state
-  const [takenChecked, setTakenChecked] = useState(false);
-  // console.log(takenChecked);
+  // const [takenChecked, setTakenChecked] = useState(false);
+  const takenChecked = useSelector(
+    (state) => state.takenCheckBox.takenCheckBox
+  );
+  console.log(takenChecked);
   const takenChangeHandler = (props) => {
-    setTakenChecked(!takenChecked);
+    dispatch(takenCheckBoxActions.changeTakenCheckBox());
   };
 
   return (
