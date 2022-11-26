@@ -88,7 +88,7 @@ const Frame2 = (props) => {
   const takenChecked = useSelector(
     (state) => state.takenCheckBox.takenCheckBox
   );
-  console.log(takenChecked);
+  // console.log(takenChecked);
   const takenChangeHandler = (props) => {
     dispatch(takenCheckBoxActions.changeTakenCheckBox());
   };
@@ -109,7 +109,7 @@ const Frame2 = (props) => {
               checked={takenChecked}
               onChange={takenChangeHandler}
             />
-            <label className="checkboxwrapper-isTaken-label">기이수 강의</label>
+            <label className="checkboxwrapper-isTaken-label">이수 강의 제거</label>
           </div>
           <select className="sort_selecter-select" onChange={sortChangeHandler}>
             <option value="name">과목명</option>
