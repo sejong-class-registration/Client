@@ -176,6 +176,7 @@ const RecommendedLecturePage = () => {
         </span>
         <span className="recommended-lecture-filterbutton-word">필터</span>
       </button>
+      <div className="recommended-lecture-list-notice">클릭시 복사가 가능합니다</div>
 
       {isLoading && (
         <div className="recommended-lecture-loading">

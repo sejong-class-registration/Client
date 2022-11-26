@@ -1,0 +1,19 @@
+.toast_container {
+  position: fixed;
+  z-index: 99;
+  top: 90%;
+  left: 50%;
+  background-color: rgba(71, 71, 71, 0.527);
+  transform: translate(-50%, -50%);
+  width: 24rem;
+  height: 2.625rem;
+  border-radius: 10px;
+  color: white;
+}
+
+.toast_text {
+  font-weight: bold;
+  letter-spacing: 0.29px;
+  text-align: center;
+  margin-top: 0.6rem;
+}
