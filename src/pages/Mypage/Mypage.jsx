@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import MainNavigation from "../../UI/MainNavigation";
-import { SlLockOpen, SlUser } from "react-icons/sl";
+import {
+  SlLockOpen,
+  SlUser,
+  SlUserUnfollow,
+  SlCloudUpload,
+} from "react-icons/sl";
 import "./Mypage.scss";
 import axios from "axios";
 import ExcelUploadPage from "../../UI/excelUploadPage";
@@ -202,18 +207,19 @@ const Mypage = () => {
               </div>
             </div>
           </form>
-          <div className="mypage-userinfo-ex">
-            <div className="mypage-userinfo-excel">
-              <div className="mypage-userinfo-excel-title">
-                엑셀 파일 업로드
-              </div>
-              <ExcelUploadPage />
+          <div className="mypage-userinfo-excel">
+            <div className="mypage-userinfo-excel-title">
+              <span className="mypage-userinfo-excel-title-icon">
+                <SlCloudUpload />
+              </span>
+              엑셀 파일 업로드
             </div>
-            <div className="mypage-userinfo-secession">
-              <div>회원 탈퇴</div>
-              <button>탈퇴ㅠㅠ</button>
-            </div>
+            <ExcelUploadPage />
           </div>
+          {/* <div className="mypage-userinfo-secession">
+              <div>회원 탈퇴</div>
+              <button><SlUserUnfollow /></button>
+            </div> */}
         </div>
       )}
     </div>

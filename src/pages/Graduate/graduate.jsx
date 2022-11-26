@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import ExcelUploadPage from "../../UI/excelUploadPage";
 import MainNavigation from "../../UI/MainNavigation";
@@ -122,6 +123,15 @@ const Graduation = () => {
   ));
 
   const excelFileHandler = () => {};
+
+  useEffect(()=>{
+    getGraduateData();
+  },[]);
+  
+  const getGraduateData = async () => {
+    const response = await axios("https://sejong-enrollment.herokuapp.com/graduation?studentId=21011628");
+    console.log(response);
+  };
 
   const tempHandler = () => {
     setIsUploaded(true);
