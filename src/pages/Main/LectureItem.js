@@ -7,13 +7,20 @@ const LectureItem = (props) => {
   const lecturesInSchedule = useSelector(
     (state) => state.userSchedule.userSchedule
   );
-
+  const userInfo = useSelector((state) => state.userInfo.userInfo);
+  // console.log(userInfo);
   // console.log(lecturesInSchedule);
 
   const lectures = [];
   for (var i = 0; i < lecturesInSchedule.length; i++) {
     lectures.push(lecturesInSchedule[i].lectureId);
   }
+
+  const recommendLectures = [];
+  for (i = 0; i < userInfo.recommendLecture.length; i++) {
+    recommendLectures.push(userInfo.recommendLecture[i].name);
+  }
+  // console.log(recommendLectures);
 
   const selectedLecInfo = {
     classification: props.classification,
@@ -41,35 +48,57 @@ const LectureItem = (props) => {
 
   // console.log(userLectureIdList.includes(props.lectureId));
 
-  return (
-    <div className="lecture" onClick={clickLectureHandler}>
-      <div
-        className={`lecture-wrap${
-          lectures.includes(props.lectureId)
-            ? "-isInSchedule"
-            : props.dayAndTime === "" && props.classification !== "전필"
-            ? "-online"
-            : props.classification === "전필"
-            ? "-necessary"
-            : ""
-        }`}
-      >
-        <div className="lecture_title">{`${
-          props.notice === "외국인대상강좌"
-            ? "⚠️ "
-            : props.english === "영어"
-            ? "🔤 "
-            : ""
-        }${props.name}`}</div>
-        <div className="lecture_type">{props.classification}</div>
-        <div className="lecture_score">
-          {props.credit.substr(0, 1) + "학점"}
+  const isTaken = useSelector((state) => state.takenCheckBox.takenCheckBox);
+  // console.log(isTaken);
+
+  if (userInfo.takenLectures.includes(props.name.split(" ").join("")) && isTaken) {
+    return <></>;
+  } else {
+    return (
+      <div className="lecture" onClick={clickLectureHandler}>
+        <div
+          className={`lecture-wrap${
+            lectures.includes(props.lectureId)
+              ? "-isInSchedule"
+              : userInfo.takenLectures.includes(props.name.split(" ").join(""))
+              ? "-isTaken"
+              : props.dayAndTime === "" && props.classification !== "전필"
+              ? "-online"
+              : props.classification === "전필"
+              ? "-necessary"
+              : ""
+          }`}
+        >
+          <div
+            className={`lecture_title${
+              recommendLectures.includes(props.name.split(" ").join(""))
+                ? "-recommend"
+                : ""
+            }`}
+          >
+            {recommendLectures.includes(props.name.split(" ").join("")) ? (
+              <span className="recommend">추천❗️</span>
+            ) : (
+              ""
+            )}
+            {`${
+              props.notice === "외국인대상강좌"
+                ? "⚠️ "
+                : props.english === "영어"
+                ? "🔤 "
+                : ""
+            }${props.name}`}
+          </div>
+          <div className="lecture_type">{props.classification}</div>
+          <div className="lecture_score">
+            {props.credit.substr(0, 1) + "학점"}
+          </div>
+          <div className="lecture_time">{props.dayAndTime}</div>
+          <div className="lecture_prof">{props.profName}</div>
         </div>
-        <div className="lecture_time">{props.dayAndTime}</div>
-        <div className="lecture_prof">{props.profName}</div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default LectureItem;

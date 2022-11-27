@@ -22,9 +22,9 @@ const DdayBox = (props) => {
   }, [props.id]);
 
   var color = randomColor({
-    hue: "random",
+    format: 'rgba',
     luminosity: "bright",
-    opacity: 0.3,
+    alpha: 0.3,
   });
 
   const doCopy = (text) => {

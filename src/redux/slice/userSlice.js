@@ -9,7 +9,11 @@ const userInfoSlice = createSlice({
       userGrade: "",
       major: "",
       dobuleMajor: "",
-      recommendLecture: false,
+      recommendLecture: [],
+      takenLectures: [],
+      geArea: [],
+      geAreaTaken: [],
+      totalCredits: 0,
     },
   },
   reducers: {
@@ -20,7 +24,11 @@ const userInfoSlice = createSlice({
         userGrade: "",
         major: "",
         doubleMajor: "",
-        recommendLecture: false,
+        recommendLecture: [],
+        takenLectures: [],
+        geArea: [],
+        geAreaTaken: [],
+        totalCredits: 0,
       };
     },
     saveUserInfo(state, action) {
@@ -31,6 +39,10 @@ const userInfoSlice = createSlice({
         major: action.payload.major,
         dobuleMajor: action.payload.doubleMajor,
         recommendLecture: action.payload.recommendLecture,
+        takenLectures: action.payload.takenLectures,
+        geArea: action.payload.geArea,
+        geAreaTaken: action.payload.geAreaTaken,
+        totalCredits: action.payload.totalCredits,
       };
     },
   },

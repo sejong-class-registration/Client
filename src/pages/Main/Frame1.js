@@ -12,9 +12,10 @@ const Frame1 = () => {
   // const [userSchedule, setUserSchedule] = useState(null);
 
   const userInfo = useSelector((state) => state.userInfo.userInfo);
-  // console.log(userInfo);
+  console.log(userInfo);
   const [isOpen, setIsOpen] = useState(false);
   const [scheduleId, setScheduleId] = useState(0);
+  const [totalCredit, setTotalCredit] = useState(0);
 
   // const selectedScheduleId = useSelector(
   //   (state) => state.scheduleNum.scheduleNum
@@ -38,7 +39,9 @@ const Frame1 = () => {
     const response = await axios(
       `https://sejong-enrollment.herokuapp.com/schedules?userId=${userInfo.studentId}`
     );
-    console.log(response.data.data);
+    // console.log(response.data.data);
+    // console.log(response.data.data.schedules[id].totalCredit);
+    setTotalCredit(response.data.data.schedules[id].totalCredit);
     if (!response.data.data.schedules[id]) {
       dispatch(
         userScheduleActions.changeUserSchedule({
@@ -51,7 +54,7 @@ const Frame1 = () => {
           userSchedule: response.data.data.schedules[id].schedule,
         })
       );
-      console.log(response.data.data.schedules[id].schedule, id);
+      // console.log(response.data.data.schedules[id].schedule, id);
       setIsThereOnlineClass(false);
       for (
         var i = 0;
@@ -67,7 +70,7 @@ const Frame1 = () => {
     }
   };
   // console.log(userScheduleData);
-  console.log(isThereOnlineClass);
+  // console.log(isThereOnlineClass);
 
   const returnSticker = (day, startTime) => {
     for (var i = 0; i < userScheduleData.length; i++) {
@@ -337,8 +340,11 @@ const Frame1 = () => {
         </table>
         <div className="calendar-info">
           <div className="calendar-info-calculator">
-            <div>졸업까지 남은 학점: 20</div>
-            <div>이번학기 남은 학점: 6</div>
+            {/* <div>졸업까지 남은 학점: 20</div> */}
+            <div>
+              {scheduleId === 0 ? "A" : scheduleId === 1 ? "B" : "C"} 시간표
+              총 학점: {totalCredit}
+            </div>
           </div>
           <div className="calendar-info-buttons">
             <button

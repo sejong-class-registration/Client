@@ -13,9 +13,9 @@ import { persistReducer } from "redux-persist";
 import { excelFileReducer } from "./slice/excelfileSlice";
 import storage from "redux-persist/lib/storage";
 import { recommendedLecturesSliceReducer } from "./slice/recommendedLecturesSlice";
-
 import { scheduleNumReducer } from "./slice/scheduleNumSlice";
 import { graduateLectureSliceReducer } from "./slice/graduateLecture";
+import { takenCheckBoxReducer } from "./slice/takenCheckBoxSlice";
 
 const reducers = combineReducers({
   checkbox: checkboxReducer,
@@ -32,12 +32,13 @@ const reducers = combineReducers({
   scheduleNum: scheduleNumReducer,
   recommendedLecture: recommendedLecturesSliceReducer,
   graduateLecture: graduateLectureSliceReducer,
+  takenCheckBox: takenCheckBoxReducer,
 });
 
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ['userInfo', 'excelFile'],    //여기에만 persistredux 적용
+  whitelist: ["userInfo", "excelFile"], //여기에만 persistredux 적용
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);
