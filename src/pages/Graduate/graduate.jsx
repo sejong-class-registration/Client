@@ -118,9 +118,11 @@ const Graduation = () => {
   );
   const uncompletedGE1 = savedGraduateLecture.totalGE1.filter(
     (x) => !savedGraduateLecture.takenGE1.includes(x)
-  );const uncompletedGE2 = savedGraduateLecture.totalGE2.filter(
+  );
+  const uncompletedGE2 = savedGraduateLecture.totalGE2.filter(
     (x) => !savedGraduateLecture.takenGE2.includes(x)
-  );const uncompletedGE3 = savedGraduateLecture.totalGE3.filter(
+  );
+  const uncompletedGE3 = savedGraduateLecture.totalGE3.filter(
     (x) => !savedGraduateLecture.takenGE3.includes(x)
   );
 
@@ -183,7 +185,9 @@ const Graduation = () => {
 
   return (
     <div className="graduation">
-      <MainNavigation onPage={4} />
+      <div className="graduation-header">
+        <MainNavigation onPage={4} />
+      </div>
       {!isUploaded && (
         <div className="graduation-excel">
           <button onClick={tempHandler}>하잉</button>
@@ -262,14 +266,18 @@ const Graduation = () => {
               <span className="graduation-GE-2-title">선택필수</span>
               <span className="graduation-GE-2-score">10 / 10</span>
             </div>
-            <ul className="graduation-GE-2">{uncompletedGE2LecturesList}
-              {completedGE2LecturesList}</ul>
+            <ul className="graduation-GE-2">
+              {uncompletedGE2LecturesList}
+              {completedGE2LecturesList}
+            </ul>
             <div className="graduation-GE-3-txt">
               <span className="graduation-GE-3-title">학문기초</span>
               <span className="graduation-GE-3-score">12 / 25</span>
             </div>
-            <ul className="graduation-GE-3">{uncompletedGE3LecturesList}
-              {completedGE3LecturesList}</ul>
+            <ul className="graduation-GE-3">
+              {uncompletedGE3LecturesList}
+              {completedGE3LecturesList}
+            </ul>
           </div>
           <div className="graduation-excel-reupload">
             <span>엑셀파일 갱신</span>
