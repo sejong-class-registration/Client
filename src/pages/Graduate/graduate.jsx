@@ -9,110 +9,19 @@ import "./graduate.scss";
 import GraduateGEList from "./graduateGEList";
 import GraduateMajorList from "./graduateMajorList";
 
-const MAJOR_DUMMY_LIST = [
-  {
-    id: "l1",
-    title: "알고리즘 및 실습",
-    number_code: "000001",
-    grade: 3,
-    completed: false,
-  },
-  {
-    id: "l2",
-    title: "고급 C 프로그래밍",
-    number_code: "000002",
-    grade: 3,
-    completed: false,
-  },
-  {
-    id: "l3",
-    title: "프로그래밍 입문 - P",
-    number_code: "000003",
-    grade: 3,
-    completed: false,
-  },
-  {
-    id: "l4",
-    title: "컴퓨터 구조",
-    number_code: "000004",
-    grade: 3,
-    completed: false,
-  },
-  {
-    id: "l5",
-    title: "컴퓨터와 네트워크",
-    number_code: "000005",
-    grade: 3,
-    completed: false,
-  },
-  {
-    id: "l6",
-    title: "자료구조",
-    number_code: "000006",
-    grade: 3,
-    completed: false,
-  },
-  {
-    id: "l7",
-    title: "운영체제",
-    number_code: "000007",
-    grade: 3,
-    completed: false,
-  },
-  {
-    id: "l8",
-    title: "확률과 프로그래밍",
-    number_code: "000008",
-    grade: 3,
-    completed: true,
-  },
-  {
-    id: "l9",
-    title: "확률과 프로그래밍",
-    number_code: "000008",
-    grade: 3,
-    completed: true,
-  },
-  {
-    id: "l10",
-    title: "확률과 프로그래밍",
-    number_code: "000008",
-    grade: 3,
-    completed: true,
-  },
-  {
-    id: "l11",
-    title: "확률과 프로그래밍",
-    number_code: "000008",
-    grade: 3,
-    completed: true,
-  },
-  {
-    id: "l12",
-    title: "확률과 프로그래밍",
-    number_code: "000008",
-    grade: 3,
-    completed: true,
-  },
-  {
-    id: "l13",
-    title: "확률과 프로그래밍",
-    number_code: "000008",
-    grade: 3,
-    completed: true,
-  },
-];
-
 const Graduation = () => {
   const dispatch = useDispatch();
   const savedGraduateLecture = useSelector(
     (state) => state.graduateLecture.graduateLecture
   );
-  const [isUploaded, setIsUploaded] = useState(false);
-
-  const uncompletedMustMajorLecture = savedGraduateLecture.totalMustMajor.filter(
-    (x) => !savedGraduateLecture.takenMustMajor.includes(x)
+  const isUploaded = useSelector(
+    (state) => state.userInfo.userInfo.takenLectures.length > 0
   );
+
+  const uncompletedMustMajorLecture =
+    savedGraduateLecture.totalMustMajor.filter(
+      (x) => !savedGraduateLecture.takenMustMajor.includes(x)
+    );
   const uncompletedSelectLecture = savedGraduateLecture.totalSelectMajor.filter(
     (x) => !savedGraduateLecture.takenSelectMajor.includes(x)
   );
@@ -129,15 +38,17 @@ const Graduation = () => {
   const uncompletedMustMajorLecturesList = uncompletedMustMajorLecture.map(
     (lecture, i) => <GraduateMajorList key={i} title={lecture} completed={0} />
   );
-  const completedMustMajorLecturesList = savedGraduateLecture.takenMustMajor.map(
-    (lecture, i) => <GraduateMajorList key={i} title={lecture} completed={1} />
-  );
+  const completedMustMajorLecturesList =
+    savedGraduateLecture.takenMustMajor.map((lecture, i) => (
+      <GraduateMajorList key={i} title={lecture} completed={1} />
+    ));
   const uncompletedSelectMajorLecturesList = uncompletedSelectLecture.map(
     (lecture, i) => <GraduateMajorList key={i} title={lecture} completed={0} />
   );
-  const completedSelectMajorLecturesList = savedGraduateLecture.takenSelectMajor.map(
-    (lecture, i) => <GraduateMajorList key={i} title={lecture} completed={1} />
-  );
+  const completedSelectMajorLecturesList =
+    savedGraduateLecture.takenSelectMajor.map((lecture, i) => (
+      <GraduateMajorList key={i} title={lecture} completed={1} />
+    ));
 
   const uncompletedGE1LecturesList = uncompletedGE1.map((lecture, i) => (
     <GraduateGEList key={i} title={lecture} completed={0} />
@@ -158,15 +69,12 @@ const Graduation = () => {
     (lecture, i) => <GraduateGEList key={i} title={lecture} completed={1} />
   );
 
-  const excelFileHandler = () => {};
-
   useEffect(() => {
     getGraduateData();
-    console.log(savedGraduateLecture);
   }, []);
 
   const getGraduateData = async () => {
-    const response = await axios(
+    await axios(
       "https://sejong-enrollment.herokuapp.com/graduation?studentId=21011628"
     ).then((response) => {
       if (response.status === 200) {
@@ -180,7 +88,7 @@ const Graduation = () => {
   };
 
   const tempHandler = () => {
-    setIsUploaded(true);
+    // setIsUploaded(true);
   };
 
   return (
@@ -211,8 +119,7 @@ const Graduation = () => {
             <a
               href="https://sjpt.sejong.ac.kr/"
               target="_blank"
-              className="graduation-excel-upload-help-link"
-            >
+              className="graduation-excel-upload-help-link">
               세종대학교 학사정보시스템 바로가기
             </a>
           </div>
@@ -223,15 +130,15 @@ const Graduation = () => {
           <div className="graduation-total">
             <span className="graduation-total-title">총 이수 학점</span>
             <div className="graduation-total-score">
-              <span className="graduation-total-score1">30 </span>
-              <span className="graduation-total-score2">/ 180</span>
+              <span className="graduation-total-score1">60 </span>
+              <span className="graduation-total-score2">/ 140</span>
             </div>
           </div>
           <div className="graduation-major">
-            <span className="graduation-major-title">
-              전공
+            <span className="graduation-major-title">전공</span>
+            <span className="graduation-major-title-txt">
+              클릭시 복사됩니다
             </span>
-            <span className="graduation-major-title-txt">클릭시 복사됩니다</span>
             <div className="graduation-major-1-txt">
               <span className="graduation-major-1-title">전공필수</span>
               <span className="graduation-major-1-score">
@@ -257,7 +164,9 @@ const Graduation = () => {
           </div>
           <div className="graduation-GE">
             <span className="graduation-GE-title">교양</span>
-            <span className="graduation-major-title-txt">클릭시 복사됩니다</span>
+            <span className="graduation-major-title-txt">
+              클릭시 복사됩니다
+            </span>
             <div className="graduation-GE-1-txt">
               <span className="graduation-GE-1-title">공통필수</span>
               <span className="graduation-GE-1-score">10 / 30</span>

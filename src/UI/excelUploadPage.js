@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { excelFileactions } from "../redux/slice/excelfileSlice";
-import './excelUploadPage.scss'
+import "./excelUploadPage.scss";
 
 const ExcelUploadPage = () => {
   const dispatch = useDispatch();
@@ -20,10 +20,11 @@ const ExcelUploadPage = () => {
       formData,
       {
         headers: {
-          "Content-Type": "multipart/form-data",
-        },
+          "Content-Type": "multipart/form-data"
+        }
       }
     );
+    console.log(response);
   };
 
   return (
@@ -31,10 +32,10 @@ const ExcelUploadPage = () => {
       <label htmlFor="ex_file">업로드</label>
       <input
         type="file"
-        id='ex_file'
+        id="ex_file"
         onChange={handleSubmit}
         name="photo"
-  
+
         // className="modal-contents-third-profName-input"
         // onChange={profNameChangeHandler}
         // placeholder={profName}
