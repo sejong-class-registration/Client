@@ -3,6 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { isFetchingActions } from "../../redux/slice/isFetchingSlice";
+import Loading from "../../UI/Loading";
 
 import "./ClassModal.scss";
 
@@ -67,7 +68,8 @@ const ModalOverlay = (props) => {
       <div className="classModal-contents">
         {recommendLectures.includes(info.name.split(" ").join("")) ? (
           <div className="classModal-contents-name-recommend">
-            <div>{info.name + `\n⭐${recommendComment}⭐`}</div>
+            <div>{info.name}</div>
+            <div className="classModal-contents-name-recommend-tag">{`⭐ ${recommendComment}`}</div>
           </div>
         ) : (
           <div className="classModal-contents-name">

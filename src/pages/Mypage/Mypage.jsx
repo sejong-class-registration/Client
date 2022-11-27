@@ -5,7 +5,7 @@ import {
   SlLockOpen,
   SlUser,
   SlUserUnfollow,
-  SlCloudUpload,
+  SlCloudUpload
 } from "react-icons/sl";
 import "./Mypage.scss";
 import axios from "axios";
@@ -26,7 +26,7 @@ const Mypage = () => {
     studentId: userInfo.studentId,
     userGrade: userInfo.userGrade,
     major: userInfo.major,
-    doubleMajor: userInfo.doubleMajor,
+    doubleMajor: userInfo.doubleMajor
   });
 
   const inputChangeHandler = (event) => {
@@ -66,7 +66,7 @@ const Mypage = () => {
       studentId: userInfo.studentId,
       userGrade: userInfo.userGrade,
       major: userInfo.major,
-      dobuleMajor: userInfo.dobuleMajor,
+      dobuleMajor: userInfo.dobuleMajor
     });
   };
 
@@ -81,14 +81,15 @@ const Mypage = () => {
       {
         data: {
           Id: userInfo.studentId,
-          password: password,
-        },
+          password: password
+        }
       }
     );
     console.log(response);
     if (response.status === 201) {
       alert("탈퇴되었습니다ㅠㅠ");
       localStorage.removeItem("token");
+      dispatch(userInfoActions.clearUserInfo());
       navigate("/");
     } else {
       alert(response.data.message);
@@ -129,8 +130,7 @@ const Mypage = () => {
             <button className="mypage-login-form-button1">탈퇴..</button>
             <button
               className="mypage-login-form-button2"
-              onClick={secessionHandler}
-            >
+              onClick={secessionHandler}>
               취소!!
             </button>
           </div>
@@ -163,8 +163,7 @@ const Mypage = () => {
               <select
                 id="userGrade"
                 value={enteredInput.userGrade}
-                onChange={formChangeHandler}
-              >
+                onChange={formChangeHandler}>
                 <option value={1}>1학년</option>
                 <option value={2}>2학년</option>
                 <option value={3}>3학년</option>
@@ -176,8 +175,7 @@ const Mypage = () => {
               <select
                 id="major"
                 value={enteredInput.major}
-                onChange={formChangeHandler}
-              >
+                onChange={formChangeHandler}>
                 <option value="컴퓨터공학과">컴퓨터공학과</option>
                 <option value="소프트웨어학과">소프트웨어학과</option>
                 <option value="정보보호학과">정보보호학과</option>
@@ -199,8 +197,7 @@ const Mypage = () => {
                   <select
                     id="doubleMajor"
                     value={enteredInput.doubleMajor}
-                    onChange={formChangeHandler}
-                  >
+                    onChange={formChangeHandler}>
                     <option value="컴퓨터공학과">컴퓨터공학과</option>
                     <option value="소프트웨어학과">소프트웨어학과</option>
                     <option value="정보보호학과">정보보호학과</option>
@@ -216,8 +213,7 @@ const Mypage = () => {
                 <button
                   className="mypage-userinfo-buttons-reset"
                   type="button"
-                  onClick={onReset}
-                >
+                  onClick={onReset}>
                   취소
                 </button>
                 <button className="mypage-userinfo-buttons-submit">
@@ -239,8 +235,7 @@ const Mypage = () => {
             <div className="mypage-userinfo-secession-title">회원 탈퇴</div>
             <button
               className="mypage-userinfo-secession-button"
-              onClick={secessionHandler}
-            >
+              onClick={secessionHandler}>
               <SlUserUnfollow size={25} />
             </button>
           </div>
