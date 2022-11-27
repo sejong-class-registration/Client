@@ -7,12 +7,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { sortFilterActions } from "../../redux/slice/sortFilterSlice";
 import { userLecturesActions } from "../../redux/slice/userLecturesSlice";
 import { filteredLectureActions } from "../../redux/slice/filteredLectureSlice";
+import { takenCheckBoxActions } from "../../redux/slice/takenCheckBoxSlice";
 
 const Frame2 = (props) => {
   const [lectureList, setLectureList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  //filter state
   const savedFilterInfo = useSelector((state) => state.classFilter.classFilter);
+
+  //sort state
   const savedSortInfo = useSelector((state) => state.sortFilter.sortFilter);
+
   const lecturesInSchedule = useSelector(
     (state) => state.userSchedule.userSchedule
   );
@@ -77,6 +83,16 @@ const Frame2 = (props) => {
     getLectureList(savedFilterInfo, savedSortInfo);
   }, [savedFilterInfo, savedSortInfo]);
 
+  //checkbox state
+  // const [takenChecked, setTakenChecked] = useState(false);
+  const takenChecked = useSelector(
+    (state) => state.takenCheckBox.takenCheckBox
+  );
+  // console.log(takenChecked);
+  const takenChangeHandler = (props) => {
+    dispatch(takenCheckBoxActions.changeTakenCheckBox());
+  };
+
   return (
     <div className="frame_2">
       <div className="filter">
@@ -86,6 +102,17 @@ const Frame2 = (props) => {
       </div>
       <div className="content2">
         <div className="sort_selecter">
+          <div className="checkboxWrapper">
+            <input
+              type="checkbox"
+              className="checkboxWrapper-isTaken-input"
+              checked={takenChecked}
+              onChange={takenChangeHandler}
+            />
+            <label className="checkboxWrapper-isTaken-label">
+              이수한 강의 안볼래요
+            </label>
+          </div>
           <select className="sort_selecter-select" onChange={sortChangeHandler}>
             <option value="name">과목명</option>
             <option value="classification">이수구분</option>

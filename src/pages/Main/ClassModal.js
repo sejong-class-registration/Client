@@ -13,15 +13,31 @@ const Backdrop = (props) => {
 const ModalOverlay = (props) => {
   const info = useSelector((state) => state.selectedLec.selectedLec);
   const userInfo = useSelector((state) => state.userInfo.userInfo);
+  const isFetching = useSelector((state) => state.isFetching.isFetching);
   const selectedScheduleId = useSelector(
     (state) => state.scheduleNum.scheduleNum
   );
   console.log(userInfo.studentId);
   console.log(info.id);
+
+  const recommendLectures = [];
+  for (var i = 0; i < userInfo.recommendLecture.length; i++) {
+    recommendLectures.push(userInfo.recommendLecture[i].name);
+  }
+  // console.log(userInfo);
+
+  var recommendComment = null;
+  for (i = 0; i < userInfo.recommendLecture.length; i++) {
+    if (userInfo.recommendLecture[i].name === info.name.split(" ").join("")) {
+      recommendComment = userInfo.recommendLecture[i].comment;
+    }
+  }
+  console.log(recommendComment);
+
   const dispatch = useDispatch();
   const close = props.close;
 
-  const putLectureToSchedule = async () => {
+  const putLectureToSchedule = async (close) => {
     dispatch(isFetchingActions.changeIsFetching());
     try {
       const response = await axios.put(
@@ -36,11 +52,12 @@ const ModalOverlay = (props) => {
       alert(error.response.data.message);
     }
     dispatch(isFetchingActions.changeIsFetching());
+    close();
   };
 
   const addLectureHandler = (props) => {
-    putLectureToSchedule();
-    close();
+    putLectureToSchedule(close);
+
     console.log(info);
   };
   // console.log(info);
@@ -48,7 +65,16 @@ const ModalOverlay = (props) => {
   return (
     <div className="classModal">
       <div className="classModal-contents">
-        <div className="classModal-contents-name">{info.name}</div>
+        {recommendLectures.includes(info.name.split(" ").join("")) ? (
+          <div className="classModal-contents-name-recommend">
+            <div>{info.name + `\n⭐${recommendComment}⭐`}</div>
+          </div>
+        ) : (
+          <div className="classModal-contents-name">
+            <div>{info.name}</div>
+          </div>
+        )}
+
         <div className="classModal-contents-content">
           <label htmlFor="department">학과</label>
           <div>{info.department}</div>
@@ -109,6 +135,7 @@ const ModalOverlay = (props) => {
             </div>
           </div>
         )}
+
         {info.notice === "외국인대상강좌" ? (
           <div className="classModal-contents-content">
             <label htmlFor="notice">공지</label>
@@ -126,8 +153,25 @@ const ModalOverlay = (props) => {
             </mark>
           </div>
         )}
-        <div className="classModal-contents-buttons">
-          <button onClick={addLectureHandler}>추가</button>
+
+        {userInfo.takenLectures.includes(info.name.split(" ").join("")) ? (
+          <div className="classModal-contents-content">
+            <label htmlFor="isTaken">이수 여부</label>
+            <div className="classModal-contents-content-isTaken">
+              이미 이수한 강의입니다.
+            </div>
+          </div>
+        ) : (
+          <></>
+        )}
+        <div className={`classModal-contents-buttons`}>
+          <button onClick={addLectureHandler}>
+            {isFetching
+              ? "Loading ..."
+              : userInfo.takenLectures.includes(info.name.split(" ").join(""))
+              ? "재수강"
+              : "추가"}
+          </button>
           {/* <button>수업계획서</button>
           <button>강의평가</button> */}
         </div>
