@@ -228,7 +228,10 @@ const Graduation = () => {
             </div>
           </div>
           <div className="graduation-major">
-            <span className="graduation-major-title">전공</span>
+            <span className="graduation-major-title">
+              전공
+            </span>
+            <span className="graduation-major-title-txt">클릭시 복사됩니다</span>
             <div className="graduation-major-1-txt">
               <span className="graduation-major-1-title">전공필수</span>
               <span className="graduation-major-1-score">
@@ -254,6 +257,7 @@ const Graduation = () => {
           </div>
           <div className="graduation-GE">
             <span className="graduation-GE-title">교양</span>
+            <span className="graduation-major-title-txt">클릭시 복사됩니다</span>
             <div className="graduation-GE-1-txt">
               <span className="graduation-GE-1-title">공통필수</span>
               <span className="graduation-GE-1-score">10 / 30</span>

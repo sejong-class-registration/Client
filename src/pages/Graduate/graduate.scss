@@ -19,6 +19,7 @@
       font-weight: 800;
       top: -70px;
       border-bottom: 3px solid #c74444;
+      
     }
     &-score {
       position: relative;
@@ -55,6 +56,15 @@
       font-weight: 800;
       top: -60px;
       border-bottom: 3px solid #c74444;
+      &-txt {
+        position: absolute;
+        left: 80px;
+        top: -50px;
+        font-size: 0.8rem;
+        font-weight: 100;
+        line-height: 2.7rem;
+        border: none;
+      }
     }
     &-1 {
       flex-basis: 50%;
@@ -62,7 +72,7 @@
       margin: 40px 10px 10px 10px;
       padding: 0;
       border-radius: 15px;
-      &-txt{
+      &-txt {
         position: absolute;
         left: 25px;
       }
@@ -88,7 +98,7 @@
       margin: 40px 10px 10px 10px;
       padding: 0;
       border-radius: 15px;
-      &-txt{
+      &-txt {
         position: absolute;
         left: 50%;
       }
@@ -149,7 +159,7 @@
       margin: 40px 10px 10px 10px;
       padding: 0;
       border-radius: 15px;
-      &-txt{
+      &-txt {
         position: absolute;
         left: 25px;
       }
@@ -175,7 +185,7 @@
       margin: 40px 10px 10px 10px;
       padding: 0;
       border-radius: 15px;
-      &-txt{
+      &-txt {
         position: absolute;
         left: 35%;
       }
@@ -201,7 +211,7 @@
       margin: 40px 10px 10px 10px;
       padding: 0;
       border-radius: 15px;
-      &-txt{
+      &-txt {
         position: absolute;
         left: 68%;
       }
@@ -232,13 +242,13 @@
       display: none; /* Chrome, Safari, Opera*/
     }
   }
-  &-margin{
+  &-margin {
     position: relative;
     display: block;
     top: 100px;
     width: 100%;
     height: 150px;
-    p{
+    p {
       position: relative;
       width: fit-content;
       margin: auto;
@@ -247,7 +257,7 @@
       top: 70px;
     }
   }
-  &-excel-reupload{
+  &-excel-reupload {
     position: relative;
     top: 140px;
     display: flex;
@@ -259,15 +269,15 @@
     padding: 10px 10px;
     border-radius: 30px;
     box-shadow: 2px 4px 15px #a8a8a8;
-    span{
+    span {
       font-size: 1.3rem;
       font-weight: 100;
     }
   }
 }
 
-.graduation-excel{
-  &-title{
+.graduation-excel {
+  &-title {
     position: relative;
     width: fit-content;
     font-size: 2.25rem;
@@ -276,7 +286,7 @@
     margin: auto;
     border-bottom: 3px solid #c74444;
   }
-  &-upload{
+  &-upload {
     position: relative;
     width: 50%;
     min-width: 500px;
@@ -289,28 +299,27 @@
     top: 130px;
     height: 200px;
     box-shadow: 2px 4px 15px #a8a8a8;
-    &-txt1{
+    &-txt1 {
       position: relative;
       top: 50px;
       flex-basis: 20%;
       font-size: 1.75rem;
       font-weight: 100;
     }
-    input{
+    input {
       position: relative;
       top: 80px;
       cursor: pointer;
     }
-    &-txt2{
+    &-txt2 {
       position: relative;
-      
     }
-    &-file{
+    &-file {
       position: relative;
       top: 80px;
     }
   }
-  &-upload-help{
+  &-upload-help {
     position: relative;
     margin: auto;
     width: 50%;
@@ -321,16 +330,16 @@
     top: 200px;
     padding: 30px 10px;
     border-radius: 30px;
-    &-title{
+    &-title {
       font-size: 1.5rem;
       margin-bottom: 30px;
     }
-    &-txt1{
+    &-txt1 {
       margin-bottom: 30px;
     }
-    &-link{
+    &-link {
       text-decoration: none;
       color: #c74444;
     }
-  }    
+  }
 }
