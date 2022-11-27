@@ -9,7 +9,7 @@ const userInfoSlice = createSlice({
       userGrade: "",
       major: "",
       dobuleMajor: "",
-      recommendLecture: [],
+      recommendLecture: false,
     },
   },
   reducers: {
@@ -20,7 +20,7 @@ const userInfoSlice = createSlice({
         userGrade: "",
         major: "",
         doubleMajor: "",
-        recommendLecture: [],
+        recommendLecture: false,
       };
     },
     saveUserInfo(state, action) {

@@ -7,17 +7,12 @@
   &-list{
     &-title{
       display: inline-block;
-      text-overflow: hidden;
+      overflow: hidden;
+      text-overflow: ellipsis;
       white-space: nowrap;
-      width: 200px;
+      width: 300px;
       font-size: 1.15rem;
       font-weight: 0;
-    }
-    &-num{
-      font-size: 0.8rem;
-    }
-    &-grade{
-      font-size: 1rem;
     }
   }
 }

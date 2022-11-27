@@ -14,8 +14,6 @@ const GraduateGEList = (props) => {
     <div>
       <li className={graduateGEClassName}>
         <span className="graduateGE-list-title">{props.title}</span>
-        <span className="graduateGE-list-num">{props.number_code}</span>
-        <span className="graduateGE-list-grade">{props.grade}학점</span>
       </li>
     </div>
   );

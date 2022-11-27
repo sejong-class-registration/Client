@@ -14,8 +14,6 @@ const GraduateMajorList = (props) => {
     <div>
       <li className={graduateMajorClassName}>
         <span className="graduateMajor-list-title">{props.title}</span>
-        <span className="graduateMajor-list-num">{props.number_code}</span>
-        <span className="graduateMajor-list-grade">{props.grade}학점</span>
       </li>
     </div>
   );

@@ -15,6 +15,7 @@ import storage from "redux-persist/lib/storage";
 import { recommendedLecturesSliceReducer } from "./slice/recommendedLecturesSlice";
 
 import { scheduleNumReducer } from "./slice/scheduleNumSlice";
+import { graduateLectureSliceReducer } from "./slice/graduateLecture";
 
 const reducers = combineReducers({
   checkbox: checkboxReducer,
@@ -30,6 +31,7 @@ const reducers = combineReducers({
   isFetching: isFetchingReducer,
   scheduleNum: scheduleNumReducer,
   recommendedLecture: recommendedLecturesSliceReducer,
+  graduateLecture: graduateLectureSliceReducer,
 });
 
 const persistConfig = {

@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { graduateLectureSliceActions } from "../../redux/slice/graduateLecture";
 import ExcelUploadPage from "../../UI/excelUploadPage";
 import MainNavigation from "../../UI/MainNavigation";
 import "./graduate.scss";
@@ -102,35 +104,77 @@ const MAJOR_DUMMY_LIST = [
 ];
 
 const Graduation = () => {
+  const dispatch = useDispatch();
+  const savedGraduateLecture = useSelector(
+    (state) => state.graduateLecture.graduateLecture
+  );
   const [isUploaded, setIsUploaded] = useState(false);
-  const majorLecturesList = MAJOR_DUMMY_LIST.map((lecture) => (
-    <GraduateMajorList
-      key={lecture.id}
-      title={lecture.title}
-      number_code={lecture.number_code}
-      grade={lecture.grade}
-      completed={lecture.completed}
-    />
+
+  const uncompletedMustMajorLecture = savedGraduateLecture.totalMustMajor.filter(
+    (x) => !savedGraduateLecture.takenMustMajor.includes(x)
+  );
+  const uncompletedSelectLecture = savedGraduateLecture.totalSelectMajor.filter(
+    (x) => !savedGraduateLecture.takenSelectMajor.includes(x)
+  );
+  const uncompletedGE1 = savedGraduateLecture.totalGE1.filter(
+    (x) => !savedGraduateLecture.takenGE1.includes(x)
+  );const uncompletedGE2 = savedGraduateLecture.totalGE2.filter(
+    (x) => !savedGraduateLecture.takenGE2.includes(x)
+  );const uncompletedGE3 = savedGraduateLecture.totalGE3.filter(
+    (x) => !savedGraduateLecture.takenGE3.includes(x)
+  );
+
+  const uncompletedMustMajorLecturesList = uncompletedMustMajorLecture.map(
+    (lecture, i) => <GraduateMajorList key={i} title={lecture} completed={0} />
+  );
+  const completedMustMajorLecturesList = savedGraduateLecture.takenMustMajor.map(
+    (lecture, i) => <GraduateMajorList key={i} title={lecture} completed={1} />
+  );
+  const uncompletedSelectMajorLecturesList = uncompletedSelectLecture.map(
+    (lecture, i) => <GraduateMajorList key={i} title={lecture} completed={0} />
+  );
+  const completedSelectMajorLecturesList = savedGraduateLecture.takenSelectMajor.map(
+    (lecture, i) => <GraduateMajorList key={i} title={lecture} completed={1} />
+  );
+
+  const uncompletedGE1LecturesList = uncompletedGE1.map((lecture, i) => (
+    <GraduateGEList key={i} title={lecture} completed={0} />
   ));
-  const GELecturesList = MAJOR_DUMMY_LIST.map((lecture) => (
-    <GraduateGEList
-      key={lecture.id}
-      title={lecture.title}
-      number_code={lecture.number_code}
-      grade={lecture.grade}
-      completed={lecture.completed}
-    />
+  const completedGE1LecturesList = savedGraduateLecture.takenGE1.map(
+    (lecture, i) => <GraduateGEList key={i} title={lecture} completed={1} />
+  );
+  const uncompletedGE2LecturesList = uncompletedGE2.map((lecture, i) => (
+    <GraduateGEList key={i} title={lecture} completed={0} />
   ));
+  const completedGE2LecturesList = savedGraduateLecture.takenGE2.map(
+    (lecture, i) => <GraduateGEList key={i} title={lecture} completed={1} />
+  );
+  const uncompletedGE3LecturesList = uncompletedGE3.map((lecture, i) => (
+    <GraduateGEList key={i} title={lecture} completed={0} />
+  ));
+  const completedGE3LecturesList = savedGraduateLecture.takenGE3.map(
+    (lecture, i) => <GraduateGEList key={i} title={lecture} completed={1} />
+  );
 
   const excelFileHandler = () => {};
 
-  useEffect(()=>{
+  useEffect(() => {
     getGraduateData();
-  },[]);
-  
+    console.log(savedGraduateLecture);
+  }, []);
+
   const getGraduateData = async () => {
-    const response = await axios("https://sejong-enrollment.herokuapp.com/graduation?studentId=21011628");
-    console.log(response);
+    const response = await axios(
+      "https://sejong-enrollment.herokuapp.com/graduation?studentId=21011628"
+    ).then((response) => {
+      if (response.status === 200) {
+        dispatch(
+          graduateLectureSliceActions.saveGraduateLectures(response.data.data)
+        );
+      } else {
+        // alert()
+      }
+    });
   };
 
   const tempHandler = () => {
@@ -183,14 +227,26 @@ const Graduation = () => {
             <span className="graduation-major-title">전공</span>
             <div className="graduation-major-1-txt">
               <span className="graduation-major-1-title">전공필수</span>
-              <span className="graduation-major-1-score">25 / 50</span>
+              <span className="graduation-major-1-score">
+                {savedGraduateLecture.takenMustMajorCredit} /{" "}
+                {savedGraduateLecture.totalMustMajorCredit}
+              </span>
             </div>
-            <ul className="graduation-major-1">{majorLecturesList}</ul>
+            <ul className="graduation-major-1">
+              {uncompletedMustMajorLecturesList}
+              {completedMustMajorLecturesList}
+            </ul>
             <div className="graduation-major-2-txt">
               <span className="graduation-major-2-title">전공선택</span>
-              <span className="graduation-major-2-score">15 / 80</span>
+              <span className="graduation-major-2-score">
+                {savedGraduateLecture.takenSelectMajorCredit} /{" "}
+                {savedGraduateLecture.totalSelectMajorCredit}
+              </span>
             </div>
-            <ul className="graduation-major-2">{majorLecturesList}</ul>
+            <ul className="graduation-major-2">
+              {uncompletedSelectMajorLecturesList}
+              {completedSelectMajorLecturesList}
+            </ul>
           </div>
           <div className="graduation-GE">
             <span className="graduation-GE-title">교양</span>
@@ -198,17 +254,22 @@ const Graduation = () => {
               <span className="graduation-GE-1-title">공통필수</span>
               <span className="graduation-GE-1-score">10 / 30</span>
             </div>
-            <ul className="graduation-GE-1">{GELecturesList}</ul>
+            <ul className="graduation-GE-1">
+              {uncompletedGE1LecturesList}
+              {completedGE1LecturesList}
+            </ul>
             <div className="graduation-GE-2-txt">
               <span className="graduation-GE-2-title">선택필수</span>
               <span className="graduation-GE-2-score">10 / 10</span>
             </div>
-            <ul className="graduation-GE-2">{GELecturesList}</ul>
+            <ul className="graduation-GE-2">{uncompletedGE2LecturesList}
+              {completedGE2LecturesList}</ul>
             <div className="graduation-GE-3-txt">
               <span className="graduation-GE-3-title">학문기초</span>
               <span className="graduation-GE-3-score">12 / 25</span>
             </div>
-            <ul className="graduation-GE-3">{GELecturesList}</ul>
+            <ul className="graduation-GE-3">{uncompletedGE3LecturesList}
+              {completedGE3LecturesList}</ul>
           </div>
           <div className="graduation-excel-reupload">
             <span>엑셀파일 갱신</span>
