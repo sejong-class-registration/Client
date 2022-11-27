@@ -1,22 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
+import Toast from "../../UI/Toast";
 import "./graduateMajorList.scss";
 
 const GraduateMajorList = (props) => {
+  const [iscopied, setIsCopied] = useState(false);
   let graduateMajorClassName;
 
-  if(props.completed){
-    graduateMajorClassName = 'graduateMajor-completed';
-  }else{
-    graduateMajorClassName = 'graduateMajor';
+  if (props.completed) {
+    graduateMajorClassName = "graduateMajor-completed";
+  } else {
+    graduateMajorClassName = "graduateMajor";
+  }
+
+  const activeToast = () => {
+    setIsCopied(true);
+    let timer = setTimeout(() => {
+      setIsCopied(false);
+    }, 1000);
+    return () => {
+      clearTimeout(timer);
+    }
   }
 
   return (
     <div>
       <li className={graduateMajorClassName}>
-        <span className="graduateMajor-list-title">{props.title}</span>
-        <span className="graduateMajor-list-num">{props.number_code}</span>
-        <span className="graduateMajor-list-grade">{props.grade}학점</span>
+        <button
+          className="graduateMajor-list-title"
+          onClick={() => {
+            navigator.clipboard.writeText(props.title);
+            activeToast();
+          }}
+        >
+          {props.title}
+        </button>
       </li>
+      {iscopied && <Toast text = '복사되었습니다'/>}
     </div>
   );
 };

@@ -1,7 +1,10 @@
 import React from "react";
+import { useState } from "react";
+import Toast from "../../UI/Toast";
 import "./graduateGEList.scss";
 
 const GraduateGEList = (props) => {
+  const [iscopied, setIsCopied] = useState(false);
   let graduateGEClassName;
 
   if(props.completed){
@@ -10,13 +13,25 @@ const GraduateGEList = (props) => {
     graduateGEClassName = 'graduateGE';
   }
 
+  const activeToast = () => {
+    setIsCopied(true);
+    let timer = setTimeout(() => {
+      setIsCopied(false);
+    }, 1000);
+    return () => {
+      clearTimeout(timer);
+    }
+  }
+
   return (
     <div>
       <li className={graduateGEClassName}>
-        <span className="graduateGE-list-title">{props.title}</span>
-        <span className="graduateGE-list-num">{props.number_code}</span>
-        <span className="graduateGE-list-grade">{props.grade}학점</span>
+        <button className="graduateGE-list-title" onClick={() => {
+            navigator.clipboard.writeText(props.title);
+            activeToast();
+          }}>{props.title}</button>
       </li>
+      {iscopied && <Toast text = '복사되었습니다'/>}
     </div>
   );
 };

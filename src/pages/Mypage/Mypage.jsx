@@ -1,18 +1,26 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import MainNavigation from "../../UI/MainNavigation";
-import { SlLockOpen, SlUser } from "react-icons/sl";
+import {
+  SlLockOpen,
+  SlUser,
+  SlUserUnfollow,
+  SlCloudUpload,
+} from "react-icons/sl";
 import "./Mypage.scss";
 import axios from "axios";
 import ExcelUploadPage from "../../UI/excelUploadPage";
 import { userInfoActions } from "../../redux/slice/userSlice";
+import { useNavigate } from "react-router-dom";
 
 const Mypage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const userInfo = useSelector((state) => state.userInfo.userInfo);
-  const [isCertification, setIsCertification] = useState(false);
+  const [isSecession, setSecession] = useState(false);
   const [password, setPassword] = useState("");
   const [checkboxOn, setCheckboxOn] = useState(userInfo.dobuleMajor);
+  const [isLoading, setIsLoading] = useState(false);
   const [enteredInput, setEnteredInput] = useState({
     name: userInfo.name,
     studentId: userInfo.studentId,
@@ -21,28 +29,8 @@ const Mypage = () => {
     doubleMajor: userInfo.doubleMajor,
   });
 
-  const submitHandler = (event) => {
-    event.preventDefault();
-    loginFetchHandler();
-  };
-
   const inputChangeHandler = (event) => {
     setPassword(event.target.value);
-  };
-
-  const loginFetchHandler = async () => {
-    const response = await axios.post(
-      "https://sejong-enrollment.herokuapp.com/users/signin",
-      {
-        studentId: userInfo.studentId,
-        password: password,
-      }
-    );
-    if (response.status === 201) {
-      setIsCertification(true);
-    } else {
-      alert(response.data.message);
-    }
   };
 
   const formChangeHandler = (event) => {
@@ -82,14 +70,43 @@ const Mypage = () => {
     });
   };
 
+  const submitHandler = (event) => {
+    event.preventDefault();
+    secessionFetchHandler();
+  };
+
+  const secessionFetchHandler = async () => {
+    const response = await axios.delete(
+      `https://sejong-enrollment.herokuapp.com/users/${userInfo.studentId}`,
+      {
+        data: {
+          Id: userInfo.studentId,
+          password: password,
+        },
+      }
+    );
+    console.log(response);
+    if (response.status === 201) {
+      alert("탈퇴되었습니다ㅠㅠ");
+      localStorage.removeItem("token");
+      navigate("/");
+    } else {
+      alert(response.data.message);
+    }
+  };
+
+  const secessionHandler = () => {
+    setSecession((prev) => !prev);
+  };
+
   return (
     <div className="mypage">
       <MainNavigation />
       <div className="mypage-title">My Page</div>
-      {!isCertification && (
+      {isSecession && (
         <form className="mypage-login-form" onSubmit={submitHandler}>
           <div className="mypage-login-form-txt">
-            개인정보 보호를 위해 비밀번호를 입력해주세요
+            회원탈퇴를 위해 비밀번호를 입력해주세요
           </div>
           <div className="mypage-login-form-id">
             <label htmlFor="id">
@@ -108,21 +125,20 @@ const Mypage = () => {
               onChange={inputChangeHandler}
             />
           </div>
-          <button>인증</button>
+          <div>
+            <button className="mypage-login-form-button1">탈퇴..</button>
+            <button
+              className="mypage-login-form-button2"
+              onClick={secessionHandler}
+            >
+              취소!!
+            </button>
+          </div>
         </form>
       )}
-      {isCertification && (
+      {!isSecession && (
         <div>
           <form className="mypage-userinfo" onSubmit={userinfoChangeHandler}>
-            <div>
-              <label htmlFor="name">이름</label>
-              <input
-                id="name"
-                type="text"
-                value={enteredInput.name}
-                onChange={formChangeHandler}
-              />
-            </div>
             <div>
               <label htmlFor="studentId">학번</label>
               <input
@@ -132,6 +148,15 @@ const Mypage = () => {
                 readOnly
               />
               <span className="mypage-userinfo-txt">수정불가</span>
+            </div>
+            <div>
+              <label htmlFor="name">이름</label>
+              <input
+                id="name"
+                type="text"
+                value={enteredInput.name}
+                onChange={formChangeHandler}
+              />
             </div>
             <div>
               <label htmlFor="userGrade">학년</label>
@@ -170,7 +195,7 @@ const Mypage = () => {
                 onChange={checkboxHandler}
               />
               {checkboxOn && (
-                <div>
+                <div className="mypage-userinfo-doublemajor">
                   <select
                     id="doubleMajor"
                     value={enteredInput.doubleMajor}
@@ -201,9 +226,23 @@ const Mypage = () => {
               </div>
             </div>
           </form>
-          <div>
-            <div>엑셀 파일 업로드</div>
+          <div className="mypage-userinfo-excel">
+            <div className="mypage-userinfo-excel-title">
+              <span className="mypage-userinfo-excel-title-icon">
+                <SlCloudUpload />
+              </span>
+              엑셀 파일 업로드
+            </div>
             <ExcelUploadPage />
+          </div>
+          <div className="mypage-userinfo-secession">
+            <div className="mypage-userinfo-secession-title">회원 탈퇴</div>
+            <button
+              className="mypage-userinfo-secession-button"
+              onClick={secessionHandler}
+            >
+              <SlUserUnfollow size={25} />
+            </button>
           </div>
         </div>
       )}

@@ -17,7 +17,6 @@ const ExcelUploadPage = () => {
     formData.append("xlsx", tempFile);
     const response = await axios.post(
       `https://sejong-enrollment.herokuapp.com/users/${userInfo.studentId}/excel`,
-
       formData,
       {
         headers: {

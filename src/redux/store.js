@@ -13,8 +13,8 @@ import { persistReducer } from "redux-persist";
 import { excelFileReducer } from "./slice/excelfileSlice";
 import storage from "redux-persist/lib/storage";
 import { recommendedLecturesSliceReducer } from "./slice/recommendedLecturesSlice";
-
 import { scheduleNumReducer } from "./slice/scheduleNumSlice";
+import { graduateLectureSliceReducer } from "./slice/graduateLecture";
 import { takenCheckBoxReducer } from "./slice/takenCheckBoxSlice";
 
 const reducers = combineReducers({
@@ -31,6 +31,7 @@ const reducers = combineReducers({
   isFetching: isFetchingReducer,
   scheduleNum: scheduleNumReducer,
   recommendedLecture: recommendedLecturesSliceReducer,
+  graduateLecture: graduateLectureSliceReducer,
   takenCheckBox: takenCheckBoxReducer,
 });
 

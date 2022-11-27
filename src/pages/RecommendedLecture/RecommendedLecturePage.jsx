@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import LectureList from "./LectureList";
 import FilterModal from "./FilterModal";
 import { GrFilter } from "react-icons/gr";
+import { SlArrowUp } from "react-icons/sl";
 import "./RecommendedLecturePage.scss";
 import MainNavigation from "../../UI/MainNavigation";
 import axios from "axios";
@@ -9,99 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { recommendedLecturesSliceActions } from "../../redux/slice/recommendedLecturesSlice";
 import Loading from "../../UI/Loading";
 
-const MAJOR_DUMMY_LIST = [
-  {
-    id: "l1",
-    title: "알고리즘 및 실습",
-    number_code: "000001",
-    grade: 3,
-    completed: false,
-  },
-  {
-    id: "l2",
-    title: "고급 C 프로그래밍",
-    number_code: "000002",
-    grade: 3,
-    completed: false,
-  },
-  {
-    id: "l3",
-    title: "프로그래밍 입문 - P",
-    number_code: "000003",
-    grade: 3,
-    completed: false,
-  },
-  {
-    id: "l4",
-    title: "컴퓨터 구조",
-    number_code: "000004",
-    grade: 3,
-    completed: false,
-  },
-  {
-    id: "l5",
-    title: "컴퓨터와 네트워크",
-    number_code: "000005",
-    grade: 3,
-    completed: false,
-  },
-  {
-    id: "l6",
-    title: "자료구조",
-    number_code: "000006",
-    grade: 3,
-    completed: false,
-  },
-  {
-    id: "l7",
-    title: "운영체제",
-    number_code: "000007",
-    grade: 3,
-    completed: false,
-  },
-  {
-    id: "l8",
-    title: "확률과 프로그래밍",
-    number_code: "000008",
-    grade: 3,
-    completed: true,
-  },
-  {
-    id: "l9",
-    title: "확률과 프로그래밍",
-    number_code: "000008",
-    grade: 3,
-    completed: true,
-  },
-  {
-    id: "l10",
-    title: "확률과 프로그래밍",
-    number_code: "000008",
-    grade: 3,
-    completed: true,
-  },
-  {
-    id: "l11",
-    title: "확률과 프로그래밍",
-    number_code: "000008",
-    grade: 3,
-    completed: true,
-  },
-  {
-    id: "l12",
-    title: "확률과 프로그래밍",
-    number_code: "000008",
-    grade: 3,
-    completed: true,
-  },
-  {
-    id: "l13",
-    title: "확률과 프로그래밍",
-    number_code: "000008",
-    grade: 3,
-    completed: true,
-  },
-];
 const RecommendedLecturePage = () => {
   const dispatch = useDispatch();
   const recommendedLectures = useSelector(
@@ -117,7 +25,6 @@ const RecommendedLecturePage = () => {
   const filtercloseHandler = () => {
     setfilteropen(false);
   };
-
 
   const lectureFetchHandler = async (convertedList) => {
     setIsLoading(true);
@@ -152,10 +59,14 @@ const RecommendedLecturePage = () => {
     });
   }, []);
 
+  const scrollUpHandler = () => {
+    window.scrollTo(0,0);
+  }
+
   const lecturesList = recommendedLectures.map((lecture, i) => (
     <LectureList
       key={lecture._id}
-      rank={i+1}
+      rank={i + 1}
       title={lecture.name}
       number_code={lecture.lectureId}
       field={lecture.area}
@@ -166,7 +77,9 @@ const RecommendedLecturePage = () => {
 
   return (
     <div className="recommended-lecture">
-      <MainNavigation onPage={3} />
+      <div className="recommended-lecture-header">
+        <MainNavigation onPage={3} />
+      </div>
       <button
         className="recommended-lecture-filterbutton"
         onClick={filterButtonHandler}
@@ -176,6 +89,9 @@ const RecommendedLecturePage = () => {
         </span>
         <span className="recommended-lecture-filterbutton-word">필터</span>
       </button>
+      <div className="recommended-lecture-list-notice">
+        클릭시 복사가 가능합니다
+      </div>
 
       {isLoading && (
         <div className="recommended-lecture-loading">
@@ -202,9 +118,11 @@ const RecommendedLecturePage = () => {
             onClose={filtercloseHandler}
             onSearch={lectureFetchHandler}
           />
-
         </div>
       )}
+      <div className="recommended-lecture-upbutton">
+        <button onClick={scrollUpHandler}><SlArrowUp size = {25}/></button>
+      </div>
     </div>
   );
 };
