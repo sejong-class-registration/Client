@@ -110,9 +110,10 @@ const Graduation = () => {
   );
   const [isUploaded, setIsUploaded] = useState(false);
 
-  const uncompletedMustMajorLecture = savedGraduateLecture.totalMustMajor.filter(
-    (x) => !savedGraduateLecture.takenMustMajor.includes(x)
-  );
+  const uncompletedMustMajorLecture =
+    savedGraduateLecture.totalMustMajor.filter(
+      (x) => !savedGraduateLecture.takenMustMajor.includes(x)
+    );
   const uncompletedSelectLecture = savedGraduateLecture.totalSelectMajor.filter(
     (x) => !savedGraduateLecture.takenSelectMajor.includes(x)
   );
@@ -129,15 +130,17 @@ const Graduation = () => {
   const uncompletedMustMajorLecturesList = uncompletedMustMajorLecture.map(
     (lecture, i) => <GraduateMajorList key={i} title={lecture} completed={0} />
   );
-  const completedMustMajorLecturesList = savedGraduateLecture.takenMustMajor.map(
-    (lecture, i) => <GraduateMajorList key={i} title={lecture} completed={1} />
-  );
+  const completedMustMajorLecturesList =
+    savedGraduateLecture.takenMustMajor.map((lecture, i) => (
+      <GraduateMajorList key={i} title={lecture} completed={1} />
+    ));
   const uncompletedSelectMajorLecturesList = uncompletedSelectLecture.map(
     (lecture, i) => <GraduateMajorList key={i} title={lecture} completed={0} />
   );
-  const completedSelectMajorLecturesList = savedGraduateLecture.takenSelectMajor.map(
-    (lecture, i) => <GraduateMajorList key={i} title={lecture} completed={1} />
-  );
+  const completedSelectMajorLecturesList =
+    savedGraduateLecture.takenSelectMajor.map((lecture, i) => (
+      <GraduateMajorList key={i} title={lecture} completed={1} />
+    ));
 
   const uncompletedGE1LecturesList = uncompletedGE1.map((lecture, i) => (
     <GraduateGEList key={i} title={lecture} completed={0} />
@@ -165,9 +168,12 @@ const Graduation = () => {
     console.log(savedGraduateLecture);
   }, []);
 
+  const userInfo = useSelector((state) => state.userInfo.userInfo);
+  console.log(userInfo.studentId);
+
   const getGraduateData = async () => {
     const response = await axios(
-      "https://sejong-enrollment.herokuapp.com/graduation?studentId=21011628"
+      `https://sejong-enrollment.herokuapp.com/graduation?studentId=${userInfo.studentId}`
     ).then((response) => {
       if (response.status === 200) {
         dispatch(
@@ -228,10 +234,10 @@ const Graduation = () => {
             </div>
           </div>
           <div className="graduation-major">
-            <span className="graduation-major-title">
-              전공
+            <span className="graduation-major-title">전공</span>
+            <span className="graduation-major-title-txt">
+              클릭시 복사됩니다
             </span>
-            <span className="graduation-major-title-txt">클릭시 복사됩니다</span>
             <div className="graduation-major-1-txt">
               <span className="graduation-major-1-title">전공필수</span>
               <span className="graduation-major-1-score">
@@ -257,7 +263,9 @@ const Graduation = () => {
           </div>
           <div className="graduation-GE">
             <span className="graduation-GE-title">교양</span>
-            <span className="graduation-major-title-txt">클릭시 복사됩니다</span>
+            <span className="graduation-major-title-txt">
+              클릭시 복사됩니다
+            </span>
             <div className="graduation-GE-1-txt">
               <span className="graduation-GE-1-title">공통필수</span>
               <span className="graduation-GE-1-score">10 / 30</span>

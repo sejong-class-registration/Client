@@ -342,9 +342,10 @@ const Frame1 = () => {
           <div className="calendar-info-calculator">
             {/* <div>졸업까지 남은 학점: 20</div> */}
             <div>
-              {scheduleId === 0 ? "A" : scheduleId === 1 ? "B" : "C"} 시간표
-              총 학점: {totalCredit}
+              {scheduleId === 0 ? "A" : scheduleId === 1 ? "B" : "C"} 시간표 총
+              학점: {totalCredit}
             </div>
+            <div>현재 졸업인정학점 : {userInfo.totalCredits}</div>
           </div>
           <div className="calendar-info-buttons">
             <button
