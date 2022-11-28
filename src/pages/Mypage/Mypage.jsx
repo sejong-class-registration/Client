@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import MainNavigation from "../../UI/MainNavigation";
 import {
   SlLockOpen,
   SlUser,
   SlUserUnfollow,
-  SlCloudUpload
+  SlCloudUpload,
 } from "react-icons/sl";
 import "./Mypage.scss";
 import axios from "axios";
@@ -19,14 +19,19 @@ const Mypage = () => {
   const userInfo = useSelector((state) => state.userInfo.userInfo);
   const [isSecession, setSecession] = useState(false);
   const [password, setPassword] = useState("");
-  const [checkboxOn, setCheckboxOn] = useState(userInfo.dobuleMajor);
+  const [checkboxOn, setCheckboxOn] = useState(userInfo.doubleMajor);
   const [isLoading, setIsLoading] = useState(false);
   const [enteredInput, setEnteredInput] = useState({
     name: userInfo.name,
     studentId: userInfo.studentId,
     userGrade: userInfo.userGrade,
     major: userInfo.major,
-    doubleMajor: userInfo.doubleMajor
+    doubleMajor: userInfo.doubleMajor,
+    recommendLecture: userInfo.recommendLecture,
+    takenLectures: userInfo.takenLectures,
+    geArea: userInfo.geArea,
+    geAreaTaken: userInfo.geAreaTaken,
+    totalCredits: userInfo.totalCredits,
   });
 
   const inputChangeHandler = (event) => {
@@ -38,6 +43,26 @@ const Mypage = () => {
       return { ...prev, [event.target.id]: event.target.value };
     });
   };
+
+  useEffect(() => {
+    setEnteredInput({
+      name: enteredInput.name,
+      studentId: userInfo.studentId,
+      userGrade: enteredInput.userGrade,
+      major: enteredInput.major,
+      doubleMajor: enteredInput.doubleMajor,
+      recommendLecture: userInfo.recommendLecture,
+      takenLectures: userInfo.takenLectures,
+      geArea: userInfo.geArea,
+      geAreaTaken: userInfo.geAreaTaken,
+      totalCredits: userInfo.totalCredits,
+    });
+  }, [
+    enteredInput.name,
+    enteredInput.userGrade,
+    enteredInput.major,
+    enteredInput.doubleMajor,
+  ]);
 
   const checkboxHandler = () => {
     setCheckboxOn((prev) => !prev);
@@ -55,9 +80,28 @@ const Mypage = () => {
 
   const userinfoChangeHandler = (event) => {
     event.preventDefault();
-    dispatch(userInfoActions.saveUserInfo(enteredInput));
-    console.log(userInfo);
-    //다시 수정하는거 보내주어야댐
+    userInfoFetchHandler();
+    // console.log(userInfo);
+  };
+
+  const userInfoFetchHandler = async () => {
+    const response = await axios.patch(
+      `https://sejong-enrollment.herokuapp.com/users/${userInfo.studentId}`,
+      {
+        data: {
+          name: enteredInput.name,
+          userGrade: +enteredInput.userGrade,
+          major: enteredInput.major,
+          doubleMajor: enteredInput.doubleMajor,
+        },
+      }
+    );
+    console.log(response);
+    if (response.status === 201) {
+      alert("정보 수정되었습니다");
+      dispatch(userInfoActions.saveUserInfo(enteredInput));
+      navigate("/mypage");
+    }
   };
 
   const onReset = () => {
@@ -66,7 +110,7 @@ const Mypage = () => {
       studentId: userInfo.studentId,
       userGrade: userInfo.userGrade,
       major: userInfo.major,
-      dobuleMajor: userInfo.dobuleMajor
+      doubleMajor: userInfo.doubleMajor,
     });
   };
 
@@ -81,8 +125,8 @@ const Mypage = () => {
       {
         data: {
           Id: userInfo.studentId,
-          password: password
-        }
+          password: password,
+        },
       }
     );
     console.log(response);
@@ -130,7 +174,8 @@ const Mypage = () => {
             <button className="mypage-login-form-button1">탈퇴..</button>
             <button
               className="mypage-login-form-button2"
-              onClick={secessionHandler}>
+              onClick={secessionHandler}
+            >
               취소!!
             </button>
           </div>
@@ -163,7 +208,8 @@ const Mypage = () => {
               <select
                 id="userGrade"
                 value={enteredInput.userGrade}
-                onChange={formChangeHandler}>
+                onChange={formChangeHandler}
+              >
                 <option value={1}>1학년</option>
                 <option value={2}>2학년</option>
                 <option value={3}>3학년</option>
@@ -175,7 +221,8 @@ const Mypage = () => {
               <select
                 id="major"
                 value={enteredInput.major}
-                onChange={formChangeHandler}>
+                onChange={formChangeHandler}
+              >
                 <option value="컴퓨터공학과">컴퓨터공학과</option>
                 <option value="소프트웨어학과">소프트웨어학과</option>
                 <option value="정보보호학과">정보보호학과</option>
@@ -189,7 +236,7 @@ const Mypage = () => {
               <input
                 className="mypage-userinfo-checkbox"
                 type="checkbox"
-                value={enteredInput.dobuleMajor}
+                value={enteredInput.doubleMajor}
                 onChange={checkboxHandler}
               />
               {checkboxOn && (
@@ -197,7 +244,8 @@ const Mypage = () => {
                   <select
                     id="doubleMajor"
                     value={enteredInput.doubleMajor}
-                    onChange={formChangeHandler}>
+                    onChange={formChangeHandler}
+                  >
                     <option value="컴퓨터공학과">컴퓨터공학과</option>
                     <option value="소프트웨어학과">소프트웨어학과</option>
                     <option value="정보보호학과">정보보호학과</option>
@@ -213,10 +261,14 @@ const Mypage = () => {
                 <button
                   className="mypage-userinfo-buttons-reset"
                   type="button"
-                  onClick={onReset}>
+                  onClick={onReset}
+                >
                   취소
                 </button>
-                <button className="mypage-userinfo-buttons-submit">
+                <button
+                  type="submit"
+                  className="mypage-userinfo-buttons-submit"
+                >
                   정보 수정
                 </button>
               </div>
@@ -235,7 +287,8 @@ const Mypage = () => {
             <div className="mypage-userinfo-secession-title">회원 탈퇴</div>
             <button
               className="mypage-userinfo-secession-button"
-              onClick={secessionHandler}>
+              onClick={secessionHandler}
+            >
               <SlUserUnfollow size={25} />
             </button>
           </div>
