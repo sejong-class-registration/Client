@@ -17,7 +17,6 @@ const Graduation = () => {
   const isUploaded = useSelector(
     (state) => state.userInfo.userInfo.takenLectures.length > 0
   );
-
   const uncompletedMustMajorLecture =
     savedGraduateLecture.totalMustMajor.filter(
       (x) => !savedGraduateLecture.takenMustMajor.includes(x)
@@ -73,9 +72,12 @@ const Graduation = () => {
     getGraduateData();
   }, []);
 
+  const userInfo = useSelector((state) => state.userInfo.userInfo);
+  console.log(userInfo.studentId);
+
   const getGraduateData = async () => {
-    await axios(
-      "https://sejong-enrollment.herokuapp.com/graduation?studentId=21011628"
+    const response = await axios(
+      `https://sejong-enrollment.herokuapp.com/graduation?studentId=${userInfo.studentId}`
     ).then((response) => {
       if (response.status === 200) {
         dispatch(

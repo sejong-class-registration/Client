@@ -341,6 +341,7 @@ const Frame1 = () => {
               {scheduleId === 0 ? "A" : scheduleId === 1 ? "B" : "C"} 시간표 총
               학점: {totalCredit}
             </div>
+            <div>현재 졸업인정학점 : {userInfo.totalCredits}</div>
           </div>
           <div className="calendar-info-buttons">
             <button
