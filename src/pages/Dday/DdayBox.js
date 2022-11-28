@@ -2,8 +2,10 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import randomColor from "randomcolor";
+import Toast from "../../UI/Toast";
 
 const DdayBox = (props) => {
+  const [iscopied, setIsCopied] = useState(false);
   const userInfo = useSelector((state) => state.userInfo.userInfo);
   const [schedules, setSchedules] = useState(null);
   const getUserSchedule = async (id) => {
@@ -22,10 +24,20 @@ const DdayBox = (props) => {
   }, [props.id]);
 
   var color = randomColor({
-    format: 'rgba',
+    format: "rgba",
     luminosity: "bright",
     alpha: 0.3,
   });
+
+  const activeToast = () => {
+    setIsCopied(true);
+    let timer = setTimeout(() => {
+      setIsCopied(false);
+    }, 1000);
+    return () => {
+      clearTimeout(timer);
+    };
+  };
 
   const doCopy = (text) => {
     // 흐름 1.
@@ -73,24 +85,34 @@ const DdayBox = (props) => {
           <div className="ddayContent-box" style={{ backgroundColor: color }}>
             <div
               className="ddayContent-box-name"
-              onClick={() => doCopy(schedule.name)}
+              onClick={() => {
+                doCopy(schedule.name);
+                activeToast();
+              }}
             >
               {schedule.name}
             </div>
             <div className="ddayContent-box-others">
               <div
                 className="ddayContent-box-others-lectureId"
-                onClick={() => doCopy(schedule.lectureId)}
+                onClick={() => {
+                  doCopy(schedule.lectureId);
+                  activeToast();
+                }}
               >
                 {schedule.lectureId}
               </div>
               <div
                 className="ddayContent-box-others-distrib"
-                onClick={() => doCopy(schedule.distrib)}
+                onClick={() => {
+                  doCopy(schedule.distrib);
+                  activeToast();
+                }}
               >
                 {schedule.distrib}
               </div>
             </div>
+            {iscopied && <Toast text="복사되었습니다" />}
           </div>
         ))}
     </>
