@@ -45,13 +45,13 @@ const Frame1 = () => {
     if (!response.data.data.schedules[id]) {
       dispatch(
         userScheduleActions.changeUserSchedule({
-          userSchedule: {},
+          userSchedule: {}
         })
       );
     } else {
       dispatch(
         userScheduleActions.changeUserSchedule({
-          userSchedule: response.data.data.schedules[id].schedule,
+          userSchedule: response.data.data.schedules[id].schedule
         })
       );
       // console.log(response.data.data.schedules[id].schedule, id);
@@ -99,13 +99,13 @@ const Frame1 = () => {
           profName: userScheduleData[i].profName,
           recommend: userScheduleData[i].recommend,
           room: userScheduleData[i].room,
-          id: userScheduleData[i].id,
+          id: userScheduleData[i].id
         };
 
         const onClickHandler = () => {
           dispatch(
             selectedLecActions.changeSelectedLec({
-              selectedLec: selectedLecInfo,
+              selectedLec: selectedLecInfo
             })
           );
           setIsOpen(true);
@@ -120,10 +120,9 @@ const Frame1 = () => {
           <div
             className={className}
             style={{
-              backgroundColor: color,
+              backgroundColor: color
             }}
-            onClick={onClickHandler}
-          >
+            onClick={onClickHandler}>
             <div className={classNameContent}>{userScheduleData[i].name}</div>
           </div>
         );
@@ -147,13 +146,13 @@ const Frame1 = () => {
           profName: userScheduleData[i].profName,
           recommend: userScheduleData[i].recommend,
           room: userScheduleData[i].room,
-          id: userScheduleData[i].id,
+          id: userScheduleData[i].id
         };
 
         const onClickHandler = () => {
           dispatch(
             selectedLecActions.changeSelectedLec({
-              selectedLec: selectedLecInfo,
+              selectedLec: selectedLecInfo
             })
           );
           setIsOpen(true);
@@ -168,10 +167,9 @@ const Frame1 = () => {
           <div
             className={className}
             style={{
-              backgroundColor: color,
+              backgroundColor: color
             }}
-            onClick={onClickHandler}
-          >
+            onClick={onClickHandler}>
             <div className={classNameContent}>{userScheduleData[i].name}</div>
           </div>
         );
@@ -186,7 +184,7 @@ const Frame1 = () => {
       console.log(lec);
       dispatch(
         selectedLecActions.changeSelectedLec({
-          selectedLec: lec,
+          selectedLec: lec
         })
       );
       setIsOpen(true);
@@ -208,20 +206,18 @@ const Frame1 = () => {
     return lectureList.map((lec) => (
       <tr
         style={{
-          backgroundColor: color,
+          backgroundColor: color
         }}
-        className="outRangeLecures"
-      >
+        className="outRangeLecures">
         {/* {console.log(lec)} */}
         <td
           style={{
-            border: "1px solid #fff",
+            border: "1px solid #fff"
           }}
           colspan="6"
           className="outRangeLecures-lecture"
           onClick={() => outRangeLecClickHandler(lec)}
-          info={lec}
-        >
+          info={lec}>
           {lec.name}
         </td>
       </tr>
@@ -352,24 +348,21 @@ const Frame1 = () => {
               className={`calendar-info-buttons-button${
                 scheduleId === 0 ? "" : `-deactive`
               }`}
-              onClick={scheduleIdTo0}
-            >
+              onClick={scheduleIdTo0}>
               A
             </button>
             <button
               className={`calendar-info-buttons-button${
                 scheduleId === 1 ? "" : `-deactive`
               }`}
-              onClick={scheduleIdTo1}
-            >
+              onClick={scheduleIdTo1}>
               B
             </button>
             <button
               className={`calendar-info-buttons-button${
                 scheduleId === 2 ? "" : `-deactive`
               }`}
-              onClick={scheduleIdTo2}
-            >
+              onClick={scheduleIdTo2}>
               C
             </button>
           </div>

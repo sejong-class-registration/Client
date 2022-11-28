@@ -42,15 +42,16 @@
     justify-content: end;
     align-items: center;
     font-size: 13px;
-    &-name{
+    &-name {
       text-decoration: underline;
       cursor: pointer;
     }
-    &-name:hover{
+    &-name:hover {
       font-weight: 800;
     }
 
     &-logout {
+      cursor: pointer;
       margin-left: 2rem;
       border: 1.5px solid #ffffff;
       border-radius: 15px;
@@ -70,6 +71,7 @@
       background-color: #ffffff;
       border: 0;
       border-radius: 15px;
+      font-family: "NotoSansKR";
       &-a {
         text-decoration: none;
         color: #a31432;
@@ -78,6 +80,7 @@
       }
     }
     &-button_false {
+      font-family: "NotoSansKR";
       font-size: 12px;
       margin-left: 2rem;
       padding: 0.2rem 1.5rem;
