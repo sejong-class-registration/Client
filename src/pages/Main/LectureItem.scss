@@ -32,6 +32,11 @@
     overflow: hidden;
     justify-content: space-around;
     color: rgba(0, 0, 0, 0.242);
+    &:hover {
+      font-weight: 700;
+      border: 0.5px solid #8a8a8a;
+      border-radius: 10px;
+    }
   }
 
   &-wrap-isTaken {
@@ -47,6 +52,11 @@
     justify-content: space-around;
     color: rgba(130, 0, 0, 0.5);
     text-decoration: line-through;
+    &:hover {
+      font-weight: 700;
+      border: 0.5px solid #8a8a8a;
+      border-radius: 10px;
+    }
   }
 
   &-wrap-necessary {

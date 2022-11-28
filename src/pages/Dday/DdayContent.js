@@ -23,7 +23,14 @@ const DdayContent = () => {
         ></DdayScheduleSelector>
         <DdayBox id={scheduleId}></DdayBox>
       </div>
-      <div className="ddayImage"></div>
+      <div className="ddayImage">
+        <p>이렇게 사용하세요 !!!</p>
+        <img
+          className="ddayImage-image"
+          alt="ddayImage"
+          src="screenshot.png"
+        />
+      </div>
     </div>
   );
 };
