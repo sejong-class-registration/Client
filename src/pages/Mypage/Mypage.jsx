@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import MainNavigation from "../../UI/MainNavigation";
-import {
-  SlLockOpen,
-  SlUser,
-  SlUserUnfollow,
-  SlCloudUpload,
-} from "react-icons/sl";
+import { SlLockOpen, SlUser, SlUserUnfollow, SlCloudUpload } from "react-icons/sl";
 import "./Mypage.scss";
 import axios from "axios";
 import ExcelUploadPage from "../../UI/excelUploadPage";
@@ -88,6 +83,7 @@ const Mypage = () => {
     const response = await axios.post(
       `https://sejong-enrollment.herokuapp.com/users/${userInfo.studentId}`,
       {
+
           name: enteredInput.name,
           userGrade: +enteredInput.userGrade,
           major: enteredInput.major,
@@ -170,10 +166,7 @@ const Mypage = () => {
           </div>
           <div>
             <button className="mypage-login-form-button1">탈퇴..</button>
-            <button
-              className="mypage-login-form-button2"
-              onClick={secessionHandler}
-            >
+            <button className="mypage-login-form-button2" onClick={secessionHandler}>
               취소!!
             </button>
           </div>
@@ -184,12 +177,7 @@ const Mypage = () => {
           <form className="mypage-userinfo" onSubmit={userinfoChangeHandler}>
             <div>
               <label htmlFor="studentId">학번</label>
-              <input
-                id="studentId"
-                type="text"
-                value={enteredInput.studentId}
-                readOnly
-              />
+              <input id="studentId" type="text" value={enteredInput.studentId} readOnly />
               <span className="mypage-userinfo-txt">수정불가</span>
             </div>
             <div>
@@ -216,11 +204,7 @@ const Mypage = () => {
             </div>
             <div>
               <label htmlFor="major">전공</label>
-              <select
-                id="major"
-                value={enteredInput.major}
-                onChange={formChangeHandler}
-              >
+              <select id="major" value={enteredInput.major} onChange={formChangeHandler}>
                 <option value="컴퓨터공학과">컴퓨터공학과</option>
                 <option value="소프트웨어학과">소프트웨어학과</option>
                 <option value="정보보호학과">정보보호학과</option>
@@ -247,9 +231,7 @@ const Mypage = () => {
                     <option value="컴퓨터공학과">컴퓨터공학과</option>
                     <option value="소프트웨어학과">소프트웨어학과</option>
                     <option value="정보보호학과">정보보호학과</option>
-                    <option value="데이터사이언스학과">
-                      데이터사이언스학과
-                    </option>
+                    <option value="데이터사이언스학과">데이터사이언스학과</option>
                     <option value="지능기전공학부">지능기전공학부</option>
                     <option value="인공지능학과">인공지능학과</option>
                   </select>
@@ -263,10 +245,7 @@ const Mypage = () => {
                 >
                   취소
                 </button>
-                <button
-                  type="submit"
-                  className="mypage-userinfo-buttons-submit"
-                >
+                <button type="submit" className="mypage-userinfo-buttons-submit">
                   정보 수정
                 </button>
               </div>

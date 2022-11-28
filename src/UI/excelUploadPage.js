@@ -3,6 +3,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { excelFileactions } from "../redux/slice/excelfileSlice";
 import "./excelUploadPage.scss";
+import { userInfoActions } from "../redux/slice/userSlice";
 
 const ExcelUploadPage = () => {
   const dispatch = useDispatch();
@@ -12,7 +13,6 @@ const ExcelUploadPage = () => {
     dispatch(excelFileactions.uploadExcelfile());
     const tempFile = e.target.files[0];
     console.log(tempFile);
-    e.preventDefault();
     const formData = new FormData();
     formData.append("xlsx", tempFile);
     const response = await axios.post(
@@ -20,11 +20,21 @@ const ExcelUploadPage = () => {
       formData,
       {
         headers: {
-          "Content-Type": "multipart/form-data"
-        }
+          "Content-Type": "multipart/form-data",
+        },
       }
     );
+    const { data } = response.data;
     console.log(response);
+    dispatch(
+      userInfoActions.saveUserGraduation({
+        recommendLecture: data.recommendLecture,
+        geArea: data.geArea,
+        geAreaTaken: data.geAreaTaken,
+        takenLectures: data.takenlectures,
+        totalCredit: data.totalCredit,
+      })
+    );
   };
 
   return (
