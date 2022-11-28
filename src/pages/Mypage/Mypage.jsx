@@ -83,10 +83,11 @@ const Mypage = () => {
     const response = await axios.post(
       `https://sejong-enrollment.herokuapp.com/users/${userInfo.studentId}`,
       {
-        name: enteredInput.name,
-        userGrade: +enteredInput.userGrade,
-        major: enteredInput.major,
-        doubleMajor: enteredInput.doubleMajor,
+
+          name: enteredInput.name,
+          userGrade: +enteredInput.userGrade,
+          major: enteredInput.major,
+          doubleMajor: enteredInput.doubleMajor,
       }
     );
     console.log(response);
