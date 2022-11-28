@@ -101,5 +101,13 @@
   width: calc(100% - 340px - 5rem);
   height: 90vh;
   border-left: 1px solid #626060;
-  background-color: #ff999930;
+  background-color: #00000030;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  &-image {
+    width: calc(100% - 10px);
+    border: 5px solid #626060;
+  }
 }
