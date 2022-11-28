@@ -85,15 +85,13 @@ const Mypage = () => {
   };
 
   const userInfoFetchHandler = async () => {
-    const response = await axios.patch(
+    const response = await axios.post(
       `https://sejong-enrollment.herokuapp.com/users/${userInfo.studentId}`,
       {
-        data: {
           name: enteredInput.name,
           userGrade: +enteredInput.userGrade,
           major: enteredInput.major,
           doubleMajor: enteredInput.doubleMajor,
-        },
       }
     );
     console.log(response);
