@@ -17,10 +17,9 @@ const Graduation = () => {
   const isUploaded = useSelector(
     (state) => state.userInfo.userInfo.takenLectures.length > 0
   );
-  const uncompletedMustMajorLecture =
-    savedGraduateLecture.totalMustMajor.filter(
-      (x) => !savedGraduateLecture.takenMustMajor.includes(x)
-    );
+  const uncompletedMustMajorLecture = savedGraduateLecture.totalMustMajor.filter(
+    (x) => !savedGraduateLecture.takenMustMajor.includes(x)
+  );
   const uncompletedSelectLecture = savedGraduateLecture.totalSelectMajor.filter(
     (x) => !savedGraduateLecture.takenSelectMajor.includes(x)
   );
@@ -37,17 +36,15 @@ const Graduation = () => {
   const uncompletedMustMajorLecturesList = uncompletedMustMajorLecture.map(
     (lecture, i) => <GraduateMajorList key={i} title={lecture} completed={0} />
   );
-  const completedMustMajorLecturesList =
-    savedGraduateLecture.takenMustMajor.map((lecture, i) => (
-      <GraduateMajorList key={i} title={lecture} completed={1} />
-    ));
+  const completedMustMajorLecturesList = savedGraduateLecture.takenMustMajor.map(
+    (lecture, i) => <GraduateMajorList key={i} title={lecture} completed={1} />
+  );
   const uncompletedSelectMajorLecturesList = uncompletedSelectLecture.map(
     (lecture, i) => <GraduateMajorList key={i} title={lecture} completed={0} />
   );
-  const completedSelectMajorLecturesList =
-    savedGraduateLecture.takenSelectMajor.map((lecture, i) => (
-      <GraduateMajorList key={i} title={lecture} completed={1} />
-    ));
+  const completedSelectMajorLecturesList = savedGraduateLecture.takenSelectMajor.map(
+    (lecture, i) => <GraduateMajorList key={i} title={lecture} completed={1} />
+  );
 
   const uncompletedGE1LecturesList = uncompletedGE1.map((lecture, i) => (
     <GraduateGEList key={i} title={lecture} completed={0} />
@@ -70,16 +67,17 @@ const Graduation = () => {
 
   useEffect(() => {
     getGraduateData();
+    console.log(savedGraduateLecture);
   }, []);
 
   const userInfo = useSelector((state) => state.userInfo.userInfo);
-  console.log(userInfo.studentId);
 
   const getGraduateData = async () => {
     const response = await axios(
       `https://sejong-enrollment.herokuapp.com/graduation?studentId=${userInfo.studentId}`
     ).then((response) => {
       if (response.status === 200) {
+        console.log(response.data.data);
         dispatch(
           graduateLectureSliceActions.saveGraduateLectures(response.data.data)
         );
@@ -121,7 +119,8 @@ const Graduation = () => {
             <a
               href="https://sjpt.sejong.ac.kr/"
               target="_blank"
-              className="graduation-excel-upload-help-link">
+              className="graduation-excel-upload-help-link"
+            >
               세종대학교 학사정보시스템 바로가기
             </a>
           </div>
@@ -193,6 +192,45 @@ const Graduation = () => {
               {uncompletedGE3LecturesList}
               {completedGE3LecturesList}
             </ul>
+          </div>
+          <div className="graduation-GE-area">
+            <div className="graduation-GE-area-title">균형교양필수영역</div>
+            <span className="graduation-GE-area-txt">
+              6개 영역 중{" "}
+              <span className="graduation-GE-area-txt-red">n개</span> 영역에서
+              합 <span className="graduation-GE-area-txt-red">n학점</span>을
+              들어야함
+            </span>
+            <div className="graduation-GE-area-area">
+              <span className="graduation-GE-area-area-title">사상과역사</span>
+              <div className="graduation-GE-area-area-untaken">미이수</div>
+            </div>
+            <div className="graduation-GE-area-area">
+              <span className="graduation-GE-area-area-title">사회와문화</span>
+              <div className="graduation-GE-area-area-untaken">미이수</div>
+            </div>
+            <div className="graduation-GE-area-area">
+              <span className="graduation-GE-area-area-title">
+                자기계발과진로
+              </span>
+              <div className="graduation-GE-area-area-untaken">미이수</div>
+            </div>
+            <div className="graduation-GE-area-area">
+              <span className="graduation-GE-area-area-title">
+                자연과과학기술
+              </span>
+              <div className="graduation-GE-area-area-taken">이수</div>
+            </div>
+            <div className="graduation-GE-area-area">
+              <span className="graduation-GE-area-area-title">
+                세계와지구촌
+              </span>
+              <div className="graduation-GE-area-area-taken">이수</div>
+            </div>
+            <div className="graduation-GE-area-area">
+              <span className="graduation-GE-area-area-title">예술과체육</span>
+              <div className="graduation-GE-area-area-untaken">미이수</div>
+            </div>
           </div>
           <div className="graduation-excel-reupload">
             <span>엑셀파일 갱신</span>
