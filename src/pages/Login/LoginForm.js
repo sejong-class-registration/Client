@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { userInfoActions } from "../../redux/slice/userSlice";
 import axios from "axios";
 import "./LoginForm.scss";
+import Loading2 from "../../UI/Loading2";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const LoginForm = () => {
     id: false,
     pw: false,
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const inputChangeHandler = (event) => {
     setEnteredInput((prev) => {
@@ -95,6 +97,7 @@ const LoginForm = () => {
     //   }),
     // }).then(response => response.json())
     // .then(result => console.log(result))
+    setIsLoading(true);
     const response = await axios
       .post("https://sejong-enrollment.herokuapp.com/users/signin", {
         studentId: EnteredInput.id,
@@ -102,10 +105,11 @@ const LoginForm = () => {
       })
       .then((response) => {
         console.log(response);
+        setIsLoading(false);
         if (response.status === 201) {
           window.localStorage.setItem("token", response.data.token);
           dispatch(userInfoActions.saveUserInfo(response.data.data));
-          navigate('/main');
+          navigate("/main");
         } else {
           alert(response.data.message);
         }
@@ -122,45 +126,52 @@ const LoginForm = () => {
   const pwInputClassName = EnteredInputIsValid.pw ? "" : "login-invalid-input";
 
   return (
-    <form
-      onKeyPress={onCheckEnter}
-      onSubmit={LoginSubmitHandler}
-      className="login-formbox"
-    >
-      <p>학번/아이디</p>
-      <input
-        className={idInputClassName}
-        type="text"
-        id="id"
-        onBlur={inputBlurHandler}
-        onChange={inputChangeHandler}
-        value={EnteredInput.id}
-      />
-      {!EnteredInputIsValid.id && (
-        <p className="login-invalid">아이디(학번)를 입력해주세요</p>
-      )}
-      <p>비밀번호</p>
-      <input
-        className={pwInputClassName}
-        type="password"
-        id="pw"
-        onBlur={inputBlurHandler}
-        onChange={inputChangeHandler}
-        value={EnteredInput.pw}
-      />
-      {!EnteredInputIsValid.pw && (
-        <p className="login-invalid">비밀번호를 입력해주세요</p>
-      )}
-      <div className="login-formbox-help">
-        {/* <span>
+    <div>
+      <form
+        onKeyPress={onCheckEnter}
+        onSubmit={LoginSubmitHandler}
+        className="login-formbox"
+      >
+        <p>학번/아이디</p>
+        <input
+          className={idInputClassName}
+          type="text"
+          id="id"
+          onBlur={inputBlurHandler}
+          onChange={inputChangeHandler}
+          value={EnteredInput.id}
+        />
+        {!EnteredInputIsValid.id && (
+          <p className="login-invalid">아이디(학번)를 입력해주세요</p>
+        )}
+        <p>비밀번호</p>
+        <input
+          className={pwInputClassName}
+          type="password"
+          id="pw"
+          onBlur={inputBlurHandler}
+          onChange={inputChangeHandler}
+          value={EnteredInput.pw}
+        />
+        {!EnteredInputIsValid.pw && (
+          <p className="login-invalid">비밀번호를 입력해주세요</p>
+        )}
+        <div className="login-formbox-help">
+          {/* <span>
           <NavLink to="/findpw">비밀번호 찾기</NavLink>
         </span> */}
-        <span>
-          <NavLink to="/signup">회원가입</NavLink>
-        </span>
-      </div>
-      <button>로그인</button>
-    </form>
+          <span>
+            <NavLink to="/signup">회원가입</NavLink>
+          </span>
+        </div>
+        <button>로그인</button>
+      </form>
+      {isLoading && (
+        <div className="login-loading">
+          <Loading2 />
+        </div>
+      )}
+    </div>
   );
 };
 
