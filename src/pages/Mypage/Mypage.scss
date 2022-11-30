@@ -26,6 +26,10 @@
     padding: 20px 20px;
     background-color: white;
     box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.25);
+    &-loading{
+      position: relative;
+      top: -10px;
+    }
     &-txt {
       position: relative;
       font-size: 1.1rem;
