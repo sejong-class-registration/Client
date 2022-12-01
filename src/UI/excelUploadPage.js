@@ -3,6 +3,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { excelFileactions } from "../redux/slice/excelfileSlice";
 import "./excelUploadPage.scss";
+import { graduateLectureSliceActions } from "../redux/slice/graduateLecture";
 
 const ExcelUploadPage = () => {
   const dispatch = useDispatch();
@@ -11,7 +12,7 @@ const ExcelUploadPage = () => {
   const handleSubmit = async (e) => {
     dispatch(excelFileactions.uploadExcelfile());
     const tempFile = e.target.files[0];
-    console.log(tempFile);
+    // console.log(tempFile);
     e.preventDefault();
     const formData = new FormData();
     formData.append("xlsx", tempFile);
@@ -24,8 +25,22 @@ const ExcelUploadPage = () => {
         }
       }
     );
-    console.log(response);
+    getGraduateData();
   };
+
+  const getGraduateData = async () => {
+    const response = await axios(
+      `https://sejong-enrollment.herokuapp.com/graduation?studentId=${userInfo.studentId}`
+    ).then((response) => {
+      if (response.status === 200) {
+        console.log(response.data.data);
+        dispatch(
+          graduateLectureSliceActions.saveGraduateLectures(response.data.data)
+        );
+      }
+    });
+  };
+
 
   return (
     <div className="filebox">

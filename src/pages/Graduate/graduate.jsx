@@ -69,7 +69,7 @@ const Graduation = () => {
   useEffect(() => {
     getGraduateData();
     // console.log(savedGraduateLecture);
-    console.log(isUploaded)
+    // console.log(isUploaded)
   }, []);
 
   const userInfo = useSelector((state) => state.userInfo.userInfo);
@@ -79,7 +79,7 @@ const Graduation = () => {
       `https://sejong-enrollment.herokuapp.com/graduation?studentId=${userInfo.studentId}`
     ).then((response) => {
       if (response.status === 200) {
-        // console.log(response.data.data);
+        console.log(response.data.data);
         dispatch(
           graduateLectureSliceActions.saveGraduateLectures(response.data.data)
         );

@@ -101,6 +101,12 @@
   top: 150px;
   align-items: flex-start;
   padding: 50px 70px;
+  &-loading{
+    position: absolute;
+    top: 500px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+  }
   label {
     position: relative;
     display: inline-block;
