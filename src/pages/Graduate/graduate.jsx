@@ -15,8 +15,9 @@ const Graduation = () => {
     (state) => state.graduateLecture.graduateLecture
   );
   const isUploaded = useSelector(
-    (state) => state.userInfo.userInfo.takenLectures.length > 0
+    (state) => state.graduateLecture.graduateLecture.totalGE1.length > 0
   );
+
   const uncompletedMustMajorLecture = savedGraduateLecture.totalMustMajor.filter(
     (x) => !savedGraduateLecture.takenMustMajor.includes(x)
   );
@@ -67,7 +68,8 @@ const Graduation = () => {
 
   useEffect(() => {
     getGraduateData();
-    console.log(savedGraduateLecture);
+    // console.log(savedGraduateLecture);
+    console.log(isUploaded)
   }, []);
 
   const userInfo = useSelector((state) => state.userInfo.userInfo);
@@ -77,7 +79,7 @@ const Graduation = () => {
       `https://sejong-enrollment.herokuapp.com/graduation?studentId=${userInfo.studentId}`
     ).then((response) => {
       if (response.status === 200) {
-        console.log(response.data.data);
+        // console.log(response.data.data);
         dispatch(
           graduateLectureSliceActions.saveGraduateLectures(response.data.data)
         );
@@ -87,10 +89,6 @@ const Graduation = () => {
     });
   };
 
-  const tempHandler = () => {
-    // setIsUploaded(true);
-  };
-
   return (
     <div className="graduation">
       <div className="graduation-header">
@@ -98,7 +96,6 @@ const Graduation = () => {
       </div>
       {!isUploaded && (
         <div className="graduation-excel">
-          <button onClick={tempHandler}>하잉</button>
           <div className="graduation-excel-title">졸업요건 확인</div>
           <div className="graduation-excel-upload">
             <span className="graduation-excel-upload-txt1">
