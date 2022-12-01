@@ -5,7 +5,8 @@
 .ddayContent {
   width: 340px;
   height: 700px;
-  border: 1.5px solid #626060;
+  margin: 10px 20px;
+  border: 1px solid rgb(110, 110, 110);
   border-radius: 30px;
   background: #fff;
   display: flex;
@@ -14,28 +15,29 @@
   padding-top: 1rem;
   overflow-y: scroll;
   font-weight: bold;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
   &-box {
-    width: 316px;
+    width: 320px;
     height: 120px;
-    background-color: #ffc3c350;
+    background-color: #ffc3c39c;
     border-radius: 15px;
-    margin-bottom: 1rem;
-
+    margin-bottom: 0.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    
     &-name {
       margin: 10px 20px;
       width: 90px;
       height: 90px;
       background-color: #fff;
-      border-radius: 15px;
+      border-radius: 10px;
       align-items: center;
       display: flex;
       justify-content: center;
       text-align: center;
+      font-size: 0.9rem;
     }
 
     &-others {
@@ -43,7 +45,7 @@
       flex-direction: column;
       justify-content: space-around;
       height: 80%;
-
+      font-weight: 100;
       margin-right: 15px;
       &-lectureId {
         display: flex;
@@ -87,8 +89,10 @@
     text-align: center;
     width: 250px;
     height: 40px;
-    border: 1.5px solid #626060;
+    border: 1px solid #626060;
     border-radius: 15px;
+    font-size: 1rem;
+    font-weight: 800;
   }
 
   &-option {
@@ -97,8 +101,8 @@
 }
 
 .ddayImage {
-  margin-left: 5rem;
-  width: calc(100% - 340px - 5rem);
+  // margin-left: 5rem;
+  width: calc(100% - 340px);
   height: 90vh;
   border-left: 1px solid #626060;
   background-color: #00000030;
@@ -109,5 +113,15 @@
   &-image {
     width: calc(100% - 10px);
     border: 5px solid #626060;
+  }
+  p{
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 20px 40px;
+    font-size: 1.5rem;
+    font-weight: 100;
+    top: 100px;
+    border-radius: 15px;
   }
 }
