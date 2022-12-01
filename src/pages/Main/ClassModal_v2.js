@@ -3,6 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { isFetchingActions } from "../../redux/slice/isFetchingSlice";
+import Loading2 from "../../UI/Loading2";
 
 import "./ClassModal_v2.scss";
 
@@ -42,6 +43,7 @@ const ModalOverlay = (props) => {
 
   return (
     <div className="classModal">
+      {isFetching && <div className="classModal-loading"> <Loading2 /> </div>}
       <div className="classModal-contents">
         <div className="classModal-contents-name">{info.name}</div>
         <div className="classModal-contents-content">
