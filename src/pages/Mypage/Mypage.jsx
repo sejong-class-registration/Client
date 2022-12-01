@@ -7,6 +7,7 @@ import axios from "axios";
 import ExcelUploadPage from "../../UI/excelUploadPage";
 import { userInfoActions } from "../../redux/slice/userSlice";
 import { useNavigate } from "react-router-dom";
+import Loading2 from "../../UI/Loading2";
 
 const Mypage = () => {
   const dispatch = useDispatch();
@@ -114,6 +115,7 @@ const Mypage = () => {
   };
 
   const secessionFetchHandler = async () => {
+    setIsLoading(true);
     const response = await axios.delete(
       `https://sejong-enrollment.herokuapp.com/users/${userInfo.studentId}`,
       {
@@ -124,6 +126,7 @@ const Mypage = () => {
       }
     );
     console.log(response);
+    setIsLoading(false);
     if (response.status === 201) {
       alert("탈퇴되었습니다ㅠㅠ");
       localStorage.removeItem("token");
@@ -170,6 +173,7 @@ const Mypage = () => {
               취소!!
             </button>
           </div>
+          {isLoading && <div className="mypage-login-form-loading"><Loading2 /></div>}
         </form>
       )}
       {!isSecession && (

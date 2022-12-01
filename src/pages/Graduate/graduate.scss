@@ -133,7 +133,7 @@
     top: 200px;
     width: 65%;
     min-width: 700px;
-    height: 400px;
+    height: 700px;
     border: solid #000000 1px;
     margin: auto;
     margin-bottom: 100px;
@@ -143,6 +143,76 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    &-area {
+      margin: auto;
+      position: relative;
+      top: -150px;
+      z-index: 100;
+      height: 250px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      width: 65%;
+      min-width: 700px;
+      // border: 1px solid black;
+      border-radius: 15px;
+      &-title {
+        position: absolute;
+        top: -60px;
+        font-size: 1.3rem;
+      }
+      &-txt {
+        position: absolute;
+        font-size: 0.9rem;
+        top: -30px;
+        &-red {
+          color: red;
+        }
+      }
+      &-area {
+        font-size: 1.3rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 10px 15px 10px;
+        flex-basis: 30%;
+        margin-bottom: 10px;
+        border-radius: 15px;
+        border: 1px solid rgb(0, 0, 0);
+        // background-color: #c5c5c52d;
+        &-title {
+          display: inline-block;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+        &-taken {
+          font-size: 1.2rem;
+          font-weight: 100;
+          position: relative;
+          top: 15px;
+          background-color: #129423;
+          border-radius: 30px;
+          padding: 5px 5px;
+          text-align: center;
+          color: white;
+          width: 70px;
+        }
+        &-untaken {
+          font-size: 1.2rem;
+          font-weight: 100;
+          position: relative;
+          top: 15px;
+
+          background-color: #c74444;
+          width: 70px;
+          border-radius: 30px;
+          padding: 5px 5px;
+          color: white;
+          text-align: center;
+        }
+      }
+    }
     &-title {
       position: absolute;
       left: 10px;
@@ -154,7 +224,7 @@
     }
     &-1 {
       flex-basis: 50%;
-      height: 85%;
+      height: 340px;
       margin: 40px 10px 10px 10px;
       padding: 0;
       border-radius: 15px;
@@ -180,7 +250,7 @@
     }
     &-2 {
       flex-basis: 50%;
-      height: 85%;
+      height: 340px;
       margin: 40px 10px 10px 10px;
       padding: 0;
       border-radius: 15px;
@@ -206,7 +276,7 @@
     }
     &-3 {
       flex-basis: 50%;
-      height: 85%;
+      height: 340px;
       margin: 40px 10px 10px 10px;
       padding: 0;
       border-radius: 15px;
@@ -244,7 +314,7 @@
   &-margin {
     position: relative;
     display: block;
-    top: 100px;
+    top: -70px;
     width: 100%;
     height: 150px;
     p {
@@ -258,7 +328,7 @@
   }
   &-excel-reupload {
     position: relative;
-    top: 140px;
+    top: -70px;
     display: flex;
     width: 30%;
     min-width: 500px;
