@@ -5,14 +5,13 @@ import { useState } from "react";
 import { selectedLecActions } from "../../redux/slice/selectedLecSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { userScheduleActions } from "../../redux/slice/userScheduleSlice";
-import randomColor from "randomcolor";
 import ClassModal_v2 from "./ClassModal_v2";
 import { scheduleNumActions } from "../../redux/slice/scheduleNumSlice";
 const Frame1 = () => {
   // const [userSchedule, setUserSchedule] = useState(null);
 
   const userInfo = useSelector((state) => state.userInfo.userInfo);
-  console.log(userInfo);
+  // console.log(userInfo);
   const [isOpen, setIsOpen] = useState(false);
   const [scheduleId, setScheduleId] = useState(0);
   const [totalCredit, setTotalCredit] = useState(0);
@@ -45,13 +44,13 @@ const Frame1 = () => {
     if (!response.data.data.schedules[id]) {
       dispatch(
         userScheduleActions.changeUserSchedule({
-          userSchedule: {}
+          userSchedule: {},
         })
       );
     } else {
       dispatch(
         userScheduleActions.changeUserSchedule({
-          userSchedule: response.data.data.schedules[id].schedule
+          userSchedule: response.data.data.schedules[id].schedule,
         })
       );
       // console.log(response.data.data.schedules[id].schedule, id);
@@ -74,7 +73,31 @@ const Frame1 = () => {
 
   const returnSticker = (day, startTime) => {
     for (var i = 0; i < userScheduleData.length; i++) {
-      // console.log(userScheduleData[i]);
+      console.log(userScheduleData[i]);
+
+      var color = null;
+      if (userScheduleData[i].classification === "전필") {
+        color = "#df7e7e70";
+      }
+      if (userScheduleData[i].classification === "전선") {
+        color = "#df7e7e30";
+      }
+      if (userScheduleData[i].classification === "교필") {
+        color = "#d7df7e";
+      }
+      if (userScheduleData[i].classification === "공필") {
+        color = "#917edf";
+      }
+      if (userScheduleData[i].classification === "교선") {
+        color = "#d7df7e70";
+      }
+      if (userScheduleData[i].classification === "교직") {
+        color = "#d17edf70";
+      }
+      if (userScheduleData[i].classification === "기교") {
+        color = "#d17edf";
+      }
+
       // console.log(userScheduleData[i].time);
       // console.log(userScheduleData[i].time.day.includes("화"));
 
@@ -99,30 +122,33 @@ const Frame1 = () => {
           profName: userScheduleData[i].profName,
           recommend: userScheduleData[i].recommend,
           room: userScheduleData[i].room,
-          id: userScheduleData[i].id
+          id: userScheduleData[i].id,
         };
 
         const onClickHandler = () => {
           dispatch(
             selectedLecActions.changeSelectedLec({
-              selectedLec: selectedLecInfo
+              selectedLec: selectedLecInfo,
             })
           );
           setIsOpen(true);
         };
-        var color = randomColor();
         const timeLength =
           userScheduleData[i].time.endTime - userScheduleData[i].time.startTime;
         const className = "sticker h" + timeLength;
         const classNameContent = className + "-content";
         // console.log(className);
+
+        console.log(userScheduleData[i]);
+
         return (
           <div
             className={className}
             style={{
-              backgroundColor: color
+              backgroundColor: color,
             }}
-            onClick={onClickHandler}>
+            onClick={onClickHandler}
+          >
             <div className={classNameContent}>{userScheduleData[i].name}</div>
           </div>
         );
@@ -146,18 +172,17 @@ const Frame1 = () => {
           profName: userScheduleData[i].profName,
           recommend: userScheduleData[i].recommend,
           room: userScheduleData[i].room,
-          id: userScheduleData[i].id
+          id: userScheduleData[i].id,
         };
 
         const onClickHandler = () => {
           dispatch(
             selectedLecActions.changeSelectedLec({
-              selectedLec: selectedLecInfo
+              selectedLec: selectedLecInfo,
             })
           );
           setIsOpen(true);
         };
-        var color = randomColor();
         const timeLength =
           userScheduleData[i].time.endTime - userScheduleData[i].time.startTime;
         const className = "sticker h" + timeLength + "-half";
@@ -167,9 +192,10 @@ const Frame1 = () => {
           <div
             className={className}
             style={{
-              backgroundColor: color
+              backgroundColor: color,
             }}
-            onClick={onClickHandler}>
+            onClick={onClickHandler}
+          >
             <div className={classNameContent}>{userScheduleData[i].name}</div>
           </div>
         );
@@ -179,12 +205,13 @@ const Frame1 = () => {
 
   const returnOnlineClassSticker = () => {
     const lectureList = [];
+    var color = "#cbe3d570";
 
     const outRangeLecClickHandler = (lec) => {
       console.log(lec);
       dispatch(
         selectedLecActions.changeSelectedLec({
-          selectedLec: lec
+          selectedLec: lec,
         })
       );
       setIsOpen(true);
@@ -197,7 +224,6 @@ const Frame1 = () => {
         userScheduleData[i].time.startTime >= 1080
       ) {
         lectureList.push(userScheduleData[i]);
-        var color = randomColor();
       }
     }
 
@@ -206,18 +232,20 @@ const Frame1 = () => {
     return lectureList.map((lec) => (
       <tr
         style={{
-          backgroundColor: color
+          backgroundColor: color,
         }}
-        className="outRangeLecures">
+        className="outRangeLecures"
+      >
         {/* {console.log(lec)} */}
         <td
           style={{
-            border: "1px solid #fff"
+            border: "1px solid #fff",
           }}
           colspan="6"
           className="outRangeLecures-lecture"
           onClick={() => outRangeLecClickHandler(lec)}
-          info={lec}>
+          info={lec}
+        >
           {lec.name}
         </td>
       </tr>
@@ -348,21 +376,24 @@ const Frame1 = () => {
               className={`calendar-info-buttons-button${
                 scheduleId === 0 ? "" : `-deactive`
               }`}
-              onClick={scheduleIdTo0}>
+              onClick={scheduleIdTo0}
+            >
               A
             </button>
             <button
               className={`calendar-info-buttons-button${
                 scheduleId === 1 ? "" : `-deactive`
               }`}
-              onClick={scheduleIdTo1}>
+              onClick={scheduleIdTo1}
+            >
               B
             </button>
             <button
               className={`calendar-info-buttons-button${
                 scheduleId === 2 ? "" : `-deactive`
               }`}
-              onClick={scheduleIdTo2}>
+              onClick={scheduleIdTo2}
+            >
               C
             </button>
           </div>
