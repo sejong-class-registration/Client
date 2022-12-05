@@ -89,6 +89,16 @@
         padding: 2px 20px;
         color: white;
         background-color: #c74444;
+        &-complete {
+          position: relative;
+          margin-left: 10px;
+          font-size: 1.25rem;
+          font-weight: 800;
+          border-radius: 30px;
+          padding: 2px 20px;
+          color: white;
+          background-color: #129423;
+        }
       }
     }
     &-2 {
@@ -115,6 +125,16 @@
         padding: 2px 20px;
         color: white;
         background-color: #c74444;
+        &-complete {
+          position: relative;
+          font-size: 1.25rem;
+          margin-left: 10px;
+          border-radius: 30px;
+          font-weight: 800;
+          padding: 2px 20px;
+          color: white;
+          background-color: #129423;;
+        }
       }
     }
     ul {

@@ -178,7 +178,7 @@ const SignupForm = (props) => {
       console.log(response);
       window.localStorage.setItem("token", response.data.token);
       dispatch(userInfoActions.saveUserInfo(response.data.user));
-      navigates("/main");
+      navigate("/main");
     } else {
       alert(response.data.message);
     }

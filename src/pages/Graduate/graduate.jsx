@@ -73,7 +73,7 @@ const Graduation = () => {
   }, []);
 
   const userInfo = useSelector((state) => state.userInfo.userInfo);
-  
+
   const getGraduateData = async () => {
     const response = await axios(
       `https://port-0-sejong-enrollment-1jvasx23lbaoi6rj.gksl2.cloudtype.app/graduation?studentId=${userInfo.studentId}`
@@ -128,8 +128,12 @@ const Graduation = () => {
           <div className="graduation-total">
             <span className="graduation-total-title">총 이수 학점</span>
             <div className="graduation-total-score">
-              <span className="graduation-total-score1">60 </span>
-              <span className="graduation-total-score2">/ 140</span>
+              <span className="graduation-total-score1">
+                {savedGraduateLecture.currentCredit}{" "}
+              </span>
+              <span className="graduation-total-score2">
+                / {savedGraduateLecture.totalCredit}
+              </span>
             </div>
           </div>
           <div className="graduation-major">
@@ -139,7 +143,15 @@ const Graduation = () => {
             </span>
             <div className="graduation-major-1-txt">
               <span className="graduation-major-1-title">전공필수</span>
-              <span className="graduation-major-1-score">
+              <span
+                className={
+                  savedGraduateLecture.takenMustMajorCredit ===
+                  savedGraduateLecture.totalMustMajorCredit
+                    ? "graduation-major-1-score-complete"
+                    : "graduation-major-1-score"
+                }
+              >
+                {/* <span className="graduation-major-1-score"> */}
                 {savedGraduateLecture.takenMustMajorCredit} /{" "}
                 {savedGraduateLecture.totalMustMajorCredit}
               </span>
@@ -150,7 +162,14 @@ const Graduation = () => {
             </ul>
             <div className="graduation-major-2-txt">
               <span className="graduation-major-2-title">전공선택</span>
-              <span className="graduation-major-2-score">
+              <span
+                className={
+                  savedGraduateLecture.takenSelectMajorCredit ===
+                  savedGraduateLecture.totalSelectMajorCredit
+                    ? "graduation-major-2-score-complete"
+                    : "graduation-major-2-score"
+                }
+              >
                 {savedGraduateLecture.takenSelectMajorCredit} /{" "}
                 {savedGraduateLecture.totalSelectMajorCredit}
               </span>
@@ -167,7 +186,9 @@ const Graduation = () => {
             </span>
             <div className="graduation-GE-1-txt">
               <span className="graduation-GE-1-title">공통필수</span>
-              <span className="graduation-GE-1-score">10 / 30</span>
+              <span className="graduation-GE-1-score">
+                10 / {savedGraduateLecture.totalCreditGE1}
+              </span>
             </div>
             <ul className="graduation-GE-1">
               {uncompletedGE1LecturesList}
@@ -175,7 +196,9 @@ const Graduation = () => {
             </ul>
             <div className="graduation-GE-2-txt">
               <span className="graduation-GE-2-title">선택필수</span>
-              <span className="graduation-GE-2-score">10 / 10</span>
+              <span className="graduation-GE-2-score">
+                10 / {savedGraduateLecture.totalCreditGE2}
+              </span>
             </div>
             <ul className="graduation-GE-2">
               {uncompletedGE2LecturesList}
@@ -183,7 +206,9 @@ const Graduation = () => {
             </ul>
             <div className="graduation-GE-3-txt">
               <span className="graduation-GE-3-title">학문기초</span>
-              <span className="graduation-GE-3-score">12 / 25</span>
+              <span className="graduation-GE-3-score">
+                12 / {savedGraduateLecture.totalCreditGE3}
+              </span>
             </div>
             <ul className="graduation-GE-3">
               {uncompletedGE3LecturesList}
