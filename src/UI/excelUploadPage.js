@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { excelFileactions } from "../redux/slice/excelfileSlice";
 import "./excelUploadPage.scss";
 import { graduateLectureSliceActions } from "../redux/slice/graduateLecture";
+import { userInfoActions } from "../redux/slice/userSlice";
 
 const ExcelUploadPage = () => {
   const dispatch = useDispatch();
@@ -12,8 +13,7 @@ const ExcelUploadPage = () => {
   const handleSubmit = async (e) => {
     dispatch(excelFileactions.uploadExcelfile());
     const tempFile = e.target.files[0];
-    // console.log(tempFile);
-    e.preventDefault();
+    console.log(tempFile);
     const formData = new FormData();
     formData.append("xlsx", tempFile);
     const response = await axios.post(
@@ -21,11 +21,21 @@ const ExcelUploadPage = () => {
       formData,
       {
         headers: {
-          "Content-Type": "multipart/form-data"
-        }
+          "Content-Type": "multipart/form-data",
+        },
       }
     );
-    getGraduateData();
+    const { data } = response.data;
+    console.log(response);
+    dispatch(
+      userInfoActions.saveUserGraduation({
+        recommendLecture: data.recommendLecture,
+        geArea: data.geArea,
+        geAreaTaken: data.geAreaTaken,
+        takenLectures: data.takenlectures,
+        totalCredit: data.totalCredit,
+      })
+    );
   };
 
   const getGraduateData = async () => {

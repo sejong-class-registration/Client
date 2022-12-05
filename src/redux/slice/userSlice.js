@@ -45,6 +45,16 @@ const userInfoSlice = createSlice({
         totalCredits: action.payload.totalCredits,
       };
     },
+    saveUserGraduation(state, action){
+      state.userInfo = {
+        ...state.userInfo,
+        recommendLecture: action.payload.recommendLecture,
+        takenLectures: action.payload.takenLectures,
+        geArea: action.payload.geArea,
+        geAreaTaken: action.payload.geAreaTaken,
+        totalCredits: action.payload.totalCredit
+      }
+    }
   },
 });
 
