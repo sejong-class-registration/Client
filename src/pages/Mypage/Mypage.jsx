@@ -60,8 +60,15 @@ const Mypage = () => {
     enteredInput.doubleMajor,
   ]);
 
+
+
   const checkboxHandler = () => {
-    setCheckboxOn((prev) => !prev);
+
+    if(checkboxOn == false){
+      setCheckboxOn(true);
+    }else{
+      setCheckboxOn(false);
+    }
 
     if (!checkboxOn) {
       setEnteredInput((prev) => {
@@ -81,8 +88,9 @@ const Mypage = () => {
   };
 
   const userInfoFetchHandler = async () => {
+    setIsLoading(true);
     const response = await axios.post(
-      `https://sejong-enrollment.herokuapp.com/users/${userInfo.studentId}`,
+      `https://port-0-sejong-enrollment-1jvasx23lbaoi6rj.gksl2.cloudtype.app/users/${userInfo.studentId}`,
       {
 
           name: enteredInput.name,
@@ -91,12 +99,13 @@ const Mypage = () => {
           doubleMajor: enteredInput.doubleMajor,
       }
     );
+    // setIsLoading(false);
     console.log(response);
-    if (response.status === 201) {
-      alert("정보 수정되었습니다");
-      dispatch(userInfoActions.saveUserInfo(enteredInput));
-      navigate("/mypage");
-    }
+    // if (response.status === 201) {
+    //   alert("정보 수정되었습니다");
+    //   dispatch(userInfoActions.saveUserInfo(enteredInput));
+    //   navigate("/mypage");
+    // }
   };
 
   const onReset = () => {
@@ -117,7 +126,7 @@ const Mypage = () => {
   const secessionFetchHandler = async () => {
     setIsLoading(true);
     const response = await axios.delete(
-      `https://sejong-enrollment.herokuapp.com/users/${userInfo.studentId}`,
+      `https://port-0-sejong-enrollment-1jvasx23lbaoi6rj.gksl2.cloudtype.app/users/${userInfo.studentId}`,
       {
         data: {
           Id: userInfo.studentId,
@@ -178,6 +187,7 @@ const Mypage = () => {
       )}
       {!isSecession && (
         <div>
+          {isLoading && <div className="mypage-userinfo-loading"><Loading2 /></div>}
           <form className="mypage-userinfo" onSubmit={userinfoChangeHandler}>
             <div>
               <label htmlFor="studentId">학번</label>

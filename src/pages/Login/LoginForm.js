@@ -99,7 +99,7 @@ const LoginForm = () => {
     // .then(result => console.log(result))
     setIsLoading(true);
     const response = await axios
-      .post("https://sejong-enrollment.herokuapp.com/users/signin", {
+      .post("https://port-0-sejong-enrollment-1jvasx23lbaoi6rj.gksl2.cloudtype.app/users/signin", {
         studentId: EnteredInput.id,
         password: EnteredInput.pw,
       })
