@@ -29,7 +29,7 @@ const RecommendedLecturePage = () => {
   const lectureFetchHandler = async (convertedList) => {
     setIsLoading(true);
     const response = await axios.get(
-      "https://sejong-enrollment.herokuapp.com/lectures/recommend",
+      "https://port-0-sejong-enrollment-1jvasx23lbaoi6rj.gksl2.cloudtype.app/lectures/recommend",
       {
         params: {
           credit: convertedList.convertedGrades,

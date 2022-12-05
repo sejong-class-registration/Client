@@ -4,9 +4,11 @@ import { userInfoActions } from "../../redux/slice/userSlice";
 import { useDispatch } from "react-redux";
 import "./SignupForm.scss";
 import Loading from "../../UI/Loading";
+import { useNavigate } from "react-router-dom";
 
 const SignupForm = (props) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [EnteredInput, setEnteredInput] = useState({
     id: "",
@@ -161,7 +163,7 @@ const SignupForm = (props) => {
   const signupFetchHandler = async () => {
     setIsLoading(true);
     const response = await axios.post(
-      "https://sejong-enrollment.herokuapp.com/users/signup",
+      "https://port-0-sejong-enrollment-1jvasx23lbaoi6rj.gksl2.cloudtype.app/users/signup",
       {
         name: EnteredInput.username,
         studentId: EnteredInput.id,
@@ -176,7 +178,7 @@ const SignupForm = (props) => {
       console.log(response);
       window.localStorage.setItem("token", response.data.token);
       dispatch(userInfoActions.saveUserInfo(response.data.user));
-      window.location.replace("/main");
+      navigates("/main");
     } else {
       alert(response.data.message);
     }

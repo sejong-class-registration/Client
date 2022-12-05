@@ -1,11 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import "./Signup.scss";
 import SignupForm3 from "./SignupForm3";
 
 const SignupFinal = () => {
+  const navigate = useNavigate();
+  
   const logoClickHandler = () => {
-    window.location.replace('/');
-  }
-
+    navigate("/");
+  };
 
   return (
     <div className="signup-background">
@@ -20,7 +22,7 @@ const SignupFinal = () => {
         <p>회원가입</p>
       </div>
       <div className="signup-box">
-          <SignupForm3/>
+        <SignupForm3 />
       </div>
       <div className="signup-copyright">
         <p>copyright ⓒ 2022 열일곱스물하나</p>
