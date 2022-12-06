@@ -33,7 +33,6 @@
       border-radius: 15px;
       color: #ffffff;
       background-color: #a31432;
-      
 
       &-img {
         height: 1.2rem;
@@ -107,20 +106,21 @@
 
     &-third {
       display: flex;
+      margin-bottom: 1rem;
 
       &-profName {
-        width: 40%;
+        width: 50%;
         display: flex;
         justify-content: space-between;
         align-items: center;
 
         &-label {
           font-size: 18px;
-          width: 50%;
+          width: 40%;
         }
 
         &-input {
-          width: 45%;
+          width: 55%;
           margin-right: 5%;
           border: 0.5px solid #626060;
           border-radius: 15px;
@@ -130,37 +130,74 @@
       }
 
       &-type {
-        margin-left: 5%;
-        width: 35%;
+        width: 50%;
         display: flex;
         justify-content: space-between;
         align-items: center;
 
         &-label {
           font-size: 18px;
-          width: 50%;
+          width: 35%;
+          margin-left: 5%;
         }
 
         &-select {
           height: 2rem;
-          width: 45%;
-          margin-right: 5%;
-          font-size: 16px;
+          width: 60%;
+          font-size: 18px;
           border: 0.5px solid #626060;
           border-radius: 15px;
           text-align: center;
         }
       }
+    }
+
+    &-fourth {
+      display: flex;
+
+      &-lectureId {
+        width: 50%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &-label {
+          font-size: 18px;
+          width: 40%;
+        }
+
+        &-input {
+          width: 55%;
+          margin-right: 5%;
+          border: 0.5px solid #626060;
+          border-radius: 15px;
+          text-align: center;
+          height: 2rem;
+        }
+      }
 
       &-button {
         margin-left: 5%;
-        width: 15%;
+        width: 45%;
         border: 0;
         color: #ffffff;
         background-color: #a31432;
         border-radius: 15px;
         font-size: 18px;
-        
+
+        .button {
+          margin-left: 5%;
+          width: 45%;
+          border: 0;
+          color: #ffffff;
+          background-color: #a31432;
+          border-radius: 15px;
+          font-size: 18px;
+        }
+
+        :hover {
+          background-color: #a3143220;
+        }
       }
     }
   }

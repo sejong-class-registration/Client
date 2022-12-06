@@ -35,9 +35,11 @@ const ModalOverlay = (props) => {
           name: name,
           profName: profName,
           classification: classification,
+          lectureId: lectureId,
         },
       })
     );
+    console.log(savedFilterInfo);
   };
 
   const departmentList = [
@@ -151,7 +153,7 @@ const ModalOverlay = (props) => {
   };
 
   const lectureIdChangeHandler = (props) => {
-    setclassification(props.target.value);
+    setLectureId(props.target.value);
     dispatch(
       classFilterActions.changeClassFilter({
         classFilter: {
@@ -163,7 +165,7 @@ const ModalOverlay = (props) => {
         },
       })
     );
-    // console.log(props.target.value);
+    console.log(props.target.value);
   };
 
   return (
