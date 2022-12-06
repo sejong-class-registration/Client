@@ -22,6 +22,7 @@ const ModalOverlay = (props) => {
   const [classification, setclassification] = useState(
     savedFilterInfo.classification
   );
+  const [lectureId, setLectureId] = useState(savedFilterInfo.lectureId);
 
   const dispatch = useDispatch();
 
@@ -74,6 +75,7 @@ const ModalOverlay = (props) => {
           name: "",
           profName: "",
           classification: classificationList[0],
+          lectureId: "",
         },
       })
     );
@@ -81,6 +83,7 @@ const ModalOverlay = (props) => {
     setdepartment(departmentList[0]);
     setprofName("");
     setclassification(classificationList[0]);
+    setLectureId("");
   };
 
   const departmentChangeHandler = (props) => {
@@ -92,6 +95,7 @@ const ModalOverlay = (props) => {
           name: name,
           profName: profName,
           classification: classification,
+          lectureId: lectureId,
         },
       })
     );
@@ -107,6 +111,7 @@ const ModalOverlay = (props) => {
           name: props.target.value,
           profName: profName,
           classification: classification,
+          lectureId: lectureId,
         },
       })
     );
@@ -122,6 +127,7 @@ const ModalOverlay = (props) => {
           name: name,
           profName: props.target.value,
           classification: classification,
+          lectureId: lectureId,
         },
       })
     );
@@ -137,6 +143,23 @@ const ModalOverlay = (props) => {
           name: name,
           profName: profName,
           classification: props.target.value,
+          lectureId: lectureId,
+        },
+      })
+    );
+    // console.log(props.target.value);
+  };
+
+  const lectureIdChangeHandler = (props) => {
+    setclassification(props.target.value);
+    dispatch(
+      classFilterActions.changeClassFilter({
+        classFilter: {
+          department: department,
+          name: name,
+          profName: profName,
+          classification: classification,
+          lectureId: props.target.value,
         },
       })
     );
@@ -211,8 +234,20 @@ const ModalOverlay = (props) => {
               )}
             </select>
           </div>
+        </div>
+        <div className="modal-contents-fourth">
+          <div className="modal-contents-fourth-lectureId">
+            <label className="modal-contents-fourth-lectureId-label">
+              학수번호
+            </label>
+            <input
+              className="modal-contents-fourth-lectureId-input"
+              onChange={lectureIdChangeHandler}
+              placeholder={lectureId}
+            ></input>
+          </div>
           <button
-            className={`modal-contents-third-button`}
+            className={`modal-contents-fourth-button`}
             onClick={submitHandler}
           >
             조회

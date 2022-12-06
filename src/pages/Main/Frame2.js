@@ -65,6 +65,8 @@ const Frame2 = (props) => {
           : info.classification === "전체"
           ? ""
           : `&classification=${info.classification}`
+      }${
+        info.lectureId === "" ? "" : `&lectureId=${info.lectureId}`
       }&sort=${sort}`
     );
     // console.log(info.department);

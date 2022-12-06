@@ -3,7 +3,13 @@ import { createSlice } from "@reduxjs/toolkit";
 const classFilterSlice = createSlice({
   name: "classFilter",
   initialState: {
-    classFilter: { department: "", name: "", profName: "", classification: "" },
+    classFilter: {
+      department: "",
+      name: "",
+      profName: "",
+      classification: "",
+      lectureId: "",
+    },
   },
   reducers: {
     changeClassFilter(state, action) {
