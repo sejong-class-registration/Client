@@ -94,7 +94,10 @@ const Frame1 = () => {
       if (userScheduleData[i].classification === "교직") {
         color = "#d17edf70";
       }
-      if (userScheduleData[i].classification === "기교") {
+      if (
+        userScheduleData[i].classification === "기교" ||
+        userScheduleData[i].classification === "기필"
+      ) {
         color = "#d17edf";
       }
 
