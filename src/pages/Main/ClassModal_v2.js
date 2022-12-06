@@ -25,7 +25,7 @@ const ModalOverlay = (props) => {
     dispatch(isFetchingActions.changeIsFetching());
     try {
       const response = await axios.delete(
-        `https://sejong-enrollment.herokuapp.com/schedules/${info.id}?userId=${userInfo.studentId}&scheduleId=${selectedScheduleId}`
+        `https://port-0-sejong-enrollment-1jvasx23lbaoi6rj.gksl2.cloudtype.app/${info.id}?userId=${userInfo.studentId}&scheduleId=${selectedScheduleId}`
       );
       console.log(info.id);
     } catch (error) {
@@ -43,7 +43,12 @@ const ModalOverlay = (props) => {
 
   return (
     <div className="classModal">
-      {isFetching && <div className="classModal-loading"> <Loading2 /> </div>}
+      {isFetching && (
+        <div className="classModal-loading">
+          {" "}
+          <Loading2 />{" "}
+        </div>
+      )}
       <div className="classModal-contents">
         <div className="classModal-contents-name">{info.name}</div>
         <div className="classModal-contents-content">
