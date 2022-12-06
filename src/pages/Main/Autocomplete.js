@@ -31,6 +31,7 @@ const Autocomplete = ({ name, onChange }) => {
           name: "",
           profName: savedFilterInfo.profName,
           classification: savedFilterInfo.classification,
+          lectureId: savedFilterInfo.lectureId,
         },
       })
     );

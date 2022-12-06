@@ -51,7 +51,7 @@ const Frame2 = (props) => {
   const getLectureList = async (info, sort) => {
     setIsLoading(true);
     const response = await axios(
-      `https://sejong-enrollment.herokuapp.com/lectures?${
+      `https://port-0-sejong-enrollment-1jvasx23lbaoi6rj.gksl2.cloudtype.app/lectures?${
         info.department === ""
           ? ""
           : info.department === "전체"
@@ -65,6 +65,8 @@ const Frame2 = (props) => {
           : info.classification === "전체"
           ? ""
           : `&classification=${info.classification}`
+      }${
+        info.lectureId === "" ? "" : `&lectureId=${info.lectureId}`
       }&sort=${sort}`
     );
     // console.log(info.department);

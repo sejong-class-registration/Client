@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { isFetchingActions } from "../../redux/slice/isFetchingSlice";
-import Loading from "../../UI/Loading";
+import Loading2 from "../../UI/Loading2";
 
 import "./ClassModal.scss";
 
@@ -42,7 +42,7 @@ const ModalOverlay = (props) => {
     dispatch(isFetchingActions.changeIsFetching());
     try {
       const response = await axios.put(
-        `https://sejong-enrollment.herokuapp.com/schedules/${info.id}`,
+        `https://port-0-sejong-enrollment-1jvasx23lbaoi6rj.gksl2.cloudtype.app/schedules/${info.id}`,
         { userId: userInfo.studentId, scheduleId: selectedScheduleId }
       );
       console.log(info);
@@ -65,6 +65,7 @@ const ModalOverlay = (props) => {
 
   return (
     <div className="classModal">
+      {isFetching && <div className="classModal-loading"> <Loading2 /> </div>}
       <div className="classModal-contents">
         {recommendLectures.includes(info.name.split(" ").join("")) ? (
           <div className="classModal-contents-name-recommend">

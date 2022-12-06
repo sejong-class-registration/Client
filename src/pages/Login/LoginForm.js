@@ -103,6 +103,10 @@ const LoginForm = () => {
         studentId: EnteredInput.id,
         password: EnteredInput.pw,
       })
+      // .post("https://sejong-enrollment.herokuapp.com/users/signin", {
+      //   studentId: EnteredInput.id,
+      //   password: EnteredInput.pw,
+      // })
       .then((response) => {
         console.log(response);
         setIsLoading(false);
