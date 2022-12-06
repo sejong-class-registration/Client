@@ -178,7 +178,7 @@ const SignupForm = (props) => {
       console.log(response);
       window.localStorage.setItem("token", response.data.token);
       dispatch(userInfoActions.saveUserInfo(response.data.user));
-      navigates("/main");
+      navigate("/main");
     } else {
       alert(response.data.message);
     }
@@ -187,9 +187,7 @@ const SignupForm = (props) => {
   const idInputClassName = EnteredInputIsValid.id
     ? ""
     : "signup-form-input-invalid";
-  const pwInputClassName = EnteredInputIsValid.password
-    ? ""
-    : "";
+  const pwInputClassName = EnteredInputIsValid.password ? "" : "";
   const pwHelpClassName = EnteredInputIsValid.password
     ? "signup-form-pw-help-invalid"
     : "signup-form-pw-help-invalid";
@@ -197,8 +195,7 @@ const SignupForm = (props) => {
     (pwIsValid.match && pwIsValid.touched) || !pwIsValid.touched
       ? ""
       : "signup-form-input-invalid";
-  const buttonActivate =
-    EnteredInputIsValid.id && pwIsValid.match;
+  const buttonActivate = EnteredInputIsValid.id && pwIsValid.match;
   const doubleMajorInvalidate = EnteredInput.doubleMajor === EnteredInput.major;
   const twoButtonActivate = inputIsValid && !doubleMajorInvalidate;
 
