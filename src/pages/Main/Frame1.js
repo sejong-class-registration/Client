@@ -77,10 +77,10 @@ const Frame1 = () => {
 
       var color = null;
       if (userScheduleData[i].classification === "전필") {
-        color = "#df7e7e70";
+        color = "#ff9999";
       }
       if (userScheduleData[i].classification === "전선") {
-        color = "#df7e7e30";
+        color = "#ffcccc";
       }
       if (userScheduleData[i].classification === "교필") {
         color = "#d7df7e";
@@ -89,16 +89,16 @@ const Frame1 = () => {
         color = "#917edf";
       }
       if (userScheduleData[i].classification === "교선") {
-        color = "#d7df7e70";
+        color = "#99ff99";
       }
       if (userScheduleData[i].classification === "교직") {
-        color = "#d17edf70";
+        color = "#99ff99";
       }
       if (
         userScheduleData[i].classification === "기교" ||
         userScheduleData[i].classification === "기필"
       ) {
-        color = "#d17edf";
+        color = "#cc99ff";
       }
 
       // console.log(userScheduleData[i].time);
