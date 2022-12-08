@@ -36,6 +36,7 @@ const ExcelUploadPage = () => {
         totalCredit: data.totalCredit,
       })
     );
+    getGraduateData();
   };
 
   const getGraduateData = async () => {

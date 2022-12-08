@@ -15,7 +15,17 @@ const Graduation = () => {
     (state) => state.graduateLecture.graduateLecture
   );
   const isUploaded = useSelector(
-    (state) => state.graduateLecture.graduateLecture.totalGE1.length > 0
+    (state) => state.graduateLecture.graduateLecture.takenGE1.length > 0
+  );
+
+  const takenGE1Name = savedGraduateLecture.takenGE1.map(
+    (lecture) => lecture.name
+  );
+  const takenGE2Name = savedGraduateLecture.takenGE2.map(
+    (lecture) => lecture.name
+  );
+  const takenGE3Name = savedGraduateLecture.takenGE3.map(
+    (lecture) => lecture.name
   );
 
   const uncompletedMustMajorLecture = savedGraduateLecture.totalMustMajor.filter(
@@ -25,13 +35,16 @@ const Graduation = () => {
     (x) => !savedGraduateLecture.takenSelectMajor.includes(x)
   );
   const uncompletedGE1 = savedGraduateLecture.totalGE1.filter(
-    (x) => !savedGraduateLecture.takenGE1.includes(x)
+    (x) => !takenGE1Name.includes(x)
   );
   const uncompletedGE2 = savedGraduateLecture.totalGE2.filter(
-    (x) => !savedGraduateLecture.takenGE2.includes(x)
+    (x) => !takenGE2Name.includes(x)
   );
   const uncompletedGE3 = savedGraduateLecture.totalGE3.filter(
-    (x) => !savedGraduateLecture.takenGE3.includes(x)
+    (x) => !takenGE3Name.includes(x)
+  );
+  const geAreaTaken = savedGraduateLecture.geArea.filter(
+    (x) => !savedGraduateLecture.geAreaNotTaken.includes(x)
   );
 
   const uncompletedMustMajorLecturesList = uncompletedMustMajorLecture.map(
@@ -51,25 +64,31 @@ const Graduation = () => {
     <GraduateGEList key={i} title={lecture} completed={0} />
   ));
   const completedGE1LecturesList = savedGraduateLecture.takenGE1.map(
-    (lecture, i) => <GraduateGEList key={i} title={lecture} completed={1} />
+    (lecture, i) => (
+      <GraduateGEList key={i} title={lecture.name} completed={1} />
+    )
   );
   const uncompletedGE2LecturesList = uncompletedGE2.map((lecture, i) => (
     <GraduateGEList key={i} title={lecture} completed={0} />
   ));
   const completedGE2LecturesList = savedGraduateLecture.takenGE2.map(
-    (lecture, i) => <GraduateGEList key={i} title={lecture} completed={1} />
+    (lecture, i) => (
+      <GraduateGEList key={i} title={lecture.name} completed={1} />
+    )
   );
   const uncompletedGE3LecturesList = uncompletedGE3.map((lecture, i) => (
-    <GraduateGEList key={i} title={lecture} completed={0} />
+    <GraduateGEList key={i} title={lecture.name} completed={0} />
   ));
   const completedGE3LecturesList = savedGraduateLecture.takenGE3.map(
-    (lecture, i) => <GraduateGEList key={i} title={lecture} completed={1} />
+    (lecture, i) => (
+      <GraduateGEList key={i} title={lecture.name} completed={1} />
+    )
   );
 
   useEffect(() => {
     getGraduateData();
-    // console.log(savedGraduateLecture);
-    // console.log(isUploaded)
+    console.log(savedGraduateLecture);
+    console.log(geAreaTaken);
   }, []);
 
   const userInfo = useSelector((state) => state.userInfo.userInfo);
@@ -79,7 +98,7 @@ const Graduation = () => {
       `https://sejong-enrollment.herokuapp.com/graduation?studentId=${userInfo.studentId}`
     ).then((response) => {
       if (response.status === 200) {
-        console.log(response.data.data);
+        console.log(response.data);
         dispatch(
           graduateLectureSliceActions.saveGraduateLectures(response.data.data)
         );
@@ -186,8 +205,16 @@ const Graduation = () => {
             </span>
             <div className="graduation-GE-1-txt">
               <span className="graduation-GE-1-title">공통필수</span>
-              <span className="graduation-GE-1-score">
-                10 / {savedGraduateLecture.totalCreditGE1}
+              <span
+                className={
+                  savedGraduateLecture.takenCreditGE1 ===
+                  savedGraduateLecture.totalCreditGE1
+                    ? "graduation-GE-1-score-complete"
+                    : "graduation-GE-1-score"
+                }
+              >
+                {savedGraduateLecture.takenCreditGE1} /{" "}
+                {savedGraduateLecture.totalCreditGE1}
               </span>
             </div>
             <ul className="graduation-GE-1">
@@ -196,9 +223,6 @@ const Graduation = () => {
             </ul>
             <div className="graduation-GE-2-txt">
               <span className="graduation-GE-2-title">선택필수</span>
-              <span className="graduation-GE-2-score">
-                10 / {savedGraduateLecture.totalCreditGE2}
-              </span>
             </div>
             <ul className="graduation-GE-2">
               {uncompletedGE2LecturesList}
@@ -206,8 +230,16 @@ const Graduation = () => {
             </ul>
             <div className="graduation-GE-3-txt">
               <span className="graduation-GE-3-title">학문기초</span>
-              <span className="graduation-GE-3-score">
-                12 / {savedGraduateLecture.totalCreditGE3}
+              <span
+                className={
+                  savedGraduateLecture.takenCreditGE3 ===
+                  savedGraduateLecture.totalCreditGE3
+                    ? "graduation-GE-3-score-complete"
+                    : "graduation-GE-3-score"
+                }
+              >
+                {savedGraduateLecture.takenCreditGE3} /{" "}
+                {savedGraduateLecture.totalCreditGE3}
               </span>
             </div>
             <ul className="graduation-GE-3">
@@ -216,42 +248,120 @@ const Graduation = () => {
             </ul>
           </div>
           <div className="graduation-GE-area">
-            <div className="graduation-GE-area-title">균형교양필수영역</div>
+            <div className="graduation-GE-area-title">
+              균형교양필수영역{" "}
+              <span
+                className={
+                  savedGraduateLecture.geAreaTakenCredit ===
+                  savedGraduateLecture.totalCreditGE2
+                    ? "graduation-GE-2-score-complete"
+                    : "graduation-GE-2-score"
+                }
+              >
+                {savedGraduateLecture.geAreaTakenCredit} /{" "}
+                {savedGraduateLecture.totalCreditGE2}
+              </span>
+            </div>
             <span className="graduation-GE-area-txt">
               6개 영역 중{" "}
-              <span className="graduation-GE-area-txt-red">n개</span> 영역에서
-              합 <span className="graduation-GE-area-txt-red">n학점</span>을
-              들어야함
+              <span className="graduation-GE-area-txt-red">
+                {savedGraduateLecture.geAreaCount}개
+              </span>{" "}
+              영역에서 합{" "}
+              <span className="graduation-GE-area-txt-red">
+                {savedGraduateLecture.totalCreditGE2}학점
+              </span>
+              을 들어야함
             </span>
             <div className="graduation-GE-area-area">
               <span className="graduation-GE-area-area-title">사상과역사</span>
-              <div className="graduation-GE-area-area-untaken">미이수</div>
+              <div
+                className={
+                  savedGraduateLecture.geAreaNotTaken.includes("사상과역사")
+                    ? "graduation-GE-area-area-untaken"
+                    : "graduation-GE-area-area-taken"
+                }
+              >
+                {savedGraduateLecture.geAreaNotTaken.includes("사상과역사")
+                  ? "미이수"
+                  : "이수"}
+              </div>
             </div>
             <div className="graduation-GE-area-area">
               <span className="graduation-GE-area-area-title">사회와문화</span>
-              <div className="graduation-GE-area-area-untaken">미이수</div>
+              <div
+                className={
+                  savedGraduateLecture.geAreaNotTaken.includes("사회와문화")
+                    ? "graduation-GE-area-area-untaken"
+                    : "graduation-GE-area-area-taken"
+                }
+              >
+                {savedGraduateLecture.geAreaNotTaken.includes("사회와문화")
+                  ? "미이수"
+                  : "이수"}
+              </div>
             </div>
             <div className="graduation-GE-area-area">
               <span className="graduation-GE-area-area-title">
                 자기계발과진로
               </span>
-              <div className="graduation-GE-area-area-untaken">미이수</div>
+              <div
+                className={
+                  savedGraduateLecture.geAreaNotTaken.includes("자기계발과진로")
+                    ? "graduation-GE-area-area-untaken"
+                    : "graduation-GE-area-area-taken"
+                }
+              >
+                {savedGraduateLecture.geAreaNotTaken.includes("자기계발과진로")
+                  ? "미이수"
+                  : "이수"}
+              </div>
             </div>
             <div className="graduation-GE-area-area">
               <span className="graduation-GE-area-area-title">
                 자연과과학기술
               </span>
-              <div className="graduation-GE-area-area-taken">이수</div>
+              <div
+                className={
+                  savedGraduateLecture.geAreaNotTaken.includes("자연과과학기술")
+                    ? "graduation-GE-area-area-untaken"
+                    : "graduation-GE-area-area-taken"
+                }
+              >
+                {savedGraduateLecture.geAreaNotTaken.includes("자연과과학기술")
+                  ? "미이수"
+                  : "이수"}
+              </div>
             </div>
             <div className="graduation-GE-area-area">
               <span className="graduation-GE-area-area-title">
                 세계와지구촌
               </span>
-              <div className="graduation-GE-area-area-taken">이수</div>
+              <div
+                className={
+                  savedGraduateLecture.geAreaNotTaken.includes("세계와지구촌")
+                    ? "graduation-GE-area-area-untaken"
+                    : "graduation-GE-area-area-taken"
+                }
+              >
+                {savedGraduateLecture.geAreaNotTaken.includes("세계와지구촌")
+                  ? "미이수"
+                  : "이수"}
+              </div>
             </div>
             <div className="graduation-GE-area-area">
               <span className="graduation-GE-area-area-title">예술과체육</span>
-              <div className="graduation-GE-area-area-untaken">미이수</div>
+              <div
+                className={
+                  savedGraduateLecture.geAreaNotTaken.includes("예술과체육")
+                    ? "graduation-GE-area-area-untaken"
+                    : "graduation-GE-area-area-taken"
+                }
+              >
+                {savedGraduateLecture.geAreaNotTaken.includes("예술과체육")
+                  ? "미이수"
+                  : "이수"}
+              </div>
             </div>
           </div>
           <div className="graduation-excel-reupload">

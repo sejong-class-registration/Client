@@ -91,6 +91,7 @@ const LectureItem = (props) => {
   );
   // console.log(userScheduleData);
 
+
   useEffect(() => {
     for (var i = 0; i < userScheduleData.length; i++) {
       if (day) {

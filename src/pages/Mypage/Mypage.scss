@@ -102,10 +102,11 @@
   align-items: flex-start;
   padding: 50px 70px;
   &-loading{
-    position: absolute;
-    top: 500px;
-    left: 50%;
-    transform: translate(-50%, 0%);
+    position: relative;
+    top: 300px;
+    width: fit-content;
+    margin: auto;
+    z-index: 100;
   }
   label {
     position: relative;
@@ -197,15 +198,29 @@
     border: 1px solid black;
     border-radius: 15px;
     width: 840px;
-    height: 80px;
+    height: 120px;
     justify-content: space-around;
-    align-items: center;
+    padding-top: 30px;
+    // align-items: center;
     &-title {
       font-size: 1.3rem;
       font-weight: 100;
       &-icon{
         margin-right: 10px;
       }
+    }
+    &-exp{
+      position: absolute;
+      top: 80px;
+      font-size: 15px;
+      width: 430px;
+    }
+    a{
+      position: absolute;
+      font-size: 13px;
+      top: 102px;
+      left: 400px;
+
     }
   }
   &-secession{
