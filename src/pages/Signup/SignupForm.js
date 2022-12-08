@@ -163,7 +163,7 @@ const SignupForm = (props) => {
   const signupFetchHandler = async () => {
     setIsLoading(true);
     const response = await axios.post(
-      "https://port-0-sejong-enrollment-1jvasx23lbaoi6rj.gksl2.cloudtype.app/users/signup",
+      "https://sejong-enrollment.herokuapp.com/users/signup",
       {
         name: EnteredInput.username,
         studentId: EnteredInput.id,

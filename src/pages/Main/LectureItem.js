@@ -1,6 +1,7 @@
 import "./LectureItem.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { selectedLecActions } from "../../redux/slice/selectedLecSlice";
+import { useState } from "react";
 const LectureItem = (props) => {
   const dispatch = useDispatch();
   const openModal = props.openClassModal;
@@ -51,7 +52,32 @@ const LectureItem = (props) => {
   const isTaken = useSelector((state) => state.takenCheckBox.takenCheckBox);
   // console.log(isTaken);
 
-  if (userInfo.takenLectures.includes(props.name.split(" ").join("")) && isTaken) {
+  const [isInSchedule, setIsInSchedule] = useState(false);
+
+  const userScheduleData = useSelector(
+    (state) => state.userSchedule.userSchedule
+  );
+  // console.log(userScheduleData);
+
+  var lectureTimeList = [];
+
+  var lectureTime = { day: "", startTime: 0, endTime: 0 };
+
+  for (var i = 0; i < userScheduleData.length; i++) {
+    lectureTime = {
+      day: userScheduleData[i].time.day,
+      startTime: userScheduleData[i].time.startTime,
+      endTime: userScheduleData[i].time.endTime,
+    };
+    lectureTimeList.push(lectureTime);
+  }
+  console.log(lectureTimeList);
+  console.log(props);
+
+  if (
+    userInfo.takenLectures.includes(props.name.split(" ").join("")) &&
+    isTaken
+  ) {
     return <></>;
   } else {
     return (

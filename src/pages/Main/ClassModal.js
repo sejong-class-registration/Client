@@ -42,7 +42,7 @@ const ModalOverlay = (props) => {
     dispatch(isFetchingActions.changeIsFetching());
     try {
       const response = await axios.put(
-        `https://port-0-sejong-enrollment-1jvasx23lbaoi6rj.gksl2.cloudtype.app/schedules/${info.id}`,
+        `https://sejong-enrollment.herokuapp.com/schedules/${info.id}`,
         { userId: userInfo.studentId, scheduleId: selectedScheduleId }
       );
       console.log(info);

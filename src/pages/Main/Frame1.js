@@ -36,7 +36,7 @@ const Frame1 = () => {
 
   const getUserSchedule = async (id) => {
     const response = await axios(
-      `https://port-0-sejong-enrollment-1jvasx23lbaoi6rj.gksl2.cloudtype.app/schedules?userId=${userInfo.studentId}`
+      `https://sejong-enrollment.herokuapp.com/schedules?userId=${userInfo.studentId}`
     );
     // console.log(response.data.data);
     // console.log(response.data.data.schedules[id].totalCredit);
@@ -109,7 +109,7 @@ const Frame1 = () => {
         userScheduleData[i].time.day.includes(day) &&
         userScheduleData[i].time.startTime === startTime
       ) {
-        // console.log(userScheduleData[i]);
+        // console.log(userScheduleData[i]); 
 
         const selectedLecInfo = {
           classification: userScheduleData[i].classification,
