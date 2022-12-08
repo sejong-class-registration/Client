@@ -26,6 +26,10 @@ const graduateLectureSlice = createSlice({
       takenSelectMajorCredit: 0,
       totalSelectMajor: [],
       takenSelectMajor: [],
+      geAreaCount: 0,
+      geAreaTakenCredit: 0,
+      geArea: [],
+      geAreaNotTaken: [],
     },
   },
   reducers: {
@@ -53,6 +57,10 @@ const graduateLectureSlice = createSlice({
         takenSelectMajorCredit: action.payload.major.selectCurrentCredit,
         totalSelectMajor: action.payload.major.selectMajorOpenThisSemester,
         takenSelectMajor: action.payload.major.selectMajorTaken,
+        geAreaCount: action.payload.geAreaCount,
+        geAreaTakenCredit: action.payload.geAreaTakenCredit,
+        geArea: action.payload.geArea,
+        geAreaNotTaken: action.payload.geAreaNotTaken,
       };
     },
   },
