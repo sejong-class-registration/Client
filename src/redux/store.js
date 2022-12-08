@@ -16,6 +16,7 @@ import { recommendedLecturesSliceReducer } from "./slice/recommendedLecturesSlic
 import { scheduleNumReducer } from "./slice/scheduleNumSlice";
 import { graduateLectureSliceReducer } from "./slice/graduateLecture";
 import { takenCheckBoxReducer } from "./slice/takenCheckBoxSlice";
+import { cartCheckBoxReducer } from "./slice/cartCheckBoxSlice";
 
 const reducers = combineReducers({
   checkbox: checkboxReducer,
@@ -33,6 +34,7 @@ const reducers = combineReducers({
   recommendedLecture: recommendedLecturesSliceReducer,
   graduateLecture: graduateLectureSliceReducer,
   takenCheckBox: takenCheckBoxReducer,
+  cartCheckBox: cartCheckBoxReducer,
 });
 
 const persistConfig = {

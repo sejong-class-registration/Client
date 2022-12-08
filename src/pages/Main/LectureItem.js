@@ -50,6 +50,9 @@ const LectureItem = (props) => {
   // console.log(userLectureIdList.includes(props.lectureId));
 
   const isTaken = useSelector((state) => state.takenCheckBox.takenCheckBox);
+
+  const cart = useSelector((state) => state.cartCheckBox.cartCheckBox);
+  // console.log(cart);
   // console.log(isTaken);
 
   // ***********************************************
@@ -80,8 +83,8 @@ const LectureItem = (props) => {
         parseInt(props.dayAndTime.slice(10, 12));
     }
   }
-  console.log(props.dayAndTime);
-  console.log(day, startTime, endTime);
+  // console.log(props.dayAndTime);
+  // console.log(day, startTime, endTime);
 
   const userScheduleData = useSelector(
     (state) => state.userSchedule.userSchedule
@@ -116,10 +119,10 @@ const LectureItem = (props) => {
   // console.log(props.dayAndTime ? "1" : "0");
 
   // ***********************************************
-
   if (
-    userInfo.takenLectures.includes(props.name.split(" ").join("")) &&
-    isTaken
+    (userInfo.takenLectures.includes(props.name.split(" ").join("")) &&
+      isTaken) ||
+    (cart && lectures.includes(props.lectureId))
   ) {
     return <></>;
   } else {

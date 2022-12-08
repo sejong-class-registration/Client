@@ -8,6 +8,7 @@ import { sortFilterActions } from "../../redux/slice/sortFilterSlice";
 import { userLecturesActions } from "../../redux/slice/userLecturesSlice";
 import { filteredLectureActions } from "../../redux/slice/filteredLectureSlice";
 import { takenCheckBoxActions } from "../../redux/slice/takenCheckBoxSlice";
+import { cartCheckBoxActions } from "../../redux/slice/cartCheckBoxSlice";
 
 const Frame2 = (props) => {
   const [lectureList, setLectureList] = useState([]);
@@ -95,6 +96,14 @@ const Frame2 = (props) => {
     dispatch(takenCheckBoxActions.changeTakenCheckBox());
   };
 
+  const cartChecked = useSelector(
+    (state) => state.cartCheckBox.cartCheckBox
+  );
+  // console.log(takenChecked);
+  const cartChangeHandler = (props) => {
+    dispatch(cartCheckBoxActions.changeCartCheckBox());
+  };
+
   return (
     <div className="frame_2">
       <div className="filter">
@@ -104,6 +113,17 @@ const Frame2 = (props) => {
       </div>
       <div className="content2">
         <div className="sort_selecter">
+          <div className="checkboxWrapper">
+            <input
+              type="checkbox"
+              className="checkboxWrapper-cart-input"
+              checked={cartChecked}
+              onChange={cartChangeHandler}
+            />
+            <label className="checkboxWrapper-cart-label">
+              추가한 강의 안볼래요
+            </label>
+          </div>
           <div className="checkboxWrapper">
             <input
               type="checkbox"
