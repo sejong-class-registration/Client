@@ -88,20 +88,20 @@ const LectureItem = (props) => {
   );
   // console.log(userScheduleData);
 
-  for (var i = 0; i < userScheduleData.length; i++) {
-    if (day) {
-      if (userScheduleData[i].time.day.includes(day[0])) {
-        if (
-          (startTime > userScheduleData[i].time.startTime &&
-            startTime < userScheduleData[i].time.endTime) ||
-          (endTime > userScheduleData[i].time.startTime &&
-            endTime < userScheduleData[i].time.endTime)
-        ) {
-          setIsInSchedule(true);
-        }
-      }
-    }
-  }
+  // for (var i = 0; i < userScheduleData.length; i++) {
+  //   if (day) {
+  //     if (userScheduleData[i].time.day.includes(day[0])) {
+  //       if (
+  //         (startTime > userScheduleData[i].time.startTime &&
+  //           startTime < userScheduleData[i].time.endTime) ||
+  //         (endTime > userScheduleData[i].time.startTime &&
+  //           endTime < userScheduleData[i].time.endTime)
+  //       ) {
+  //         setIsInSchedule(true);
+  //       }
+  //     }
+  //   }
+  // }
 
   // console.log(lectureTimeList);
   // console.log(props.dayAndTime ? "1" : "0");
