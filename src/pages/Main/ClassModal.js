@@ -65,7 +65,12 @@ const ModalOverlay = (props) => {
 
   return (
     <div className="classModal">
-      {isFetching && <div className="classModal-loading"> <Loading2 /> </div>}
+      {isFetching && (
+        <div className="classModal-loading">
+          {" "}
+          <Loading2 />{" "}
+        </div>
+      )}
       <div className="classModal-contents">
         {recommendLectures.includes(info.name.split(" ").join("")) ? (
           <div className="classModal-contents-name-recommend">

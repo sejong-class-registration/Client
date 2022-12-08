@@ -109,7 +109,7 @@ const Frame1 = () => {
         userScheduleData[i].time.day.includes(day) &&
         userScheduleData[i].time.startTime === startTime
       ) {
-        // console.log(userScheduleData[i]); 
+        // console.log(userScheduleData[i]);
 
         const selectedLecInfo = {
           classification: userScheduleData[i].classification,
@@ -208,7 +208,7 @@ const Frame1 = () => {
 
   const returnOnlineClassSticker = () => {
     const lectureList = [];
-    var color = "#cbe3d570";
+    var color = "#b2f7cf";
 
     const outRangeLecClickHandler = (lec) => {
       console.log(lec);

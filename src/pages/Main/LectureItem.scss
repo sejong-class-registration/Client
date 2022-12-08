@@ -90,7 +90,7 @@
     width: 100%;
     overflow: hidden;
     justify-content: space-around;
-    background-color: #99ff99;
+    background-color: #b2f7cf;
     &:hover {
       font-weight: 700;
       border: 0.5px solid #8a8a8a;
@@ -132,6 +132,12 @@
   &_time {
     font-size: smaller;
     width: 5rem;
+
+    &_isInSchedule {
+      font-weight: bold;
+      color: #a31432;
+      // text-decoration: underline;
+    }
   }
 
   &_prof {
