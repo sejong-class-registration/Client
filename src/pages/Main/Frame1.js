@@ -109,7 +109,7 @@ const Frame1 = () => {
         userScheduleData[i].time.day.includes(day) &&
         userScheduleData[i].time.startTime === startTime
       ) {
-        // console.log(userScheduleData[i]); 
+        // console.log(userScheduleData[i]);
 
         const selectedLecInfo = {
           classification: userScheduleData[i].classification,

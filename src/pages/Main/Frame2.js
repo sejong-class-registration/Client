@@ -80,7 +80,7 @@ const Frame2 = (props) => {
     setIsLoading(false);
   };
 
-  console.log(lectureList);
+  // console.log(lectureList);
 
   useEffect(() => {
     getLectureList(savedFilterInfo, savedSortInfo);
@@ -96,9 +96,7 @@ const Frame2 = (props) => {
     dispatch(takenCheckBoxActions.changeTakenCheckBox());
   };
 
-  const cartChecked = useSelector(
-    (state) => state.cartCheckBox.cartCheckBox
-  );
+  const cartChecked = useSelector((state) => state.cartCheckBox.cartCheckBox);
   // console.log(takenChecked);
   const cartChangeHandler = (props) => {
     dispatch(cartCheckBoxActions.changeCartCheckBox());

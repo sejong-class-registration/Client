@@ -119,9 +119,15 @@ const LectureItem = (props) => {
   // console.log(props.dayAndTime ? "1" : "0");
 
   // ***********************************************
+
+  const takenLectures = [];
+  for (var i = 0; i < userInfo.takenLectures.length; i++) {
+    takenLectures.push(userInfo.takenLectures[i].name);
+  }
+  // console.log(takenLectures);
+
   if (
-    (userInfo.takenLectures.includes(props.name.split(" ").join("")) &&
-      isTaken) ||
+    (takenLectures.includes(props.name.split(" ").join("")) && isTaken) ||
     (cart && lectures.includes(props.lectureId))
   ) {
     return <></>;
@@ -132,7 +138,7 @@ const LectureItem = (props) => {
           className={`lecture-wrap${
             lectures.includes(props.lectureId)
               ? "-isInSchedule"
-              : userInfo.takenLectures.includes(props.name.split(" ").join(""))
+              : takenLectures.includes(props.name.split(" ").join(""))
               ? "-isTaken"
               : props.dayAndTime === "" && props.classification !== "전필"
               ? "-online"
