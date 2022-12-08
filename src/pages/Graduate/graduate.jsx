@@ -76,7 +76,7 @@ const Graduation = () => {
 
   const getGraduateData = async () => {
     const response = await axios(
-      `https://port-0-sejong-enrollment-1jvasx23lbaoi6rj.gksl2.cloudtype.app/graduation?studentId=${userInfo.studentId}`
+      `https://sejong-enrollment.herokuapp.com/graduation?studentId=${userInfo.studentId}`
     ).then((response) => {
       if (response.status === 200) {
         console.log(response.data.data);

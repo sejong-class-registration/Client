@@ -163,7 +163,7 @@ const SignupForm = (props) => {
   const signupFetchHandler = async () => {
     setIsLoading(true);
     const response = await axios.post(
-      "https://port-0-sejong-enrollment-1jvasx23lbaoi6rj.gksl2.cloudtype.app/users/signup",
+      "https://sejong-enrollment.herokuapp.com/users/signup",
       {
         name: EnteredInput.username,
         studentId: EnteredInput.id,
@@ -187,9 +187,7 @@ const SignupForm = (props) => {
   const idInputClassName = EnteredInputIsValid.id
     ? ""
     : "signup-form-input-invalid";
-  const pwInputClassName = EnteredInputIsValid.password
-    ? ""
-    : "";
+  const pwInputClassName = EnteredInputIsValid.password ? "" : "";
   const pwHelpClassName = EnteredInputIsValid.password
     ? "signup-form-pw-help-invalid"
     : "signup-form-pw-help-invalid";
@@ -197,8 +195,7 @@ const SignupForm = (props) => {
     (pwIsValid.match && pwIsValid.touched) || !pwIsValid.touched
       ? ""
       : "signup-form-input-invalid";
-  const buttonActivate =
-    EnteredInputIsValid.id && pwIsValid.match;
+  const buttonActivate = EnteredInputIsValid.id && pwIsValid.match;
   const doubleMajorInvalidate = EnteredInput.doubleMajor === EnteredInput.major;
   const twoButtonActivate = inputIsValid && !doubleMajorInvalidate;
 
