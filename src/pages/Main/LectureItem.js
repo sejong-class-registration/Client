@@ -52,27 +52,61 @@ const LectureItem = (props) => {
   const isTaken = useSelector((state) => state.takenCheckBox.takenCheckBox);
   // console.log(isTaken);
 
+  // ***********************************************
   const [isInSchedule, setIsInSchedule] = useState(false);
+  var day = [];
+  var startTime = 0;
+  var endTime = 0;
+
+  if (props.dayAndTime) {
+    if (isNaN(props.dayAndTime[1])) {
+      day.push(props.dayAndTime[0]);
+      day.push(props.dayAndTime[1]);
+      startTime =
+        60 * parseInt(props.dayAndTime.slice(2, 4)) +
+        parseInt(props.dayAndTime.slice(5, 7));
+
+      endTime =
+        60 * parseInt(props.dayAndTime.slice(8, 10)) +
+        parseInt(props.dayAndTime.slice(11, 13));
+    } else {
+      day.push(props.dayAndTime[0]);
+      startTime =
+        60 * parseInt(props.dayAndTime.slice(1, 3)) +
+        parseInt(props.dayAndTime.slice(4, 6));
+
+      endTime =
+        60 * parseInt(props.dayAndTime.slice(7, 9)) +
+        parseInt(props.dayAndTime.slice(10, 12));
+    }
+  }
+  // console.log(props.dayAndTime);
+  // console.log(day, startTime, endTime);
 
   const userScheduleData = useSelector(
     (state) => state.userSchedule.userSchedule
   );
   // console.log(userScheduleData);
 
-  var lectureTimeList = [];
-
-  var lectureTime = { day: "", startTime: 0, endTime: 0 };
-
   for (var i = 0; i < userScheduleData.length; i++) {
-    lectureTime = {
-      day: userScheduleData[i].time.day,
-      startTime: userScheduleData[i].time.startTime,
-      endTime: userScheduleData[i].time.endTime,
-    };
-    lectureTimeList.push(lectureTime);
+    if (day) {
+      if (userScheduleData[i].time.day.includes(day[0])) {
+        if (
+          (startTime > userScheduleData[i].time.startTime &&
+            startTime < userScheduleData[i].time.endTime) ||
+          (endTime > userScheduleData[i].time.startTime &&
+            endTime < userScheduleData[i].time.endTime)
+        ) {
+          setIsInSchedule(true);
+        }
+      }
+    }
   }
-  console.log(lectureTimeList);
-  console.log(props);
+
+  // console.log(lectureTimeList);
+  // console.log(props.dayAndTime ? "1" : "0");
+
+  // ***********************************************
 
   if (
     userInfo.takenLectures.includes(props.name.split(" ").join("")) &&
@@ -119,7 +153,9 @@ const LectureItem = (props) => {
           <div className="lecture_score">
             {props.credit.substr(0, 1) + "학점"}
           </div>
-          <div className="lecture_time">{props.dayAndTime}</div>
+          <div className="lecture_time">
+            {`${isInSchedule ? "!" : ""}` + props.dayAndTime}
+          </div>
           <div className="lecture_prof">{props.profName}</div>
         </div>
       </div>

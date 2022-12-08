@@ -79,7 +79,7 @@ const Frame2 = (props) => {
     setIsLoading(false);
   };
 
-  // console.log(lectureList);
+  console.log(lectureList);
 
   useEffect(() => {
     getLectureList(savedFilterInfo, savedSortInfo);
