@@ -90,7 +90,7 @@ const Mypage = () => {
   const userInfoFetchHandler = async () => {
     setIsLoading(true);
     const response = await axios.post(
-      `https://port-0-sejong-enrollment-1jvasx23lbaoi6rj.gksl2.cloudtype.app/users/${userInfo.studentId}`,
+      `https://sejong-enrollment.herokuapp.com/users/${userInfo.studentId}`,
       {
 
           name: enteredInput.name,

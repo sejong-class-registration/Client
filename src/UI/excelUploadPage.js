@@ -17,7 +17,7 @@ const ExcelUploadPage = () => {
     const formData = new FormData();
     formData.append("xlsx", tempFile);
     const response = await axios.post(
-      `https://port-0-sejong-enrollment-1jvasx23lbaoi6rj.gksl2.cloudtype.app/users/${userInfo.studentId}/excel`,
+      `https://sejong-enrollment.herokuapp.com/users/${userInfo.studentId}/excel`,
       formData,
       {
         headers: {
@@ -40,7 +40,7 @@ const ExcelUploadPage = () => {
 
   const getGraduateData = async () => {
     const response = await axios(
-      `https://port-0-sejong-enrollment-1jvasx23lbaoi6rj.gksl2.cloudtype.app/graduation?studentId=${userInfo.studentId}`
+      `https://sejong-enrollment.herokuapp.com/graduation?studentId=${userInfo.studentId}`
     ).then((response) => {
       if (response.status === 200) {
         console.log(response.data.data);
