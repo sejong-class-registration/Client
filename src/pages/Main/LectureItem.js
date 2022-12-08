@@ -1,7 +1,7 @@
 import "./LectureItem.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { selectedLecActions } from "../../redux/slice/selectedLecSlice";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 const LectureItem = (props) => {
   const dispatch = useDispatch();
   const openModal = props.openClassModal;
@@ -80,28 +80,37 @@ const LectureItem = (props) => {
         parseInt(props.dayAndTime.slice(10, 12));
     }
   }
-  // console.log(props.dayAndTime);
-  // console.log(day, startTime, endTime);
+  console.log(props.dayAndTime);
+  console.log(day, startTime, endTime);
 
   const userScheduleData = useSelector(
     (state) => state.userSchedule.userSchedule
   );
   // console.log(userScheduleData);
 
-  // for (var i = 0; i < userScheduleData.length; i++) {
-  //   if (day) {
-  //     if (userScheduleData[i].time.day.includes(day[0])) {
-  //       if (
-  //         (startTime > userScheduleData[i].time.startTime &&
-  //           startTime < userScheduleData[i].time.endTime) ||
-  //         (endTime > userScheduleData[i].time.startTime &&
-  //           endTime < userScheduleData[i].time.endTime)
-  //       ) {
-  //         setIsInSchedule(true);
-  //       }
-  //     }
-  // }
-  // }
+  useEffect(() => {
+    for (var i = 0; i < userScheduleData.length; i++) {
+      if (day) {
+        if (
+          userScheduleData[i].time.day.includes(day[0]) ||
+          userScheduleData[i].time.day.includes(day[1])
+        ) {
+          if (
+            (startTime > userScheduleData[i].time.startTime &&
+              startTime < userScheduleData[i].time.endTime) ||
+            (endTime > userScheduleData[i].time.startTime &&
+              endTime < userScheduleData[i].time.endTime) ||
+            (startTime < userScheduleData[i].time.startTime &&
+              endTime > userScheduleData[i].time.endTime) ||
+            (startTime > userScheduleData[i].time.startTime &&
+              endTime < userScheduleData[i].time.endTime)
+          ) {
+            setIsInSchedule(true);
+          }
+        }
+      }
+    }
+  }, []);
 
   // console.log(lectureTimeList);
   // console.log(props.dayAndTime ? "1" : "0");
@@ -153,8 +162,8 @@ const LectureItem = (props) => {
           <div className="lecture_score">
             {props.credit.substr(0, 1) + "학점"}
           </div>
-          <div className="lecture_time">
-            {`${isInSchedule ? "!" : ""}` + props.dayAndTime}
+          <div className={`lecture_time${isInSchedule ? "_isInSchedule" : ""}`}>
+            {(isInSchedule ? "❗️" : "") + props.dayAndTime}
           </div>
           <div className="lecture_prof">{props.profName}</div>
         </div>

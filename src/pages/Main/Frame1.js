@@ -208,7 +208,7 @@ const Frame1 = () => {
 
   const returnOnlineClassSticker = () => {
     const lectureList = [];
-    var color = "#cbe3d570";
+    var color = "#b2f7cf";
 
     const outRangeLecClickHandler = (lec) => {
       console.log(lec);
