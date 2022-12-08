@@ -36,7 +36,7 @@ const Frame1 = () => {
 
   const getUserSchedule = async (id) => {
     const response = await axios(
-      `https://port-0-sejong-enrollment-1jvasx23lbaoi6rj.gksl2.cloudtype.app/schedules?userId=${userInfo.studentId}`
+      `https://sejong-enrollment.herokuapp.com/schedules?userId=${userInfo.studentId}`
     );
     // console.log(response.data.data);
     // console.log(response.data.data.schedules[id].totalCredit);
@@ -77,10 +77,10 @@ const Frame1 = () => {
 
       var color = null;
       if (userScheduleData[i].classification === "전필") {
-        color = "#df7e7e70";
+        color = "#ff9999";
       }
       if (userScheduleData[i].classification === "전선") {
-        color = "#df7e7e30";
+        color = "#ffcccc";
       }
       if (userScheduleData[i].classification === "교필") {
         color = "#d7df7e";
@@ -89,13 +89,16 @@ const Frame1 = () => {
         color = "#917edf";
       }
       if (userScheduleData[i].classification === "교선") {
-        color = "#d7df7e70";
+        color = "#99ff99";
       }
       if (userScheduleData[i].classification === "교직") {
-        color = "#d17edf70";
+        color = "#99ff99";
       }
-      if (userScheduleData[i].classification === "기교") {
-        color = "#d17edf";
+      if (
+        userScheduleData[i].classification === "기교" ||
+        userScheduleData[i].classification === "기필"
+      ) {
+        color = "#cc99ff";
       }
 
       // console.log(userScheduleData[i].time);
@@ -106,7 +109,7 @@ const Frame1 = () => {
         userScheduleData[i].time.day.includes(day) &&
         userScheduleData[i].time.startTime === startTime
       ) {
-        // console.log(userScheduleData[i]);
+        // console.log(userScheduleData[i]); 
 
         const selectedLecInfo = {
           classification: userScheduleData[i].classification,

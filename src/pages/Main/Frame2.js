@@ -51,7 +51,7 @@ const Frame2 = (props) => {
   const getLectureList = async (info, sort) => {
     setIsLoading(true);
     const response = await axios(
-      `https://port-0-sejong-enrollment-1jvasx23lbaoi6rj.gksl2.cloudtype.app/lectures?${
+      `https://sejong-enrollment.herokuapp.com/lectures?${
         info.department === ""
           ? ""
           : info.department === "전체"
@@ -79,7 +79,7 @@ const Frame2 = (props) => {
     setIsLoading(false);
   };
 
-  // console.log(lectureList);
+  console.log(lectureList);
 
   useEffect(() => {
     getLectureList(savedFilterInfo, savedSortInfo);
