@@ -25,9 +25,9 @@ const ModalOverlay = (props) => {
     dispatch(isFetchingActions.changeIsFetching());
     try {
       const response = await axios.delete(
-        `https://sejong-enrollment.herokuapp.com/${info.id}?userId=${userInfo.studentId}&scheduleId=${selectedScheduleId}`
+        `https://sejong-enrollment.herokuapp.com/schedules/${info.id}`,
+        { data: { userId: userInfo.studentId, scheduleId: selectedScheduleId } }
       );
-      console.log(info.id);
     } catch (error) {
       console.log(error);
     }
