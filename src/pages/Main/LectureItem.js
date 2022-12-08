@@ -1,7 +1,7 @@
 import "./LectureItem.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { selectedLecActions } from "../../redux/slice/selectedLecSlice";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 const LectureItem = (props) => {
   const dispatch = useDispatch();
   const openModal = props.openClassModal;
@@ -50,6 +50,9 @@ const LectureItem = (props) => {
   // console.log(userLectureIdList.includes(props.lectureId));
 
   const isTaken = useSelector((state) => state.takenCheckBox.takenCheckBox);
+
+  const cart = useSelector((state) => state.cartCheckBox.cartCheckBox);
+  // console.log(cart);
   // console.log(isTaken);
 
   // ***********************************************
@@ -88,29 +91,44 @@ const LectureItem = (props) => {
   );
   // console.log(userScheduleData);
 
-  for (var i = 0; i < userScheduleData.length; i++) {
-    if (day) {
-      if (userScheduleData[i].time.day.includes(day[0])) {
+  useEffect(() => {
+    for (var i = 0; i < userScheduleData.length; i++) {
+      if (day) {
         if (
-          (startTime > userScheduleData[i].time.startTime &&
-            startTime < userScheduleData[i].time.endTime) ||
-          (endTime > userScheduleData[i].time.startTime &&
-            endTime < userScheduleData[i].time.endTime)
+          userScheduleData[i].time.day.includes(day[0]) ||
+          userScheduleData[i].time.day.includes(day[1])
         ) {
-          setIsInSchedule(true);
+          if (
+            (startTime > userScheduleData[i].time.startTime &&
+              startTime < userScheduleData[i].time.endTime) ||
+            (endTime > userScheduleData[i].time.startTime &&
+              endTime < userScheduleData[i].time.endTime) ||
+            (startTime < userScheduleData[i].time.startTime &&
+              endTime > userScheduleData[i].time.endTime) ||
+            (startTime > userScheduleData[i].time.startTime &&
+              endTime < userScheduleData[i].time.endTime)
+          ) {
+            setIsInSchedule(true);
+          }
         }
       }
     }
-  }
+  }, []);
 
   // console.log(lectureTimeList);
   // console.log(props.dayAndTime ? "1" : "0");
 
   // ***********************************************
 
+  const takenLectures = [];
+  for (var i = 0; i < userInfo.takenLectures.length; i++) {
+    takenLectures.push(userInfo.takenLectures[i].name);
+  }
+  // console.log(takenLectures);
+
   if (
-    userInfo.takenLectures.includes(props.name.split(" ").join("")) &&
-    isTaken
+    (takenLectures.includes(props.name.split(" ").join("")) && isTaken) ||
+    (cart && lectures.includes(props.lectureId))
   ) {
     return <></>;
   } else {
@@ -120,7 +138,7 @@ const LectureItem = (props) => {
           className={`lecture-wrap${
             lectures.includes(props.lectureId)
               ? "-isInSchedule"
-              : userInfo.takenLectures.includes(props.name.split(" ").join(""))
+              : takenLectures.includes(props.name.split(" ").join(""))
               ? "-isTaken"
               : props.dayAndTime === "" && props.classification !== "전필"
               ? "-online"
@@ -153,8 +171,8 @@ const LectureItem = (props) => {
           <div className="lecture_score">
             {props.credit.substr(0, 1) + "학점"}
           </div>
-          <div className="lecture_time">
-            {`${isInSchedule ? "!" : ""}` + props.dayAndTime}
+          <div className={`lecture_time${isInSchedule ? "_isInSchedule" : ""}`}>
+            {(isInSchedule ? "❗️" : "") + props.dayAndTime}
           </div>
           <div className="lecture_prof">{props.profName}</div>
         </div>
