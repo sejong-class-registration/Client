@@ -46,10 +46,6 @@
   }
 }
 
-.sort_selecter {
-  margin: 1rem 2rem;
-  text-align: end;
-}
 
 .lecture_list {
   width: 100%;
@@ -95,17 +91,59 @@
 }
 
 .checkboxWrapper {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 155px;
+  min-width: 70px;
+  font-size: 0.9rem;
+  font-weight: 100;
+  cursor: pointer;
+  line-height: 1.5rem;
+  height: 1.5rem;
   border: 1px solid #626060;
   border-radius: 15px;
   margin-right: 10px;
-  padding: 0 1rem;
-
-  display: flex;
   justify-content: center;
   align-items: center;
 
-  &-isTaken-input {
-    width: 1rem;
-    height: 1rem;
+  &-cart{
+    &-input{
+      margin: 0 0 0 10px;
+      line-height: 1.5rem;
+    }
+    &-label{
+      cursor: pointer;
+      margin: 0 10px 0 5px;
+    }
   }
+  &-isTaken{
+    &-input{
+      margin: 0 0 0 10px;
+      line-height: 1.5rem;
+    }
+    &-label{
+      cursor: pointer;
+      margin: 0 10px 0 5px;
+    }
+  }
+}
+
+
+.sort_selecter {
+  &-select{
+    font-size: 0.9rem;
+    font-weight: 100;
+    cursor: pointer;
+    line-height: 26px;
+    height: 26px;
+    border: 1px solid #626060;
+    border-radius: 15px;
+    font-family:'Nanumgothic';
+
+  }
+  margin: 1rem 2rem;
+  text-align: end;
+  line-height: 1rem;
 }

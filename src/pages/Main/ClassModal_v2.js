@@ -45,12 +45,12 @@ const ModalOverlay = (props) => {
 
   return (
     <div className="classModal">
-      {isFetching && (
+      {/* {isFetching && (
         <div className="classModal-loading">
           {" "}
           <Loading2 />{" "}
         </div>
-      )}
+      )} */}
       <div className="classModal-contents">
         <div className="classModal-contents-name">{info.name}</div>
         <div className="classModal-contents-content">

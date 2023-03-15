@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const takenCheckBoxSlice = createSlice({
   name: "takenCheckBox",
   initialState: {
-    takenCheckBox: false,
+    takenCheckBox: true,
   },
   reducers: {
     changeTakenCheckBox(state) {

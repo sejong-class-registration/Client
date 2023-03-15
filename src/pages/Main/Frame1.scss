@@ -4,6 +4,10 @@
   min-width: 550px;
   width: 55%;
   height: 80%;
+  ::-webkit-scrollbar{
+    display: none;
+  }
+  
 }
 
 .calendar {
@@ -15,8 +19,11 @@
   border-radius: 15px;
   height: 100%;
   font-size: 12px;
-  overflow-y: hidden;
+  overflow-y: none;
   overflow-x: hidden;
+  ::-webkit-scrollbar{
+    display: none;
+  }
 
   &-label {
     margin: 0 0 1rem 2rem;
@@ -32,7 +39,7 @@
     border-spacing: 0px;
     margin: auto;
     //
-    font-weight: 1000;
+    font-weight: 500;
   }
 
   &-day {
@@ -80,7 +87,7 @@
     position: absolute;
     background-color: white;
     width: 95%;
-    height: 10%;
+    height: 12%;
     display: flex;
     justify-content: space-around;
     align-items: center;

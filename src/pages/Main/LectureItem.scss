@@ -1,17 +1,18 @@
 .lecture {
   margin: 0.5rem 1.5rem;
   cursor: pointer;
+  display: flex;
   &-wrap {
     display: flex;
     border: 0.5px solid white;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 2px;
     border-radius: 10px;
     font-size: 12px;
-    padding: 0.2rem 0;
-    height: 1rem;
+    padding: 0.3rem 0;
+    height: 1.25rem;
+    line-height: 1.25rem;
     width: 100%;
     overflow: hidden;
-    align-items: center;
     justify-content: space-around;
     &:hover {
       font-weight: 700;
@@ -26,8 +27,9 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 2px;
     border-radius: 10px;
     font-size: 12px;
-    padding: 0.2rem 0;
-    height: 1rem;
+    padding: 0.3rem 0;
+    height: 1.25rem;
+    line-height: 1.25rem;
     width: 100%;
     overflow: hidden;
     justify-content: space-around;
@@ -45,8 +47,9 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 2px;
     border-radius: 10px;
     font-size: 12px;
-    padding: 0.2rem 0;
-    height: 1rem;
+    padding: 0.3rem 0;
+    height: 1.25rem;
+    line-height: 1.25rem;
     width: 100%;
     overflow: hidden;
     justify-content: space-around;
@@ -65,8 +68,9 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 2px;
     border-radius: 10px;
     font-size: 12px;
-    padding: 0.2rem 0;
-    height: 1rem;
+    padding: 0.3rem 0;
+    height: 1.25rem;
+    line-height: 1.25rem;
     width: 100%;
     overflow: hidden;
     justify-content: space-around;
@@ -84,9 +88,10 @@
     border: 0.5px solid white;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 2px;
     border-radius: 10px;
-    font-size: 12px;
-    padding: 0.2rem 0;
-    height: 1rem;
+    font-size: 15px;
+    padding: 0.3rem 0;
+    height: 1.25rem;
+    line-height: 1.25rem;
     width: 100%;
     overflow: hidden;
     justify-content: space-around;
@@ -99,53 +104,107 @@
   }
 
   &_title {
-    text-align: center;
-    font-size: 15px;
-    // font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    // text-align: center;
+    margin: 0 3rem;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
     white-space: nowrap;
-    // overflow: hidden;
-    width: 15rem;
+    width: 50%;
+    max-width: 250px;
+    min-width: 50px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
 
     &-recommend {
-      text-align: center;
-      font-size: 15px;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      margin: 0 3rem;
+      display: inline-block;
+      overflow: hidden;
+      text-overflow: ellipsis;
       white-space: nowrap;
-      width: 15rem;
+      width: 50%;
+      max-width: 250px;
+      min-width: 50px;
+      font-size: 0.9rem;
+      font-weight: 800;
     }
   }
 
   &_type {
-    font-size: smaller;
+    margin: 0 0 0 0.3rem;
+
+    // text-align: center;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 5%;
+    min-width: 10px;
+    font-size: 0.75rem;
+    font-weight: 300;
+    
   }
 
-  &_score {
-    font-size: smaller;
+  &_score {   
+    margin: 0 0 0 0.3rem;
+
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 5%;
+    min-width: 10px;
+    font-size: 0.75rem;
+
+    font-weight: 300;
+
   }
 
   &_time {
-    font-size: smaller;
-    width: 5rem;
+    margin: 0 0 0 0.3rem;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 15%;
+    min-width: 30px;
+    font-size: 0.75rem;
+    font-weight: 300;
 
     &_isInSchedule {
-      font-weight: bold;
+      margin: 0 0 0 0.3rem;
+      display: inline-block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 15%;
+      min-width: 30px;
+      font-size: 0.75rem;
+      font-weight: 500;
       color: #a31432;
       // text-decoration: underline;
     }
   }
 
   &_prof {
+  
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 15%;
+    min-width: 30px;
+    font-size: 0.75rem;
+    
+    font-weight: 300;
     width: 3rem;
+
   }
 }
 
 .lecture .recommend {
   // font-weight: bold;
   color: #a31432;
+  font-size: 0.8rem;
 }

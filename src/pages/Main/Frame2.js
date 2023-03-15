@@ -117,9 +117,10 @@ const Frame2 = (props) => {
               className="checkboxWrapper-cart-input"
               checked={cartChecked}
               onChange={cartChangeHandler}
+              id = "cart"
             />
-            <label className="checkboxWrapper-cart-label">
-              추가한 강의 안볼래요
+            <label for ="cart" className="checkboxWrapper-cart-label">
+              추가한 강의 안보기
             </label>
           </div>
           <div className="checkboxWrapper">
@@ -128,9 +129,10 @@ const Frame2 = (props) => {
               className="checkboxWrapper-isTaken-input"
               checked={takenChecked}
               onChange={takenChangeHandler}
+              id = "taken"
             />
-            <label className="checkboxWrapper-isTaken-label">
-              이수한 강의 안볼래요
+            <label for = "taken" className="checkboxWrapper-isTaken-label">
+              이수한 강의 안보기
             </label>
           </div>
           <select className="sort_selecter-select" onChange={sortChangeHandler}>

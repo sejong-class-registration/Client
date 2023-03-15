@@ -158,7 +158,7 @@ const LectureItem = (props) => {
             }`}
           >
             {recommendLectures.includes(props.name.split(" ").join("")) ? (
-              <span className="recommend">추천❗️</span>
+              <span className="recommend">추천👍</span>
             ) : (
               ""
             )}
@@ -166,7 +166,7 @@ const LectureItem = (props) => {
               props.notice === "외국인대상강좌"
                 ? "⚠️ "
                 : props.english === "영어"
-                ? "🔤 "
+                ? "🆎 "
                 : ""
             }${props.name}`}
           </div>
@@ -175,7 +175,7 @@ const LectureItem = (props) => {
             {props.credit.substr(0, 1) + "학점"}
           </div>
           <div className={`lecture_time${isInSchedule ? "_isInSchedule" : ""}`}>
-            {(isInSchedule ? "❗️" : "") + props.dayAndTime}
+            {(isInSchedule ? "❌" : "") + props.dayAndTime}
           </div>
           <div className="lecture_prof">{props.profName}</div>
         </div>

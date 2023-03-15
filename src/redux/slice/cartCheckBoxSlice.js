@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const cartCheckBoxSlice = createSlice({
   name: "cartCheckBox",
   initialState: {
-    cartCheckBox: false,
+    cartCheckBox: true,
   },
   reducers: {
     changeCartCheckBox(state) {
