@@ -7,6 +7,7 @@ import Loading2 from "../../UI/Loading2";
 
 import "./ClassModal.scss";
 
+//강의 리스트에서 눌럿을 때 모달
 const Backdrop = (props) => {
   return <div className="backdrop" onClick={props.close}></div>;
 };

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { classFilterActions } from "../../redux/slice/classFilterSlice";
 import "./Autocomplete.scss";
 
+//자동완성
 const Autocomplete = ({ name, onChange }) => {
   const [hasText, setHasText] = useState(false);
   const [inputValue, setInputValue] = useState("");

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import randomColor from "randomcolor";
 import Toast from "../../UI/Toast";
 
+//작게보는창
 const DdayBox = (props) => {
   const [iscopied, setIsCopied] = useState(false);
   const userInfo = useSelector((state) => state.userInfo.userInfo);

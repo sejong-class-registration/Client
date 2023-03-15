@@ -6,6 +6,7 @@ import axios from "axios";
 import "./LoginForm.scss";
 import Loading2 from "../../UI/Loading2";
 
+//로그인 박스
 const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -18,8 +19,10 @@ const LoginForm = () => {
     id: false,
     pw: false,
   });
+
   const [isLoading, setIsLoading] = useState(false);
 
+  //input에 값 입력시 작동
   const inputChangeHandler = (event) => {
     setEnteredInput((prev) => {
       return { ...prev, [event.target.id]: event.target.value };
@@ -135,6 +138,7 @@ const LoginForm = () => {
         onKeyPress={onCheckEnter}
         onSubmit={LoginSubmitHandler}
         className="login-formbox"
+        autoComplete="off"
       >
         <p>학번/아이디</p>
         <input

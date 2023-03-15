@@ -7,6 +7,8 @@ import Loading2 from "../../UI/Loading2";
 
 import "./ClassModal_v2.scss";
 
+
+//스티커 눌렀을때
 const Backdrop = (props) => {
   return <div className="backdrop" onClick={props.close}></div>;
 };

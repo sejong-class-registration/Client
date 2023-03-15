@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { userScheduleActions } from "../../redux/slice/userScheduleSlice";
 import ClassModal_v2 from "./ClassModal_v2";
 import { scheduleNumActions } from "../../redux/slice/scheduleNumSlice";
+
+//시간표 짠거 있으면 시간표 짠거 보여주기
 const Frame1 = () => {
   // const [userSchedule, setUserSchedule] = useState(null);
 
@@ -71,6 +73,7 @@ const Frame1 = () => {
   // console.log(userScheduleData);
   // console.log(isThereOnlineClass);
 
+  //달력에 표시해주는 함수
   const returnSticker = (day, startTime) => {
     for (var i = 0; i < userScheduleData.length; i++) {
       // console.log(userScheduleData[i]);
@@ -254,6 +257,11 @@ const Frame1 = () => {
       </tr>
     ));
   };
+  
+  //다른 페이지가 있다가 돌아올때 시간표를 A로 인식시켜줌
+  useEffect(() => {
+    scheduleIdTo0();
+  }, []);
 
   useEffect(() => {
     getUserSchedule(scheduleId);
@@ -277,7 +285,7 @@ const Frame1 = () => {
     <div className="frame_1">
       {isOpen && <ClassModal_v2 close={closeClassModal}></ClassModal_v2>}
       <div className="calendar-label">
-        <label>2022-2학기</label>
+        <label>2023-1학기</label>
       </div>
       <div className="calendar">
         <table className="calendar-table">

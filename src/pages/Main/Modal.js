@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import { isOpenModalActions } from "../../redux/slice/isOpenModalSlice";
 import Autocomplete from "./Autocomplete";
 
+//검색모달
 const Backdrop = (props) => {
   return <div className="backdrop" onClick={props.close}></div>;
 };

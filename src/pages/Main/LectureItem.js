@@ -2,6 +2,8 @@ import "./LectureItem.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { selectedLecActions } from "../../redux/slice/selectedLecSlice";
 import { useState, useEffect } from "react";
+
+//강의 아이템 한개
 const LectureItem = (props) => {
   const dispatch = useDispatch();
   const openModal = props.openClassModal;
