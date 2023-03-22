@@ -65,17 +65,6 @@ const SignupForm = (props) => {
         });
       }
     }
-    // if (istouched.password === true) {
-    //   if (EnteredInput.password.trim().length >= 10 && specialLetter >= 1) {
-    //     setEnteredInputIsValid((prev) => {
-    //       return { ...prev, password: true };
-    //     });
-    //   } else {
-    //     setEnteredInputIsValid((prev) => {
-    //       return { ...prev, password: false };
-    //     });
-    //   }
-    // }
   }, [EnteredInput.id]);
 
   const inputHandler = (event) => {
@@ -111,9 +100,6 @@ const SignupForm = (props) => {
 
   const inputBlurHandler = (e) => {
     const selectedId = e.target.id;
-    // const specialLetter = EnteredInput.password.search(
-    //   /[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/
-    // );
 
     if (selectedId === "id") {
       if (
@@ -174,12 +160,16 @@ const SignupForm = (props) => {
       }
     );
     setIsLoading(false);
+    console.log(response);
     if (response.status === 201) {
-      console.log(response);
       window.localStorage.setItem("token", response.data.token);
       dispatch(userInfoActions.saveUserInfo(response.data.user));
       navigate("/main");
-    } else {
+    } if(response.status === 202){    //이미 등록된 회원 입니다
+      alert(response.data.message);
+      navigate("/");
+    } 
+    else {
       alert(response.data.message);
     }
   };

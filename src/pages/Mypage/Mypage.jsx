@@ -20,7 +20,7 @@ const Mypage = () => {
   const userInfo = useSelector((state) => state.userInfo.userInfo);
   const [isSecession, setSecession] = useState(false);
   const [password, setPassword] = useState("");
-  const [checkboxOn, setCheckboxOn] = useState(userInfo.doubleMajor);
+  const [checkboxOn, setCheckboxOn] = useState(!!userInfo.doubleMajor);
   const [isLoading, setIsLoading] = useState(false);
   const [enteredInput, setEnteredInput] = useState({
     name: userInfo.name,
@@ -64,6 +64,11 @@ const Mypage = () => {
     enteredInput.major,
     enteredInput.doubleMajor,
   ]);
+
+  useEffect(() => {
+    console.log(checkboxOn);
+    console.log(userInfo.doubleMajor);
+  }, [enteredInput.doubleMajor]);
 
   const checkboxHandler = () => {
     if (checkboxOn == false) {
@@ -244,7 +249,7 @@ const Mypage = () => {
               <input
                 className="mypage-userinfo-checkbox"
                 type="checkbox"
-                value={enteredInput.doubleMajor}
+                checked={checkboxOn}
                 onChange={checkboxHandler}
               />
               {checkboxOn && (

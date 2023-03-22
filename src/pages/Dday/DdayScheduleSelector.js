@@ -1,5 +1,7 @@
 const DdayScheduleSelector = (props) => {
+
   const changeId = (e) => {
+    console.log(e);
     if (e.target.value === "A") {
       props.changeIdTo0();
     }
@@ -10,6 +12,7 @@ const DdayScheduleSelector = (props) => {
       props.changeIdTo2();
     }
   };
+  
   return (
     <div className="scheduleSelector">
       <select className="scheduleSelector-selectBox" onChange={changeId}>

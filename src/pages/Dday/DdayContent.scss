@@ -1,37 +1,40 @@
 .wrapper {
   display: flex;
+  margin: 0px;
 }
 
 .ddayContent {
-  width: 340px;
-  height: 700px;
-  margin: 10px 20px;
-  border: 1px solid rgb(110, 110, 110);
-  border-radius: 30px;
-  background: #fff;
+  width: 360px;
+  min-width: 340px;
+  height: fit-content;
+  max-height: 800px;
+  overflow: auto;
+  margin: 30px 40px;
+  border-radius: 15px;
+  border: 1px solid #ccc;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 1rem;
-  overflow-y: scroll;
   font-weight: bold;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
   &-box {
     width: 320px;
+    min-width: 320px;
     height: 120px;
-    background-color: #ffc3c39c;
+    border: none;
     border-radius: 15px;
-    margin-bottom: 0.5rem;
+    background-color: rgba(233, 233, 233, 0.699);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.113);
+    margin: 5px 0px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    
     &-name {
-      margin: 10px 20px;
-      width: 90px;
+      cursor: pointer;
+      width: 120px;
       height: 90px;
-      background-color: #fff;
+      margin: 0 10px 0 20px;
+      // background-color: #fff;
       border-radius: 10px;
       align-items: center;
       display: flex;
@@ -39,89 +42,123 @@
       text-align: center;
       font-size: 0.9rem;
     }
-
+    &-name:hover {
+      color: brown;
+    }
     &-others {
+      cursor: pointer;
       display: flex;
       flex-direction: column;
       justify-content: space-around;
       height: 80%;
       font-weight: 100;
-      margin-right: 15px;
       &-lectureId {
         display: flex;
         align-items: center;
         justify-content: center;
         width: 160px;
         height: 35px;
-        background-color: #fff;
+        // background-color: #fff;
         border-radius: 15px;
       }
-
       &-distrib {
         display: flex;
         align-items: center;
         justify-content: center;
         width: 160px;
         height: 35px;
-        background-color: #fff;
+        // background-color: #fff;
         border-radius: 15px;
         text-align: center;
+      }
+      :hover {
+        font-weight: 800;
       }
     }
   }
 }
 
 .ddayContent::-webkit-scrollbar {
-  width: 2px;
+  width: 0px;
 }
 
 .scheduleSelector {
-  margin-bottom: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 170px;
   position: sticky;
   top: 0;
-
-  // :hover {
-  //   background-color: #a31432;
-  //   color: #fff;
-  // }
-
+  background-color: white;
+  width: 340px;
+  height: 80px;
   &-selectBox {
     text-align: center;
-    width: 250px;
-    height: 40px;
-    border: 1px solid #626060;
-    border-radius: 15px;
+    width: 150px;
+    height: 50px;
+    border: none;
+    border-bottom: 1px solid #828282;
     font-size: 1rem;
     font-weight: 800;
+    color: black;
+    cursor: pointer;
   }
-
   &-option {
     text-align: center;
+    cursor: pointer;
   }
 }
 
-.ddayImage {
-  // margin-left: 5rem;
-  width: calc(100% - 340px);
+.dday-description {
+  margin-left: 2rem;
+  width: calc(100% - 10px);
+  min-width: 600px;
   height: 90vh;
-  border-left: 1px solid #626060;
-  background-color: #00000030;
+  // border-left: 1px solid #626060;
   display: flex;
   flex-direction: column;
   justify-items: center;
   align-items: center;
-  &-image {
-    width: calc(100% - 10px);
-    border: 5px solid #626060;
+  text-align: center;
+  &-txt {
+    &-title {
+      width: 100px;
+      margin: 30px auto 10px auto;
+      font-size: 2rem;
+      font-weight: 800;
+      border: none;
+      border-bottom: 3px solid #c74444;
+    }
+    &-exp1 {
+      font-size: 0.95rem;
+      font-weight: 100;
+      // margin-top: -20px;
+    }
+    &-exp2 {
+      text-align: left;
+      font-size: 1.1rem;
+      font-weight: 500;
+      padding: 5px 30px;
+      min-width: 600px;
+      background-color: rgba(233, 233, 233, 0.699);
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    } 
   }
-  p{
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    padding: 20px 40px;
-    font-size: 1.5rem;
-    font-weight: 100;
-    top: 100px;
-    border-radius: 15px;
+  &-image {
+    button{
+      margin: 30px;
+      width: 120px;
+      height: 40px;
+      font-size: 1rem;
+      font-weight: 500;
+      border-radius: 30px;
+      border: none;
+      background-color: #c74444;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      color: white;
+
+    }
+    width: calc(100% - 10px);
+    min-width: 600px;
   }
 }

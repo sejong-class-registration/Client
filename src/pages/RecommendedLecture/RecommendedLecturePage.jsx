@@ -101,7 +101,7 @@ const RecommendedLecturePage = () => {
       {!isLoading && (
         <div className="recommended-lecture-list">
           <div className="recommended-lecture-list-exp">
-            <span className="recommended-lecture-list-exp-exp1">순위</span>
+            {/* <span className="recommended-lecture-list-exp-exp1">순위</span> */}
             <span className="recommended-lecture-list-exp-title">제목</span>
             <span className="recommended-lecture-list-exp-exp">학수번호</span>
             <span className="recommended-lecture-list-exp-exp">교양영역</span>

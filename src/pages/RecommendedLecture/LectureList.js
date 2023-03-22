@@ -29,12 +29,12 @@ const LectureList = (props) => {
 
   return (
     <div>
-      <li className={listClassName}>
-        <button
+      <li className= "lecture-list">
+        {/* <button
           className="lecture-list-rank"
         >
           {props.rank}
-        </button>
+        </button> */}
         <button
           onClick={() => {
             navigator.clipboard.writeText(props.title);

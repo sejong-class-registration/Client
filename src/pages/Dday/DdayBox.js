@@ -24,12 +24,6 @@ const DdayBox = (props) => {
     getUserSchedule(props.id);
   }, [props.id]);
 
-  var color = randomColor({
-    format: "rgba",
-    luminosity: "bright",
-    alpha: 0.3,
-  });
-
   const activeToast = () => {
     setIsCopied(true);
     let timer = setTimeout(() => {
@@ -83,7 +77,7 @@ const DdayBox = (props) => {
     <>
       {schedules &&
         schedules.map((schedule) => (
-          <div className="ddayContent-box" style={{ backgroundColor: color }}>
+          <div className="ddayContent-box">
             <div
               className="ddayContent-box-name"
               onClick={() => {
