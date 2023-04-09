@@ -1,0 +1,62 @@
+.memoInput {
+  position: absolute;
+  top: 260px;
+  display: flex;
+  flex-direction: column;
+  width: calc(80% - 200px);
+  min-width: 700px;
+  left: calc(10% + 230px);
+  border: 1.5px solid #bdbdbd;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 4px;
+  border-radius: 15px;
+  height: 773px;
+  
+  &-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1.5px solid #bdbdbd;
+    background-color: #fff2cc;
+    border-radius: 15px;
+
+    // z-index: -1;
+    &-title {
+      font-size: 1.5rem;
+      padding: 10px 20px;
+      font-weight: 500;
+      height: fit-content;
+    }
+    &-buttons {
+      margin-right: 30px;
+    }
+    &-button {
+      font-size: 1rem;
+      border: none;
+      background-color: #fafafa;
+      border-radius: 15px;
+      font-weight: 100;
+      padding: 5px 20px;
+      margin-left: 10px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    &-button:hover {
+      font-weight: 500;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 4px;
+    }
+  }
+  &-input {
+    &-textarea {
+      border: 1.5px solid #bdbdbd;
+      border-radius: 10px;
+      width: calc(99.8% - 20px);
+      outline: none;
+      resize: none;
+      height: calc(773px - 78px);
+      font-size: 1.25rem;
+      font-weight: 100;
+      font-family: "NotoSansKR";
+      padding: 10px 10px;
+    }
+  }
+}

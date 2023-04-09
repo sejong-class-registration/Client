@@ -8,3 +8,4 @@ export const CHANGEPW_PATH = '/changepw';
 export const GRADUATE_PATH = '/graduation';
 export const MYPAGE_PATH = '/mypage'
 export const DDAY_PATH = '/dday';
+export const MEMO_PATH = '/memo';

@@ -68,6 +68,8 @@ const Frame2 = (props) => {
           : `&classification=${info.classification}`
       }${
         info.lectureId === "" ? "" : `&lectureId=${info.lectureId}`
+      }${
+        info.grade === "" ? "" : info.grade === "전체" ? "" : `&grade=${info.grade}`
       }&sort=${sort}`
     );
     // console.log(info.department);
@@ -97,10 +99,13 @@ const Frame2 = (props) => {
   };
 
   const cartChecked = useSelector((state) => state.cartCheckBox.cartCheckBox);
-  // console.log(takenChecked);
   const cartChangeHandler = (props) => {
     dispatch(cartCheckBoxActions.changeCartCheckBox());
   };
+
+  const showHoverTime = (startTime, endTime) => {
+    props.showHoverTime(startTime, endTime);
+  }
 
   return (
     <div className="frame_2">
@@ -146,7 +151,7 @@ const Frame2 = (props) => {
         </div>
         {isLoading && <div className="loading">Loading...</div>}
         {!isLoading && (
-          <div className="lecture_list">
+          <di className="lecture_list">
             {lectureList.map((lecture) => (
               <LectureItem
                 key={lecture._id}
@@ -165,9 +170,10 @@ const Frame2 = (props) => {
                 room={lecture.room}
                 id={lecture._id}
                 openClassModal={props.openClassModal}
+                showHoverTime = {showHoverTime}
               ></LectureItem>
             ))}
-          </div>
+          </di>
         )}
       </div>
     </div>

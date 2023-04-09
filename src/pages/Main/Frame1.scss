@@ -158,9 +158,13 @@
 .sticker {
   padding: 0;
   position: relative;
-  overflow: visible;
   cursor: pointer;
-
+  white-space: normal;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   &.h60 {
     height: calc(100%);
     &-content {

@@ -19,14 +19,11 @@ const ModalOverlay = (props) => {
   const selectedScheduleId = useSelector(
     (state) => state.scheduleNum.scheduleNum
   );
-  console.log(userInfo.studentId);
-  console.log(info.id);
 
   const recommendLectures = [];
   for (var i = 0; i < userInfo.recommendLecture.length; i++) {
     recommendLectures.push(userInfo.recommendLecture[i].name);
   }
-  // console.log(userInfo);
 
   var recommendComment = null;
   for (i = 0; i < userInfo.recommendLecture.length; i++) {
@@ -34,7 +31,6 @@ const ModalOverlay = (props) => {
       recommendComment = userInfo.recommendLecture[i].comment;
     }
   }
-  console.log(recommendComment);
 
   const dispatch = useDispatch();
   const close = props.close;
@@ -46,11 +42,7 @@ const ModalOverlay = (props) => {
         `https://sejong-enrollment.herokuapp.com/schedules/${info.id}`,
         { userId: userInfo.studentId, scheduleId: selectedScheduleId }
       );
-      console.log(info);
-      console.log("유저학번 :" + userInfo.studentId);
-      console.log(response);
     } catch (error) {
-      console.log(error.response.data.message);
       alert(error.response.data.message);
     }
     dispatch(isFetchingActions.changeIsFetching());
@@ -60,18 +52,10 @@ const ModalOverlay = (props) => {
   const addLectureHandler = (props) => {
     putLectureToSchedule(close);
 
-    console.log(info);
   };
-  // console.log(info);
 
   return (
     <div className="classModal">
-      {/* {isFetching && (
-        <div className="classModal-loading">
-          {" "}
-          <Loading2 />{" "}
-        </div>
-      )} */}
       <div className="classModal-contents">
         {recommendLectures.includes(info.name.split(" ").join("")) ? (
           <div className="classModal-contents-name-recommend">

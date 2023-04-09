@@ -7,41 +7,33 @@ import { useDispatch, useSelector } from "react-redux";
 import { userScheduleActions } from "../../redux/slice/userScheduleSlice";
 import ClassModal_v2 from "./ClassModal_v2";
 import { scheduleNumActions } from "../../redux/slice/scheduleNumSlice";
+import { hover } from "@testing-library/user-event/dist/hover";
 
 //시간표 짠거 있으면 시간표 짠거 보여주기
-const Frame1 = () => {
+const Frame1 = (props) => {
   // const [userSchedule, setUserSchedule] = useState(null);
-
   const userInfo = useSelector((state) => state.userInfo.userInfo);
-  // console.log(userInfo);
+  const isFetching = useSelector((state) => state.isFetching.isFetching);
   const [isOpen, setIsOpen] = useState(false);
   const [scheduleId, setScheduleId] = useState(0);
   const [totalCredit, setTotalCredit] = useState(0);
-
-  // const selectedScheduleId = useSelector(
-  //   (state) => state.scheduleNum.scheduleNum
-  // );
-  // console.log(selectedScheduleId);
-
   const userScheduleData = useSelector(
     (state) => state.userSchedule.userSchedule
   );
-
-  const isFetching = useSelector((state) => state.isFetching.isFetching);
+  const hoverTime = useSelector((state) => state.hoverTime);
   const [isThereOnlineClass, setIsThereOnlineClass] = useState(false);
-
   const dispatch = useDispatch();
 
   const closeClassModal = () => {
     setIsOpen(false);
   };
 
+  console.log(hoverTime);
+
   const getUserSchedule = async (id) => {
     const response = await axios(
       `https://sejong-enrollment.herokuapp.com/schedules?userId=${userInfo.studentId}`
     );
-    // console.log(response.data.data);
-    // console.log(response.data.data.schedules[id].totalCredit);
     setTotalCredit(response.data.data.schedules[id].totalCredit);
     if (!response.data.data.schedules[id]) {
       dispatch(
@@ -55,7 +47,6 @@ const Frame1 = () => {
           userSchedule: response.data.data.schedules[id].schedule,
         })
       );
-      // console.log(response.data.data.schedules[id].schedule, id);
       setIsThereOnlineClass(false);
       for (
         var i = 0;
@@ -70,50 +61,41 @@ const Frame1 = () => {
       }
     }
   };
-  // console.log(userScheduleData);
-  // console.log(isThereOnlineClass);
 
   //달력에 표시해주는 함수
   const returnSticker = (day, startTime) => {
     for (var i = 0; i < userScheduleData.length; i++) {
-      // console.log(userScheduleData[i]);
-
       var color = null;
       if (userScheduleData[i].classification === "전필") {
-        color = "#ff9999";
+        color = "#FFD966";
       }
       if (userScheduleData[i].classification === "전선") {
-        color = "#ffcccc";
+        color = "#9CB4CC";
       }
       if (userScheduleData[i].classification === "교필") {
-        color = "#d7df7e";
+        color = "#D3CEDF";
       }
       if (userScheduleData[i].classification === "공필") {
-        color = "#917edf";
+        color = "#748DA6";
       }
       if (userScheduleData[i].classification === "교선") {
-        color = "#99ff99";
+        color = "#F4B183";
       }
       if (userScheduleData[i].classification === "교직") {
-        color = "#99ff99";
+        color = "#BA94D1";
       }
       if (
         userScheduleData[i].classification === "기교" ||
         userScheduleData[i].classification === "기필"
       ) {
-        color = "#cc99ff";
+        color = "#F2D7D9";
       }
-
-      // console.log(userScheduleData[i].time);
-      // console.log(userScheduleData[i].time.day.includes("화"));
 
       // 정각
       if (
         userScheduleData[i].time.day.includes(day) &&
         userScheduleData[i].time.startTime === startTime
       ) {
-        // console.log(userScheduleData[i]);
-
         const selectedLecInfo = {
           classification: userScheduleData[i].classification,
           credit: userScheduleData[i].credit,
@@ -143,9 +125,6 @@ const Frame1 = () => {
           userScheduleData[i].time.endTime - userScheduleData[i].time.startTime;
         const className = "sticker h" + timeLength;
         const classNameContent = className + "-content";
-        // console.log(className);
-
-        console.log(userScheduleData[i]);
 
         return (
           <div
@@ -193,7 +172,6 @@ const Frame1 = () => {
           userScheduleData[i].time.endTime - userScheduleData[i].time.startTime;
         const className = "sticker h" + timeLength + "-half";
         const classNameContent = className + "-content";
-        // console.log(className);
         return (
           <div
             className={className}
@@ -209,12 +187,34 @@ const Frame1 = () => {
     }
   };
 
+  // useEffect(()=> {
+  //   returnHoverSticker();
+  // },[hoverTime])
+
+  // const returnHoverSticker = () => {
+  //   var color = "#FFD966";
+
+  //   const timeLength = hoverTime.endTime - hoverTime.startTime;
+  //   const className = "sticker h" + timeLength;
+  //   const classNameContent = className + "-content";
+
+  //   return (
+  //     <div
+  //       className={className}
+  //       style={{
+  //         backgroundColor: color,
+  //       }}
+  //     >
+  //       <div className={classNameContent}></div>
+  //     </div>
+  //   );
+  // };
+
   const returnOnlineClassSticker = () => {
     const lectureList = [];
-    var color = "#b2f7cf";
+    var color = "#FFF8E1";
 
     const outRangeLecClickHandler = (lec) => {
-      console.log(lec);
       dispatch(
         selectedLecActions.changeSelectedLec({
           selectedLec: lec,
@@ -224,7 +224,6 @@ const Frame1 = () => {
     };
 
     for (var i = 0; i < userScheduleData.length; i++) {
-      // console.log(userScheduleData[i]);
       if (
         userScheduleData[i].time.startTime === 0 ||
         userScheduleData[i].time.startTime >= 1080
@@ -233,8 +232,6 @@ const Frame1 = () => {
       }
     }
 
-    // console.log(lectureList);
-
     return lectureList.map((lec) => (
       <tr
         style={{
@@ -242,7 +239,6 @@ const Frame1 = () => {
         }}
         className="outRangeLecures"
       >
-        {/* {console.log(lec)} */}
         <td
           style={{
             border: "1px solid #fff",
@@ -257,7 +253,7 @@ const Frame1 = () => {
       </tr>
     ));
   };
-  
+
   //다른 페이지가 있다가 돌아올때 시간표를 A로 인식시켜줌
   useEffect(() => {
     scheduleIdTo0();
@@ -265,7 +261,6 @@ const Frame1 = () => {
 
   useEffect(() => {
     getUserSchedule(scheduleId);
-    // console.log(userScheduleData);
   }, [scheduleId, isFetching]);
 
   const scheduleIdTo0 = () => {
@@ -375,7 +370,6 @@ const Frame1 = () => {
         </table>
         <div className="calendar-info">
           <div className="calendar-info-calculator">
-            {/* <div>졸업까지 남은 학점: 20</div> */}
             <div>
               {scheduleId === 0 ? "A" : scheduleId === 1 ? "B" : "C"} 시간표 총
               학점: {totalCredit}

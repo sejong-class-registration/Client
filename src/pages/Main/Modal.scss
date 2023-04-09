@@ -176,14 +176,40 @@
         }
       }
 
+      &-grade {
+        width: 50%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &-label {
+          font-size: 18px;
+          width: 35%;
+          margin-left: 5%;
+        }
+
+        &-select {
+          height: 2rem;
+          width: 60%;
+          font-size: 18px;
+          border: 0.5px solid #626060;
+          border-radius: 15px;
+          text-align: center;
+        }
+      }
+    }
+    &-fifth { 
       &-button {
-        margin-left: 5%;
-        width: 45%;
-        border: 0;
-        color: #ffffff;
+        font-size: 20px;
+        font-weight: 500;
+        width: 20%;
+        margin: 20px auto -5px auto;
+        border-radius: 50px;
+        border: none;
         background-color: #a31432;
-        border-radius: 15px;
-        font-size: 18px;
+        color: white;
+        padding: 5px 10px;
+    
       }
     }
   }

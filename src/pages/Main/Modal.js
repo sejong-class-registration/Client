@@ -24,6 +24,7 @@ const ModalOverlay = (props) => {
     savedFilterInfo.classification
   );
   const [lectureId, setLectureId] = useState(savedFilterInfo.lectureId);
+  const [grade, setGrade] = useState(savedFilterInfo.grade);
 
   const dispatch = useDispatch();
 
@@ -37,6 +38,7 @@ const ModalOverlay = (props) => {
           profName: profName,
           classification: classification,
           lectureId: lectureId,
+          grade: grade,
         },
       })
     );
@@ -70,6 +72,14 @@ const ModalOverlay = (props) => {
     "교직",
   ];
 
+  const gradeList = [
+    "전체",
+    "1학년",
+    "2학년",
+    "3학년",
+    "4학년",
+  ]
+
   const initButtonHandler = () => {
     dispatch(
       classFilterActions.changeClassFilter({
@@ -79,6 +89,7 @@ const ModalOverlay = (props) => {
           profName: "",
           classification: classificationList[0],
           lectureId: "",
+          gradeList: gradeList[0],
         },
       })
     );
@@ -87,6 +98,7 @@ const ModalOverlay = (props) => {
     setprofName("");
     setclassification(classificationList[0]);
     setLectureId("");
+    setGrade(gradeList[0]);
   };
 
   const departmentChangeHandler = (props) => {
@@ -99,6 +111,7 @@ const ModalOverlay = (props) => {
           profName: profName,
           classification: classification,
           lectureId: lectureId,
+          grade: grade,
         },
       })
     );
@@ -115,6 +128,7 @@ const ModalOverlay = (props) => {
           profName: profName,
           classification: classification,
           lectureId: lectureId,
+          grade: grade,
         },
       })
     );
@@ -131,6 +145,7 @@ const ModalOverlay = (props) => {
           profName: props.target.value,
           classification: classification,
           lectureId: lectureId,
+          grade: grade,
         },
       })
     );
@@ -147,6 +162,7 @@ const ModalOverlay = (props) => {
           profName: profName,
           classification: props.target.value,
           lectureId: lectureId,
+          grade: grade,
         },
       })
     );
@@ -163,6 +179,24 @@ const ModalOverlay = (props) => {
           profName: profName,
           classification: classification,
           lectureId: props.target.value,
+          grade: grade,
+        },
+      })
+    );
+    console.log(props.target.value);
+  };
+
+  const gradeChangeHandler = (props) => {
+    setGrade(props.target.value);
+    dispatch(
+      classFilterActions.changeClassFilter({
+        classFilter: {
+          department: department,
+          name: name,
+          profName: profName,
+          classification: classification,
+          lectureId: lectureId,
+          grade: props.target.value,
         },
       })
     );
@@ -249,13 +283,32 @@ const ModalOverlay = (props) => {
               placeholder={lectureId}
             ></input>
           </div>
-          <button
-            className={`modal-contents-fourth-button`}
-            onClick={submitHandler}
+          <div className="modal-contents-fourth-grade">
+            <label className="modal-contents-fourth-grade-label">
+              학년
+            </label>
+            <select
+            className="modal-contents-fourth-grade-select"
+            onChange={gradeChangeHandler}
           >
+            {gradeList.map((gd) =>
+              savedFilterInfo.grade === gd ? (
+                <option value={gd} selected>
+                  {gd}
+                </option>
+              ) : (
+                <option value={gd}>{gd}</option>
+              )
+            )}
+          </select>
+          </div>
+        </div>
+          <button
+            className="modal-contents-fifth-button"
+            onClick={submitHandler}
+            >
             조회
           </button>
-        </div>
       </div>
     </div>
   );

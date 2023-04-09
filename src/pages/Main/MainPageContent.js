@@ -6,11 +6,12 @@ import Frame1 from "./Frame1";
 import Frame2 from "./Frame2";
 import { useDispatch, useSelector } from "react-redux";
 import { isOpenModalActions } from "../../redux/slice/isOpenModalSlice";
+import { useEffect } from "react";
 
 const MainPageContent = () => {
   const [classModalOpen, setClassModalOpen] = useState(false);
   const isOpen = useSelector((state) => state.isOpenModal.isOpen);
-
+  const [start, setStart] = useState(0);
   const dispatch = useDispatch();
 
   const openModal = () => {
@@ -26,7 +27,6 @@ const MainPageContent = () => {
     setClassModalOpen(false);
   };
 
-  // console.log(isOpen);
   
   return (
     <div className="body">

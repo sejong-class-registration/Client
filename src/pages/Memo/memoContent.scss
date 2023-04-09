@@ -1,0 +1,29 @@
+.memoContent {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  max-height: 1200px;
+  min-height: 970px;
+  &-title {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    align-items: center;
+    &-title {
+      font-size: 2rem;
+      font-weight: 900;
+      margin: 2rem 0 10px 0;
+      border-bottom: 3px solid #c74444;
+      padding: 5px;
+      width: fit-content;
+    }
+    &-exp {
+      font-size: 1rem;
+      font-weight: 100;
+      margin-left: 1rem;
+    }
+  }
+  &-memoList{
+    
+  }
+}

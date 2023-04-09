@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { CHANGEPW_PATH, FINDPW_PATH, GRADUATE_PATH, LECTURE_PATH, MAIN_PATH, MYPAGE_PATH, ROOT_PATH, SIGNUPFINSH_PATH, SIGNUP_PATH, DDAY_PATH, } from "./common/constants/path.const";
+import { CHANGEPW_PATH, FINDPW_PATH, GRADUATE_PATH, LECTURE_PATH, MAIN_PATH, MYPAGE_PATH, ROOT_PATH, SIGNUPFINSH_PATH, SIGNUP_PATH, DDAY_PATH, MEMO_PATH, } from "./common/constants/path.const";
 import LoginPage from "./pages/Login/LoginPage";
 import MainPage from "./pages/Main/MainPage";
 import RecommendedLecturePage from "./pages/RecommendedLecture/RecommendedLecturePage";
@@ -12,6 +12,7 @@ import Graduation from "./pages/Graduate/graduate";
 import Mypage from "./pages/Mypage/Mypage";
 import DdayPage from "./pages/Dday/DdayPage";
 import "./App.scss";
+import MemoPage from "./pages/Memo/memoPage";
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Route path={CHANGEPW_PATH} element = {<ChangePw/>}/>
         <Route path={GRADUATE_PATH} element = {<Graduation/>}/>
         <Route path={MYPAGE_PATH} element = {<Mypage/>}/>
+        <Route path={MEMO_PATH} element = {<MemoPage />} />
       </Routes>
     </BrowserRouter>
   );

@@ -2,6 +2,7 @@ import "./LectureItem.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { selectedLecActions } from "../../redux/slice/selectedLecSlice";
 import { useState, useEffect } from "react";
+import { hoverTimeActions } from "../../redux/slice/hoverTime";
 
 //강의 아이템 한개
 const LectureItem = (props) => {
@@ -11,8 +12,6 @@ const LectureItem = (props) => {
     (state) => state.userSchedule.userSchedule
   );
   const userInfo = useSelector((state) => state.userInfo.userInfo);
-  // console.log(userInfo);
-  // console.log(lecturesInSchedule);
 
   const lectures = [];
   for (var i = 0; i < lecturesInSchedule.length; i++) {
@@ -23,7 +22,8 @@ const LectureItem = (props) => {
   for (i = 0; i < userInfo.recommendLecture.length; i++) {
     recommendLectures.push(userInfo.recommendLecture[i].name);
   }
-  // console.log(recommendLectures);
+
+
 
   const selectedLecInfo = {
     classification: props.classification,
@@ -49,13 +49,13 @@ const LectureItem = (props) => {
     openModal();
   };
 
-  // console.log(userLectureIdList.includes(props.lectureId));
+  // const changeHoverTime = () => {
+  //   dispatch(hoverTimeActions.updateHoverTime({day: day, startTime: startTime, endTime: endTime}));
+  // }
 
   const isTaken = useSelector((state) => state.takenCheckBox.takenCheckBox);
 
   const cart = useSelector((state) => state.cartCheckBox.cartCheckBox);
-  // console.log(cart);
-  // console.log(isTaken);
 
   // ***********************************************
   const [isInSchedule, setIsInSchedule] = useState(false);
@@ -82,16 +82,13 @@ const LectureItem = (props) => {
 
       endTime =
         60 * parseInt(props.dayAndTime.slice(7, 9)) +
-        parseInt(props.dayAndTime.slice(10, 12));
-    }
+        parseInt(props.dayAndTime.slice(10, 12));}
+    
   }
-  // console.log(props.dayAndTime);
-  // console.log(day, startTime, endTime);
 
   const userScheduleData = useSelector(
     (state) => state.userSchedule.userSchedule
   );
-  // console.log(userScheduleData);
 
 
   useEffect(() => {
@@ -118,16 +115,12 @@ const LectureItem = (props) => {
     }
   }, []);
 
-  // console.log(lectureTimeList);
-  // console.log(props.dayAndTime ? "1" : "0");
 
-  // ***********************************************
 
   const takenLectures = [];
   for (var i = 0; i < userInfo.takenLectures.length; i++) {
     takenLectures.push(userInfo.takenLectures[i].name);
   }
-  // console.log(takenLectures);
 
   if (
     (takenLectures.includes(props.name.split(" ").join("")) && isTaken) ||

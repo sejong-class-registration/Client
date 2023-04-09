@@ -95,6 +95,58 @@
         font-size: larger;
       }
     }
+    &-dropdown {
+      font-size: 14.4px;
+      margin-left: 2rem;
+      padding: 0.2rem 1.5rem;
+      text-decoration: none;
+      background-color: #ffffff;
+      border: 0;
+      border-radius: 15px;
+      font-family: "NotoSansKR";
+      text-decoration: none;
+      color: #a31432;
+      font-weight: 900;
+      &_false {
+        font-family: "NotoSansKR";
+        font-size: 14.4px;
+        margin-left: 2rem;
+        padding: 0.2rem 1.5rem;
+        text-decoration: none;
+        background-color: #a31432;
+        border: 0;
+        border-radius: 15px;
+        text-decoration: none;
+        color: #ffffff;
+        font-weight: 900;
+      }
+      &-ul {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        text-align: center;
+        list-style: none;
+        background-color: #a31432;
+        width: 120px;
+        padding: 10px 20px;
+        border-radius: 10px;
+        height: 130px;
+        &-button {
+          background-color: #a31432;
+          border: none;
+          margin-bottom: 10px;
+          &-link {
+            font-size: 14.4px;
+            color: white;
+            text-decoration: none;    
+          }
+          :hover {
+            font-weight: 900;
+          }
+        }
+        
+      }
+    }
   }
 }
 // .nav ul {

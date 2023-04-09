@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
-import { persistor } from "..";
 import img from "../common/icons/logo.png";
 import { userInfoActions } from "../redux/slice/userSlice";
 import "./MainNavigation.scss";
@@ -10,6 +9,11 @@ const MainNavigation = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userInfo = useSelector((state) => state.userInfo.userInfo);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
 
   const logoClickHandler = () => {
     navigate("/main");
@@ -23,7 +27,7 @@ const MainNavigation = (props) => {
 
   const myPageHandler = () => {
     navigate("/mypage");
-  }
+  };
 
   return (
     <header className="header">
@@ -36,7 +40,12 @@ const MainNavigation = (props) => {
       </div>
       <nav className="nav">
         <div className="nav-userInfo">
-          <div><span className="nav-userInfo-name" onClick={myPageHandler}>{userInfo.name}</span>님 안녕하세요</div>
+          <div>
+            <span className="nav-userInfo-name" onClick={myPageHandler}>
+              {userInfo.name}
+            </span>
+            님 안녕하세요
+          </div>
           <button className="nav-userInfo-logout" onClick={logoutHandler}>
             로그아웃
           </button>
@@ -84,19 +93,78 @@ const MainNavigation = (props) => {
               교양 추천
             </NavLink>
           </button>
-          <button
-            className={`nav-buttons-button${
-              props.onPage === 4 ? "" : "_false"
-            }`}>
-            <NavLink
-              to="/graduation"
-              className={`nav-buttons-button${
-                props.onPage === 4 ? "" : "_false"
-              }-a`}
+          <div>
+            <button
+              onClick={toggleDropdown}
+              className={`nav-buttons-dropdown${
+                props.onPage === 4 ||
+                props.onPage === 5 ||
+                props.onPage === 5 ||
+                props.onPage === 7
+                  ? ""
+                  : "_false"
+              }`}
             >
-              졸업요건 확인
-            </NavLink>
-          </button>
+              서비스 +
+            </button>
+            {isOpen && (
+              <ul className="nav-buttons-dropdown-ul">
+                <li>
+                  <button
+                    onClick={toggleDropdown}
+                    className="nav-buttons-dropdown-ul-button"
+                  >
+                    <NavLink
+                      to="/graduation"
+                      className="nav-buttons-dropdown-ul-button-link"
+                    >
+                      졸업요건 확인
+                    </NavLink>
+                  </button>
+                </li>
+                <li>
+                  {" "}
+                  <button
+                    onClick={toggleDropdown}
+                    className="nav-buttons-dropdown-ul-button"
+                  >
+                    <NavLink
+                      to="/calculator"
+                      className="nav-buttons-dropdown-ul-button-link"
+                    >
+                      기대학점 계산기{" "}
+                    </NavLink>
+                  </button>{" "}
+                </li>
+                <li>
+                  <button
+                    onClick={toggleDropdown}
+                    className="nav-buttons-dropdown-ul-button"
+                  >
+                    <NavLink
+                      to="/memo"
+                      className="nav-buttons-dropdown-ul-button-link"
+                    >
+                      남은학기 메모장
+                    </NavLink>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={toggleDropdown}
+                    className="nav-buttons-dropdown-ul-button"
+                  >
+                    <NavLink
+                      to="/exp"
+                      className="nav-buttons-dropdown-ul-button-link"
+                    >
+                      설명서{" "}
+                    </NavLink>
+                  </button>
+                </li>
+              </ul>
+            )}
+          </div>
         </ul>
       </nav>
     </header>

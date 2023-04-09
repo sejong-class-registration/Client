@@ -9,6 +9,7 @@ const classFilterSlice = createSlice({
       profName: "",
       classification: "",
       lectureId: "",
+      grade: "",
     },
   },
   reducers: {
