@@ -1,7 +1,6 @@
 const DdayScheduleSelector = (props) => {
 
   const changeId = (e) => {
-    console.log(e);
     if (e.target.value === "A") {
       props.changeIdTo0();
     }

@@ -23,8 +23,6 @@ const LectureItem = (props) => {
     recommendLectures.push(userInfo.recommendLecture[i].name);
   }
 
-
-
   const selectedLecInfo = {
     classification: props.classification,
     credit: props.credit,
@@ -82,14 +80,13 @@ const LectureItem = (props) => {
 
       endTime =
         60 * parseInt(props.dayAndTime.slice(7, 9)) +
-        parseInt(props.dayAndTime.slice(10, 12));}
-    
+        parseInt(props.dayAndTime.slice(10, 12));
+    }
   }
 
   const userScheduleData = useSelector(
     (state) => state.userSchedule.userSchedule
   );
-
 
   useEffect(() => {
     for (var i = 0; i < userScheduleData.length; i++) {
@@ -106,16 +103,16 @@ const LectureItem = (props) => {
             (startTime < userScheduleData[i].time.startTime &&
               endTime > userScheduleData[i].time.endTime) ||
             (startTime > userScheduleData[i].time.startTime &&
-              endTime < userScheduleData[i].time.endTime)
+              endTime < userScheduleData[i].time.endTime) ||
+            (startTime === userScheduleData[i].time.startTime &&
+              endTime <= userScheduleData[i].time.endTime)
           ) {
             setIsInSchedule(true);
           }
         }
       }
     }
-  }, []);
-
-
+  }, [lecturesInSchedule]);
 
   const takenLectures = [];
   for (var i = 0; i < userInfo.takenLectures.length; i++) {

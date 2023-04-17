@@ -1,65 +1,167 @@
 import React from "react";
 import "./memoList.scss";
+import { useDispatch } from "react-redux";
+import { memoListActions } from "../../redux/slice/memoList";
 
-const MemoList = () => {
+const MemoList = (props) => {
+  const dispatch = useDispatch();
+
+  const buttonHandler = (e) => {
+    dispatch(memoListActions.changeMemoList(e.target));
+  };
+
   return (
     <div className="memoList">
       <span className="memoList-title">LIST</span>
       <ul className="memoList-ul">
         <li className="memoList-li">
-          <button className="memoList-li-button" style={{
-          backgroundColor: "#FFF2CC",
-        }}>1학년 1학기</button>
+          <button
+            className="memoList-li-button"
+            style={{
+              backgroundColor: "#FFF2CC",
+            }}
+            name="1학년 1학기"
+            id="11"
+            value="#FFF2CC"
+            onClick={buttonHandler}
+          >
+            1학년 1학기
+          </button>
         </li>
         <li className="memoList-li">
-          <button className="memoList-li-button" style={{
-          backgroundColor: "#FFF2CC",
-        }}>1학년 2학기</button>
+          <button
+            className="memoList-li-button"
+            style={{
+              backgroundColor: "#FFF2CC",
+            }}
+            name="1학년 2학기"
+            id="12"
+            value="#FFF2CC"
+            onClick={buttonHandler}
+          >
+            1학년 2학기
+          </button>
         </li>
         <li className="memoList-li">
-          <button className="memoList-li-button" style={{
-          backgroundColor: "#FFD966",
-        }}>2학년 1학기</button>
+          <button
+            className="memoList-li-button"
+            style={{
+              backgroundColor: "#FFD966",
+            }}
+            name="2학년 1학기"
+            id="21"
+            value="#FFD966"
+            onClick={buttonHandler}
+          >
+            2학년 1학기
+          </button>
         </li>
         <li className="memoList-li">
-          <button className="memoList-li-button"  style={{
-          backgroundColor: "#FFD966",
-        }}>2학년 2학기</button>
-        </li>
-        <li className="memoList-li"> 
-          <button className="memoList-li-button"  style={{
-          backgroundColor: "#F4B183",
-        }}>3학년 1학기</button>
-        </li>
-        <li className="memoList-li">
-          <button className="memoList-li-button"  style={{
-          backgroundColor: "#F4B183",
-        }}>3학년 2학기</button>
-        </li>
-        <li className="memoList-li">
-          <button className="memoList-li-button"  style={{
-          backgroundColor: "#DFA67B",
-        }}>4학년 1학기</button>
+          <button
+            className="memoList-li-button"
+            style={{
+              backgroundColor: "#FFD966",
+            }}
+            name="2학년 2학기"
+            id="22"
+            value="#FFD966"
+            onClick={buttonHandler}
+          >
+            2학년 2학기
+          </button>
         </li>
         <li className="memoList-li">
-          <button className="memoList-li-button"  style={{
-          backgroundColor: "#DFA67B",
-        }}>4학년 2학기</button>
+          <button
+            className="memoList-li-button"
+            style={{
+              backgroundColor: "#F4B183",
+            }}
+            name="3학년 1학기"
+            id="31"
+            value="#F4B183"
+            onClick={buttonHandler}
+          >
+            3학년 1학기
+          </button>
         </li>
         <li className="memoList-li">
-          <button className="memoList-li-button" style={{
-          backgroundColor: "#867070",
-          color: "white",
-        }}>여름 계절학기</button>
+          <button
+            className="memoList-li-button"
+            style={{
+              backgroundColor: "#F4B183",
+            }}
+            name="3학년 2학기"
+            id="32"
+            value="#F4B183"
+            onClick={buttonHandler}
+          >
+            3학년 2학기
+          </button>
         </li>
         <li className="memoList-li">
-          <button className="memoList-li-button" style={{
-          backgroundColor: "#867070",
-          color: "white",
-        }}>겨울 계절학기</button>
+          <button
+            className="memoList-li-button"
+            style={{
+              backgroundColor: "#DFA67B",
+            }}
+            name="4학년 1학기"
+            id="41"
+            value="#DFA67B"
+            onClick={buttonHandler}
+          >
+            4학년 1학기
+          </button>
         </li>
         <li className="memoList-li">
-          <button className="memoList-li-button">ETC</button>
+          <button
+            className="memoList-li-button"
+            style={{
+              backgroundColor: "#DFA67B",
+            }}
+            name="4학년 2학기"
+            id="42"
+            value="#DFA67B"
+            onClick={buttonHandler}
+          >
+            4학년 2학기
+          </button>
+        </li>
+        <li className="memoList-li">
+          <button
+            className="memoList-li-button"
+            style={{
+              backgroundColor: "#867070",
+              color: "white",
+            }}
+            name="여름 계절학기"
+            id="51"
+            value="#9e8c8c"
+            onClick={buttonHandler}
+          >
+            여름 계절학기
+          </button>
+        </li>
+        <li className="memoList-li">
+          <button
+            className="memoList-li-button"
+            style={{
+              backgroundColor: "#867070",
+              color: "white",
+            }}
+            name="겨울 계절학기"
+            id="52"
+            value="#9e8c8c"
+            onClick={buttonHandler}
+          >
+            겨울 계절학기
+          </button>
+        </li>
+        <li className="memoList-li">
+          <button className="memoList-li-button" 
+            name="ETC"
+            id="61"
+            value="#ccc"
+            onClick={buttonHandler}>ETC</button>
         </li>
       </ul>
     </div>

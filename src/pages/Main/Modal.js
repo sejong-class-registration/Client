@@ -42,7 +42,6 @@ const ModalOverlay = (props) => {
         },
       })
     );
-    console.log(savedFilterInfo);
   };
 
   const departmentList = [
@@ -115,7 +114,6 @@ const ModalOverlay = (props) => {
         },
       })
     );
-    // console.log(props.target.value);
   };
 
   const nameChangeHandler = (props) => {
@@ -132,7 +130,6 @@ const ModalOverlay = (props) => {
         },
       })
     );
-    // console.log(props.target.value);
   };
 
   const profNameChangeHandler = (props) => {
@@ -149,7 +146,6 @@ const ModalOverlay = (props) => {
         },
       })
     );
-    // console.log(props.target.value);
   };
 
   const classificationChangeHandler = (props) => {
@@ -166,7 +162,6 @@ const ModalOverlay = (props) => {
         },
       })
     );
-    // console.log(props.target.value);
   };
 
   const lectureIdChangeHandler = (props) => {
@@ -183,7 +178,6 @@ const ModalOverlay = (props) => {
         },
       })
     );
-    console.log(props.target.value);
   };
 
   const gradeChangeHandler = (props) => {
@@ -200,7 +194,6 @@ const ModalOverlay = (props) => {
         },
       })
     );
-    console.log(props.target.value);
   };
 
   return (

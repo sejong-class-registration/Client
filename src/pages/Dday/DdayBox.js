@@ -14,12 +14,10 @@ const DdayBox = (props) => {
       const response = await axios(
         `https://sejong-enrollment.herokuapp.com/schedules?userId=${userInfo.studentId}`
       );
-      console.log(response.data.data.schedules[id].schedule);
       setSchedules(response.data.data.schedules[id].schedule);
     } catch (error) {}
   };
 
-  console.log(schedules);
   useEffect(() => {
     getUserSchedule(props.id);
   }, [props.id]);

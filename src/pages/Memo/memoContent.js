@@ -13,7 +13,7 @@ const MemoContent = () => {
         </span>
       </div>
       <MemoList className = "memoContent-memoList"/>
-      <MemoInput />
+      <MemoInput className = "memoContent-memoInput"/>
     </div>
   );
 };

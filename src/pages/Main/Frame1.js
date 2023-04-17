@@ -7,11 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { userScheduleActions } from "../../redux/slice/userScheduleSlice";
 import ClassModal_v2 from "./ClassModal_v2";
 import { scheduleNumActions } from "../../redux/slice/scheduleNumSlice";
-import { hover } from "@testing-library/user-event/dist/hover";
 
 //시간표 짠거 있으면 시간표 짠거 보여주기
 const Frame1 = (props) => {
-  // const [userSchedule, setUserSchedule] = useState(null);
   const userInfo = useSelector((state) => state.userInfo.userInfo);
   const isFetching = useSelector((state) => state.isFetching.isFetching);
   const [isOpen, setIsOpen] = useState(false);
@@ -27,8 +25,6 @@ const Frame1 = (props) => {
   const closeClassModal = () => {
     setIsOpen(false);
   };
-
-  console.log(hoverTime);
 
   const getUserSchedule = async (id) => {
     const response = await axios(
@@ -186,29 +182,6 @@ const Frame1 = (props) => {
       }
     }
   };
-
-  // useEffect(()=> {
-  //   returnHoverSticker();
-  // },[hoverTime])
-
-  // const returnHoverSticker = () => {
-  //   var color = "#FFD966";
-
-  //   const timeLength = hoverTime.endTime - hoverTime.startTime;
-  //   const className = "sticker h" + timeLength;
-  //   const classNameContent = className + "-content";
-
-  //   return (
-  //     <div
-  //       className={className}
-  //       style={{
-  //         backgroundColor: color,
-  //       }}
-  //     >
-  //       <div className={classNameContent}></div>
-  //     </div>
-  //   );
-  // };
 
   const returnOnlineClassSticker = () => {
     const lectureList = [];

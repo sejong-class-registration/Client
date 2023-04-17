@@ -141,7 +141,6 @@ const SignupForm = (props) => {
 
   const formSubmitHandler = (event) => {
     event.preventDefault();
-    console.log(EnteredInput);
 
     signupFetchHandler();
   };
@@ -160,7 +159,6 @@ const SignupForm = (props) => {
       }
     );
     setIsLoading(false);
-    console.log(response);
     if (response.status === 201) {
       window.localStorage.setItem("token", response.data.token);
       dispatch(userInfoActions.saveUserInfo(response.data.user));

@@ -18,6 +18,7 @@ import { graduateLectureSliceReducer } from "./slice/graduateLecture";
 import { takenCheckBoxReducer } from "./slice/takenCheckBoxSlice";
 import { cartCheckBoxReducer } from "./slice/cartCheckBoxSlice";
 import { hoverTimeReducer } from "./slice/hoverTime";
+import { memoListReducer } from "./slice/memoList";
 
 const reducers = combineReducers({
   checkbox: checkboxReducer,
@@ -37,6 +38,7 @@ const reducers = combineReducers({
   takenCheckBox: takenCheckBoxReducer,
   cartCheckBox: cartCheckBoxReducer,
   hoverTime : hoverTimeReducer,
+  memoList : memoListReducer,
 });
 
 const persistConfig = {

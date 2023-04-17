@@ -66,8 +66,6 @@ const Mypage = () => {
   ]);
 
   useEffect(() => {
-    console.log(checkboxOn);
-    console.log(userInfo.doubleMajor);
   }, [enteredInput.doubleMajor]);
 
   const checkboxHandler = () => {
@@ -91,7 +89,6 @@ const Mypage = () => {
   const userinfoChangeHandler = (event) => {
     event.preventDefault();
     userInfoFetchHandler();
-    // console.log(userInfo);
   };
 
   const userInfoFetchHandler = async () => {

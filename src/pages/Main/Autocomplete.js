@@ -16,7 +16,6 @@ const Autocomplete = ({ name, onChange }) => {
   );
 
   const savedFilterInfo = useSelector((state) => state.classFilter.classFilter);
-  console.log(savedFilterInfo);
   //   console.log(lectureList);
 
   const handleDropDownClick = (clickedOption) => {

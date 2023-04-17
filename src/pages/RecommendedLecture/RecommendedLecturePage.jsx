@@ -42,7 +42,6 @@ const RecommendedLecturePage = () => {
       recommendedLecturesSliceActions.getRecommendedLecture(fetchLecturesList)
     );
     setIsLoading(false);
-    console.log(fetchLecturesList);
   };
 
   useEffect(() => {

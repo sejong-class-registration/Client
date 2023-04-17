@@ -34,11 +34,9 @@ const Frame2 = (props) => {
     );
   };
 
-  // console.log(lecturesInSchedule);
 
   useEffect(() => {
     for (var lecture = 0; lecture < lecturesInSchedule.length; lecture++) {
-      // console.log(lecturesInSchedule[lecture].lectureId);
       dispatch(
         userLecturesActions.changeUserLectures({
           userLectures: lecturesInSchedule[lecture].lectureId,
@@ -47,7 +45,6 @@ const Frame2 = (props) => {
     }
   }, [lecturesInSchedule]);
 
-  // console.log(savedSortInfo);
 
   const getLectureList = async (info, sort) => {
     setIsLoading(true);
@@ -72,7 +69,6 @@ const Frame2 = (props) => {
         info.grade === "" ? "" : info.grade === "전체" ? "" : `&grade=${info.grade}`
       }&sort=${sort}`
     );
-    // console.log(info.department);
     setLectureList(response.data.data.lectures);
     dispatch(
       filteredLectureActions.changefilteredLecture({
@@ -82,7 +78,6 @@ const Frame2 = (props) => {
     setIsLoading(false);
   };
 
-  // console.log(lectureList);
 
   useEffect(() => {
     getLectureList(savedFilterInfo, savedSortInfo);
@@ -93,7 +88,6 @@ const Frame2 = (props) => {
   const takenChecked = useSelector(
     (state) => state.takenCheckBox.takenCheckBox
   );
-  // console.log(takenChecked);
   const takenChangeHandler = (props) => {
     dispatch(takenCheckBoxActions.changeTakenCheckBox());
   };

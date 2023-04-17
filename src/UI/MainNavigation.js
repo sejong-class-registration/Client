@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import img from "../common/icons/logo.png";
 import { userInfoActions } from "../redux/slice/userSlice";
+import { BiChevronDown } from "react-icons/bi";
 import "./MainNavigation.scss";
 
 const MainNavigation = (props) => {
@@ -99,13 +100,13 @@ const MainNavigation = (props) => {
               className={`nav-buttons-dropdown${
                 props.onPage === 4 ||
                 props.onPage === 5 ||
-                props.onPage === 5 ||
+                props.onPage === 6 ||
                 props.onPage === 7
                   ? ""
                   : "_false"
               }`}
             >
-              서비스 +
+              서비스 <BiChevronDown></BiChevronDown>
             </button>
             {isOpen && (
               <ul className="nav-buttons-dropdown-ul">
@@ -122,20 +123,7 @@ const MainNavigation = (props) => {
                     </NavLink>
                   </button>
                 </li>
-                <li>
-                  {" "}
-                  <button
-                    onClick={toggleDropdown}
-                    className="nav-buttons-dropdown-ul-button"
-                  >
-                    <NavLink
-                      to="/calculator"
-                      className="nav-buttons-dropdown-ul-button-link"
-                    >
-                      기대학점 계산기{" "}
-                    </NavLink>
-                  </button>{" "}
-                </li>
+
                 <li>
                   <button
                     onClick={toggleDropdown}
@@ -146,19 +134,6 @@ const MainNavigation = (props) => {
                       className="nav-buttons-dropdown-ul-button-link"
                     >
                       남은학기 메모장
-                    </NavLink>
-                  </button>
-                </li>
-                <li>
-                  <button
-                    onClick={toggleDropdown}
-                    className="nav-buttons-dropdown-ul-button"
-                  >
-                    <NavLink
-                      to="/exp"
-                      className="nav-buttons-dropdown-ul-button-link"
-                    >
-                      설명서{" "}
                     </NavLink>
                   </button>
                 </li>

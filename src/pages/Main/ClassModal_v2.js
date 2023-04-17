@@ -31,7 +31,6 @@ const ModalOverlay = (props) => {
         { data: { userId: userInfo.studentId, scheduleId: selectedScheduleId } }
       );
     } catch (error) {
-      console.log(error);
     }
     dispatch(isFetchingActions.changeIsFetching());
     close();
@@ -39,9 +38,7 @@ const ModalOverlay = (props) => {
 
   const delLectureHandler = (props) => {
     delLectureToSchedule(close);
-    console.log(info);
   };
-  // console.log(info);
 
   return (
     <div className="classModal">

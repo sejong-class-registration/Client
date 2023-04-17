@@ -99,7 +99,6 @@ const LoginForm = () => {
     //     password: EnteredInput.pw * 1,
     //   }),
     // }).then(response => response.json())
-    // .then(result => console.log(result))
     setIsLoading(true);
     const response = await axios
       .post("https://sejong-enrollment.herokuapp.com/users/signin", {
@@ -111,7 +110,6 @@ const LoginForm = () => {
       //   password: EnteredInput.pw,
       // })
       .then((response) => {
-        console.log(response);
         setIsLoading(false);
         if (response.status === 201) {
           window.localStorage.setItem("token", response.data.token);

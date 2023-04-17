@@ -13,7 +13,6 @@ const ExcelUploadPage = () => {
   const handleSubmit = async (e) => {
     dispatch(excelFileactions.uploadExcelfile());
     const tempFile = e.target.files[0];
-    console.log(tempFile);
     const formData = new FormData();
     formData.append("xlsx", tempFile);
     const response = await axios.post(
@@ -26,7 +25,6 @@ const ExcelUploadPage = () => {
       }
     );
     const { data } = response.data;
-    console.log(response);
     dispatch(
       userInfoActions.saveUserGraduation({
         recommendLecture: data.recommendLecture,
@@ -44,7 +42,6 @@ const ExcelUploadPage = () => {
       `https://sejong-enrollment.herokuapp.com/graduation?studentId=${userInfo.studentId}`
     ).then((response) => {
       if (response.status === 200) {
-        console.log(response.data.data);
         dispatch(
           graduateLectureSliceActions.saveGraduateLectures(response.data.data)
         );
