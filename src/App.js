@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { CHANGEPW_PATH, FINDPW_PATH, GRADUATE_PATH, LECTURE_PATH, MAIN_PATH, MYPAGE_PATH, ROOT_PATH, SIGNUPFINSH_PATH, SIGNUP_PATH, DDAY_PATH, MEMO_PATH, ADMIN_SCHEDULE_PATH, ADMIN_GRADUATE_PATH, } from "./common/constants/path.const";
+import { CHANGEPW_PATH, FINDPW_PATH, GRADUATE_PATH, LECTURE_PATH, MAIN_PATH, MYPAGE_PATH, ROOT_PATH, SIGNUPFINSH_PATH, SIGNUP_PATH, DDAY_PATH, MEMO_PATH, ADMIN_SCHEDULE_PATH, ADMIN_GRADUATE_PATH, ADMIN_lOGIN_PATH, } from "./common/constants/path.const";
 import LoginPage from "./pages/Login/LoginPage";
 import MainPage from "./pages/Main/MainPage";
 import RecommendedLecturePage from "./pages/RecommendedLecture/RecommendedLecturePage";
@@ -15,6 +15,7 @@ import "./App.scss";
 import MemoPage from "./pages/Memo/memoPage";
 import ScheduleUpdate from "./pages/adminPage/scheduleUpdate.jsx/scheduleUpdate";
 import GraduateUpdate from "./pages/adminPage/graduateUpdate/graduateUpdate";
+import AdminLogin from "./pages/adminPage/login/adminLogin";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route path={MEMO_PATH} element = {<MemoPage />} />
         <Route path={ADMIN_SCHEDULE_PATH} element = {< ScheduleUpdate/>}/>
         <Route path={ADMIN_GRADUATE_PATH} element = {< GraduateUpdate/>} />
+        <Route path={ADMIN_lOGIN_PATH} element = {< AdminLogin/>} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,8 +1,64 @@
 import React from "react";
 import AdminNavigation from "../../../UI/adminNavigation";
 import "./scheduleUpdate.scss";
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const ScheduleUpdate = (props) => {
+  const [updateInputValue, setUpdateInputValue] = useState({
+    year: "2023",
+    semester: "1",
+  });
+  const [deleteInputValue, setdeleteInputValue] = useState({
+    year: "2023",
+    semester: "1",
+  });
+  const navigate = useNavigate();
+  
+  useEffect (() => {
+    const getToken = localStorage.getItem('token');
+
+    if(!getToken){
+      navigate('/admin');
+    }
+  }, []);
+
+
+  const updateInputChangeHandler = (event) => {
+    setUpdateInputValue((prev) => {
+      return { ...prev, [event.target.id]: event.target.value };
+    });
+  };
+
+  const deleteInputChangeHandler = (event) => {
+    setdeleteInputValue((prev) => {
+      return { ...prev, [event.target.id]: event.target.value };
+    });
+  };
+
+  const deleteFetchHandler = async () => {
+    const response = await axios.delete(
+      "https://port-0-sejong-enrollment-1jvasx23lbaoi6rj.gksl2.cloudtype.app/admin/lectures",
+      {
+        data: {
+          lectureYear: deleteInputValue.year,
+          lectureSemster: deleteInputValue.semester,
+        },
+      }
+    );
+    if (response.status === 201) {
+      alert("해당 시간표가 삭제되었습니다");
+    } else {
+      alert(response.data.message);
+    }
+  };
+
+  const deleteButtonHandler = () => {
+    console.log(deleteInputValue);
+    deleteFetchHandler();
+  };
   return (
     <div className="scheduleUpdate">
       <AdminNavigation onPage={10} />
@@ -18,9 +74,11 @@ const ScheduleUpdate = (props) => {
               className="scheduleUpdate-content-update-box-label"
             >
               <input
+                id="year"
                 type="number"
-                defaultValue={2023}
                 className="scheduleUpdate-content-update-box-input"
+                value={updateInputValue.year}
+                onChange={updateInputChangeHandler}
               />
               년도
             </label>
@@ -29,6 +87,8 @@ const ScheduleUpdate = (props) => {
                 name="semester"
                 id="semester"
                 className="scheduleUpdate-content-update-box-select"
+                value={updateInputValue.semester}
+                onChange={updateInputChangeHandler}
               >
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -37,8 +97,17 @@ const ScheduleUpdate = (props) => {
               </select>
               학기
             </label>
-            <label htmlFor="upload" className="scheduleUpdate-content-update-box-upload">
-              엑셀파일 업로드<button id="upload" className="scheduleUpdate-content-update-box-upload-button">업로드</button>
+            <label
+              htmlFor="upload"
+              className="scheduleUpdate-content-update-box-upload"
+            >
+              엑셀파일 업로드
+              <button
+                id="upload"
+                className="scheduleUpdate-content-update-box-upload-button"
+              >
+                업로드
+              </button>
             </label>
           </div>
         </div>
@@ -49,21 +118,25 @@ const ScheduleUpdate = (props) => {
             </div>
             <div className="scheduleUpdate-content-update-box">
               <label
-                htmlFor=""
+                htmlFor="year"
                 className="scheduleUpdate-content-update-box-label"
               >
                 <input
+                  id="year"
                   type="number"
-                  defaultValue={2023}
                   className="scheduleUpdate-content-update-box-input"
+                  onChange={deleteInputChangeHandler}
+                  value={deleteInputValue.year}
                 />
                 년도
               </label>
-              <label htmlFor="">
+              <label htmlFor="semester">
                 <select
                   name="semester"
                   id="semester"
                   className="scheduleUpdate-content-update-box-select"
+                  onChange={deleteInputChangeHandler}
+                  value={deleteInputValue.semester}
                 >
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -73,7 +146,14 @@ const ScheduleUpdate = (props) => {
                 학기
               </label>
               <label htmlFor="delete">
-                {"        "}<button id="delete" className="scheduleUpdate-content-delete-box-button">삭제</button>
+                {"        "}
+                <button
+                  id="delete"
+                  className="scheduleUpdate-content-delete-box-button"
+                  onClick={deleteButtonHandler}
+                >
+                  삭제
+                </button>
               </label>
             </div>
           </div>

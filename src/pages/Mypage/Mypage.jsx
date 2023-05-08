@@ -93,7 +93,7 @@ const Mypage = () => {
 
   const userInfoFetchHandler = async () => {
     const response = await axios.post(
-      `https://sejong-enrollment.herokuapp.com/users/${userInfo.studentId}`,
+      `https://port-0-sejong-enrollment-1jvasx23lbaoi6rj.gksl2.cloudtype.app/users/${userInfo.studentId}`,
       {
         name: enteredInput.name,
         userGrade: +enteredInput.userGrade,
@@ -126,7 +126,7 @@ const Mypage = () => {
   const secessionFetchHandler = async () => {
     setIsLoading(true);
     const response = await axios.delete(
-      `https://sejong-enrollment.herokuapp.com/users/${userInfo.studentId}`,
+      `https://port-0-sejong-enrollment-1jvasx23lbaoi6rj.gksl2.cloudtype.app/users/${userInfo.studentId}`,
       {
         data: {
           Id: userInfo.studentId,

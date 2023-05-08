@@ -1,14 +1,11 @@
+import React from "react";
 import { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { userInfoActions } from "../../redux/slice/userSlice";
+import Loading2 from "../../../UI/Loading2";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./LoginForm.scss";
-import Loading2 from "../../UI/Loading2";
 
-//로그인 박스
-const LoginForm = () => {
-  const dispatch = useDispatch();
+const AdminLoginForm = () => {
   const navigate = useNavigate();
   const [EnteredInput, setEnteredInput] = useState({ id: "", pw: "" });
   const [EnteredInputIsValid, setEnteredInputIsValid] = useState({
@@ -36,7 +33,7 @@ const LoginForm = () => {
     });
 
     if (selectedId === "id") {
-      if (EnteredInput.id.trim() === "" || isNaN(EnteredInput.id)) {
+      if (EnteredInput.id.trim() === "") {
         setEnteredInputIsValid((prev) => {
           return { ...prev, id: false };
         });
@@ -94,16 +91,15 @@ const LoginForm = () => {
   const loginFetchHandler = async () => {
     setIsLoading(true);
     const response = await axios
-      .post("https://port-0-sejong-enrollment-1jvasx23lbaoi6rj.gksl2.cloudtype.app/users/signin", {
-        studentId: EnteredInput.id,
+      .post("https://port-0-sejong-enrollment-1jvasx23lbaoi6rj.gksl2.cloudtype.app/admin", {
+        id: EnteredInput.id,
         password: EnteredInput.pw,
       })
       .then((response) => {
         setIsLoading(false);
         if (response.status === 201) {
           window.localStorage.setItem("token", response.data.token);
-          dispatch(userInfoActions.saveUserInfo(response.data.data));
-          navigate("/main");
+          navigate("/adminschedule");
         } else {
           alert(response.data.message);
         }
@@ -127,7 +123,7 @@ const LoginForm = () => {
         className="login-formbox"
         autoComplete="off"
       >
-        <p>학번/아이디</p>
+        <p>아이디</p>
         <input
           className={idInputClassName}
           type="text"
@@ -137,7 +133,7 @@ const LoginForm = () => {
           value={EnteredInput.id}
         />
         {!EnteredInputIsValid.id && (
-          <p className="login-invalid">아이디(학번)를 입력해주세요</p>
+          <p className="login-invalid">아이디를 입력해주세요</p>
         )}
         <p>비밀번호</p>
         <input
@@ -152,12 +148,6 @@ const LoginForm = () => {
           <p className="login-invalid">비밀번호를 입력해주세요</p>
         )}
         <div className="login-formbox-help">
-          {/* <span>
-          <NavLink to="/findpw">비밀번호 찾기</NavLink>
-        </span> */}
-          <span>
-            <NavLink to="/signup">회원가입</NavLink>
-          </span>
         </div>
         <button>로그인</button>
       </form>
@@ -168,6 +158,6 @@ const LoginForm = () => {
       )}
     </div>
   );
-};
+}
 
-export default LoginForm;
+export default AdminLoginForm;

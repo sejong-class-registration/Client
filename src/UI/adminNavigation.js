@@ -14,9 +14,8 @@ const AdminNavigation = (props) => {
   };
 
   const logoutHandler = () => {
-    dispatch(userInfoActions.clearUserInfo());
     localStorage.removeItem("token");
-    navigate("/");
+    navigate("/admin");
   };
 
 

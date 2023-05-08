@@ -10,5 +10,6 @@ export const MYPAGE_PATH = '/mypage'
 export const DDAY_PATH = '/dday';
 export const MEMO_PATH = '/memo';
 
+export const ADMIN_lOGIN_PATH = '/admin';
 export const ADMIN_SCHEDULE_PATH = '/adminschedule';
 export const ADMIN_GRADUATE_PATH = '/admingraduate';

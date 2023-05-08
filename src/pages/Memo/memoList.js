@@ -1,14 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import "./memoList.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { memoListActions } from "../../redux/slice/memoList";
+import { useEffect } from "react";
+import axios from "axios";
 
 const MemoList = (props) => {
   const dispatch = useDispatch();
+  const memoListId = useSelector((state) => state.memoList);
+  const userInfo = useSelector((state) => state.userInfo.userInfo);
+  const [memoListInfo, setMemoListInfo] = useState(memoListId);
 
-  const buttonHandler = (e) => {
-    dispatch(memoListActions.changeMemoList(e.target));
+  const getMemoContent = async () => {
+    const response = await axios
+      .get(
+        `https://port-0-sejong-enrollment-1jvasx23lbaoi6rj.gksl2.cloudtype.app/memo/${userInfo.studentId}/${memoListId.num}`
+      )
+      .then((response) => {
+        if (response.status === 200) {
+          setMemoListInfo((prev) => {
+            return { ...prev, content: response.data.data.content[0] };
+          });
+        } else {
+          setMemoListInfo((prev) => {
+            return { ...prev, content: "" };
+          });
+        }
+      });
+    
   };
+  const buttonHandler = (e) => {
+    console.log(memoListId[--e.target.id]);
+  };
+  useEffect(() => {
+    
+    // console.log(memoListId)
+  }, [memoListInfo, memoListId]);
 
   return (
     <div className="memoList">
@@ -21,7 +48,7 @@ const MemoList = (props) => {
               backgroundColor: "#FFF2CC",
             }}
             name="1학년 1학기"
-            id="11"
+            id="1"
             value="#FFF2CC"
             onClick={buttonHandler}
           >
@@ -35,7 +62,7 @@ const MemoList = (props) => {
               backgroundColor: "#FFF2CC",
             }}
             name="1학년 2학기"
-            id="12"
+            id="2"
             value="#FFF2CC"
             onClick={buttonHandler}
           >
@@ -49,7 +76,7 @@ const MemoList = (props) => {
               backgroundColor: "#FFD966",
             }}
             name="2학년 1학기"
-            id="21"
+            id="3"
             value="#FFD966"
             onClick={buttonHandler}
           >
@@ -63,7 +90,7 @@ const MemoList = (props) => {
               backgroundColor: "#FFD966",
             }}
             name="2학년 2학기"
-            id="22"
+            id="4"
             value="#FFD966"
             onClick={buttonHandler}
           >
@@ -77,7 +104,7 @@ const MemoList = (props) => {
               backgroundColor: "#F4B183",
             }}
             name="3학년 1학기"
-            id="31"
+            id="5"
             value="#F4B183"
             onClick={buttonHandler}
           >
@@ -91,7 +118,7 @@ const MemoList = (props) => {
               backgroundColor: "#F4B183",
             }}
             name="3학년 2학기"
-            id="32"
+            id="6"
             value="#F4B183"
             onClick={buttonHandler}
           >
@@ -105,7 +132,7 @@ const MemoList = (props) => {
               backgroundColor: "#DFA67B",
             }}
             name="4학년 1학기"
-            id="41"
+            id="7"
             value="#DFA67B"
             onClick={buttonHandler}
           >
@@ -119,7 +146,7 @@ const MemoList = (props) => {
               backgroundColor: "#DFA67B",
             }}
             name="4학년 2학기"
-            id="42"
+            id="8"
             value="#DFA67B"
             onClick={buttonHandler}
           >
@@ -134,7 +161,7 @@ const MemoList = (props) => {
               color: "white",
             }}
             name="여름 계절학기"
-            id="51"
+            id="9"
             value="#9e8c8c"
             onClick={buttonHandler}
           >
@@ -149,7 +176,7 @@ const MemoList = (props) => {
               color: "white",
             }}
             name="겨울 계절학기"
-            id="52"
+            id="10"
             value="#9e8c8c"
             onClick={buttonHandler}
           >
@@ -157,11 +184,15 @@ const MemoList = (props) => {
           </button>
         </li>
         <li className="memoList-li">
-          <button className="memoList-li-button" 
+          <button
+            className="memoList-li-button"
             name="ETC"
-            id="61"
+            id="11"
             value="#ccc"
-            onClick={buttonHandler}>ETC</button>
+            onClick={buttonHandler}
+          >
+            ETC
+          </button>
         </li>
       </ul>
     </div>

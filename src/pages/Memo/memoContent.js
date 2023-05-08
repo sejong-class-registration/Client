@@ -3,7 +3,7 @@ import MemoList from "./memoList";
 import MemoInput from "./memoInput";
 import "./memoContent.scss";
 
-const MemoContent = () => {
+const MemoContent = (props) => {
   return (
     <div className="memoContent">
       <div className="memoContent-title">

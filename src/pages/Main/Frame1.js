@@ -28,11 +28,11 @@ const Frame1 = (props) => {
 
   const getUserSchedule = async (id) => {
     const response = await axios(
-      `https://sejong-enrollment.herokuapp.com/schedules?userId=${userInfo.studentId}`
+      `https://port-0-sejong-enrollment-1jvasx23lbaoi6rj.gksl2.cloudtype.app/schedules?userId=${userInfo.studentId}`
     );
     setTotalCredit(response.data.data.schedules[id].totalCredit);
     if (!response.data.data.schedules[id]) {
-      dispatch(
+      dispatch( 
         userScheduleActions.changeUserSchedule({
           userSchedule: {},
         })
