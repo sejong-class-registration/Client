@@ -6,37 +6,9 @@ import { useEffect } from "react";
 import axios from "axios";
 
 const MemoList = (props) => {
-  const dispatch = useDispatch();
-  const memoListId = useSelector((state) => state.memoList);
-  const userInfo = useSelector((state) => state.userInfo.userInfo);
-  const [memoListInfo, setMemoListInfo] = useState(memoListId);
-
-  const getMemoContent = async () => {
-    const response = await axios
-      .get(
-        `https://port-0-sejong-enrollment-1jvasx23lbaoi6rj.gksl2.cloudtype.app/memo/${userInfo.studentId}/${memoListId.num}`
-      )
-      .then((response) => {
-        if (response.status === 200) {
-          setMemoListInfo((prev) => {
-            return { ...prev, content: response.data.data.content[0] };
-          });
-        } else {
-          setMemoListInfo((prev) => {
-            return { ...prev, content: "" };
-          });
-        }
-      });
-    
-  };
-  const buttonHandler = (e) => {
-    console.log(memoListId[--e.target.id]);
-  };
-  useEffect(() => {
-    
-    // console.log(memoListId)
-  }, [memoListInfo, memoListId]);
-
+const buttonHandler = () => {
+  console.log();
+}
   return (
     <div className="memoList">
       <span className="memoList-title">LIST</span>

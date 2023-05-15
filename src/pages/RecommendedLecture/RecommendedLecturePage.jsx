@@ -9,15 +9,24 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { recommendedLecturesSliceActions } from "../../redux/slice/recommendedLecturesSlice";
 import Loading from "../../UI/Loading";
+import { useNavigate } from "react-router-dom";
 
 const RecommendedLecturePage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const recommendedLectures = useSelector(
     (state) => state.recommendedLecture.lecturesList
   );
   const [filteropen, setfilteropen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  
+  useEffect (() => {
+    const getToken = localStorage.getItem('token');
 
+    if(!getToken){
+      navigate('/');
+    }
+  }, []);
   const filterButtonHandler = () => {
     setfilteropen((currentvalue) => !currentvalue);
   };

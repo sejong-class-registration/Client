@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { graduateLectureSliceActions } from "../../redux/slice/graduateLecture";
 import ExcelUploadPage from "../../UI/excelUploadPage";
 import MainNavigation from "../../UI/MainNavigation";
@@ -11,12 +11,22 @@ import GraduateMajorList from "./graduateMajorList";
 
 const Graduation = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const savedGraduateLecture = useSelector(
     (state) => state.graduateLecture.graduateLecture
   );
   const isUploaded = useSelector(
     (state) => state.graduateLecture.graduateLecture.takenGE1.length > 0
   );
+
+  
+  useEffect (() => {
+    const getToken = localStorage.getItem('token');
+
+    if(!getToken){
+      navigate('/');
+    }
+  }, []);
 
   const takenGE1Name = savedGraduateLecture.takenGE1.map(
     (lecture) => lecture.name

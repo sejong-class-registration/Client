@@ -7,6 +7,7 @@ const userInfoSlice = createSlice({
       name: "",
       studentId: "",
       userGrade: "",
+      department: "",
       major: "",
       doubleMajor: "",
       recommendLecture: [],
@@ -22,6 +23,7 @@ const userInfoSlice = createSlice({
         name: "",
         studentId: "",
         userGrade: "",
+        department: "",
         major: "",
         doubleMajor: "",
         recommendLecture: [],
@@ -30,6 +32,12 @@ const userInfoSlice = createSlice({
         geAreaTaken: [],
         totalCredits: 0,
       };
+    },
+    saveDepartment(state, action){
+      state.userInfo = {
+        ...state.userInfo,
+        department: action.payload,
+      }
     },
     saveUserInfo(state, action) {
       state.userInfo = {

@@ -3,10 +3,11 @@ import MainNavigation from "../../UI/MainNavigation";
 import MainPageContent from "./MainPageContent";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function MainPage() {
   // const navigate = useNavigate();
-  // const user = useSelector((state) => state.userInfo.userInfo.name);
+  const user = useSelector((state) => state.userInfo.userInfo);
   // useEffect(() => {
   //   if (user.length > 0) navigate("/");
   // }, []);
@@ -18,6 +19,8 @@ function MainPage() {
     if(!getToken){
       navigate('/');
     }
+
+    console.log(user);
   }, []);
 
   return (

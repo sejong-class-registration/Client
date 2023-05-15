@@ -8,23 +8,46 @@ import { useEffect } from "react";
 
 const ScheduleUpdate = (props) => {
   const [updateInputValue, setUpdateInputValue] = useState({
-    year: "2023",
-    semester: "1",
+    lectureYear: "2023",
+    lectureSemester: "1",
   });
   const [deleteInputValue, setdeleteInputValue] = useState({
     year: "2023",
     semester: "1",
   });
   const navigate = useNavigate();
-  
-  useEffect (() => {
-    const getToken = localStorage.getItem('token');
 
-    if(!getToken){
-      navigate('/admin');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const tempFile = e.target.files[0];
+    const formData = new FormData();
+    formData.append("xlsx", tempFile);
+    formData.append("lectureYear", updateInputValue.lectureYear);
+    formData.append("lectureSemester", updateInputValue.lectureSemester);
+    const response = await axios.post(
+      `https://port-0-sejong-enrollment-1jvasx23lbaoi6rj.gksl2.cloudtype.app/admin/lectures`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    ); 
+    if(response.status === 200){
+      alert(response.data.message);
+    }
+    else{
+      alert(response.data.message);
+    }
+  };
+
+  useEffect(() => {
+    const getToken = localStorage.getItem("token");
+
+    if (!getToken) {
+      navigate("/admin");
     }
   }, []);
-
 
   const updateInputChangeHandler = (event) => {
     setUpdateInputValue((prev) => {
@@ -44,7 +67,7 @@ const ScheduleUpdate = (props) => {
       {
         data: {
           lectureYear: deleteInputValue.year,
-          lectureSemster: deleteInputValue.semester,
+          lectureSemester: deleteInputValue.semester,
         },
       }
     );
@@ -67,27 +90,28 @@ const ScheduleUpdate = (props) => {
         <div className="scheduleUpdate-content-update">
           <div className="scheduleUpdate-content-update-title">
             시간표 추가 / 수정
+            <span className="scheduleUpdate-content-update-title-exp">엑셀파일만 업로드 가능합니다</span>
           </div>
           <div className="scheduleUpdate-content-update-box">
             <label
-              htmlFor=""
+              htmlFor="lectureYear"
               className="scheduleUpdate-content-update-box-label"
             >
               <input
-                id="year"
+                id="lectureYear"
                 type="number"
                 className="scheduleUpdate-content-update-box-input"
-                value={updateInputValue.year}
+                value={updateInputValue.lectureYear}
                 onChange={updateInputChangeHandler}
               />
               년도
             </label>
-            <label htmlFor="">
+            <label htmlFor="lectureSemester">
               <select
                 name="semester"
-                id="semester"
+                id="lectureSemester"
                 className="scheduleUpdate-content-update-box-select"
-                value={updateInputValue.semester}
+                value={updateInputValue.lectureSemester}
                 onChange={updateInputChangeHandler}
               >
                 <option value="1">1</option>
@@ -101,13 +125,14 @@ const ScheduleUpdate = (props) => {
               htmlFor="upload"
               className="scheduleUpdate-content-update-box-upload"
             >
-              엑셀파일 업로드
-              <button
+              업로드
+              <input
+                onChange={handleSubmit}
                 id="upload"
+                type="file"
+                accept=".xlsx"
                 className="scheduleUpdate-content-update-box-upload-button"
-              >
-                업로드
-              </button>
+              ></input>
             </label>
           </div>
         </div>

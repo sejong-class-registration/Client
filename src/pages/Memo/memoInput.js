@@ -21,7 +21,6 @@ const MemoInput = () => {
   //   [inputValue, memoListId]
   // );
 
-  console.log(inputValue);
   console.log(memoListId.content);
 
   const saveMemoHandler = () => {
