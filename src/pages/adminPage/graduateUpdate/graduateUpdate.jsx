@@ -2,6 +2,7 @@ import React from "react";
 import AdminNavigation from "../../../UI/adminNavigation";
 import "./graduateUpdate.scss";
 import { useState } from "react";
+import axios from "axios";
 
 const GraduateUpdate = (props) => {
   const [selectList, setSelectList] = useState([
@@ -132,20 +133,16 @@ const GraduateUpdate = (props) => {
         "무용과",
         "영화예술학과",
       ]);
-    } else if (
-      e.target.value === "법학부"
-    ) {
+    } else if (e.target.value === "법학부") {
       setSelectList(["법학부"]);
-    }else if (
-      e.target.value === "대양휴머니티칼리지"
-    ) {
+    } else if (e.target.value === "대양휴머니티칼리지") {
       setSelectList(["대양휴머니티칼리지"]);
     }
   };
 
   const majorChangeHandler = (e) => {
     setSelectedMajor(e.target.value);
-  }
+  };
 
   const searchButtonHandler = () => {
     setIsSearched(true);
@@ -153,19 +150,56 @@ const GraduateUpdate = (props) => {
 
   const updateYearHandler = (e) => {
     setUpdateYearValue(e.target.value);
-  }
+  };
 
   const deleteYearHandler = (e) => {
     setdeleteYearValue(e.target.value);
-  }
+  };
 
-  const updateYearSubmitHandler = (e) => {
+  const deleteFetchHandler = async () => {
+    const response = await axios.delete(
+      "https://port-0-sejong-enrollment-1jvasx23lbaoi6rj.gksl2.cloudtype.app/admin/graduation",
+      {
+        data: {
+          graduationYear: deleteYearValue,
+        },
+      }
+    );
+    if (response.status === 201) {
+      alert("해당 졸업요건이 삭제되었습니다.");
+    } else {
+      alert(response.data.message);
+    }
+  };
 
-  }
+  const updateYearSubmitHandler = async(e) =>{
+    e.preventDefault();
+    const tempFile = e.target.files[0];
+    const formData = new FormData();
+    formData.append("xlsx", tempFile);
+    formData.append("graduationYear", updateYearValue);
+    const response = await axios.post(
+      `https://port-0-sejong-enrollment-1jvasx23lbaoi6rj.gksl2.cloudtype.app/admin/graduation`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+    console.log(response); 
+    if(response.status === 200){
+      alert("졸업요건을 추가하는 데 성공하였습니다.");
+    }
+    else{
+      alert("졸업요건을 추가하는 데 실패하였습니다");
+    }
+  } 
+
 
   const deleteYearSubmitHandler = () => {
-    console.log(deleteYearValue);
-  }
+    deleteFetchHandler();
+  };
 
   return (
     <div className="graduateUpdate">
@@ -183,8 +217,8 @@ const GraduateUpdate = (props) => {
             >
               <input
                 type="number"
-                value = {updateYearValue}
-                onChange = {updateYearHandler}
+                value={updateYearValue}
+                onChange={updateYearHandler}
                 className="graduateUpdate-content-update-box-input"
               />
               입학년도 졸업요건 추가
@@ -193,14 +227,14 @@ const GraduateUpdate = (props) => {
               htmlFor="upload"
               className="graduateUpdate-content-update-box-upload"
             >
-                <input 
+              <input
                 id="upload"
                 type="file"
                 accept=".xlsx"
                 className="graduateUpdate-content-update-box-upload-button"
-                onClick = {updateYearSubmitHandler}>
-                </input>
-                업로드
+                onChange={updateYearSubmitHandler}
+              ></input>
+              업로드
             </label>
           </div>
         </div>
@@ -216,8 +250,8 @@ const GraduateUpdate = (props) => {
               >
                 <input
                   type="number"
-                  value = {deleteYearValue}
-                  onChange = {deleteYearHandler}
+                  value={deleteYearValue}
+                  onChange={deleteYearHandler}
                   className="graduateUpdate-content-update-box-input"
                 />
                 입학년도 졸업요건 삭제
@@ -227,7 +261,7 @@ const GraduateUpdate = (props) => {
                 <button
                   id="delete"
                   className="graduateUpdate-content-delete-box-button"
-                  onClick = {deleteYearSubmitHandler}
+                  onClick={deleteYearSubmitHandler}
                 >
                   삭제
                 </button>
@@ -269,7 +303,7 @@ const GraduateUpdate = (props) => {
                   name="semester"
                   id="semester"
                   className="graduateUpdate-content-search-box-select"
-                  onChange = {majorChangeHandler}
+                  onChange={majorChangeHandler}
                 >
                   {selectList.map((item) => (
                     <option value={item} key={item}>
@@ -289,20 +323,21 @@ const GraduateUpdate = (props) => {
               </button>
             </div>
           </div>
-          {isSearched && <div className="graduateUpdate-content-result">
-            <div className="graduateUpdate-content-result-header">
-              <span className="graduateUpdate-content-result-header-title">
-                컴퓨터공학과 졸업요건
-              </span>
-              <div>
-                <button className="graduateUpdate-content-result-header-button">
-                  수정
-                </button>
-                <button className="graduateUpdate-content-result-header-button">
-                  저장
-                </button>
+          {isSearched && (
+            <div className="graduateUpdate-content-result">
+              <div className="graduateUpdate-content-result-header">
+                <span className="graduateUpdate-content-result-header-title">
+                  컴퓨터공학과 졸업요건
+                </span>
+                <div>
+                  <button className="graduateUpdate-content-result-header-button">
+                    수정
+                  </button>
+                  <button className="graduateUpdate-content-result-header-button">
+                    저장
+                  </button>
+                </div>
               </div>
-            </div>
               <table border="1" className="graduateUpdate-content-result-table">
                 <thead>
                   <th scope="col">입학년도</th>
@@ -352,7 +387,8 @@ const GraduateUpdate = (props) => {
                   </tr>
                 ))}
               </table>
-          </div>}
+            </div>
+          )}
         </div>
       </div>
     </div>
