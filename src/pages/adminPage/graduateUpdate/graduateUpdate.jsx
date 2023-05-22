@@ -58,8 +58,11 @@ const GraduateUpdate = (props) => {
       GE3credit: 9,
     },
   ];
+  const [selectedMajor, setSelectedMajor] = useState("국어국문학과");
   const [departmentSelected, setdepartmentSelected] = useState("인문과학대학");
   const [isSearched, setIsSearched] = useState(false);
+  const [updateYearValue, setUpdateYearValue] = useState(2023);
+  const [deleteYearValue, setdeleteYearValue] = useState(2023);
   const departmentSelectHandler = (e) => {
     setdepartmentSelected(e.target.value);
     if (e.target.value === "인문과학대학") {
@@ -130,16 +133,39 @@ const GraduateUpdate = (props) => {
         "영화예술학과",
       ]);
     } else if (
-      e.target.value === "대양휴머니티칼리지" ||
       e.target.value === "법학부"
     ) {
-      setSelectList(["---"]);
+      setSelectList(["법학부"]);
+    }else if (
+      e.target.value === "대양휴머니티칼리지"
+    ) {
+      setSelectList(["대양휴머니티칼리지"]);
     }
   };
+
+  const majorChangeHandler = (e) => {
+    setSelectedMajor(e.target.value);
+  }
 
   const searchButtonHandler = () => {
     setIsSearched(true);
   };
+
+  const updateYearHandler = (e) => {
+    setUpdateYearValue(e.target.value);
+  }
+
+  const deleteYearHandler = (e) => {
+    setdeleteYearValue(e.target.value);
+  }
+
+  const updateYearSubmitHandler = (e) => {
+
+  }
+
+  const deleteYearSubmitHandler = () => {
+    console.log(deleteYearValue);
+  }
 
   return (
     <div className="graduateUpdate">
@@ -157,7 +183,8 @@ const GraduateUpdate = (props) => {
             >
               <input
                 type="number"
-                defaultValue={2023}
+                value = {updateYearValue}
+                onChange = {updateYearHandler}
                 className="graduateUpdate-content-update-box-input"
               />
               입학년도 졸업요건 추가
@@ -166,13 +193,14 @@ const GraduateUpdate = (props) => {
               htmlFor="upload"
               className="graduateUpdate-content-update-box-upload"
             >
-              엑셀파일 업로드
-              <button
+                <input 
                 id="upload"
+                type="file"
+                accept=".xlsx"
                 className="graduateUpdate-content-update-box-upload-button"
-              >
+                onClick = {updateYearSubmitHandler}>
+                </input>
                 업로드
-              </button>
             </label>
           </div>
         </div>
@@ -188,7 +216,8 @@ const GraduateUpdate = (props) => {
               >
                 <input
                   type="number"
-                  defaultValue={2023}
+                  value = {deleteYearValue}
+                  onChange = {deleteYearHandler}
                   className="graduateUpdate-content-update-box-input"
                 />
                 입학년도 졸업요건 삭제
@@ -198,6 +227,7 @@ const GraduateUpdate = (props) => {
                 <button
                   id="delete"
                   className="graduateUpdate-content-delete-box-button"
+                  onClick = {deleteYearSubmitHandler}
                 >
                   삭제
                 </button>
@@ -239,6 +269,7 @@ const GraduateUpdate = (props) => {
                   name="semester"
                   id="semester"
                   className="graduateUpdate-content-search-box-select"
+                  onChange = {majorChangeHandler}
                 >
                   {selectList.map((item) => (
                     <option value={item} key={item}>

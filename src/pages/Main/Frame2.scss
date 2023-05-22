@@ -30,16 +30,17 @@
   margin: 0 0 1rem 2rem;
   text-align: end;
   :hover {
-    background-color: #a31432;
+    background-color: #FFD966;
   }
   &-button {
     cursor: pointer;
     margin: 0;
     width: 5.5rem;
     height: max-content;
-    border: 1px solid #626060;
+    border: 1px solid #bdbdbd;
+    color: black;
     border-radius: 15px;
-    background-color: #ffffff;
+    background-color: white;
     &-img {
       height: 1.2rem;
     }

@@ -79,7 +79,6 @@ const ScheduleUpdate = (props) => {
   };
 
   const deleteButtonHandler = () => {
-    console.log(deleteInputValue);
     deleteFetchHandler();
   };
   return (

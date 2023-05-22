@@ -124,7 +124,7 @@ const MainNavigation = (props) => {
                   </button>
                 </li>
 
-                <li>
+                {/* <li>
                   <button
                     onClick={toggleDropdown}
                     className="nav-buttons-dropdown-ul-button"
@@ -136,7 +136,7 @@ const MainNavigation = (props) => {
                       남은학기 메모장
                     </NavLink>
                   </button>
-                </li>
+                </li> */}
               </ul>
             )}
           </div>

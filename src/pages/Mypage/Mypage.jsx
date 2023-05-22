@@ -26,7 +26,6 @@ const Mypage = () => {
     name: userInfo.name,
     studentId: userInfo.studentId,
     userGrade: userInfo.userGrade,
-    department: userInfo.department,
     major: userInfo.major,
     doubleMajor: userInfo.doubleMajor,
     recommendLecture: userInfo.recommendLecture,
@@ -35,89 +34,59 @@ const Mypage = () => {
     geAreaTaken: userInfo.geAreaTaken,
     totalCredits: userInfo.totalCredits,
   });
-  const [departmentSelected, setdepartmentSelected] = useState(userInfo.department);
-  const [selectList, setSelectList] = useState([
+  const majorList = [
+    "건설환경공학과",
+    "건축공학과",
+    "건축학과",
+    "경영학부",
+    "경제학과",
+    "교육학과",
+    "국방시스템공학과",
     "국어국문학과",
     "국제학부-영어영문학",
     "국제학부-일어일문학",
     "국제학부-중국통상학",
+    "글로벌조리학과",
+    "기계공학과",
+    "나노신소재공학과",
+    "데이터사이언스학과",
+    "무용과",
+    "물리천문학과",
+    "미디어커뮤니케이션학과",
+    "반도체시스템공학과",
+    "법학부",
+    "생명시스템학부-바이오산업자원공학",
+    "생명시스템학부-바이오융합공학",
+    "생명시스템학부-식품생명공학전공",
+    "소프트웨어학과",
+    "수학통계학과",
+    "스마트생명산업융합학과",
+    "양자원자력공학과",
     "역사학과",
-    "교육학과",
-  ]);
-  
- const departmentSelectHandler = (e) => {
-    setdepartmentSelected(e.target.value);
-    if (e.target.value === "인문과학대학") {
-      setSelectList([
-        "국어국문학과",
-        "국제학부-영어영문학",
-        "국제학부-일어일문학",
-        "국제학부-중국통상학",
-        "역사학과",
-        "교육학과",
-      ]);
-    } else if (e.target.value === "사회과학대학") {
-      setSelectList(["행정학과", "미디어커뮤니케이션학과"]);
-    } else if (e.target.value === "경영경제대학") {
-      setSelectList(["경제학과", "경영학부"]);
-    } else if (e.target.value === "호텔관광대학") {
-      setSelectList([
-        "호텔관광외식경영학부-호텔관광경영",
-        "호텔관광외식경영학부-외식경영",
-        "호텔외식관광프랜차이즈경영학과",
-        "글로벌조리학과",
-        "호텔외식비즈니스학과",
-      ]);
-    } else if (e.target.value === "자연과학대학") {
-      setSelectList(["수학통계학과", "물리천문학과", "화학과"]);
-    } else if (e.target.value === "생명과학대학") {
-      setSelectList([
-        "생명시스템학부-식품생명공학전공",
-        "생명시스템학부-바이오융합공학",
-        "생명시스템학부-바이오산업자원공학",
-        "스마트생명산업융합학과",
-      ]);
-    } else if (e.target.value === "전자정보공학대학") {
-      setSelectList(["전자정보통신공학과", "반도체시스템공학과"]);
-    } else if (e.target.value === "소프트웨어융합대학") {
-      setSelectList([
-        "컴퓨터공학과",
-        "정보보호학과",
-        "소프트웨어학과",
-        "데이터사이언스학과",
-        "지능기전공학과",
-        "창의소프트학부-디자인이노베이션",
-        "창의소프트학부-만화애니메이션텍",
-        "인공지능학과",
-      ]);
-    } else if (e.target.value === "공과대학") {
-      setSelectList([
-        "건축공학과",
-        "건축학과",
-        "건설환경공학과",
-        "환경에너지공간융합학과",
-        "지구자원시스템공학과",
-        "기계공학과",
-        "우주항공시스템공학부-우주항공공학전공",
-        "우주항공시스템공학부-항공시스템공학전공",
-        "나노신소재공학과",
-        "양자원자력공학과",
-        "국방시스템공학과",
-        "항공시스템공학과",
-      ]);
-    } else if (e.target.value === "예체능대학") {
-      setSelectList([
-        "회화과",
-        "패션디자인학과",
-        "음악과",
-        "체육학과",
-        "무용과",
-        "영화예술학과",
-      ]);
-    } else if (e.target.value === "법학부") {
-      setSelectList(["---"]);
-    }
-  };
+    "영화예술학과",
+    "우주항공시스템공학부-우주항공공학전공",
+    "우주항공시스템공학부-항공시스템공학전공",
+    "음악과",
+    "인공지능학과",
+    "전자정보통신공학과",
+    "정보보호학과",
+    "지구자원시스템공학과",
+    "지능기전공학과",
+    "창의소프트학부-디자인이노베이션",
+    "창의소프트학부-만화애니메이션텍",
+    "체육학과",
+    "컴퓨터공학과",
+    "패션디자인학과",
+    "항공시스템공학과",
+    "행정학과",
+    "호텔관광외식경영학부-외식경영",
+    "호텔관광외식경영학부-호텔관광경영",
+    "호텔외식관광프랜차이즈경영학과",
+    "호텔외식비즈니스학과",
+    "화학과",
+    "환경에너지공간융합학과",
+    "회화과",
+  ];
 
   const inputChangeHandler = (event) => {
     setPassword(event.target.value);
@@ -142,7 +111,6 @@ const Mypage = () => {
       geAreaTaken: userInfo.geAreaTaken,
       totalCredits: userInfo.totalCredits,
     });
-    console.log(userInfo);
   }, [
     enteredInput.name,
     enteredInput.userGrade,
@@ -150,8 +118,7 @@ const Mypage = () => {
     enteredInput.doubleMajor,
   ]);
 
-  useEffect(() => {
-  }, [enteredInput.doubleMajor]);
+  useEffect(() => {}, [enteredInput.doubleMajor]);
 
   const checkboxHandler = () => {
     if (checkboxOn == false) {
@@ -190,26 +157,23 @@ const Mypage = () => {
     if (response.status === 201) {
       alert("정보 수정되었습니다");
       dispatch(userInfoActions.saveUserInfo(enteredInput));
-      dispatch(userInfoActions.saveDepartment(departmentSelected));
       navigate("/mypage");
     }
   };
 
-  useEffect (() => {
-    const getToken = localStorage.getItem('token');
+  useEffect(() => {
+    const getToken = localStorage.getItem("token");
 
-    if(!getToken){
-      navigate('/');
+    if (!getToken) {
+      navigate("/");
     }
 
     var e = {
-      target : {
-        value : userInfo.department
+      target: {
+        value: userInfo.department,
       },
     };
-    departmentSelectHandler(e);
   }, []);
-
 
   const onReset = () => {
     setEnteredInput({
@@ -330,44 +294,28 @@ const Mypage = () => {
               </select>
             </div>
             <div>
-              <label htmlFor="department">학부</label>
-              <select
-              id="department"
-              onChange={departmentSelectHandler}
-              value={departmentSelected}
-              defaultValue={enteredInput.department}
-            >
-              <option value="인문과학대학">인문과학대학</option>
-              <option value="사회과학대학">사회과학대학</option>
-              <option value="경영경제대학">경영경제대학</option>
-              <option value="호텔관광대학">호텔관광대학</option>
-              <option value="자연과학대학">자연과학대학</option>
-              <option value="생명과학대학">생명과학대학</option>
-              <option value="전자정보공학대학">전자정보공학대학</option>
-              <option value="소프트웨어융합대학">소프트웨어융합대학</option>
-              <option value="공과대학">공과대학</option>
-              <option value="예체능대학">예체능대학</option>
-              <option value="법학부">법학부</option>
-            </select>      
-            </div>
-            <div>
               <label htmlFor="major">전공</label>
               {/* <select
                 id="major"
                 value={enteredInput.major}
                 onChange={formChangeHandler}
               > */}
-                 <select id="major" onChange={formChangeHandler} tabIndex="6" defaultValue={userInfo.major} >
-              {selectList.map((item) => (
-                <option value={item} key={item}>
-                  {item}
-                </option>
-              ))}
-            </select>
+              <select
+                id="major"
+                onChange={formChangeHandler}
+                tabIndex="6"
+                defaultValue={userInfo.major}
+              >
+                {majorList.map((item) => (
+                  <option value={item} key={item}>
+                    {item}
+                  </option>
+                ))}
+              </select>
               {/* </select> */}
             </div>
             <div>
-              <label htmlFor="doubleMajor">복수전공</label>
+              {/* <label htmlFor="doubleMajor">복수전공</label>
               <input
                 className="mypage-userinfo-checkbox"
                 type="checkbox"
@@ -391,7 +339,7 @@ const Mypage = () => {
                     <option value="인공지능학과">인공지능학과</option>
                   </select>
                 </div>
-              )}
+              )} */}
               <div className="mypage-userinfo-buttons">
                 <button
                   className="mypage-userinfo-buttons-reset"

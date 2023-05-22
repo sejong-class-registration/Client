@@ -62,18 +62,23 @@
           font-family: "NotoSansKR";
         }
         &-upload {
+          cursor: pointer;
           display: flex;
           flex-direction: column;
-          margin-top: -18px;
-          font-size: 1rem;
-          font-weight: 100;
+          // margin-top: -18px;
+          font-size: 1.1rem;
+          font-weight: 500;
+          padding: 5px 25px;
+          border: none;
+          background: #a31432;
+          border-radius: 20px;
+          color: white;
           &-button {
-            border: none;
-            background: #a31432;
-            border-radius: 20px;
-            color: white;
-            font-size: 1.1rem;
-            padding: 5px 10px;
+            width: 0;
+            height: 0;
+            padding: 0;
+            overflow: hidden;
+            border: 0;
           }
           :hover {
             box-shadow: 2px 4px 5px #a8a8a8;

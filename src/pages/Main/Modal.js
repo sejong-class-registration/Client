@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./Modal.scss";
-import xIcon from "../../common/icons/xIcon.svg";
-import refreshIcon from "../../common/icons/rotate-right-solid.svg";
+import { GoCheck } from "react-icons/go";
+import { GoSync } from "react-icons/go";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { classFilterActions } from "../../redux/slice/classFilterSlice";
@@ -46,18 +46,64 @@ const ModalOverlay = (props) => {
 
   const departmentList = [
     "전체",
-    "대양휴머니티칼리지",
+    "건설환경공학과",
+    "건축공학과",
+    "건축학과",
+    "경영학부",
+    "경제학과",
+    "교육학과",
+    "국방시스템공학과",
+    "국어국문학과",
+    "국제학부",
+    // "국제학부 영어영문학",
+    // "국제학부 일어일문학",
+    // "국제학부 중국통상학",
+    "글로벌조리학과",
+    "기계공학과",
+    "나노신소재공학과",
     "데이터사이언스학과",
+    "무용과",
+    "물리천문학과",
+    "미디어커뮤니케이션학과",
+    "반도체시스템공학과",
+    "법학부",
+    "생명시스템학부",
+    // "생명시스템학부 바이오산업자원공학",
+    // "생명시스템학부 바이오융합공학",
+    // "생명시스템학부 식품생명공학전공",
     "소프트웨어학과",
+    "수학통계학과",
+    "스마트생명산업융합학과",
+    "양자원자력공학과",
+    "역사학과",
+    "영화예술학과",
+    "우주항공시스템공학부",
+    // "우주항공시스템공학부 우주항공공학전공",
+    // "우주항공시스템공학부 항공시스템공학전공",
+    "음악과",
     "인공지능학과",
+    "전자정보통신공학과",
     "정보보호학과",
+    "지구자원시스템공학과",
     "지능기전공학부",
-    "지능기전공학부 무인이동체공학전공",
-    "지능기전공학부 스마트기기공학전공",
+    // "지능기전공학부 무인이동체공학전공",
+    // "지능기전공학부 스마트기기공학전공",
     "창의소프트학부",
-    "창의소프트학부 디자인이노베이션전공",
-    "창의소프트학부 만화애니메이션텍전공",
+    // "창의소프트학부 디자인이노베이션",
+    // "창의소프트학부 만화애니메이션텍",
+    "체육학과",
     "컴퓨터공학과",
+    "패션디자인학과",
+    "항공시스템공학과",
+    "행정학과",
+    "호텔관광외식경영학부",
+    // "호텔관광외식경영학부 외식경영",
+    // "호텔관광외식경영학부 호텔관광경영",
+    "호텔외식관광프랜차이즈경영학과",
+    "호텔외식비즈니스학과",
+    "화학과",
+    "환경에너지공간융합학과",
+    "회화과",
   ];
 
   const classificationList = [
@@ -203,18 +249,16 @@ const ModalOverlay = (props) => {
           className="modal-buttons-initButton"
           onClick={initButtonHandler}
         >
-          <img
+          <GoSync
             className="modal-buttons-initButton-img"
-            src={refreshIcon}
             alt="Init Button"
-          ></img>
+          ></GoSync>
         </button>
         <button className="modal-buttons-closeButton" onClick={props.close}>
-          <img
+          <GoCheck
             className="modal-buttons-closeButton-img"
-            src={xIcon}
-            alt="Close Button"
-          ></img>
+            alt="Check Button"
+          ></GoCheck>
         </button>
       </div>
       <div className="modal-contents">

@@ -2,6 +2,7 @@ import "./Frame2.scss";
 import LectureItem from "./LectureItem";
 import searchIcon from "../../common/icons/searchIcon.svg";
 import { useState, useEffect } from "react";
+import { GoSearch } from "react-icons/go";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { sortFilterActions } from "../../redux/slice/sortFilterSlice";
@@ -105,7 +106,7 @@ const Frame2 = (props) => {
     <div className="frame_2">
       <div className="filter">
         <button className="filter-button" onClick={props.openModal}>
-          <img className="filter-button-img" src={searchIcon} alt=""></img>
+          <GoSearch className="filter-button-img" src={searchIcon} alt="search-button" size = {15}></GoSearch>
         </button>
       </div>
       <div className="content2">
