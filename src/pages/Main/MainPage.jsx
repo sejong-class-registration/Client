@@ -19,8 +19,6 @@ function MainPage() {
     if(!getToken){
       navigate('/');
     }
-
-    console.log(user);
   }, []);
 
   return (

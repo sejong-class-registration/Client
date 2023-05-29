@@ -122,8 +122,7 @@ const MainNavigation = (props) => {
                       졸업요건 확인
                     </NavLink>
                   </button>
-                </li>
-
+                </li>  
                 {/* <li>
                   <button
                     onClick={toggleDropdown}

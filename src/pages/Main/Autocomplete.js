@@ -16,7 +16,6 @@ const Autocomplete = ({ name, onChange }) => {
   );
 
   const savedFilterInfo = useSelector((state) => state.classFilter.classFilter);
-  //   console.log(lectureList);
 
   const handleDropDownClick = (clickedOption) => {
     setInputValue(clickedOption);
@@ -46,7 +45,7 @@ const Autocomplete = ({ name, onChange }) => {
       for (var lecture = 0; lecture < lectureList.length; lecture++) {
         lectureNameList.push(lectureList[lecture].name);
       }
-      //   console.log(lectureNameList);
+
       setOptions(
         lectureNameList.filter((option) => {
           return option.includes(inputValue);

@@ -153,7 +153,6 @@ const Mypage = () => {
         doubleMajor: enteredInput.doubleMajor,
       }
     );
-    console.log(enteredInput);
     if (response.status === 201) {
       alert("정보 수정되었습니다");
       dispatch(userInfoActions.saveUserInfo(enteredInput));

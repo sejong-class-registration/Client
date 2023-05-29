@@ -188,12 +188,12 @@ const GraduateUpdate = (props) => {
       }
     );
     console.log(response); 
-    if(response.status === 200){
-      alert("졸업요건을 추가하는 데 성공하였습니다.");
-    }
-    else{
-      alert("졸업요건을 추가하는 데 실패하였습니다");
-    }
+    // if(response.status === 200){
+    //   alert("졸업요건을 추가하는 데 성공하였습니다.");
+    // }
+    // else{
+    //   alert("졸업요건을 추가하는 데 실패하였습니다");
+    // }
   } 
 
 
