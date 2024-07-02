@@ -33,3 +33,15 @@ _2022.09~2023.06_
 
 ### 관리자 서비스
 ![image](https://github.com/sejong-class-registration/Client/assets/108220648/e458f3a1-dd6b-469d-ae8c-f863a21f6aa7)
+
+### UI 페이지 개선
+![image](https://github.com/sejong-class-registration/Client/assets/108220648/ca5c917e-a265-4c4c-98d4-e97a99e0fb76)
+
+- 메인 페이지 UI 개선
+- 페이지 사이즈 조절 시 정상적으로 반응하도록 수정
+
+![image](https://github.com/sejong-class-registration/Client/assets/108220648/547d919b-e482-4453-bdf1-f35e628b09b4)
+![image](https://github.com/sejong-class-registration/Client/assets/108220648/26f75968-4611-428b-8954-91572eb11854)
+
+- 수강신청 대비 페이지 UI 개선
+- 웹 사이즈 줄였을 때 비정상적으로 줄어드는 것 수정
